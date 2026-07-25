@@ -1,5 +1,17 @@
 # Changelog — asteria-contract
 
+## 1.4.35 — 2026-07-25
+
+### Dashboard deep-links catalog
+
+Normative SoT: [`cloud/dashboard-deep-links.md`](cloud/dashboard-deep-links.md)
+
+- Browser-only `https://asteria.run{path}?token={TOKEN}` (+ optional query/hash)
+- Full `/dashboard/*` page table for client Settings / tray shortcuts
+- Blocks tab hashes (`#tab-auto`, `#tab-rules`, …) and Attacks filters (`service`, `ip`)
+- Clarifies: agent API remains Bearer-only; `?token=` is HTML deep-link only
+- Docs-only — no new min client floor
+
 ## 1.4.34 — 2026-07-25
 
 ### Anti-brick — account-gated critical actions

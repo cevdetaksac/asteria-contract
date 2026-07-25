@@ -26,6 +26,7 @@
 | Firewall brand `HP-*` → `AR-BLOCK-*` / `AR-INTEL-*` (clear+rewrite) | `agent/firewall-brand-migrate.md`, `api/06-firewall-blocks.md` | cloud live ≥ **1.4.31**; client **≥ 4.9.33** |
 | Signing/heartbeat contexts → `asteria-chp-v1` / `asteria-heartbeat-v1` | `agent/rebrand-asteria.md`, `api/03-control-websocket.md`, `api/01-auth.md` | cloud live ≥ **1.4.32**; client **≥ 4.9.35** |
 | Anti-brick: account-gated critical auto-actions; silent-hours default OFF; dashboard auto-link; undo mail | `agent/anti-brick-critical-actions.md`, `api/02-account.md` | cloud ≥ **1.4.34**; client **≥ 4.9.36** |
+| Dashboard deep-links catalog (`?token=` browser URLs / Settings shortcuts) | `cloud/dashboard-deep-links.md` | cloud ≥ **1.4.35** (docs; no new client floor) |
 | Uninstall PIN lifecycle (`uninstall_*` + `windows_user`) | `api/07-lifecycle-sessions.md` | cloud ≥ **1.4.9**; client with uninstall PIN gate |
 | Bare `successful_logon` score ≤70 + no auto-block (cloud reject shapes) | `agent/threat-engine.md` | cloud ≥ **1.4.11**; target client **≥4.9.7** |
 | Whitelist never stays blocked (reject + `unblock_ip` + pending-unblocks) | `api/06-firewall-blocks.md`, `agent/threat-engine.md` | cloud ≥ **1.4.11**; client must ACK `block-removed` |

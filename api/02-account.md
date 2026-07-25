@@ -429,7 +429,7 @@ Tray menüsü (opsiyonel):
 
 - Bu host’un `server_name` / token kısaltması
 - “Dashboard aç” → `https://asteria.run/dashboard?token={TOKEN}`  
-  (Account cookie varsa switcher de çalışır)
+  (Account cookie varsa switcher de çalışır; tam sayfa listesi: [`../cloud/dashboard-deep-links.md`](../cloud/dashboard-deep-links.md))
 
 ---
 

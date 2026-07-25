@@ -4,7 +4,7 @@
 
 | | |
 |--|--|
-| **VERSION** | [`VERSION`](VERSION) (**1.4.34**) |
+| **VERSION** | [`VERSION`](VERSION) (**1.4.35**) |
 | **Index** | [`INDEX.md`](INDEX.md) |
 | **Changelog** | [`CHANGELOG.md`](CHANGELOG.md) |
 | **Fleet matrix** | [`FLEET.md`](FLEET.md) — production floor client ≥ **4.9.0** |
@@ -43,7 +43,7 @@
 ```bash
 git clone https://github.com/cevdetaksac/asteria-contract.git
 cd asteria-contract
-cat VERSION   # expect 1.4.34+
+cat VERSION   # expect 1.4.35+
 ```
 
 Client workspace pointer: `asteria-client/contract/` → this repo.

@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.34** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.35** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.35** | Dashboard deep-links (`?token=`) catalog for Settings shortcuts | — (docs) |
 | **1.4.34** | Anti-brick: account-gated critical auto-actions + dashboard auto-link + undo mail | ≥**4.9.36** |
 | **1.4.33** | Contract hygiene: client entrypoints, remove legacy archive dumps | — (docs) |
 | **1.4.32** | Signing/heartbeat → **`asteria-chp-v1` / `asteria-heartbeat-v1`**; brand SoT scrub | ≥**4.9.35** |
@@ -90,6 +91,7 @@
 | [cloud/REMOTE_DESKTOP_SMOOTHNESS.md](cloud/REMOTE_DESKTOP_SMOOTHNESS.md) | WebRTC smoothness C-RD | Normative (1.4.20) |
 | [cloud/threat-intel-ingest.md](cloud/threat-intel-ingest.md) | Harici feed → bundle | Normative |
 | [cloud/PRODUCT_BRANDING.md](cloud/PRODUCT_BRANDING.md) | Wire identity / no big-bang rename | Decision |
+| [cloud/dashboard-deep-links.md](cloud/dashboard-deep-links.md) | Browser `?token=` dashboard URLs / Settings shortcuts | Normative (1.4.35) |
 | [cloud/ZERO_TRUST_STATUS.md](cloud/ZERO_TRUST_STATUS.md) | ZT do/don’t | Design-only |
 | [cloud/command-envelope-v2-design.md](cloud/command-envelope-v2-design.md) | ZT-601 envelope | Design-only |
 | [cloud/operator-keyset-design.md](cloud/operator-keyset-design.md) | ZT-602/603 keys | Design-only |

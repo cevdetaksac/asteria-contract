@@ -10,7 +10,7 @@
 
 1. `Authorization: Bearer <token>`  
 2. JSON body `token` (POST uyumluluk)  
-3. Query `?token=` — **kapatıldı / reddedilir** (dashboard deep-link hariç)
+3. Query `?token=` — **kapatıldı / reddedilir** (dashboard deep-link hariç — katalog: [`../cloud/dashboard-deep-links.md`](../cloud/dashboard-deep-links.md))
 
 WS: Bearer header veya `Sec-WebSocket-Protocol: bearer, <token>`.
 
