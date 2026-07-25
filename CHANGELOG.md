@@ -1,5 +1,16 @@
 # Changelog — honeypot-contract
 
+## 1.4.32 — 2026-07-25
+
+### Brand identity cutover (cloud + client signing)
+
+- Normative SoT: `agent/rebrand-asteria.md` (single brand-migration doc).
+- Command HMAC context: **`asteria-chp-v1`** (cloud signs). Legacy `yesnext-chp-v1` verify-only during cutover.
+- Heartbeat HMAC context: **`asteria-heartbeat-v1`** (client must emit).
+- Dashboard CSS: `--ast-*` / `.ast-*` (replaces `--yn-*`).
+- Cloud secrets: `SECRET_KEY` + `LOGON_CHALLENGE_SECRET` required; no hardcoded credential fallbacks.
+- Min client for signing: **≥ 4.9.35**.
+
 ## 1.4.31 — 2026-07-24 (Firewall brand: HP-* → AR-*)
 
 ### Decision

@@ -58,7 +58,7 @@ Client **kaynak çekmez** (Abuse.ch / CISA doğrudan değil). Client sadece clou
 | P0 | [CISA KEV](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) JSON | CVE id, product, due date | Hardening / dashboard uyarı |
 | P0 | [ThreatFox](https://threatfox.abuse.ch/) API | IP/domain/hash + malware family | Firewall block + alert |
 | P1 | [URLhaus](https://urlhaus.abuse.ch/) | Kötü URL / host | Domain block list (opsiyonel) |
-| P1 | İç liste (YesNext curated) | Ransomware uzantıları, LOLBin cmdline | Sizin editorial kontrol |
+| P1 | İç liste (Asteria curated) | Ransomware uzantıları, LOLBin cmdline | Sizin editorial kontrol |
 | P2 | MSRC / NVD özet | CVE açıklama | Dashboard bilgilendirme |
 | P2 | MalwareBazaar | Hash | İleride hash scan |
 

@@ -114,7 +114,8 @@ Client config: `security.command_signing` (default **true**).
 ```
 
 - Algoritma: `HMAC-SHA256` → hex digest  
-- Anahtar türetimi (client): `SHA256("{token}|{COMPUTERNAME}|yesnext-chp-v1")` — key = **raw digest** (32 bayt), hex string değil  
+- Anahtar türetimi (client): `SHA256("{token}|{COMPUTERNAME}|asteria-chp-v1")` — key = **raw digest** (32 bayt), hex string değil  
+  - **Legacy (pre-1.4.32):** `yesnext-chp-v1` — cloud no longer *signs* with it; see [`../agent/rebrand-asteria.md`](../agent/rebrand-asteria.md)  
 - Cloud imza üretirken aynı token + kayıtlı hostname (`COMPUTERNAME`) kullanır (heartbeat `hostname` > `server_name` prefix)  
 - **Cloud → agent zarf alanları:** `issued_at` (imzalanan tam string) + `signature` — hem WS `command` push hem `GET /api/commands/pending` liste öğelerinde  
 - **Zarf ayrıca `type` alias'ı içerir** (= `command_type`): client `verify_command_signature` tipi `type` anahtarından okur; alias olmadan imza boş tip üzerinden hesaplanıp reject edilir (canlı 4.5.68 ile doğrulandı)  

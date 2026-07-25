@@ -178,7 +178,7 @@ Dashboard polls `client_status` ~**2s**.
 
 1. **Sleep:** put host to sleep → dashboard shows **Uyku (suspend)** within **2s** (phone refresh / open dashboard).
 2. **Wake:** resume → **Çevrimiçi** within a few seconds of WS hello/ping.
-3. **Stop service:** stop YesNext daemon → **Çevrimdışı** within **2s** (goodbye).
+3. **Stop service:** stop Asteria daemon → **Çevrimdışı** within **2s** (goodbye).
 4. **GUI quit only:** tray exit → remains **online** if daemon alive.
 5. **Pull cable (no goodbye):** offline within ~12–75s (not instant — expected).
 

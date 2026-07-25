@@ -99,14 +99,15 @@ wired.
 Algorithm (must match client `client_resilience_p1`):
 
 ```text
-key = SHA256("{token}|{hostname.lower()}|yesnext-heartbeat-v1")   // raw 32 bytes
+key = SHA256("{token}|{hostname.lower()}|asteria-heartbeat-v1")   // raw 32 bytes
 msg = "v1|{hostname.lower()}|{status}|{1|0}|{issued_at}"
 signature = HMAC-SHA256(key, msg).hexdigest()
 ```
 
 `issued_at` is used verbatim (UTC ISO-8601, may include microseconds + `Z`).
 Suggested soft verify windows (observe metrics only): max age 300s; clock skew
-tolerance −30s. Distinct from command HMAC (`yesnext-chp-v1`).
+tolerance −30s. Distinct from command HMAC (`asteria-chp-v1`).
+Legacy pre-1.4.32 context was `yesnext-heartbeat-v1` — see [`../agent/rebrand-asteria.md`](../agent/rebrand-asteria.md).
 
 ---
 

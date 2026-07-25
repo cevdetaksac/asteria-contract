@@ -1,124 +1,134 @@
-# Client rebrand — Asteria (`asteria.run`)
+# Brand migration — Asteria (single SoT)
 
-> **Contract:** **1.4.30** · Min client: **≥ 4.9.32**  
-> Brand SoT: [`../cloud/PRODUCT_BRANDING.md`](../cloud/PRODUCT_BRANDING.md)  
-> Auth: [`../api/01-auth.md`](../api/01-auth.md) · Self-update: [`../api/04-self-update.md`](../api/04-self-update.md)
+> **Contract VERSION:** **1.4.32**  
+> **Min client for full identity:** **≥ 4.9.35**  
+> Related: firewall migrate [`firewall-brand-migrate.md`](./firewall-brand-migrate.md) (1.4.31 / ≥4.9.33)
 
-Cloud **1.4.30** ile primary public origin **`https://asteria.run`**.
-Eski host `https://honeypot.yesnext.com.tr` nginx alias olarak kalır —
-ama yeni build'ler **primary** olarak `asteria.run` kullanmalı.
+This file is the **only** place that documents former YesNext / Cloud Honeypot names.
+Everywhere else in cloud + client product surfaces must say **Asteria**.
+
+Former product name: **YesNext Cloud Honeypot**  
+Current: **Asteria** · tagline **Deception Cloud** · primary origin **`https://asteria.run`**
 
 ---
 
-## P0 — API / WS base URL (zorunlu)
+## Cutover summary (1.4.32)
+
+| Layer | Was (legacy — keep for verify/wipe/failover) | Is now (Asteria) |
+|-------|-----------------------------------------------|------------------|
+| Public API / WS | `https://honeypot.yesnext.com.tr` | **`https://asteria.run`** (+ nginx alias for old host until fleet migrates) |
+| Command HMAC context | `yesnext-chp-v1` | **`asteria-chp-v1`** (cloud **signs** this; cloud **verify** accepts both during cutover) |
+| Heartbeat HMAC context | `yesnext-heartbeat-v1` | **`asteria-heartbeat-v1`** (client must emit new; cloud accept both if verify enabled) |
+| Firewall rule prefix | `HP-BLOCK-*` / `HP-INTEL-*` / `HONEYPOT*` | **`AR-BLOCK-*` / `AR-INTEL-*`** (wipe still clears old prefixes) |
+| Install dir (new) | `Program Files\YesNext\Cloud Honeypot\` | **`Program Files\Asteria\`** |
+| Exe (new) | `honeypot-client.exe`, `yesnext-honeypot-client.exe` | **`asteria-client.exe`** (cloud path-trust still accepts legacy names) |
+| ProgramData (existing installs) | `%ProgramData%\YesNext\CloudHoneypotClient\` | **Do not silent-move** — keep until dedicated migrate |
+| Client GitHub releases | `cevdetaksac/yesnext-cloud-honeypot-client` | **`cevdetaksac/asteria-client`** |
+| Dashboard CSS vars/classes | `--yn-*` / `.yn-*` | **`--ast-*` / `.ast-*`** |
+| UI / mail / OpenAPI title | Honeypot / YesNext | **Asteria** |
+
+Industry word **honeypot** (decoy service) may appear in marketing/docs as a *category* term; it is **not** the product brand.
+
+---
+
+## P0 — Client must change (breaking if skipped)
+
+### 1) Command signing context → `asteria-chp-v1`
+
+```text
+key = SHA256("{token}|{COMPUTERNAME}|asteria-chp-v1")   // raw 32-byte digest
+msg = "{command_id}|{command_type}|{issued_at}"
+signature = HMAC-SHA256(key, msg).hexdigest()
+```
+
+- Cloud **1.4.32+** produces signatures with **`asteria-chp-v1` only**.
+- Client **must verify** with `asteria-chp-v1`. Old `yesnext-chp-v1` verify will reject live commands.
+- Defense-rules HMAC uses the **same** context family (`asteria-chp-v1`).
+- See [`../api/03-control-websocket.md`](../api/03-control-websocket.md).
+
+### 2) Heartbeat signing context → `asteria-heartbeat-v1`
+
+```text
+key = SHA256("{token}|{hostname.lower()}|asteria-heartbeat-v1")
+msg = "v1|{hostname.lower()}|{status}|{1|0}|{issued_at}"
+```
+
+Legacy `yesnext-heartbeat-v1` is documented only for rollback labs. See [`../api/01-auth.md`](../api/01-auth.md).
+
+### 3) API base
 
 | | |
 |--|--|
 | **Primary** | `https://asteria.run` |
-| **WebSocket** | `wss://asteria.run/ws/agent/control` (+ remote WS aynı host) |
-| **Legacy fallback** | `https://honeypot.yesnext.com.tr` (yalnız primary DNS/TLS fail ise) |
+| **WS** | `wss://asteria.run/ws/agent/control` (+ remote WS same host) |
+| **Legacy failover** | `https://honeypot.yesnext.com.tr` only if primary unreachable |
 
-### Client algoritması
+### 4) Visible brand
 
-1. Config / varsayılan `ApiBaseUrl` = `https://asteria.run`.
-2. Boot / self-update / register / heartbeat / control-WS hepsi **aynı host**.
-3. Primary'ye TCP/TLS/HTTP 5xx-unreachable olursa → legacy host'a **bir kez** failover;
-   başarılı olursa oturum boyunca legacy kullan, bir sonraki boot'ta yine primary dene.
-4. Kullanıcıya GUI'de görünen "Cloud URL" = primary (legacy'yi gizle).
-5. `rotate-token` / `register` response içindeki `dashboard` URL'ini olduğu gibi kullan
-   (cloud zaten `asteria.run` döner) — client kendi host'unu hardcoded birleştirme.
+Tray, About, installer, Start Menu, account copy: **Asteria** — never YesNext / Cloud Honeypot as product name.
 
-### Kabul
+### 5) Firewall
 
-- [ ] Temiz kurulum yalnızca `asteria.run` ile register + heartbeat + control WS.
-- [ ] Legacy host'a pin'lenmiş eski ajan hâlâ çalışır (cloud alias).
-- [ ] Primary down simülasyonunda failover → legacy; recovery sonrası primary'ye dönüş.
+Wire writes **`AR-*`** only. Wipe/delete must still remove **`HP-*`** + **`HONEYPOT*`**. Details: [`firewall-brand-migrate.md`](./firewall-brand-migrate.md).
 
 ---
 
-## P0 — Threat-intel / self-update allowlist
+## P1 — Paths / trust (dual during transition)
 
-Cloud bundle allowlist'inde **her iki host** var. Client:
+Cloud path-trust accepts:
 
-- Local allowlist / pinned hosts: `asteria.run`, `www.asteria.run`, `honeypot.yesnext.com.tr`
-- GitHub release host'ları değişmedi
-- Self-update download URL host'u ne gelirse gelsin; cloud'un verdiği URL'ye güven
-  (mevcut imza doğrulama aynen)
+- `Program Files\Asteria\...` + `asteria-client.exe`
+- Legacy: `Program Files\YesNext\...`, `honeypot-client.exe`, `yesnext-honeypot-client.exe`, `cloud-honeypot-client.exe`
 
----
-
-## P1 — Görünen ad (UI / installer / tray)
-
-| Eski | Yeni |
-|------|------|
-| YesNext Cloud Honeypot | **Asteria** |
-| YesNext | **Asteria** |
-| Cloud Honeypot (kısa) | **Asteria** |
-
-- Tray tooltip, About, uninstaller display name, Windows Firewall kural **görünen** adı
-  (wire prefix **`AR-BLOCK-*`** / **`AR-INTEL-*`** — contract **1.4.31** / client ≥ **4.9.33**;
-  migrate: [`firewall-brand-migrate.md`](./firewall-brand-migrate.md)).
-- Start Menu kısayolu: `Asteria`.
-- GUI Settings "Account" metinleri: "Asteria account".
+New installs must use Asteria paths. Do **not** silently move ProgramData.
 
 ---
 
-## P1 — Kurulum path / exe (yeni kurulum)
+## P2 — Optional / ops
 
-**Mevcut kurulumlara dokunma** (ProgramData + schtasks + exe path → update kırılır).
-
-| | Mevcut (legacy, koru) | Yeni kurulum (önerilen) |
-|--|--|--|
-| Install dir | `Program Files\YesNext\Cloud Honeypot\` | `Program Files\Asteria\` |
-| ProgramData | `%ProgramData%\YesNext\CloudHoneypotClient\` | **aynı bırak** veya kontrollü migrate planı ayrı MD |
-| Exe | `honeypot-client.exe` | `asteria-client.exe` (opsiyonel; her iki ad cloud trust'ta) |
-| Tasks | `CloudHoneypot-*` | **aynı bırak** (wire kimliği) |
-
-Cloud path-trust **her iki** vendor dizinini kabul eder (`helpers._path_looks_trusted`).
-
-Self-proof / agent identity HMAC: mevcut `yesnext-chp-v1` context **değişmez**.
+- Contract git repo may still be named `honeypot-contract` (historical remote).
+- Cloud backup git remote may still be `honeypot-cloud` until renamed.
+- OS safety tooling may still live under `/usr/local/lib/honeypot-safety` with aliases `honeypot-trash` — archives go to `/data/asteria-trash` / `/data/asteria-snapshots`.
 
 ---
 
-## P2 — Repo / paket adları
+## Wire names that stay (not brand UI)
 
-- GitHub: `cevdetaksac/asteria-client`, `asteria-contract`, `asteria-cloud`
-  (legacy slugs redirect: `yesnext-cloud-honeypot-client`, `honeypot-contract`, `honeypot-cloud`).
-- Client self-update polls `asteria-client`; download allowlist also accepts legacy slug.
-- NuGet / MSI ProductCode değişimi → major upgrade kurallarına uy.
+These are protocol / taxonomy identifiers — rename only with a dedicated API version:
 
----
-
-## Yasak (client)
-
-1. Wipe/unblock’ta `HP-*` önekini unutmak (orphan) — dual-delete zorunlu (≥ **4.9.33**).
-2. `yesnext-chp-v1` signing context değiştirmek.
-3. Bare `/register` ile "domain değişti" bahanesiyle yeni token açmak —
-   token aynı kalır; sadece API host değişir. Token rekey gerekirse
-   [`POST /api/agent/rotate-token`](../api/01-auth.md) (contract **1.4.29**).
-4. Eski host'u config'ten tamamen silmek (failover için tut).
-5. ProgramData'yı sessizce `Asteria\` altına taşımak (watchdog kaybı).
-
-Firewall prefix cutover (`HP-*` → `AR-*`): [`firewall-brand-migrate.md`](./firewall-brand-migrate.md) (≥ **4.9.33** / contract **1.4.31**).
+- `POST /api/honeypot-attack` (path)
+- Threat types: `honeypot_credential`, `honeypot_hit`, …
+- Flag `wipe_all_honeypot_rules` (alias of wipe_prefixes)
 
 ---
 
-## Test matrisi (client CI / lab)
+## Yasak
 
-| # | Senaryo | Beklenen |
-|---|---------|----------|
-| 1 | Fresh install → `asteria.run` | register ok, dashboard link `asteria.run` |
-| 2 | Eski ajan `honeypot.yesnext.com.tr` | heartbeat + WS hâlâ ok |
-| 3 | Primary DNS fail → failover | legacy ile sürer; boot'ta primary retry |
-| 4 | Self-update over new host | imza ok, servis dirilir |
-| 5 | rotate-token after rebrand | same `client_id`, history preserved |
-| 6 | Path trust: YesNext **ve** Asteria Program Files | self-proof kabul |
-| 7 | Threat-intel GET | 200/304; allowlist hosts apply |
+1. Cloud/dashboard UI showing YesNext or “Honeypot Dashboard” as brand.
+2. Signing with `yesnext-chp-v1` on new cloud builds (1.4.32+).
+3. Forgetting `HP-*` in wipe lists.
+4. Silent ProgramData migrate.
+5. Removing legacy host from nginx before fleet cutover.
+
+---
+
+## Test matrix
+
+| # | Scenario | Expected |
+|---|----------|----------|
+| 1 | Client ≥4.9.35 verifies `asteria-chp-v1` | commands accepted |
+| 2 | Old client still on `yesnext-chp-v1` verify | commands **fail** until update |
+| 3 | Fresh install → `asteria.run` | register + WS ok |
+| 4 | Legacy host alias | old agent still heartbeats |
+| 5 | Path trust YesNext **and** Asteria dirs | self-proof ok |
+| 6 | Firewall wipe | removes AR-* and HP-* |
 
 ---
 
 ## Sürüm
 
-- Contract **1.4.30**
-- Client ship target **≥ 4.9.32** (P0 base URL + UI rename minimum)
-- P1 path/exe rename ayrı patch olabilir (≥ 4.9.32 veya 4.9.33) — contract bu MD'de takip edilir
+| Contract | Client min | Notes |
+|----------|------------|-------|
+| 1.4.30 | ≥4.9.32 | Domain + UI Asteria; signing still legacy |
+| 1.4.31 | ≥4.9.33 | Firewall AR-* |
+| **1.4.32** | **≥4.9.35** | **Signing/heartbeat contexts Asteria; CSS `--ast-*`; full cloud brand scrub** |

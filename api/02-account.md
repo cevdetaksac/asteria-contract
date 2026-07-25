@@ -61,7 +61,7 @@ Client **≥4.9.26**: Ayarlar → **Hesap bağlantısı** → Bağlantıyı kes.
 web `/servers` fallback (`unlink_api_unavailable`).
 
 > Üst bardaki e-posta cloud `account-status` kaynağıdır; client uydurmaz.
-> Yeni kurulumda Dashboard `?token=` + açık YesNext oturumu otomatik link üretebilir.
+> Yeni kurulumda Dashboard `?token=` + açık Asteria oturumu otomatik link üretebilir.
 
 ---
 
@@ -375,7 +375,7 @@ Agent hâlâ klasik `POST /api/register` ile `Client` oluşturur; token local’
 Link-server için kullanıcıya **agent token** lazım. Tray / first-run UI’da:
 
 - Token’ı maskeli göster + **Copy**
-- Kısa metin: *“Bu token’ı honeypot.yesnext.com.tr → My servers → Link server alanına yapıştırın.”*
+- Kısa metin: *“Bu token’ı asteria.run → My servers → Link server alanına yapıştırın.”*
 - Opsiyonel: `https://asteria.run/servers` linkini aç
 
 ### P1 — Kurulum sonrası “hesaba bağla” CTA (opsiyonel ama önerilir)
@@ -384,7 +384,7 @@ First-run / Settings → Account:
 
 | Alan | Açıklama |
 |------|----------|
-| E-posta | Kullanıcının YesNext hesabı |
+| E-posta | Kullanıcının Asteria hesabı |
 | Şifre | Account şifresi |
 | Buton | “Hesaba bağla” / “Open link page” |
 

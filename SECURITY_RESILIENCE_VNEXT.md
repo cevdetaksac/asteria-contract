@@ -121,7 +121,8 @@ No new wire field from this lane ships until promoted below.
 Current v1 compatibility algorithm:
 
 ```text
-secret = SHA256(token + "|" + COMPUTERNAME + "|yesnext-chp-v1")
+secret = SHA256(token + "|" + COMPUTERNAME + "|asteria-chp-v1")
+# Legacy pre-1.4.32: yesnext-chp-v1 — see agent/rebrand-asteria.md
 message = command_id + "|" + command_type + "|" + issued_at
 signature = HMAC-SHA256(secret, message)
 ```

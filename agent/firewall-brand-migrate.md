@@ -92,7 +92,7 @@ Script / endpoint: `scripts/migrate_firewall_ar_prefix.py` ·
 ## Yasak
 
 - Yalnız `AR-*` yazıp wipe’ta `HP-*`’yi unutmak (orphan HP kuralları kalır).
-- `yesnext-chp-v1` signing context değiştirmek (bu migrate’in parçası değil).
+- Command signing context: cutover to `asteria-chp-v1` is **1.4.32** / [`rebrand-asteria.md`](./rebrand-asteria.md) — not this firewall migrate.
 - ProgramData sessiz taşımak.
 
 ---
