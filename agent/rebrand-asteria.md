@@ -80,11 +80,11 @@ Self-proof / agent identity HMAC: mevcut `yesnext-chp-v1` context **değişmez**
 
 ---
 
-## P2 — Repo / paket adları (opsiyonel, kırılmaz)
+## P2 — Repo / paket adları
 
-- GitHub release repo adı şimdilik aynı kalabilir
-  (`cevdetaksac/yesnext-cloud-honeypot-client`); display title → Asteria.
-- Contract repo `honeypot-contract` tarihsel SoT; rename zorunlu değil.
+- GitHub: `cevdetaksac/asteria-client`, `asteria-contract`, `asteria-cloud`
+  (legacy slugs redirect: `yesnext-cloud-honeypot-client`, `honeypot-contract`, `honeypot-cloud`).
+- Client self-update polls `asteria-client`; download allowlist also accepts legacy slug.
 - NuGet / MSI ProductCode değişimi → major upgrade kurallarına uy.
 
 ---
