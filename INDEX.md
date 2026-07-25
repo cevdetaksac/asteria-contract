@@ -1,13 +1,16 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.29** · Repo: https://github.com/cevdetaksac/honeypot-contract  
-> Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**
+> **VERSION 1.4.31** · Repo: https://github.com/cevdetaksac/honeypot-contract  
+> Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
+> **API base:** `https://asteria.run` (legacy alias: `honeypot.yesnext.com.tr`)
 
 ### Recent contract highlights
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.31** | Firewall brand `HP-*` → **`AR-BLOCK` / `AR-INTEL`** | ≥**4.9.33** |
+| **1.4.30** | Brand → **Asteria** / `asteria.run` (API base cutover) | ≥**4.9.32** |
 | **1.4.29** | In-place token rotate (`old→new`, same `client_id`) | ≥**4.9.31** |
 | **1.4.27** | Unlink API live + realtime presence wire | unlink ≥**4.9.26**; presence ≥**4.9.8** |
 | **1.4.26** | Hardware-bound `machine_id` (clone split) | ≥**4.9.28** |
@@ -17,7 +20,7 @@
 | **1.4.20** | WebRTC smoothness | ≥**4.9.20** |
 | **1.4.19** | Defense Policy observe→balanced | ≥**4.9.17** |
 | Design-only | ZT envelope/keys — [`cloud/ZERO_TRUST_STATUS.md`](cloud/ZERO_TRUST_STATUS.md) | — |
-| Decision | Branding — [`cloud/PRODUCT_BRANDING.md`](cloud/PRODUCT_BRANDING.md) | — |
+| Decision | Branding — [`cloud/PRODUCT_BRANDING.md`](cloud/PRODUCT_BRANDING.md) · client [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md) · FW [`agent/firewall-brand-migrate.md`](agent/firewall-brand-migrate.md) | ≥**4.9.33** |
 
 ---
 
@@ -50,6 +53,8 @@
 | [agent/defense-policy-client.md](agent/defense-policy-client.md) | Matrix apply, observe default, CTA | ≥ **4.9.17** |
 | [agent/remote-input.md](agent/remote-input.md) | Input protocol 2 + session helper | ≥ **4.9.0** |
 | [agent/server-management.md](agent/server-management.md) | Users / processes / services | target ≥ **4.9.4** |
+| [agent/rebrand-asteria.md](agent/rebrand-asteria.md) | API base → `asteria.run` + UI rename | ≥ **4.9.32** |
+| [agent/firewall-brand-migrate.md](agent/firewall-brand-migrate.md) | `HP-*` → `AR-BLOCK` / `AR-INTEL` | ≥ **4.9.33** |
 
 ---
 
@@ -62,7 +67,7 @@
 | [api/03-control-websocket.md](api/03-control-websocket.md) | Control WS + komutlar + HMAC | 4.5.x |
 | [api/04-self-update.md](api/04-self-update.md) | Self-update ACK | 4.5.39+ |
 | [api/05-remote-desktop.md](api/05-remote-desktop.md) | RD v2 (WS/JPEG + WebRTC) | **≥4.9.0** (smooth ≥**4.9.20**) |
-| [api/06-firewall-blocks.md](api/06-firewall-blocks.md) | HP-BLOCK / sync / clear | 4.5.40+ |
+| [api/06-firewall-blocks.md](api/06-firewall-blocks.md) | AR-BLOCK / sync / clear (+ HP wipe) | 4.5.40+ / brand ≥**4.9.33** |
 | [api/07-lifecycle-sessions.md](api/07-lifecycle-sessions.md) | Lifecycle / sessions / processes | — |
 | [api/08-architecture.md](api/08-architecture.md) | Daemon vs GUI IPC | ≥ **4.5.66** |
 | [api/09-threat-intel.md](api/09-threat-intel.md) | Intel bundle ETag/ACK/WS | ≥ **4.5.61** / apply ≥**4.9.7** |

@@ -174,7 +174,7 @@ Self-process koruma alanları: [`../api/07-lifecycle-sessions.md`](../api/07-lif
   "reason": "threat_score>=80",
   "threat_score": 90,
   "duration_hours": 24,
-  "firewall_rule_name": "HP-BLOCK-203.0.113.10",
+  "firewall_rule_name": "AR-BLOCK-203.0.113.10",
   "related_alert_id": "…",
   "events_summary": {}
 }
@@ -184,7 +184,7 @@ Cloud `auto_blocks` + `block_rules` upsert. Response `extend_duration` / `perman
 
 ### Cloud reject / güvenlik ağı (contract ≥1.4.10 / 1.4.11)
 
-Client yine de HP-BLOCK basmış olabilir; cloud kaydı **kabul etmez** ve geri aldırır:
+Client yine de AR-BLOCK basmış olabilir; cloud kaydı **kabul etmez** ve geri aldırır:
 
 | Koşul | HTTP 200 body | Client ne yapmalı |
 |-------|---------------|-------------------|
@@ -212,9 +212,9 @@ Cloud ayrıca: BlockRule → `remove_pending`, AutoBlock pasif, Control WS `unbl
 
 ### `should_auto_block()` (normative)
 
-Bare successful logon **must not** create `HP-BLOCK-*`:
+Bare successful logon **must not** create `AR-BLOCK-*`:
 
-| `threat_type` / category | Auto HP-BLOCK? |
+| `threat_type` / category | Auto AR-BLOCK? |
 |--------------------------|----------------|
 | `successful_logon`, `successful_logon_rdp`, `successful_logon_network`, `sql_successful_logon`, `rdp_connection_succeeded`, `rdp_session_logon`, `rdp_login_success` | **Hayır** (alert / e-posta / logon_challenge) |
 | `brute_force_then_access` / `failed_then_success` (fail eşiği sonrası başarı) | **Evet** |
@@ -239,7 +239,7 @@ gelmez; urgent delivery `high` + `notify_urgent` olabilir, `block_ip` olmaz.
 ### Whitelist (zorunlu)
 
 - `whitelist_ips` / `whitelist_subnets` → skor düşürülür (**≤ ~25**) ve
-  **asla** `HP-BLOCK` / `HP-INTEL` eklenmez.
+  **asla** `AR-BLOCK` / `AR-INTEL` eklenmez.
 - Zaten engelli bir whitelist IP tespit edilirse client **derhal kaldırır**
   (`enforce_whitelist_unblocks` on config apply / `block_ip` skip path).
 - Cloud SoT: [`gui-control-center.md`](./gui-control-center.md) whitelist
@@ -252,7 +252,7 @@ gelmez; urgent delivery `high` + `notify_urgent` olabilir, `block_ip` olmaz.
 | Threshold (config) | `auto_block_threshold` (threat score 0–100; GUI) — bare success path’te block tetiklemez |
 | Rate limit | max per hour/day |
 | Silent hours | Bare success → **alert / challenge**; firewall kesmez (≤4.9.6’da agresif block vardı) |
-| Brute fail | `protection.block_rules` eşikleri (4625 flood) → HP-BLOCK hâlâ geçerli |
+| Brute fail | `protection.block_rules` eşikleri (4625 flood) → AR-BLOCK hâlâ geçerli |
 | Cloud reject | `whitelisted` / `successful_logon_no_autoblock` → client FW sil + `block-removed` (contract ≥1.4.11) |
 
 ---
@@ -339,12 +339,12 @@ motor sessizce ölürse **ikincil güvenlik ağıdır**; SoT tamper urgent’tir
 ## Acceptance
 
 - [ ] Config poll → `protection.block_rules` + auto_block_* dolu
-- [ ] 4625 flood → urgent + (eş) auto-block → HP-BLOCK
-- [ ] Ofis IP başarılı RDP (4624/1149) → alert olabilir, **HP-BLOCK yok**, skor ≤70 (sessiz ≤80)
+- [ ] 4625 flood → urgent + (eş) auto-block → AR-BLOCK
+- [ ] Ofis IP başarılı RDP (4624/1149) → alert olabilir, **AR-BLOCK yok**, skor ≤70 (sessiz ≤80)
 - [ ] Whitelist IP → block yok; önceden engelli ise anında kaldırılır
 - [ ] Brute sonra başarı → yüksek skor + `brute_force_then_access` block hâlâ çalışır
 - [ ] health/report 200
 - [ ] ThreatFox/CISA’ya client isteği **yok** (sadece `09` bundle)
 - [ ] Çıplak `successful_logon` score ≤70 ve auto-block **yok**
-- [ ] Whitelist IP → local HP-BLOCK yok; cloud auto-block → `rejected`/`whitelisted`
+- [ ] Whitelist IP → local AR-BLOCK yok; cloud auto-block → `rejected`/`whitelisted`
 - [ ] `unblock_recommended` veya `unblock_ip` / pending-unblocks → FW sil + `block-removed` ACK

@@ -1,14 +1,15 @@
-# YesNext Honeypot — Shared Contract
+# Asteria — Shared Contract
 
 **Single source of truth** for Windows client ↔ Cloud API behavior.
 
 | | |
 |--|--|
-| **VERSION** | [`VERSION`](VERSION) (**1.4.28**) |
+| **VERSION** | [`VERSION`](VERSION) (**1.4.31**) |
 | **Index** | [`INDEX.md`](INDEX.md) |
 | **Changelog** | [`CHANGELOG.md`](CHANGELOG.md) |
 | **Fleet matrix** | [`FLEET.md`](FLEET.md) — production floor client ≥ **4.9.0** |
-| **API base** | `https://honeypot.yesnext.com.tr` |
+| **Brand** | **Asteria** — [`cloud/PRODUCT_BRANDING.md`](cloud/PRODUCT_BRANDING.md) |
+| **API base** | `https://asteria.run` (legacy alias: `honeypot.yesnext.com.tr`) |
 | **Auth** | `Authorization: Bearer <token>` — agent API must not rely on `?token=` query |
 
 ## Who uses this?
@@ -27,16 +28,18 @@
 4. Minimum client version is stated per MD (see `FLEET.md`).
 5. No cloud-only ops (PM2, nginx, dashboard HTML) in this repo.
 6. Promoted designs / legacy prompts live under [`docs/archive/`](docs/archive/) — not normative.
+7. Brand / domain cutover checklist: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md).
 
 ## Clone
 
 ```bash
-git clone https://github.com/cevdetaksac/honeypot-contract.git
-cd honeypot-contract
-# pin: cat VERSION   # currently 1.4.28
+git clone https://github.com/cevdetaksac/asteria-contract.git
+cd asteria-contract
+# pin: cat VERSION   # currently 1.4.31
+# legacy clone URL still redirects: honeypot-contract → asteria-contract
 ```
 
-Client workspace pointer: `cloud-client/contract/README.md` → this repo.
+Client workspace pointer: `asteria-client/contract/README.md` → this repo.
 
 ## Layout
 
@@ -50,8 +53,8 @@ Client workspace pointer: `cloud-client/contract/README.md` → this repo.
 ## Cloud publish (operators)
 
 ```bash
-cd /data/honeypot.yesnext.com.tr/contract && git pull && ../scripts/publish_contract.sh
+cd /data/asteria.run/contract && git pull && ../scripts/publish_contract.sh
 ```
 
-HTTPS mirror: `https://honeypot.yesnext.com.tr/static/shared-contract.zip`  
+HTTPS mirror: `https://asteria.run/static/shared-contract.zip`  
 Meta: `GET /api/public/contract`

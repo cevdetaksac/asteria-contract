@@ -22,6 +22,8 @@
 | Account unlink from client Settings (`POST /api/agent/unlink-account`) | `api/02-account.md` | cloud live ≥ **1.4.27**; client **≥ 4.9.26** |
 | Hardware-bound `machine_id` (MAC+MachineGuid fingerprint; clone split) | `api/01-auth.md` | contract **1.4.26**; client **≥ 4.9.28** |
 | In-place token rotate (`POST /api/agent/rotate-token` old→new, same `client_id`) | `api/01-auth.md` | cloud live ≥ **1.4.29**; client **≥ 4.9.31** |
+| Brand → Asteria / API base `https://asteria.run` (legacy failover) | `cloud/PRODUCT_BRANDING.md`, `agent/rebrand-asteria.md` | cloud live ≥ **1.4.30**; client **≥ 4.9.32** |
+| Firewall brand `HP-*` → `AR-BLOCK-*` / `AR-INTEL-*` (clear+rewrite) | `agent/firewall-brand-migrate.md`, `api/06-firewall-blocks.md` | cloud live ≥ **1.4.31**; client **≥ 4.9.33** |
 | Uninstall PIN lifecycle (`uninstall_*` + `windows_user`) | `api/07-lifecycle-sessions.md` | cloud ≥ **1.4.9**; client with uninstall PIN gate |
 | Bare `successful_logon` score ≤70 + no auto-block (cloud reject shapes) | `agent/threat-engine.md` | cloud ≥ **1.4.11**; target client **≥4.9.7** |
 | Whitelist never stays blocked (reject + `unblock_ip` + pending-unblocks) | `api/06-firewall-blocks.md`, `agent/threat-engine.md` | cloud ≥ **1.4.11**; client must ACK `block-removed` |

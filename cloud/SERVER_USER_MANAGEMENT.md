@@ -3,7 +3,7 @@
 > **Contract VERSION:** root `VERSION` (**1.4.24**)  
 > **Client wire:** `list_local_users` + `enable_account` / `disable_account` — see
 > [`../agent/server-management.md`](../agent/server-management.md)  
-> **Cloud site:** `https://honeypot.yesnext.com.tr` · route `/dashboard/server/users`
+> **Cloud site:** `https://asteria.run` · route `/dashboard/server/users`
 
 Bu belge **cloud + dashboard Users sayfası** zorunluluklarını listeler. Client
 disabled hesapları ve `PROTECTED_ACCOUNT` sonuçlarını doğru döndürdüğünde sayfa

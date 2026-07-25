@@ -1,7 +1,7 @@
 # Lifecycle, Sessions & Processes
 
 > Cloud / Dashboard API sözleşmeleri — agent prompt’larından birleştirildi.
-> API: `https://honeypot.yesnext.com.tr`
+> API: `https://asteria.run`
 
 ---
 
@@ -138,7 +138,7 @@ Body örneği:
 # Agent Prompt: Aktif Oturumlar + Tam Süreç Listesi
 
 > **Kime:** Windows tray / honeypot client uygulamasını geliştiren yapay zeka  
-> **API:** `https://honeypot.yesnext.com.tr`  
+> **API:** `https://asteria.run`  
 > **Auth:** Tüm isteklerde `token` (UUID)  
 > **Tarih:** 2026-07-18  
 > **Bağlam:** Dashboard artık “Aktif Bağlı Kullanıcılar” ve “Çalışan Süreçler” tablolarını gösteriyor. Veri kaynağı `POST /api/health/report`. Şu an üretimde `active_sessions` çoğu zaman `null`; süreçler kısmi (`cpu`/`memory_mb`) geliyor. Bu prompt client tarafını tamamlamak içindir.
@@ -422,7 +422,7 @@ Acceptance: Notepad++ aç → ≤ 60 sn dashboard “Çalışan Süreçler”de 
 # Agent Prompt: Self-Process Kimliği (Şüphe Yok + Kill Koruması + Anti-Spoof)
 
 > **Kime:** Windows honeypot-client geliştiren AI  
-> **API:** `https://honeypot.yesnext.com.tr`  
+> **API:** `https://asteria.run`  
 > **Tarih:** 2026-07-18  
 > **Sorun:** Dashboard “Çalışan Süreçler”de `honeypot-client.exe` şüpheli görünebiliyor / kill butonu var. Sadece **isme** göre ayrıcalık vermek güvenli değil — saldırgan aynı exe adını taklit edebilir.
 

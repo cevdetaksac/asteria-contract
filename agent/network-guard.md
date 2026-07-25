@@ -1,7 +1,7 @@
 # Network Guard — offline fidye bombası + ağ sürücüsü yedek/kurtarma
 
 > **Contract VERSION:** root `VERSION`
-> **API base:** `https://honeypot.yesnext.com.tr`
+> **API base:** `https://asteria.run`
 > **Min client:** **≥ 4.7.0** (Network Guard); dashboard panel / `auto_restore_network` ≥ **4.9.12**; soft surface inform ≥ **4.9.15** (contract **1.4.17**)
 > İlgili: [`ransomware-shield.md`](ransomware-shield.md) · [`persistence-and-tamper.md`](persistence-and-tamper.md) · Mimari: [`../api/08-architecture.md`](../api/08-architecture.md)
 

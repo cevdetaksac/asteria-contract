@@ -1,7 +1,7 @@
 # Self-Update & Dashboard Feedback
 
 > Cloud / Dashboard API sözleşmeleri — agent prompt’larından birleştirildi.
-> API: `https://honeypot.yesnext.com.tr`
+> API: `https://asteria.run`
 
 ---
 
@@ -160,7 +160,7 @@ Cloud tarafı 2026-07-19 hazır. Bu prompt **client** implementasyonu içindir.
 # AGENT_SELF_UPDATE_DASHBOARD_FEEDBACK_API_PROMPT.md
 
 > **Kime:** Honeypot Cloud / Dashboard API  
-> **API:** `https://honeypot.yesnext.com.tr`  
+> **API:** `https://asteria.run`  
 > **Tarih:** 2026-07-20  
 > **Konu:** “Şimdi güncelle” tıklanınca kullanıcıya **geri bildirim** — agent komutu aldı / güncelleniyor / bitti  
 > **Client (≥ 4.5.19):** Erken ACK + lifecycle + final result **zaten gönderiyor**. Bu prompt cloud/UI’nin bunları **göstermesi** içindir.

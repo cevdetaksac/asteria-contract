@@ -1,5 +1,56 @@
 # Changelog — honeypot-contract
 
+## 1.4.31 — 2026-07-24 (Firewall brand: HP-* → AR-*)
+
+### Decision
+- Wire firewall rule prefixes cut over to **Asteria** identity:
+  - `HP-BLOCK-*` → **`AR-BLOCK-*`**
+  - `HP-INTEL-*` → **`AR-INTEL-*`**
+- Small-fleet controlled migrate (clear legacy + rewrite). Dual-delete during
+  transition; **new writes only AR-***. Signing context / ProgramData unchanged.
+
+### Client (required ≥ **4.9.33**)
+- Create only `AR-BLOCK-{ip}` / `AR-INTEL-{id}`.
+- Wipe / unblock must delete **AR- + HP- + HONEYPOT_ + CloudHoneypot** prefixes.
+- One-shot boot migrate HP→AR + `sync-rules`.
+- Full checklist: [`agent/firewall-brand-migrate.md`](agent/firewall-brand-migrate.md).
+
+### Cloud
+- `clear_firewall` sends `wipe_prefixes` (AR+HP+legacy); keeps
+  `wipe_all_honeypot_rules` for older agents.
+- Fleet helper: re-pend BlockRules + optional `block_ip` after wipe
+  (`POST /api/premium/migrate-firewall-brand`, `scripts/migrate_firewall_ar_prefix.py`).
+- UI/docs say AR-BLOCK; mail subjects end with `· asteria.run`.
+
+### Docs
+- [`api/06-firewall-blocks.md`](api/06-firewall-blocks.md), [`api/09-threat-intel.md`](api/09-threat-intel.md),
+  PRODUCT_BRANDING / rebrand-asteria updated (freeze lifted for this controlled cutover).
+
+## 1.4.30 — 2026-07-24 (Brand: Asteria / asteria.run)
+
+### Decision
+- Product brand → **Asteria**; primary public origin → **`https://asteria.run`**.
+- Legacy host `honeypot.yesnext.com.tr` remains an nginx alias until the fleet migrates.
+- Wire/OS identities unchanged (`HP-BLOCK-*`, `yesnext-chp-v1`, ProgramData\YesNext\…,
+  contract repo name) — see [`cloud/PRODUCT_BRANDING.md`](cloud/PRODUCT_BRANDING.md).
+
+### Cloud (live)
+- nginx vhost `asteria.run` (+ www) + legacy host → same upstream `:9000`.
+- `brand.py` + `PUBLIC_BASE_URL`; register/rotate `dashboard` URLs, emails, contract
+  mirror meta use the new origin.
+- Threat-intel allowlist + agent path-trust accept **both** hosts / YesNext+Asteria
+  Program Files paths.
+
+### Client (required ≥ **4.9.32**)
+- Default API/WS base → `https://asteria.run` with legacy failover.
+- UI / installer / tray display name → Asteria.
+- Do **not** rename `HP-BLOCK-*` or signing context; do **not** silently move ProgramData.
+- Full checklist: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md).
+
+### Docs
+- PRODUCT_BRANDING rewritten; new agent rebrand MD; INDEX / FLEET / README / CLIENT
+  API base updated.
+
 ## 1.4.29 — 2026-07-24 (In-place token rotation)
 
 ### Cloud (live)

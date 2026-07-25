@@ -2,7 +2,8 @@
 
 > **Repo:** [cevdetaksac/honeypot-contract](https://github.com/cevdetaksac/honeypot-contract)  
 > **VERSION:** root [`VERSION`](../VERSION) · giriş: [`INDEX.md`](../INDEX.md) · fleet: [`FLEET.md`](../FLEET.md)  
-> **API:** `https://honeypot.yesnext.com.tr`  
+> **API:** `https://asteria.run` (legacy: `honeypot.yesnext.com.tr`)  
+> **Brand:** **Asteria** — cutover checklist [`rebrand-asteria.md`](./rebrand-asteria.md) (≥ **4.9.32**)  
 > **Production floor:** client ≥ **4.9.0**
 
 Bu dosya **özet + link**. Şema/detay için ilgili MD’ye git; buraya kopyalama.
@@ -11,6 +12,8 @@ Bu dosya **özet + link**. Şema/detay için ilgili MD’ye git; buraya kopyalam
 
 ## Okuma sırası (yeni agent / sprint)
 
+0. [`rebrand-asteria.md`](./rebrand-asteria.md) — API base `asteria.run` + UI rename (**1.4.30**)  
+0b. [`firewall-brand-migrate.md`](./firewall-brand-migrate.md) — `AR-BLOCK` / `AR-INTEL` (**1.4.31**, ≥ **4.9.33**)  
 1. [`../FLEET.md`](../FLEET.md) — min sürüm matrisi  
 2. [`polling.md`](./polling.md) — cadence  
 3. [`../api/01-auth.md`](../api/01-auth.md) — register / heartbeat / Bearer  

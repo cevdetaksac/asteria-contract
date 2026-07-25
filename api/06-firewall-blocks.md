@@ -1,16 +1,17 @@
 # Firewall blocks & sync
 
-> **Contract VERSION:** root `VERSION`  
+> **Contract VERSION:** root `VERSION` (**1.4.31** prefix cutover)  
 > **Auth:** Bearer  
-> **İlgili:** [`../agent/register-protection.md`](../agent/register-protection.md) · threat-intel `HP-INTEL-*` → [`09-threat-intel.md`](./09-threat-intel.md)
+> **İlgili:** [`../agent/register-protection.md`](../agent/register-protection.md) · threat-intel `AR-INTEL-*` → [`09-threat-intel.md`](./09-threat-intel.md)  
+> **Brand migrate:** [`../agent/firewall-brand-migrate.md`](../agent/firewall-brand-migrate.md) (client ≥ **4.9.33**)
 
 Üç kaynak (karıştırma):
 
-| Kaynak | Kural adı | Nasıl gelir |
-|--------|-----------|-------------|
-| Dashboard / cloud eval (`notification_rules`) | `HP-BLOCK-*` | `pending-blocks` / `block_ip` komutu |
-| Local threat engine auto-block | `HP-BLOCK-*` | Agent netsh + `POST /api/alerts/auto-block` |
-| Threat intel bundle | `HP-INTEL-*` | `GET /api/agent/threat-intel` apply (client ≥ **4.9.7**) |
+| Kaynak | Kural adı (yeni) | Legacy (wipe/unblock siler) | Nasıl gelir |
+|--------|------------------|-----------------------------|-------------|
+| Dashboard / cloud eval (`notification_rules`) | **`AR-BLOCK-*`** | `HP-BLOCK-*`, `HONEYPOT_*` | `pending-blocks` / `block_ip` |
+| Local threat engine auto-block | **`AR-BLOCK-*`** | `HP-BLOCK-*` | Agent netsh + `POST /api/alerts/auto-block` |
+| Threat intel bundle | **`AR-INTEL-*`** | `HP-INTEL-*` | `GET /api/agent/threat-intel` apply (client ≥ **4.9.7**; brand ≥ **4.9.33**) |
 
 `ip_or_cidr`: tek IP, CIDR, veya `country:XX` (cloud destekliyorsa).
 
@@ -20,9 +21,9 @@
 
 - `block_ip` (auto / komut / intel) whitelist IP’ye **uygulanmaz**.
 - Whitelist güncellenince veya block denemesi whitelist’e çarparsa client
-  mevcut `HP-BLOCK-*` **ve** eşleşen `HP-INTEL-*` kurallarını **derhal siler**
-  (`enforce_whitelist_unblocks`).
-- Bare `successful_logon` zaten HP-BLOCK üretmez → [`../agent/threat-engine.md`](../agent/threat-engine.md).
+  mevcut `AR-BLOCK-*` / `HP-BLOCK-*` **ve** eşleşen `AR-INTEL-*` / `HP-INTEL-*`
+  kurallarını **derhal siler** (`enforce_whitelist_unblocks`).
+- Bare `successful_logon` zaten BLOCK üretmez → [`../agent/threat-engine.md`](../agent/threat-engine.md).
 
 ---
 
@@ -33,10 +34,10 @@ IP **asla** engelli kalmamalı.
 
 | Kim | Ne yapar |
 |-----|----------|
-| Client | Auto-block / manual block öncesi WL kontrolü; WL ise HP-BLOCK yok |
+| Client | Auto-block / manual block öncesi WL kontrolü; WL ise AR/HP-BLOCK yok |
 | Cloud | `POST /api/alerts/auto-block` → `rejected`/`whitelisted`; manuel block-rule create → reject |
 | Cloud lift | BlockRule `remove_pending` + AutoBlock pasif + `unblock_ip` komutu + `GET pending-unblocks` |
-| Client | `unblock_ip` **ve/veya** pending-unblocks → netsh sil → `POST block-removed` (`block_ids` **+** `ips`) |
+| Client | `unblock_ip` **ve/veya** pending-unblocks → netsh sil (AR **ve** HP adları) → `POST block-removed` |
 
 Reconcile tetikleri (cloud): whitelist-add, `GET/POST /api/threats/config`,
 `sync-rules`, cleanup sweep.
@@ -55,12 +56,13 @@ Agent: mesaj gelince hemen `GET /api/agent/pending-unblocks` (poll bekleme).
 
 | Method | Path | Ne |
 |--------|------|-----|
-| GET | `/api/agent/pending-blocks` | `status=pending` → uygula |
+| GET | `/api/agent/pending-blocks` | `status=pending` → uygula (`AR-BLOCK-*`) |
 | POST | `/api/agent/block-applied` | `{ block_ids[] }` veya `ip` + `rule_name` |
 | GET | `/api/agent/pending-unblocks` | Kaldırılacaklar |
 | POST | `/api/agent/block-removed` | ACK |
 | POST | `/api/agent/sync-rules` | Canlı FW envanteri → cloud |
 | POST | `/api/premium/clear-all-blocks` | Dashboard; komut `clear_firewall` push |
+| POST | `/api/premium/migrate-firewall-brand` | Wipe legacy HP + re-pend blocks as AR (dashboard) |
 
 ### block-removed ACK (client ≥4.8.5)
 
@@ -71,30 +73,36 @@ Body (agent → cloud):
 ```
 
 - `block_ids`: pending-unblocks öğelerindeki `id` (tercihen int).
-- `ips` / `ip`: aynı satırların IP'leri — **zorunlu pratik alan**. Canlı 4.8.4'te cloud
-  yalnız `block_ids` ile çoğu zaman `{"updated":0,"status":"ok"}` döndü; dashboard
-  "Kaldırılıyor…" durumunda kaldı. `ip` ile ACK `updated>0` üretiyor.
+- `ips` / `ip`: aynı satırların IP'leri — **zorunlu pratik alan**.
 - Client ≥4.8.5 her iki alanı birden gönderir; `updated=0` ise IP başına retry yapar.
-- **Cloud implemented (honeypot.yesnext.com.tr, 2026-07-21):** `block_ids` **ve**
-  `ips`/`ip` birlikte değerlendirilir (either/or DEĞİL) — 4.8.4'teki
-  `if not block_ids` erken-çıkış hatası giderildi. Eşleşen satırlar `id` ile
-  dedupe edilir; `updated` = kapatılan benzersiz satır sayısı. `pending` durumu
-  da kapatılır (agent firewall'dan kaldırdığını bildiriyorsa henüz uygulanmamış
-  kural da düşer). Yanıt ayrıca `removed_ips[]` döndürür. `pending-unblocks`
-  GET salt-okunur — öğeler yalnız `block-removed` ACK'iyle `removed` olur, ACK
-  gelene kadar kuyrukta kalır (retry mümkün). Cleanup yalnız `remove_pending`'e
-  taşır, satırı silmez.
+- Cloud `block_ids` **ve** `ips`/`ip` birlikte değerlendirilir.
 
 ### sync-rules (özet)
 
-Agent `netsh` / `HP-BLOCK-*` (+ envanterde `HP-INTEL-*` görünürlüğü) taraması →
-JSON blocks listesi. Cloud SoT envanter için. İsim önekleri karıştırılmaz.
+Agent `netsh` / `AR-BLOCK-*` (+ envanterde `AR-INTEL-*`; migrate sırasında
+geçici `HP-*` görünürlüğü) taraması → JSON blocks listesi. Cloud SoT = IP.
+İsim önekleri karıştırılmaz: yeni yazım yalnız **AR-***.
 
 ### clear_firewall (komut)
 
-Params: `wipe_all_honeypot_rules` (default true), `ips[]`, `reason`.  
-Wipe **hem** `HP-BLOCK-*` **hem** `HP-INTEL-*` (ve legacy `HONEYPOT_*`) siler.
-Sonra sync-rules + isteğe clear-data scopes.
+Params:
+
+```json
+{
+  "wipe_all_honeypot_rules": true,
+  "wipe_prefixes": ["AR-BLOCK", "AR-INTEL", "HP-BLOCK", "HP-INTEL", "HONEYPOT"],
+  "delete_each": true,
+  "mode": "per_ip_then_wipe",
+  "ips": ["…"],
+  "reason": "…",
+  "immediate": true
+}
+```
+
+- `wipe_all_honeypot_rules: true` (geriye dönük) = tüm Asteria/legacy öneklerini sil.
+- `wipe_prefixes` (≥4.9.33): açık liste; yoksa client wipe_all ile aynı seti kullanır.
+- Wipe **AR-BLOCK / AR-INTEL / HP-BLOCK / HP-INTEL / HONEYPOT_*** siler.
+- Sonra sync-rules + isteğe clear-data scopes.
 
 ---
 
@@ -110,10 +118,11 @@ Agent eşikleri **local** `protection.block_rules` + cloud worker pending-blocks
 
 ## Acceptance
 
-- [ ] pending-block → HP-BLOCK → block-applied 200  
-- [ ] clear_firewall wipe → sync boş / cloud clear (HP-INTEL dahil)  
-- [ ] INTEL kuralları BLOCK ile isim çakışması yok (`HP-INTEL-*` ≠ `HP-BLOCK-*`)
+- [ ] pending-block → **AR-BLOCK** → block-applied 200  
+- [ ] clear_firewall wipe → sync boş / cloud clear (**AR-INTEL + HP-*** dahil)  
+- [ ] INTEL kuralları BLOCK ile isim çakışması yok (`AR-INTEL-*` ≠ `AR-BLOCK-*`)
 - [ ] Whitelist IP → block yok; engelli ise anında kaldırılır (client ≥4.9.7)
 - [ ] Whitelist IP auto-block denemesi → cloud `rejected`/`whitelisted` + client FW’de kural yok
 - [ ] Whitelist’e eklenen önceden bloklu IP → `remove_pending` + `unblock_ip` / pending-unblocks → `block-removed` ACK `updated>0`
 - [ ] Çıplak `successful_logon` auto-block → cloud `successful_logon_no_autoblock` reject
+- [ ] Brand migrate ≥4.9.33: HP→AR ([`firewall-brand-migrate.md`](../agent/firewall-brand-migrate.md))

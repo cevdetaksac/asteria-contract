@@ -3,7 +3,7 @@
 > **Contract VERSION:** root `VERSION` (**1.4.23**)  
 > **Client wire:** ≥ **4.9.21** · **sibling pre_logon + named Winlogon:** ≥ **4.9.26**  
 > **Canonical RD API:** [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md)  
-> **Cloud site:** `https://honeypot.yesnext.com.tr`
+> **Cloud site:** `https://asteria.run`
 
 Kimse logon değilken **veya** kullanıcı oturumu varken kilit/Winlogon yüzeyi istenince
 agent console WinSta0 üzerinden `Winlogon` desktop’unu mirror eder; operatör stream’de

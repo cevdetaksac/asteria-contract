@@ -1,7 +1,7 @@
 # Persistence & tamper protection (survival model)
 
 > **Contract VERSION:** root `VERSION`
-> **API base:** `https://honeypot.yesnext.com.tr`
+> **API base:** `https://asteria.run`
 > **Min client:** **≥ 4.6.0** (Guardian service + tamper wire)
 > Mimari bağlamı: [`../api/08-architecture.md`](../api/08-architecture.md)
 

@@ -1,7 +1,7 @@
 # Agent Control WebSocket + command catalog
 
 > **Contract VERSION:** root `VERSION`  
-> **Endpoint:** `wss://honeypot.yesnext.com.tr/ws/agent/control`  
+> **Endpoint:** `wss://asteria.run/ws/agent/control`  
 > **Kim:** yalnızca SYSTEM daemon (`mode=daemon`)  
 > **RD video:** `/ws/remote/agent` — ayrı kanal  
 
@@ -198,7 +198,7 @@ Client ayrıca whitelist + protected targets uygular; onay **sunucu tarafı** zo
 
 | Type | Params (özet) | Amaç |
 |------|----------------|------|
-| `block_ip` | `ip` / `ip_or_cidr`, reason | HP-BLOCK ekle |
+| `block_ip` | `ip` / `ip_or_cidr`, reason | **AR-BLOCK** ekle (client ≥4.9.33; legacy HP wipe sırasında silinir) |
 | `unblock_ip` | `ip` | Kaldır |
 | `clear_firewall` | `wipe_all_honeypot_rules`, `ips[]` | Tüm honeypot FW wipe |
 | `sync_firewall_rules` | — | Envanter yenile / hizala |

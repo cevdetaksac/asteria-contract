@@ -1,7 +1,7 @@
 # Auth, register, heartbeat, status
 
 > **Contract VERSION:** root `VERSION`  
-> **API:** `https://honeypot.yesnext.com.tr`  
+> **API:** `https://asteria.run`  
 > **Client:** Bearer only (`legacy_token_query=false`). Cloud agent API’de `?token=` → deprecated/reject.
 
 ---
@@ -52,7 +52,7 @@ One-time schema v2 upgrade also re-enrolls under the fingerprint (re-link Accoun
   "client_id": 123,
   "machine_id": "…",
   "reused": false,
-  "dashboard": "https://honeypot.yesnext.com.tr/dashboard?token=…",
+  "dashboard": "https://asteria.run/dashboard?token=…",
   "protection": { "block_rules": [ "…" ] }
 }
 ```
@@ -172,7 +172,7 @@ Content-Type: application/json
   "token": "<new-uuid>",
   "previous_token": "<old-uuid>",
   "machine_id": "…",
-  "dashboard": "https://honeypot.yesnext.com.tr/dashboard?token=<new-uuid>",
+  "dashboard": "https://asteria.run/dashboard?token=<new-uuid>",
   "message": "Token updated in place — attacks/alerts/account link preserved."
 }
 ```

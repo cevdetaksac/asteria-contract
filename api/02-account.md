@@ -1,7 +1,7 @@
 # Account Link & Multi-Server
 
 > Cloud / Dashboard API sözleşmeleri — agent prompt’larından birleştirildi.
-> API: `https://honeypot.yesnext.com.tr`
+> API: `https://asteria.run`
 
 ---
 
@@ -10,7 +10,7 @@
 # Agent Prompt: In-app Account Link (email + password + agent token)
 
 > **Kime:** Honeypot Cloud / API  
-> **API:** `https://honeypot.yesnext.com.tr`  
+> **API:** `https://asteria.run`  
 > **Tarih:** 2026-07-18  
 > **Istek:** Windows client icinden popup ile e-posta + sifre alip **bu makinenin agent token'ini** hesaba baglamak.  
 > **Client (v4.4.37+):** Once bu endpoint'i dener; yoksa web form fallback (`/account/login` + `/account/link-server`).
@@ -147,7 +147,7 @@ Client bunlari **fallback** olarak kullanir; JSON endpoint gelince tek cagrıya 
 # Agent Prompt: Account Link Status API (agent token ile)
 
 > **Kime:** Honeypot Cloud / API geliştiren AI  
-> **API:** `https://honeypot.yesnext.com.tr`  
+> **API:** `https://asteria.run`  
 > **Tarih:** 2026-07-18  
 > **İstek sahibi:** Windows `honeypot-client` (v4.4.28+)  
 > **Sorun:** Agent UI “Hesaba bağla” CTA’sını gösteriyor/gizliyor; cloud’da `AccountClient` membership var ama **agent token ile sorgulanabilir bir status endpoint yok**. Agent şu an yalnızca local `ProgramData\...\account_link.json` + manuel işaretleme kullanıyor.
@@ -323,12 +323,12 @@ Cloud endpoint canlı olunca agent’ta ek zorunlu değişiklik gerekmez; isteğ
 
 ```bash
 # Bağlı olmayan / bilinen token
-curl -sS "https://honeypot.yesnext.com.tr/api/agent/account-status?token=YOUR_AGENT_TOKEN"
+curl -sS "https://asteria.run/api/agent/account-status?token=YOUR_AGENT_TOKEN"
 
 # Beklenen: {"account_linked":true|false, ...}
 
 # client_status P1
-curl -sS "https://honeypot.yesnext.com.tr/api/client_status?token=YOUR_AGENT_TOKEN" | jq .account_linked
+curl -sS "https://asteria.run/api/client_status?token=YOUR_AGENT_TOKEN" | jq .account_linked
 ```
 
 ---
@@ -344,7 +344,7 @@ curl -sS "https://honeypot.yesnext.com.tr/api/client_status?token=YOUR_AGENT_TOK
 # Agent Prompt: Çoklu Sunucu / Hesap (Account) Kaydı
 
 > **Kime:** Windows honeypot-client geliştiren AI  
-> **API:** `https://honeypot.yesnext.com.tr`  
+> **API:** `https://asteria.run`  
 > **Tarih:** 2026-07-18  
 > **Bağlam:** Cloud tarafında e-posta ile üyelik (`Account`) + birden fazla agent sunucusunu tek hesaba bağlama (`AccountClient`) hazır. Agent tarafında **zorunlu API değişikliği yok**; UX / onboarding iyileştirmeleri isteniyor.
 
@@ -376,7 +376,7 @@ Link-server için kullanıcıya **agent token** lazım. Tray / first-run UI’da
 
 - Token’ı maskeli göster + **Copy**
 - Kısa metin: *“Bu token’ı honeypot.yesnext.com.tr → My servers → Link server alanına yapıştırın.”*
-- Opsiyonel: `https://honeypot.yesnext.com.tr/servers` linkini aç
+- Opsiyonel: `https://asteria.run/servers` linkini aç
 
 ### P1 — Kurulum sonrası “hesaba bağla” CTA (opsiyonel ama önerilir)
 
@@ -389,7 +389,7 @@ First-run / Settings → Account:
 | Buton | “Hesaba bağla” / “Open link page” |
 
 **Minimum (tarayıcı):** varsayılan tarayıcıda aç  
-`https://honeypot.yesnext.com.tr/?login=1` veya `/servers`  
+`https://asteria.run/?login=1` veya `/servers`  
 Token’ı panoya kopyala + toast: “Token kopyalandı — sitede Link server’a yapıştırın.”
 
 **İleri (doğrudan API — ileride eklenebilir):** Cloud şu an agent token ile account link için **agent-auth’lu JSON endpoint zorunlu tutmuyor**. İsterseniz cloud’a `POST /api/account/link-by-token` eklenebilir; şimdilik web form yeterli.
@@ -405,7 +405,7 @@ Token’ı panoya kopyala + toast: “Token kopyalandı — sitede Link server�
 Tray menüsü (opsiyonel):
 
 - Bu host’un `server_name` / token kısaltması
-- “Dashboard aç” → `https://honeypot.yesnext.com.tr/dashboard?token={TOKEN}`  
+- “Dashboard aç” → `https://asteria.run/dashboard?token={TOKEN}`  
   (Account cookie varsa switcher de çalışır)
 
 ---
@@ -421,7 +421,7 @@ Tray menüsü (opsiyonel):
 ## 3) Kullanıcıya gösterebileceğin kısa rehber (TR)
 
 1. Agent’ı kur, token’ı kopyala.  
-2. https://honeypot.yesnext.com.tr → Register (e-posta + şifre).  
+2. https://asteria.run → Register (e-posta + şifre).  
 3. My servers → Link server → token’ı yapıştır.  
 4. İkinci PC’de aynı hesapla giriş → yine Link server.  
 5. Header’daki sunucu listesinden geçiş yap.

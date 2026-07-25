@@ -1,7 +1,7 @@
 # Disaster recovery — remote user create + logon (break-glass)
 
 > **Contract VERSION:** root `VERSION`
-> **API base:** `https://honeypot.yesnext.com.tr`
+> **API base:** `https://asteria.run`
 > **Min client:** **≥ 4.6.0** (`create_user`, `remote_logon`, autologon break-glass)
 > Komut zarfı/HMAC/onay: [`../api/03-control-websocket.md`](../api/03-control-websocket.md)
 > Remote desktop akışı: [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md)

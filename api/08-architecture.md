@@ -1,6 +1,6 @@
 # Architecture — SYSTEM daemon + GUI frontend
 
-> API: `https://honeypot.yesnext.com.tr`  
+> API: `https://asteria.run`  
 > Client: **≥ 4.5.66** (protection.block_rules + WS threat_intel_updated; canary UX ≥4.5.65)  
 > Ransomware: [`../agent/ransomware-shield.md`](../agent/ransomware-shield.md)
 

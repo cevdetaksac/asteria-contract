@@ -1,7 +1,7 @@
 # Register → protection.block_rules
 
 > **Contract VERSION:** root `VERSION`  
-> **API:** `https://honeypot.yesnext.com.tr` — `POST /api/register` (public) + `GET /api/threats/config` (Bearer)  
+> **API:** `https://asteria.run` — `POST /api/register` (public) + `GET /api/threats/config` (Bearer)  
 > **Status:** Cloud aligned (register + threats/config). Client apply ≥ **4.5.66**.
 
 ---

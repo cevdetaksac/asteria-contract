@@ -1,8 +1,8 @@
 # Threat Intel Feed — API contract
 
 > **Contract:** honeypot-contract · see root `VERSION`  
-> **Client:** ≥ **4.5.61** poll/ACK · **≥ 4.9.7** normative `HP-INTEL-*` apply + reconcile  
-> **API base:** `https://honeypot.yesnext.com.tr`  
+> **Client:** ≥ **4.5.61** poll/ACK · **≥ 4.9.7** intel apply · **≥ 4.9.33** `AR-INTEL-*` brand prefix  
+> **API base:** `https://asteria.run`  
 > **Auth:** `Authorization: Bearer <token>` (agent API’de `?token=` yok)  
 > **Cloud ingest:** [`../cloud/threat-intel-ingest.md`](../cloud/threat-intel-ingest.md)  
 > **≠ local threat engine:** EventLog/skor/auto-block → [`../agent/threat-engine.md`](../agent/threat-engine.md) (`GET /api/threats/config`)  
@@ -62,7 +62,7 @@ Content-Type: application/json
 
 | `stats` alanı | Anlam |
 |---------------|--------|
-| `firewall_added` | Yeni `HP-INTEL-*` kuralları |
+| `firewall_added` | Yeni `AR-INTEL-*` kuralları |
 | `firewall_skipped` | severity / allowlist / expire / cap / fail |
 | `firewall_removed` | orphan veya policy-off purge |
 | `errors[]` | Soft hatalar — dolu olsa bile ACK gönderilmeli |
@@ -87,20 +87,20 @@ Control WS (`api/03-control-websocket.md`) üzerinde cloud push:
 
 | Layer | Davranış |
 |-------|----------|
-| `firewall_blocks` | **`HP-INTEL-<id>`** inbound+outbound (asla `HP-BLOCK-*` / AutoResponse 24h yolu değil) |
+| `firewall_blocks` | **`AR-INTEL-<id>`** inbound+outbound (asla `AR-BLOCK-*` / legacy `AR-BLOCK-*` / AutoResponse 24h yolu değil) |
 | `ransomware` | Merge extensions / process_names / cmdline — **lockdown yok** |
 | `process_watch` | Soft match → alert |
 | `kev_cves` / `hardening` / `ui_banners` | Log + dashboard/GUI |
 
 ### Firewall reconcile kuralları
 
-- Yalnız `policy.auto_block_firewall == true` iken ekle; `false` → tüm `HP-INTEL-*` kaldır
+- Yalnız `policy.auto_block_firewall == true` iken ekle; `false` → tüm `AR-INTEL-*` kaldır
 - Severity ≥ `policy.intel_block_requires_severity_at_least` (genelde `high`)
 - Bundle/policy allowlist + local `threats/config` whitelist → **asla** intel-block
 - `max_firewall_rules_from_intel` aşımında en yüksek severity öncelikli; fazlası `firewall_skipped`
 - `expires_at` dolmuş → ekleme / mevcut kuralı kaldır
-- Bundle’dan düşen id → orphan `HP-INTEL-*` kaldır
-- `clear_firewall` wipe → `HP-INTEL-*` de silinir ([`06-firewall-blocks.md`](./06-firewall-blocks.md))
+- Bundle’dan düşen id → orphan `AR-INTEL-*` kaldır
+- `clear_firewall` wipe → `AR-INTEL-*` de silinir ([`06-firewall-blocks.md`](./06-firewall-blocks.md))
 
 Cache: `%ProgramData%\YesNext\CloudHoneypotClient\threat_intel_bundle.json`  
 Meta: `threat_intel_meta.json` (`etag`, `last_check_at`, `applied`)
@@ -111,7 +111,7 @@ Meta: `threat_intel_meta.json` (`etag`, `last_check_at`, `applied`)
 
 - [ ] Bearer-only GET 200 + `bundle_version` + `layers`
 - [ ] Aynı ETag ile GET → **304**
-- [ ] `auto_block_firewall=true` → netsh’te `HP-INTEL-*` (in+out)
+- [ ] `auto_block_firewall=true` → netsh’te `AR-INTEL-*` (in+out)
 - [ ] `auto_block_firewall=false` → yeni HP-INTEL yok; mevcutlar temizlenir
 - [ ] ACK sonrası dashboard sync satırında aynı `bundle_version` + `applied_at`
 - [ ] `stats.firewall_added` / skipped / removed tutarlı

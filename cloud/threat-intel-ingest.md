@@ -2,7 +2,7 @@
 
 > **Audience:** Cloud / Dashboard API implementers  
 > **Client:** ≥ **4.5.61** poll/ACK · **≥ 4.9.7** normative `HP-INTEL-*` apply  
-> **API base:** `https://honeypot.yesnext.com.tr`  
+> **API base:** `https://asteria.run`  
 > **Related client contract:** [`../api/09-threat-intel.md`](../api/09-threat-intel.md)
 
 Bu doküman, **cloud tarafında** yapılması gereken işleri tarif eder.

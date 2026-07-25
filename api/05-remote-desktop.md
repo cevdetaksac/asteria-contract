@@ -3,7 +3,7 @@
 > **Canonical** cloud / dashboard contract for the Windows client Remote
 > Desktop feature. This file is the single source of truth; the prompt-sourced
 > material below the v2 section is **legacy** and retained for history only.
-> API: `https://honeypot.yesnext.com.tr`
+> API: `https://asteria.run`
 > Base client: **≥ 4.5.48** (`list_local_users` / `remote_session_prepare`).
 > **Remote Desktop v2: client ≥ 4.9.0** (see next section).
 > Companion: [`../agent/remote-input.md`](../agent/remote-input.md) (input path).

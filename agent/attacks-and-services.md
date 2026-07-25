@@ -1,7 +1,7 @@
 # Attacks & honeypot services
 
 > **Contract VERSION:** root `VERSION`  
-> **API base:** `https://honeypot.yesnext.com.tr`  
+> **API base:** `https://asteria.run`  
 > **Auth:** Bearer (register hariç)  
 > **Kaynak:** canlı `routes_agent.py` + `schemas.py`
 

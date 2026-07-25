@@ -1,36 +1,60 @@
-# Product branding & protocol identity
+# Product branding — Asteria (`asteria.run`)
 
-> **Contract VERSION:** root `VERSION` (branding karar stamp **1.4.16**; soft surface inform → **1.4.17** / `agent/network-guard.md`)  
-> Statü: **normative decision** (not a rename migration plan)
+> **Contract VERSION:** **1.4.30** (brand cutover)  
+> Statü: **normative** — cloud live; client migration required ≥ **4.9.32**  
+> Detay checklist: [`../agent/rebrand-asteria.md`](../agent/rebrand-asteria.md)
 
-## Karar (Gemini “Honeypot → Core/Agent/Shield” tavsiyesi)
+## Karar
 
-**Canlı SaaS filoda big-bang isim refactoru yapılmaz.**
+| | |
+|--|--|
+| **Brand** | **Asteria** |
+| **Primary domain** | **`https://asteria.run`** |
+| **Legacy domain** | `https://honeypot.yesnext.com.tr` (alias; keep until fleet migrated) |
+| **Tagline** | Deception Cloud |
+| **Former name** | YesNext Cloud Honeypot |
 
-| Katman | Karar |
-|--------|--------|
-| Wire / OS firewall | `HP-BLOCK-*`, `HP-INTEL-*` = **kalıcı protokol kimliği** |
-| Legacy wipe | `HONEYPOT_*` hâlâ list/clear ile temizlenir |
-| Persistence | `%ProgramData%\YesNext\CloudHoneypotClient`, `CloudHoneypot-*` tasks, `honeypot-client.exe` — migration olmadan değişmez |
-| Repo / docs | `honeypot-contract` adı tarihsel SoT; ürün dili dashboard’da “Agent / Shield / Guard” olabilir |
-| UI copy | Kullanıcıya `HP-BLOCK` göstermek zorunlu değil; “Engellendi / Tehdit istihbaratı” yeterli |
+Cloud dashboard, e-posta, public contract mirror ve register/rotate `dashboard` URL'leri
+`PUBLIC_BASE_URL=https://asteria.run` üzerinden yayınlanır.
 
-## Neden
+## Wire / OS kimlikleri
 
-1. Filoda binlerce `HP-BLOCK` / `HP-INTEL` kuralı var — prefix değişince orphan + sync kırılır.  
-2. Update/watchdog ProgramData + schtasks kimliğine bağlı.  
-3. Gemini’nin “okunabilirlik için her şeyi rename” önerisi **pazarlama** için doğru, **wire** için yıkıcı.
+| Katman | Karar | Not |
+|--------|-------|-----|
+| Firewall rules | **`AR-BLOCK-*` / `AR-INTEL-*`** (contract **1.4.31**) | Kontrollü migrate; wipe hâlâ `HP-*` + legacy siler — [`../agent/firewall-brand-migrate.md`](../agent/firewall-brand-migrate.md) |
+| Command signing | `yesnext-chp-v1` **değişmez** | Mevcut imzalar |
+| ProgramData (mevcut) | `%ProgramData%\YesNext\CloudHoneypotClient` | Sessiz taşıma yok |
+| Scheduled tasks (mevcut) | `CloudHoneypot-*` | Aynı |
+| Exe (mevcut) | `honeypot-client.exe` / … | Yeni kurulumda `asteria-client.exe` opsiyonel |
+| Contract repo | `asteria-contract` (legacy: `honeypot-contract`) | GitHub rename; redirects preserve history |
+| API paths | `/api/...`, `/ws/...` | Path rename yok |
 
-## İzin verilen (güvenli)
+## İzin verilen
 
-- Dashboard / installer **görünen ad** (YesNext Cloud Agent vb.)
-- Dokümantasyonda “agent / shield / network guard” dili
-- Yeni özellik adları (`system_recovery`, `network_guard`) — zaten kullanılıyor
+- **API base URL** → `https://asteria.run` (legacy host failover)
+- Firewall prefix cutover **AR-*** (client ≥ **4.9.33**, küçük filo clear+rewrite)
+- UI / installer / tray / e-posta → Asteria; mail subject `· asteria.run`
+- Yeni kurulum path `Program Files\Asteria\...`
 
-## Yasak (1.4.16)
+## Yasak
 
-- Tek release’te `HP-BLOCK` → `CORE-BLOCK` vb. wire rename  
-- API path (`/api/...`) veya token dizini big-bang rename  
-- Kontrat repo adını zorunlu yeniden adlandırma (opsiyonel mirror sonra)
+- Wipe’ta `HP-*`’yi unutup yalnız `AR-*` silmek (orphan)
+- `yesnext-chp-v1` signing context değişimi
+- ProgramData sessiz taşımak
+- Legacy host’u fleet migrate olmadan kaldırmak
 
-Cloud implementasyon: yeni UI metinleri serbest; firewall rule prefix’leri **olduğu gibi** kalsın.
+## Cloud checklist (shipped 1.4.30)
+
+- [x] nginx `asteria.run` + `www.asteria.run` + legacy host aynı upstream
+- [x] Deploy root rename: `/data/asteria.run` (PM2 `asteria-api`)
+- [x] `brand.py` + `PUBLIC_BASE_URL` env
+- [x] Hardcoded legacy host → `PUBLIC_BASE_URL` (Python)
+- [x] UI / i18n / e-posta marka metinleri
+- [x] Threat-intel allowlist: her iki host
+- [x] Agent path trust: YesNext **ve** Asteria Program Files
+- [ ] Cloudflare DNS `asteria.run` → bu origin (operator)
+- [ ] Legacy host decommission (fleet migrate sonrası)
+
+## Client
+
+Zorunlu iş listesi: [`../agent/rebrand-asteria.md`](../agent/rebrand-asteria.md) · min client **≥ 4.9.32**.

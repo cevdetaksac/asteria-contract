@@ -7,7 +7,8 @@
 Windows Agent (SYSTEM daemon + GUI)
     │  HTTPS Bearer + WSS
     ▼
-honeypot.yesnext.com.tr  (FastAPI :9000 behind nginx/CF)
+asteria.run  (FastAPI :9000 behind nginx/CF)
+# legacy alias: honeypot.yesnext.com.tr (same upstream until fleet migrates)
     ├── register / heartbeat / attack / ports / tunnels
     ├── pending-blocks + commands (+ control WS push)
     ├── threats/config + alerts/* + health (v4 engine)
