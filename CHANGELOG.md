@@ -1,4 +1,4 @@
-# Changelog — honeypot-contract
+# Changelog — asteria-contract
 
 ## 1.4.32 — 2026-07-25
 

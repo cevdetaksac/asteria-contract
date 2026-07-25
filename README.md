@@ -36,7 +36,7 @@
 git clone https://github.com/cevdetaksac/asteria-contract.git
 cd asteria-contract
 # pin: cat VERSION   # currently 1.4.31
-# legacy clone URL still redirects: honeypot-contract → asteria-contract
+# legacy clone URL still redirects: asteria-contract → asteria-contract
 ```
 
 Client workspace pointer: `asteria-client/contract/README.md` → this repo.
