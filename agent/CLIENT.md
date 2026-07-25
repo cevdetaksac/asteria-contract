@@ -16,6 +16,7 @@ Bu dosya **özet + link**. Şema/detay için ilgili MD’ye git; buraya kopyalam
 0b. [`firewall-brand-migrate.md`](./firewall-brand-migrate.md) — `AR-BLOCK` / `AR-INTEL` (**1.4.31**, ≥ **4.9.33**)  
 0c. [`anti-brick-critical-actions.md`](./anti-brick-critical-actions.md) — account-gated critical auto / anti-brick (**1.4.34**, ≥ **4.9.36**)  
 0d. [`../cloud/dashboard-deep-links.md`](../cloud/dashboard-deep-links.md) — Settings / tray browser shortcuts (`?token=`) (**1.4.35**)  
+0e. [`../cloud/CLOUD_SURFACE.md`](../cloud/CLOUD_SURFACE.md) — **cloud yetenekleri / HTTP+WS+komut envanteri** (gap-scan) (**1.4.36**)  
 1. [`../FLEET.md`](../FLEET.md) — min sürüm matrisi  
 2. [`polling.md`](./polling.md) — cadence  
 3. [`../api/01-auth.md`](../api/01-auth.md) — register / heartbeat / Bearer / rotate-token  

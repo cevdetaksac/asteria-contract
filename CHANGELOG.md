@@ -1,5 +1,18 @@
 # Changelog — asteria-contract
 
+## 1.4.36 — 2026-07-26
+
+### Cloud surface inventory (client gap-scan)
+
+Normative index: [`cloud/CLOUD_SURFACE.md`](cloud/CLOUD_SURFACE.md)
+
+- Single scannable catalog of agent-facing HTTPS paths, Control WS messages,
+  remote-desktop endpoints, and `VALID_COMMAND_TYPES` (with destructive flags)
+- Communication model (Bearer HTTPS + control WSS + RD WSS) up front
+- Explicit “out of agent scope” (dashboard HTML/JSON, billing, marketing)
+- Copy-paste gap-scan checklist for client PRs
+- Docs-only — no new min client floor (points at existing floors)
+
 ## 1.4.35 — 2026-07-25
 
 ### Dashboard deep-links catalog

@@ -1,6 +1,7 @@
 # Cloud overview (agent-visible)
 
 > Agent bu dosyayı **ops için değil**, mimariyi anlamak için okur.  
+> **Taranabilir yetenek listesi:** [`CLOUD_SURFACE.md`](./CLOUD_SURFACE.md) (**1.4.36+**) — HTTP / WS / komut envanteri + gap-scan checklist.  
 > PM2/nginx → cloud `docs/PM2_SERVICE.md` (bu repoda yok).
 
 ```
@@ -18,9 +19,11 @@ asteria.run  (FastAPI :9000 behind nginx/CF)
 
 | Katman | SoT |
 |--------|-----|
+| Full agent surface (gap-scan) | [`CLOUD_SURFACE.md`](./CLOUD_SURFACE.md) |
 | Fail→block eşikleri | `protection.block_rules` (register + threats/config) + cloud `notification_rules` |
 | Firewall envanter | Agent AR-BLOCK (+ legacy HP-BLOCK) + sync-rules |
 | IoC / KEV / ransomware lists | Cloud intel bundle (`api/09`) |
 | IR komutları | Control WS / pending → `VALID_COMMAND_TYPES` |
+| Dashboard shortcuts | [`dashboard-deep-links.md`](./dashboard-deep-links.md) |
 
 Ingest detayı: [`threat-intel-ingest.md`](./threat-intel-ingest.md)

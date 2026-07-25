@@ -4,7 +4,7 @@
 
 | | |
 |--|--|
-| **VERSION** | [`VERSION`](VERSION) (**1.4.35**) |
+| **VERSION** | [`VERSION`](VERSION) (**1.4.36**) |
 | **Index** | [`INDEX.md`](INDEX.md) |
 | **Changelog** | [`CHANGELOG.md`](CHANGELOG.md) |
 | **Fleet matrix** | [`FLEET.md`](FLEET.md) — production floor client ≥ **4.9.0** |
@@ -24,9 +24,10 @@
 ## Client start here
 
 1. [`VERSION`](VERSION) → [`INDEX.md`](INDEX.md) → [`agent/CLIENT.md`](agent/CLIENT.md)  
-2. Cutover checklist: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md) (**1.4.32+**, client ≥ **4.9.35**)  
-3. Firewall prefixes: [`agent/firewall-brand-migrate.md`](agent/firewall-brand-migrate.md)  
-4. Min versions: [`FLEET.md`](FLEET.md)
+2. **Cloud capabilities (gap-scan):** [`cloud/CLOUD_SURFACE.md`](cloud/CLOUD_SURFACE.md) (**1.4.36+**)  
+3. Cutover checklist: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md) (**1.4.32+**, client ≥ **4.9.35**)  
+4. Firewall prefixes: [`agent/firewall-brand-migrate.md`](agent/firewall-brand-migrate.md)  
+5. Min versions: [`FLEET.md`](FLEET.md)
 
 ## Rules
 
@@ -43,7 +44,7 @@
 ```bash
 git clone https://github.com/cevdetaksac/asteria-contract.git
 cd asteria-contract
-cat VERSION   # expect 1.4.35+
+cat VERSION   # expect 1.4.36+
 ```
 
 Client workspace pointer: `asteria-client/contract/` → this repo.

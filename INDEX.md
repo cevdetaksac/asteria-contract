@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.35** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.36** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.36** | Cloud surface inventory — agent HTTP/WS/commands gap-scan | — (docs) |
 | **1.4.35** | Dashboard deep-links (`?token=`) catalog for Settings shortcuts | — (docs) |
 | **1.4.34** | Anti-brick: account-gated critical auto-actions + dashboard auto-link + undo mail | ≥**4.9.36** |
 | **1.4.33** | Contract hygiene: client entrypoints, remove legacy archive dumps | — (docs) |
@@ -84,7 +85,8 @@
 
 | Dosya | Konu | Statü |
 |-------|------|-------|
-| [cloud/overview.md](cloud/overview.md) | Mimari özet | Normative |
+| [cloud/overview.md](cloud/overview.md) | Mimari özet (kısa) | Normative |
+| [cloud/CLOUD_SURFACE.md](cloud/CLOUD_SURFACE.md) | Agent HTTP/WS/commands inventory — client gap-scan | Normative (1.4.36) |
 | [cloud/DEFENSE_POLICY.md](cloud/DEFENSE_POLICY.md) | Tiered policy + auto-promote (C-P0…) | Normative (1.4.19) |
 | [cloud/SERVER_USER_MANAGEMENT.md](cloud/SERVER_USER_MANAGEMENT.md) | Users C-USER-1…7 | Normative (1.4.24) |
 | [cloud/REMOTE_DESKTOP_WINLOGON.md](cloud/REMOTE_DESKTOP_WINLOGON.md) | Winlogon / pre_logon C-WL | Normative (1.4.23) |
