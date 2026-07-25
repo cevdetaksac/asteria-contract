@@ -57,7 +57,7 @@ Result: `POST /api/commands/result` (mevcut).
 
 1. Zaten aynı `tag` kuruluysa ve `force != true` → skip + result `ok` / `already_current`
 2. `download_url` yoksa GitHub latest veya cloud `/api/public/latest-release` çöz
-3. Installer’ı güvenli temp’e indir (ProgramData veya `%TEMP%\YesNextUpdate\`)
+3. Installer’ı güvenli temp’e indir (ProgramData veya `%TEMP%\AsteriaUpdate\ (legacy: `%TEMP%\YesNextUpdate\`)`)
 4. Mümkünse hash / boyut doğrula (`size`)
 5. Silent install (mevcut updater ile aynı path — örn. `cloud-client-installer.exe /S` veya bilinen flag’ler)
 6. SYSTEM daemon ayakta kalsın; GUI varsa soft restart
@@ -159,7 +159,7 @@ Cloud tarafı 2026-07-19 hazır. Bu prompt **client** implementasyonu içindir.
 
 # AGENT_SELF_UPDATE_DASHBOARD_FEEDBACK_API_PROMPT.md
 
-> **Kime:** Honeypot Cloud / Dashboard API  
+> **Kime:** Asteria Cloud / Dashboard API  
 > **API:** `https://asteria.run`  
 > **Tarih:** 2026-07-20  
 > **Konu:** “Şimdi güncelle” tıklanınca kullanıcıya **geri bildirim** — agent komutu aldı / güncelleniyor / bitti  

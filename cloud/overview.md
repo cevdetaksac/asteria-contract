@@ -19,7 +19,7 @@ asteria.run  (FastAPI :9000 behind nginx/CF)
 | Katman | SoT |
 |--------|-----|
 | Fail→block eşikleri | `protection.block_rules` (register + threats/config) + cloud `notification_rules` |
-| Firewall envanter | Agent HP-BLOCK + sync-rules |
+| Firewall envanter | Agent AR-BLOCK (+ legacy HP-BLOCK) + sync-rules |
 | IoC / KEV / ransomware lists | Cloud intel bundle (`api/09`) |
 | IR komutları | Control WS / pending → `VALID_COMMAND_TYPES` |
 

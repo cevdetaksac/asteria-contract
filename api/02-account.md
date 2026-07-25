@@ -9,7 +9,7 @@
 
 # Agent Prompt: In-app Account Link (email + password + agent token)
 
-> **Kime:** Honeypot Cloud / API  
+> **Kime:** Asteria Cloud / API  
 > **API:** `https://asteria.run`  
 > **Tarih:** 2026-07-18  
 > **Istek:** Windows client icinden popup ile e-posta + sifre alip **bu makinenin agent token'ini** hesaba baglamak.  
@@ -146,7 +146,7 @@ Client bunlari **fallback** olarak kullanir; JSON endpoint gelince tek cagrıya 
 
 # Agent Prompt: Account Link Status API (agent token ile)
 
-> **Kime:** Honeypot Cloud / API geliştiren AI  
+> **Kime:** Asteria Cloud / API geliştiren AI  
 > **API:** `https://asteria.run`  
 > **Tarih:** 2026-07-18  
 > **İstek sahibi:** Windows `honeypot-client` (v4.4.28+)  

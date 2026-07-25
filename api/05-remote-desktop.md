@@ -481,8 +481,7 @@ WS/HTTP endpoints stay; only items explicitly marked **(new)** add surface.
 
 ---
 
-## Legacy prompts (archived)
+## Legacy notes
 
-Pre-v2 prompt dumps and superseded acceptance lists moved to
-[`docs/archive/05-remote-desktop-legacy.md`](../docs/archive/05-remote-desktop-legacy.md).
-Where they disagree with the v2 sections above, **v2 wins**.
+Pre-v2 prompt dumps were removed from this repo (non-normative). Where older notes
+disagree with the v2 sections above, **v2 wins**.

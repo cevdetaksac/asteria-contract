@@ -1,6 +1,6 @@
 # Ransomware shield & canary UX
 
-> **Canonical:** `honeypot-contract/agent/ransomware-shield.md`  
+> **Canonical:** `asteria-contract/agent/ransomware-shield.md`  
 > **Min client:** ≥ **4.5.65** (UX) · quarantine unlock IPC ≥4.5.62 · user canary watch ≥4.5.64
 
 ---

@@ -11,7 +11,7 @@
 | `POST /api/presence` | event-driven | Sleep/shutdown HTTP fallback (timeout ≤2s) |
 | `GET /api/client_status` | GUI / dashboard ~2s | presence, suspend, control_ws, threat_intel ack |
 | `GET /api/agent/pending-blocks` | ~30s | + pending-unblocks |
-| `POST /api/agent/sync-rules` | mutate sonrası / periyodik | HP-BLOCK envanter |
+| `POST /api/agent/sync-rules` | mutate sonrası / periyodik | AR-BLOCK envanter (legacy HP-BLOCK during cutover) |
 | `GET /api/threats/config` | startup + ~5 dk | + `protection` |
 | `GET /api/agent/threat-intel` | startup + 15–30 dk | ETag/304; WS `threat_intel_updated` anında |
 | `POST /api/health/report` | ~1–5 dk | |

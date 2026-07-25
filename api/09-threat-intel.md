@@ -1,6 +1,6 @@
 # Threat Intel Feed — API contract
 
-> **Contract:** honeypot-contract · see root `VERSION`  
+> **Contract:** asteria-contract · see root `VERSION`  
 > **Client:** ≥ **4.5.61** poll/ACK · **≥ 4.9.7** intel apply · **≥ 4.9.33** `AR-INTEL-*` brand prefix  
 > **API base:** `https://asteria.run`  
 > **Auth:** `Authorization: Bearer <token>` (agent API’de `?token=` yok)  

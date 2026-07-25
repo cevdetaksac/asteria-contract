@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.33 — 2026-07-25
+
+### Contract hygiene (client entrypoints)
+
+- README / INDEX / `agent/CLIENT.md` aligned to current cutover (**1.4.32** signing + **1.4.33** docs).
+- Removed `docs/archive/` legacy remote-desktop / design dumps (non-normative; confused client readers).
+- Removed stub `cloud/offline-urgent-queue-design.md` (canonical: `api/10-offline-urgent-queue.md`).
+- Repo URLs and “Kime” lines → **asteria-contract** / Asteria Cloud.
+- Brand legacy name tables remain only in `agent/rebrand-asteria.md`.
+
 ## 1.4.32 — 2026-07-25
 
 ### Brand identity cutover (cloud + client signing)
@@ -85,8 +95,8 @@ Docs-only tidy — **no wire behavior change**.
 
 - Rebuilt [`INDEX.md`](INDEX.md): highlight table, full `cloud/` listing, optional lab notes (removed stale sprint checkbox noise).
 - [`FLEET.md`](FLEET.md): presence ship ≥**1.4.27**; dropped duplicate RD v2 footer row; shortened floor warning.
-- Archived promoted OOB design → [`docs/archive/offline-urgent-queue-design.md`](docs/archive/offline-urgent-queue-design.md); `cloud/` keeps stub pointer.
-- Split [`api/05-remote-desktop.md`](api/05-remote-desktop.md): ~770-line legacy prompt dump → [`docs/archive/05-remote-desktop-legacy.md`](docs/archive/05-remote-desktop-legacy.md); WebRTC smoothness section retitled **promoted**.
+- Archived promoted OOB design → `docs/archive/offline-urgent-queue-design.md` (removed in 1.4.33).
+- Split [`api/05-remote-desktop.md`](api/05-remote-desktop.md): ~770-line legacy prompt dump → `docs/archive/05-remote-desktop-legacy.md` (removed in 1.4.33); WebRTC smoothness section retitled **promoted**.
 - [`SECURITY_RESILIENCE_VNEXT.md`](SECURITY_RESILIENCE_VNEXT.md): OOB-501 marked promoted (was contradictory “not promoted”); planning stamp → living plan.
 - Unlink ship note → **1.4.27**; CHANGELOG double-blank cleanup.
 

@@ -86,8 +86,8 @@ New installs must use Asteria paths. Do **not** silently move ProgramData.
 
 ## P2 — Optional / ops
 
-- Contract git repo may still be named `honeypot-contract` (historical remote).
-- Cloud backup git remote may still be `honeypot-cloud` until renamed.
+- Contract git repo may still be named `asteria-contract` (historical remote).
+- Cloud backup git remote: **`cevdetaksac/asteria-cloud`**.
 - OS safety tooling may still live under `/usr/local/lib/honeypot-safety` with aliases `honeypot-trash` — archives go to `/data/asteria-trash` / `/data/asteria-snapshots`.
 
 ---

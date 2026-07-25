@@ -71,4 +71,4 @@ Register ekstra alanlar (bilgi): `defaults_applied`, `created`, `skipped`, `thre
 - [x] Client ≥4.5.66: register body → ProgramData + ThreatEngine; threats/config overlay  
 - [x] `protection` yok → client defaults  
 - [x] 3 fail window → block + alert (unit: client `tests/test_protection_block_rules.py`)
-- [ ] Live host smoke: 3 fail → `HP-BLOCK-*` (opsiyonel)
+- [ ] Live host smoke: 3 fail → `AR-BLOCK-*` (opsiyonel)

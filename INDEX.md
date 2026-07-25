@@ -1,14 +1,15 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.32** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.33** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
-> **API base:** `https://asteria.run` (legacy alias: `honeypot.yesnext.com.tr`)
+> **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
 ### Recent contract highlights
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.33** | Contract hygiene: client entrypoints, remove legacy archive dumps | — (docs) |
 | **1.4.32** | Signing/heartbeat → **`asteria-chp-v1` / `asteria-heartbeat-v1`**; brand SoT scrub | ≥**4.9.35** |
 | **1.4.31** | Firewall brand `HP-*` → **`AR-BLOCK` / `AR-INTEL`** | ≥**4.9.33** |
 | **1.4.30** | Brand → **Asteria** / `asteria.run` (API base cutover) | ≥**4.9.32** |
@@ -21,7 +22,7 @@
 | **1.4.20** | WebRTC smoothness | ≥**4.9.20** |
 | **1.4.19** | Defense Policy observe→balanced | ≥**4.9.17** |
 | Design-only | ZT envelope/keys — [`cloud/ZERO_TRUST_STATUS.md`](cloud/ZERO_TRUST_STATUS.md) | — |
-| Decision | Branding — [`cloud/PRODUCT_BRANDING.md`](cloud/PRODUCT_BRANDING.md) · client [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md) · FW [`agent/firewall-brand-migrate.md`](agent/firewall-brand-migrate.md) | ≥**4.9.33** |
+| Decision | Branding — [`cloud/PRODUCT_BRANDING.md`](cloud/PRODUCT_BRANDING.md) · client [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md) · FW [`agent/firewall-brand-migrate.md`](agent/firewall-brand-migrate.md) | ≥**4.9.35** |
 
 ---
 
@@ -31,7 +32,6 @@
 |-------|------|-------|
 | [ROADMAP_TIERED_DEFENSE.md](ROADMAP_TIERED_DEFENSE.md) | Kademeli savunma, onboarding, anti-bait | Planning (living) |
 | [SECURITY_RESILIENCE_VNEXT.md](SECURITY_RESILIENCE_VNEXT.md) | Ortak güvenlik paketleri; §7A observe şemaları api/agent’ta | Plan + promoted observe |
-| [docs/archive/](docs/archive/) | Promoted design dumps / legacy prompts | Archive |
 
 ---
 
@@ -54,7 +54,7 @@
 | [agent/defense-policy-client.md](agent/defense-policy-client.md) | Matrix apply, observe default, CTA | ≥ **4.9.17** |
 | [agent/remote-input.md](agent/remote-input.md) | Input protocol 2 + session helper | ≥ **4.9.0** |
 | [agent/server-management.md](agent/server-management.md) | Users / processes / services | target ≥ **4.9.4** |
-| [agent/rebrand-asteria.md](agent/rebrand-asteria.md) | API base → `asteria.run` + UI rename | ≥ **4.9.32** |
+| [agent/rebrand-asteria.md](agent/rebrand-asteria.md) | Host, UI, signing/heartbeat Asteria cutover | ≥ **4.9.35** |
 | [agent/firewall-brand-migrate.md](agent/firewall-brand-migrate.md) | `HP-*` → `AR-BLOCK` / `AR-INTEL` | ≥ **4.9.33** |
 
 ---
@@ -65,7 +65,7 @@
 |-------|------|------------|
 | [api/01-auth.md](api/01-auth.md) | Bearer, register, heartbeat, `machine_id`, **rotate-token** | 4.4.33+ / hw-id ≥**4.9.28** / rotate ≥**4.9.31** |
 | [api/02-account.md](api/02-account.md) | Account link / unlink / multi-server | unlink ≥**4.9.26** |
-| [api/03-control-websocket.md](api/03-control-websocket.md) | Control WS + komutlar + HMAC | 4.5.x |
+| [api/03-control-websocket.md](api/03-control-websocket.md) | Control WS + komutlar + HMAC (`asteria-chp-v1`) | 4.5.x / signing ≥**4.9.35** |
 | [api/04-self-update.md](api/04-self-update.md) | Self-update ACK | 4.5.39+ |
 | [api/05-remote-desktop.md](api/05-remote-desktop.md) | RD v2 (WS/JPEG + WebRTC) | **≥4.9.0** (smooth ≥**4.9.20**) |
 | [api/06-firewall-blocks.md](api/06-firewall-blocks.md) | AR-BLOCK / sync / clear (+ HP wipe) | 4.5.40+ / brand ≥**4.9.33** |
@@ -91,11 +91,10 @@
 | [cloud/ZERO_TRUST_STATUS.md](cloud/ZERO_TRUST_STATUS.md) | ZT do/don’t | Design-only |
 | [cloud/command-envelope-v2-design.md](cloud/command-envelope-v2-design.md) | ZT-601 envelope | Design-only |
 | [cloud/operator-keyset-design.md](cloud/operator-keyset-design.md) | ZT-602/603 keys | Design-only |
-| [cloud/offline-urgent-queue-design.md](cloud/offline-urgent-queue-design.md) | Pointer → archive + api/10 | Promoted stub |
 
 ---
 
 ## Opsiyonel lab (zorunlu değil)
 
 - Cadence: `agent/polling.md` canlı host doğrulama  
-- Live host: 3 fail → `HP-BLOCK-*` smoke (`agent/register-protection.md`)
+- Live host: 3 fail → `AR-BLOCK-*` smoke (`agent/register-protection.md`)

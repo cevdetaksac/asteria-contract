@@ -3,7 +3,7 @@
 > **Status:** Planning (living document) — **onboarding 2026-07-23** · cloud normative **1.4.19** → [`cloud/DEFENSE_POLICY.md`](cloud/DEFENSE_POLICY.md) · client [`agent/defense-policy-client.md`](agent/defense-policy-client.md)  
 > **Audience:** Client · Cloud/API · Dashboard · QA  
 > **Related:** [`agent/network-guard.md`](agent/network-guard.md) · [`agent/ransomware-shield.md`](agent/ransomware-shield.md) · [`cloud/DEFENSE_POLICY.md`](cloud/DEFENSE_POLICY.md) · [`SECURITY_RESILIENCE_VNEXT.md`](SECURITY_RESILIENCE_VNEXT.md) · soft inform **1.4.17 / ≥4.9.15** · matrix **≥4.9.16** · observe-default **≥4.9.17**  
-> **Repo:** https://github.com/cevdetaksac/honeypot-contract
+> **Repo:** https://github.com/cevdetaksac/asteria-contract
 
 Bu dosya Gemini + ürün ekibi değerlendirmelerinin **birleşik yol haritasıdır**.  
 Yeni öneriler §8’e eklenir; uygulama **faz faz** (P0→P3) ilerler.  

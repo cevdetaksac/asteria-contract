@@ -58,7 +58,7 @@ One-time schema v2 upgrade also re-enrolls under the fingerprint (re-link Accoun
 ```
 
 `protection` → [`../agent/register-protection.md`](../agent/register-protection.md).  
-Token: `%ProgramData%\YesNext\CloudHoneypotClient\token.dat` — immutable; decrypt fail → otomatik re-register **yok**.  
+Token file (legacy ProgramData path still used on existing installs — do not silent-move; see [`../agent/rebrand-asteria.md`](../agent/rebrand-asteria.md)): `%ProgramData%\YesNext\CloudHoneypotClient\token.dat` — immutable; decrypt fail → otomatik re-register **yok**.  
 Hardware bind: `device_binding.json` + CHP2 fingerprint in `token.dat` (client ≥ 4.9.28).
 
 ---

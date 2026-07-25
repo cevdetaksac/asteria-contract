@@ -10,8 +10,6 @@ Survives brief cloud/network outages without dropping high-severity local
 signals (canary, Network Guard offline bomb, password-burst). Re-POST on
 reconnect with ACK/idempotency so dashboards do not duplicate incidents.
 
-Design history: [`../cloud/offline-urgent-queue-design.md`](../cloud/offline-urgent-queue-design.md).
-
 ## Non-goals
 
 - Covert DNS/ICMP channels
