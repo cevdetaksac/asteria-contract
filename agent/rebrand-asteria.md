@@ -1,7 +1,8 @@
 # Brand migration — Asteria (single SoT)
 
-> **Contract VERSION:** **1.4.32**  
+> **Contract VERSION:** **1.4.37** (sunset date; identity wire **1.4.32**)  
 > **Min client for full identity:** **≥ 4.9.35**  
+> **Legacy dual-run sunset target:** **2026-10-01** — [`../cloud/PRODUCT_BRANDING.md`](../cloud/PRODUCT_BRANDING.md) §Sunset  
 > Related: firewall migrate [`firewall-brand-migrate.md`](./firewall-brand-migrate.md) (1.4.31 / ≥4.9.33)
 
 This file is the **only** place that documents former YesNext / Cloud Honeypot names.
@@ -108,7 +109,17 @@ These are protocol / taxonomy identifiers — rename only with a dedicated API v
 2. Signing with `yesnext-chp-v1` on new cloud builds (1.4.32+).
 3. Forgetting `HP-*` in wipe lists.
 4. Silent ProgramData migrate.
-5. Removing legacy host from nginx before fleet cutover.
+5. Removing legacy host from nginx before [`PRODUCT_BRANDING`](../cloud/PRODUCT_BRANDING.md) sunset criteria + date.
+
+---
+
+## Sunset (client expectation)
+
+By **2026-10-01** (or slipped date in PRODUCT_BRANDING):
+
+- Primary API/WS **must** be `asteria.run`; legacy host is best-effort then removed.  
+- Verify path **must** be `asteria-chp-v1` / `asteria-heartbeat-v1`.  
+- New installs: Asteria paths only.
 
 ---
 

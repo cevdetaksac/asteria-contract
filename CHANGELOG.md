@@ -1,5 +1,23 @@
 # Changelog — asteria-contract
 
+## 1.4.37 — 2026-07-26
+
+### Claude backlog close-out — canary, ZT schema, P0 RD, sunset, promote criteria
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Envelope v2 **schema** normative (emit still off) | [`api/12-command-envelope-v2.md`](api/12-command-envelope-v2.md) | cloud + client observe |
+| Observe→enforce SoT | [`cloud/PROMOTION_GATES.md`](cloud/PROMOTION_GATES.md) | ops / both |
+| Fleet canary wire `fleet_rollout{}` | [`cloud/FLEET_CANARY.md`](cloud/FLEET_CANARY.md) | cloud live; client ≥**4.9.37** |
+| RD P0 Winlogon black + ICE honesty | [`agent/remote-desktop-p0.md`](agent/remote-desktop-p0.md) | **client P0** |
+| Legacy dual-brand sunset **2026-10-01** | [`cloud/PRODUCT_BRANDING.md`](cloud/PRODUCT_BRANDING.md) §Sunset | ops + client |
+| Offline-queue promote criteria | [`api/10-offline-urgent-queue.md`](api/10-offline-urgent-queue.md) | both |
+
+- Design archive updated: [`cloud/command-envelope-v2-design.md`](cloud/command-envelope-v2-design.md)
+- ZT status: [`cloud/ZERO_TRUST_STATUS.md`](cloud/ZERO_TRUST_STATUS.md)
+- Cloud: threats/config clears risky autos out-of-canary; resilience status adds fleet signing + envelope status
+- **Do not** emit production `version:2` until `api/12` emit gates green
+
 ## 1.4.36 — 2026-07-26
 
 ### Cloud surface inventory (client gap-scan)

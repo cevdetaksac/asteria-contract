@@ -96,7 +96,7 @@ Signing: command HMAC context **`asteria-chp-v1`** · heartbeat **`asteria-heart
 | C-API-alerts-list | GET | `/api/alerts/list` | Bearer | — | live | |
 | C-API-logon-challenge | POST | `/api/alerts/logon-challenge` | Bearer | — | live | Challenge create |
 | C-API-logon-challenges | GET | `/api/agent/logon-challenges` | Bearer | — | live | Pending challenges for agent |
-| C-API-threats-config | GET | `/api/threats/config` | Bearer | — | live | Full threat + network_guard + silent_hours defaults |
+| C-API-threats-config | GET | `/api/threats/config` | Bearer | — | live | Full threat + network_guard + silent_hours + **`fleet_rollout`** (1.4.37) |
 | C-API-threats-config-post | POST | `/api/threats/config` | Bearer/Dash | — | live | Update (prefer dashboard) |
 | C-API-threats-summary | GET | `/api/threats/summary` | Bearer | — | live | |
 | C-API-auto-blocks | GET | `/api/auto-blocks` | Bearer | — | live | |

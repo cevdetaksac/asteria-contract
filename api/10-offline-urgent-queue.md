@@ -1,10 +1,12 @@
 # Offline urgent queue (OOB-501)
 
-> Contract **1.4.7** · Status: **normative (additive)**  
+> Contract **1.4.7** (+ **1.4.37** promote criteria) · Status: **normative (additive)**  
 > Production floor unchanged: **client ≥ 4.9.0**  
 > Client flag `security.offline_urgent_queue` remains **default off** until
 > fleet pilot. Cloud endpoint is live; drain only after successful
-> heartbeat / control WS.
+> heartbeat / control WS.  
+> **Enforce / fleet-default-on:** [`../cloud/PROMOTION_GATES.md`](../cloud/PROMOTION_GATES.md) +
+> canary gate `offline_urgent_queue` in [`../cloud/FLEET_CANARY.md`](../cloud/FLEET_CANARY.md).
 
 Survives brief cloud/network outages without dropping high-severity local
 signals (canary, Network Guard offline bomb, password-burst). Re-POST on
@@ -140,6 +142,22 @@ Bearer token auth also accepted (`Authorization: Bearer …`).
 2. Enqueue only high-severity local signals on urgent POST failure / offline.
 3. Drain via `/api/alerts/urgent/batch` after successful heartbeat or control WS.
 4. Delete only `acked` + `duplicate`.
+5. (**1.4.37+**) Enable spool only when local flag **and**
+   `fleet_rollout.gates.offline_urgent_queue === true` (fail-closed if missing).
+
+## Observe → enforce criteria (1.4.37)
+
+Fleet default **on** (or canary percent → 100 for this gate) only when **all** hold:
+
+| # | Criterion |
+|---|-----------|
+| 1 | Cloud idempotency E2E green (already) |
+| 2 | Harness `tests/test_offline_queue_pilot.py` green on current client train |
+| 3 | **One-host live pilot** below: pass, then leave lab-only or re-off |
+| 4 | Canary: `ASTERIA_CANARY_OFFLINE_URGENT=1` + percent ≤5 for **≥7 days**; zero duplicate-incident regressions; no unbounded spool growth alerts |
+| 5 | Explicit contract VERSION announcing fleet default / enforce |
+
+Until then: endpoints stay live; flag default off; gate default false.
 
 ## Acceptance
 
@@ -153,12 +171,15 @@ Bearer token auth also accepted (`Authorization: Bearer …`).
   (`offline_urgent_queue.oldest_dropped` on health/report; **accepted
   client 4.9.3**)
 - [x] No DNS/ICMP fallback (out of scope / rejected)
+- [ ] 1.4.37 canary gate honored on client ≥4.9.37
+- [ ] 7-day ≤5% canary clean (ops)
 
 ### One-host live pilot (flag stays fleet-off)
 
 1. Pick **one** test host on client **≥ 4.9.3** (not production fleet).
 2. Set `security.offline_urgent_queue: true` **only on that host**; leave default **off** elsewhere.
-3. Block / drop cloud reachability ~10 minutes; trigger a canary (or other high-severity urgent).
-4. Restore network → heartbeat or control WS reconnect → expect `/api/alerts/urgent/batch` drain.
-5. Pass criteria: **one** dashboard incident for the stable `event_id`; health shows queue counters; no duplicate alert rows.
-6. After pass: turn flag **off** again on the pilot host (or leave on only that lab box).
+3. Force canary membership (`ASTERIA_CANARY_FORCE_IDS` or override) **or** accept gate false = no spool.
+4. Block / drop cloud reachability ~10 minutes; trigger a canary (or other high-severity urgent).
+5. Restore network → heartbeat or control WS reconnect → expect `/api/alerts/urgent/batch` drain.
+6. Pass criteria: **one** dashboard incident for the stable `event_id`; health shows queue counters; no duplicate alert rows.
+7. After pass: turn flag **off** again on the pilot host (or leave on only that lab box).

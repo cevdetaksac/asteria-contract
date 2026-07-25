@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.36** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.37** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.37** | Fleet canary · envelope v2 schema · RD P0 · brand sunset · promote gates | canary/RD ≥**4.9.37**; schema docs all |
 | **1.4.36** | Cloud surface inventory — agent HTTP/WS/commands gap-scan | — (docs) |
 | **1.4.35** | Dashboard deep-links (`?token=`) catalog for Settings shortcuts | — (docs) |
 | **1.4.34** | Anti-brick: account-gated critical auto-actions + dashboard auto-link + undo mail | ≥**4.9.36** |
@@ -24,8 +25,8 @@
 | **1.4.23** | Winlogon sibling pre_logon + C-WL | ≥**4.9.26** |
 | **1.4.20** | WebRTC smoothness | ≥**4.9.20** |
 | **1.4.19** | Defense Policy observe→balanced | ≥**4.9.17** |
-| Design-only | ZT envelope/keys — [`cloud/ZERO_TRUST_STATUS.md`](cloud/ZERO_TRUST_STATUS.md) | — |
-| Decision | Branding — [`cloud/PRODUCT_BRANDING.md`](cloud/PRODUCT_BRANDING.md) · client [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md) · FW [`agent/firewall-brand-migrate.md`](agent/firewall-brand-migrate.md) | ≥**4.9.35** |
+| Schema | ZT envelope v2 observe-only — [`api/12-command-envelope-v2.md`](api/12-command-envelope-v2.md) | observe |
+| Decision | Branding + sunset **2026-10-01** — [`cloud/PRODUCT_BRANDING.md`](cloud/PRODUCT_BRANDING.md) | ≥**4.9.35** |
 
 ---
 
@@ -60,6 +61,7 @@
 | [agent/rebrand-asteria.md](agent/rebrand-asteria.md) | Host, UI, signing/heartbeat Asteria cutover | ≥ **4.9.35** |
 | [agent/firewall-brand-migrate.md](agent/firewall-brand-migrate.md) | `HP-*` → `AR-BLOCK` / `AR-INTEL` | ≥ **4.9.33** |
 | [agent/anti-brick-critical-actions.md](agent/anti-brick-critical-actions.md) | Account-gated critical auto + anti-brick (C-BRICK) | ≥ **4.9.36** |
+| [agent/remote-desktop-p0.md](agent/remote-desktop-p0.md) | P0 Winlogon black-screen + WebRTC ICE honesty | ≥ **4.9.37** |
 
 ---
 
@@ -76,8 +78,9 @@
 | [api/07-lifecycle-sessions.md](api/07-lifecycle-sessions.md) | Lifecycle / sessions / processes | — |
 | [api/08-architecture.md](api/08-architecture.md) | Daemon vs GUI IPC | ≥ **4.5.66** |
 | [api/09-threat-intel.md](api/09-threat-intel.md) | Intel bundle ETag/ACK/WS | ≥ **4.5.61** / apply ≥**4.9.7** |
-| [api/10-offline-urgent-queue.md](api/10-offline-urgent-queue.md) | OOB-501 batch + idempotency | cloud live; client flag **off** |
+| [api/10-offline-urgent-queue.md](api/10-offline-urgent-queue.md) | OOB-501 batch + idempotency + promote criteria | cloud live; client flag **off**; canary **1.4.37** |
 | [api/11-presence-realtime.md](api/11-presence-realtime.md) | Sleep/suspend/shutdown presence | cloud live ≥**1.4.27**; client ≥**4.9.8** |
+| [api/12-command-envelope-v2.md](api/12-command-envelope-v2.md) | ZT-601 envelope schema (observe-only; no emit) | observe |
 
 ---
 
@@ -94,8 +97,10 @@
 | [cloud/threat-intel-ingest.md](cloud/threat-intel-ingest.md) | Harici feed → bundle | Normative |
 | [cloud/PRODUCT_BRANDING.md](cloud/PRODUCT_BRANDING.md) | Wire identity / no big-bang rename | Decision |
 | [cloud/dashboard-deep-links.md](cloud/dashboard-deep-links.md) | Browser `?token=` dashboard URLs / Settings shortcuts | Normative (1.4.35) |
-| [cloud/ZERO_TRUST_STATUS.md](cloud/ZERO_TRUST_STATUS.md) | ZT do/don’t | Design-only |
-| [cloud/command-envelope-v2-design.md](cloud/command-envelope-v2-design.md) | ZT-601 envelope | Design-only |
+| [cloud/PROMOTION_GATES.md](cloud/PROMOTION_GATES.md) | Observe→enforce criteria (single SoT) | Normative (1.4.37) |
+| [cloud/FLEET_CANARY.md](cloud/FLEET_CANARY.md) | `fleet_rollout{}` canary gates | Normative (1.4.37) |
+| [cloud/ZERO_TRUST_STATUS.md](cloud/ZERO_TRUST_STATUS.md) | ZT do/don’t | Status (1.4.37) |
+| [cloud/command-envelope-v2-design.md](cloud/command-envelope-v2-design.md) | ZT-601 design archive (schema → api/12) | Archive |
 | [cloud/operator-keyset-design.md](cloud/operator-keyset-design.md) | ZT-602/603 keys | Design-only |
 
 ---

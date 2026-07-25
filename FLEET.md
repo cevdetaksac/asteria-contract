@@ -28,6 +28,10 @@
 | Anti-brick: account-gated critical auto-actions; silent-hours default OFF; dashboard auto-link; undo mail | `agent/anti-brick-critical-actions.md`, `api/02-account.md` | cloud ≥ **1.4.34**; client **≥ 4.9.36** |
 | Dashboard deep-links catalog (`?token=` browser URLs / Settings shortcuts) | `cloud/dashboard-deep-links.md` | cloud ≥ **1.4.35** (docs; no new client floor) |
 | Cloud surface inventory (agent HTTP/WS/commands — client gap-scan) | `cloud/CLOUD_SURFACE.md` | cloud ≥ **1.4.36** (docs; no new client floor) |
+| Fleet canary `fleet_rollout` + auto-flag clear | `cloud/FLEET_CANARY.md`, `cloud/PROMOTION_GATES.md` | cloud ≥ **1.4.37**; client honor gates ≥ **4.9.37** |
+| Envelope v2 schema (observe-only; no production emit) | `api/12-command-envelope-v2.md` | cloud ≥ **1.4.37**; client observe optional |
+| RD P0 Winlogon black + ICE honesty | `agent/remote-desktop-p0.md` | client **≥ 4.9.37** |
+| Legacy dual-brand sunset target **2026-10-01** | `cloud/PRODUCT_BRANDING.md` | ops + client ≥**4.9.35** |
 | Uninstall PIN lifecycle (`uninstall_*` + `windows_user`) | `api/07-lifecycle-sessions.md` | cloud ≥ **1.4.9**; client with uninstall PIN gate |
 | Bare `successful_logon` score ≤70 + no auto-block (cloud reject shapes) | `agent/threat-engine.md` | cloud ≥ **1.4.11**; target client **≥4.9.7** |
 | Whitelist never stays blocked (reject + `unblock_ip` + pending-unblocks) | `api/06-firewall-blocks.md`, `agent/threat-engine.md` | cloud ≥ **1.4.11**; client must ACK `block-removed` |

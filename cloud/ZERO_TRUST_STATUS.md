@@ -1,39 +1,38 @@
-# Zero Trust — durum (1.4.16)
+# Zero Trust — durum (1.4.37)
 
-> Asimetrik envelope / operator keyset **hâlâ Design-only**.  
+> Envelope v2 **şema normatif** (`api/12`); **wire emit / enforce hâlâ kapalı**.  
 > Bu dosya cloud’a “şimdi ne yapmalı / ne yapmamalı” netliği verir.
-
-## Gemini iddiası
-
-> “SaaS çıkmadan önce asymmetric envelope production’a alınmalı.”
 
 ## Gerçek durum
 
 | Paket | Statü | Dosya |
 |-------|--------|--------|
 | v1 HMAC command signing | Normative (soft-allow missing sig) | `api/03-control-websocket.md` |
+| v1 coverage metrics | Live on resilience status | `GET …/security-resilience/status` |
 | `caps.command_envelope_v2` | Observe only (`off`\|`observe`) | `api/03` |
-| ZT-601 envelope v2 | **Design-only** | `cloud/command-envelope-v2-design.md` |
-| ZT-602/603 operator keys | **Design-only** (+ cloud observe stub) | `cloud/operator-keyset-design.md` |
-| TPM PoP / enrollment | **Design-only** | design gate + `device_identity` observe |
+| ZT-601 envelope v2 **schema** | **Normative (observe-only)** | `api/12-command-envelope-v2.md` |
+| ZT-601 wire emit / enforce | **Gated** | `api/12` §Emit · `PROMOTION_GATES.md` |
+| ZT-602/603 operator keys | Design + cloud observe stub | `cloud/operator-keyset-design.md` |
+| TPM PoP / enrollment | Design-only | design archive + `device_identity` observe |
+| Fleet automation canary | Normative | `cloud/FLEET_CANARY.md` |
+| Observe→enforce criteria | Normative | `cloud/PROMOTION_GATES.md` |
 
-Client scaffold (`command_envelope`, `operator_keys`, `device_identity`) **imza doğrulamaz**; `verify_enabled` zorla false.
+Client scaffold may parse/verify in observe; production `verify_enabled` /
+hard-fail on v2 remains false until emit+enforce VERSIONs.
 
-## Neden hemen “production enforce” yok
-
-Design gate açık: serialization (JCS/CBOR), algo (Ed25519/WebAuthn), signer custody, replay, key lifecycle, test vectors.  
-Bunlar kapanmadan `version:2` emit etmek = kırık filo + false sense of security.
-
-## Cloud’un şimdi yapması (1.4.16)
+## Cloud’un şimdi yapması (1.4.37)
 
 1. **Yapma:** fleet’e `version:2` asymmetric envelope emit / enforce  
-2. **Yap:** v1 HMAC coverage ölçümü (ZT-600) — imzasız komut oranını dashboard’da göster  
-3. **Yap (observe):** `GET /api/agent/operator-keys` public-only stub (`verify_enabled:false`) zaten varsa koru  
-4. **Sonra (ayrı sprint):** design gate karar notu + test vectors → OOB-501 gibi promote
+2. **Yap:** v1 HMAC coverage ölçümü — `command_signing.fleet` + `enforce_ready`  
+3. **Yap:** `fleet_rollout` canary (auto flag clear) — production default percent=0  
+4. **Yap (observe):** `GET /api/agent/operator-keys` public-only stub (`verify_enabled:false`)  
+5. **Sonra:** dual-read/write + goldens CI → pilot → ayrı VERSION emit → ayrı VERSION enforce
 
 ## “Hacklenirseniz biz de hackleniriz”
 
-Bugün savunma: Bearer token + v1 HMAC soft-allow + confirm-gated mutates + Network Guard / System Recovery.  
-Asimetrik ZT bunu **güçlendirir** ama **tek başına SaaS kapısı değil**. Önce gate kapat, sonra observe, sonra pilot, sonra enforce.
+Bugün savunma: Bearer token + v1 HMAC soft-allow + confirm-gated mutates +
+Network Guard / System Recovery + canary-gated autos.  
+Asimetrik ZT bunu güçlendirir ama **tek başına SaaS kapısı değil**.
 
-Detay: [`SECURITY_RESILIENCE_VNEXT.md`](../SECURITY_RESILIENCE_VNEXT.md).
+Detay: [`SECURITY_RESILIENCE_VNEXT.md`](../SECURITY_RESILIENCE_VNEXT.md) ·
+[`PROMOTION_GATES.md`](./PROMOTION_GATES.md).

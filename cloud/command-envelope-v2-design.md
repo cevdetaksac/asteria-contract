@@ -1,8 +1,9 @@
-# Command Envelope v2 + hardware-backed identity — design gate
+# Command Envelope v2 + hardware-backed identity — design archive
 
-> Contract: 1.4.5  
-> Status: design-only; **not production wire**  
-> Current production remains v1 HMAC + client 4.9.0 soft-allow/observe.  
+> Contract: **1.4.37** (schema promoted)  
+> **Normative schema SoT:** [`../api/12-command-envelope-v2.md`](../api/12-command-envelope-v2.md)  
+> Status: design history + TPM notes; **production wire emit still OFF**  
+> Current production remains v1 HMAC + client soft-allow/observe.  
 > Client hello may advertise `caps.command_envelope_v2: "off"|"observe"` only
 > (see `api/03-control-websocket.md`). Operator key distribution draft:
 > [`operator-keyset-design.md`](./operator-keyset-design.md).
@@ -15,44 +16,14 @@
 - allow future device payload encryption independently from authorization;
 - support TPM-backed device proof and controlled re-enrollment.
 
-## Candidate canonical envelope
+## Locked decisions → see api/12
 
-```json
-{
-  "version": 2,
-  "tenant_id": "tenant-uuid",
-  "device_id": "device-uuid",
-  "command_id": "command-uuid",
-  "command_type": "network_restore",
-  "params_hash": "sha256:<lowercase-hex>",
-  "issued_at": "2026-07-22T00:00:00.000000Z",
-  "expires_at": "2026-07-22T00:05:00.000000Z",
-  "nonce": "<128-bit base64url>",
-  "operator_id": "operator-uuid",
-  "key_id": "operator-key-id",
-  "policy_version": "policy-uuid",
-  "approvals": [],
-  "signature": "<base64url>"
-}
-```
+Serialization (JCS), Ed25519, custody, approvals, replay, key lifecycle, and
+the canonical envelope JSON are **normative** in
+[`../api/12-command-envelope-v2.md`](../api/12-command-envelope-v2.md).
+Do not fork decisions here.
 
-## Decisions required before implementation
-
-1. **Serialization:** canonical JSON (RFC 8785/JCS) vs deterministic CBOR.
-2. **Algorithm:** Ed25519 vs WebAuthn assertion verification semantics.
-3. **Signer custody:** browser/WebAuthn key vs managed signing service. If
-   cloud-blind authorization is required, cloud cannot hold the operator
-   private key.
-4. **Approval policy:** command classes requiring one/two approvers; approval
-   signatures cover the complete envelope hash and cannot be transplanted.
-5. **Replay:** nonce + `command_id` durable replay window; duplicate delivery
-   returns the same terminal result and never re-executes.
-6. **Key lifecycle:** registration, rotation overlap, revocation, break-glass
-   and tenant recovery.
-7. **Confidentiality:** optional HPKE/hybrid encryption to a device key is a
-   separate layer; routing metadata remains visible.
-
-## TPM device identity candidate
+## TPM device identity candidate (still design)
 
 - Device generates non-exportable signing key; cloud stores public key,
   attestation state and enrollment generation.
@@ -65,14 +36,15 @@
 - No irreversible hardware lock. Replacement motherboard/TPM clear has a
   documented recovery path.
 
-## Rollout gates
+## Rollout gates (unchanged intent)
 
-1. Promote exact serialization, algorithm, errors and test vectors into
-   `api/03-control-websocket.md`.
+1. ~~Promote exact serialization, algorithm, errors and test vectors into api~~
+   → **done in 1.4.37** (`api/12`).
 2. Implement cloud dual-read/dual-write; v1 remains available.
 3. Client advertises capability and verifies v2 in observe mode.
 4. Dashboard shows key/approval/replay/rollback status.
 5. Internal pilot, downgrade and compromised-cloud tests pass.
 6. Enforcement/floor change ships in a separate explicit contract release.
 
-No code may emit a production `version:2` command before gate 1.
+**No code may emit a production `version:2` command before emit gates in
+`api/12` §Emit gates are all green.**
