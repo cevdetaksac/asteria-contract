@@ -1,5 +1,27 @@
 # Changelog — asteria-contract
 
+## 1.4.34 — 2026-07-25
+
+### Anti-brick — account-gated critical actions
+
+Incident class: silent-hours / time-rule **auto-disable Administrator** on an
+unlinked (or unrecoverable) client bricked the host — no dashboard operator path.
+
+Normative SoT: [`agent/anti-brick-critical-actions.md`](agent/anti-brick-critical-actions.md)
+
+| ID | Rule |
+|----|------|
+| **C-BRICK-1** | Client: critical local auto-actions require fresh `account_linked`; fail-closed skip + alert |
+| **C-BRICK-2** | Silent hours / time rules **DEFAULT OFF** (no surprise ON) |
+| **C-BRICK-3** | Cloud dashboard: authenticated account + agent token → **auto-link** (no steal if other account) |
+| **C-BRICK-4** | Destructive IR from dashboard requires account↔client membership |
+| **C-BRICK-5** | Admin-class disable → instant undo **email + one-time key** → `enable_account` |
+| **C-BRICK-6** | Never leave zero local admin path; roll back if needed |
+
+- Min client: **≥ 4.9.36**
+- Command result wire: `status` is command state (`completed`…), not SAM `active`/`disabled`
+- Cloud compat: accept aliased result status `active`/`disabled` → `completed` when success
+
 ## 1.4.33 — 2026-07-25
 
 ### Contract hygiene (client entrypoints)

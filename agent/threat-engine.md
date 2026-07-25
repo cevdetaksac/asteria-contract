@@ -76,6 +76,11 @@ yazılmaz — `min_severity_for_email` (low|medium|high|critical),
 alanları, integer sınırları (`auto_block_threshold` 1–100, süreler 0–8760,
 limitler ≥1) ve `webhook_url` http(s) şeması.
 
+**Defaults (contract ≥1.4.34):** `silent_hours.enabled` ve
+`auto_block_ip` / `auto_logoff` / `auto_disable_account` / `weekend_all_day_silent`
+**false**. Kritik auto-disable için account-link gate:
+[`anti-brick-critical-actions.md`](./anti-brick-critical-actions.md) (C-BRICK-1…2).
+
 ---
 
 ## POST /api/alerts/urgent

@@ -65,6 +65,29 @@ web `/servers` fallback (`unlink_api_unavailable`).
 
 ---
 
+## P0c — Dashboard auto-link (contract **1.4.34**, anti-brick)
+
+> Normative detail: [`agent/anti-brick-critical-actions.md`](../agent/anti-brick-critical-actions.md) **C-BRICK-3**.
+
+Authenticated **account session** (dashboard cookie / account Bearer) bir istekte
+geçerli **agent client token** taşıyorsa ve bu account↔client `AccountClient`
+yoksa cloud **hemen** membership oluşturur (`auto_link_dashboard` audit).
+
+| Durum | Sonuç |
+|-------|--------|
+| Unlinked | Bu account’a link (idempotent) |
+| Already this account | no-op |
+| Linked to **other** account | **403/409** — çalma yok; transfer/unlink UI |
+
+Tetikleyiciler (ör.): `GET /dashboard?token=…`, Servers / Users / Remote scoped
+API’ler. Amaç: orphan token ile kritik client auto-action sonrası operatörün
+sunucuyu listede görememesi / komut atamaması sınıfını kapatmak.
+
+Client tarafı: `account_linked != true` iken kritik yerel auto-disable **yasak**
+(C-BRICK-1).
+
+---
+
 ## P0 — Tek JSON endpoint (onerilen)
 
 ### `POST /api/agent/link-account`

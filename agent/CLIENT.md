@@ -14,6 +14,7 @@ Bu dosya **özet + link**. Şema/detay için ilgili MD’ye git; buraya kopyalam
 
 0. [`rebrand-asteria.md`](./rebrand-asteria.md) — host, UI, **`asteria-chp-v1` / `asteria-heartbeat-v1`**, path trust (**1.4.32+**, ≥ **4.9.35**)  
 0b. [`firewall-brand-migrate.md`](./firewall-brand-migrate.md) — `AR-BLOCK` / `AR-INTEL` (**1.4.31**, ≥ **4.9.33**)  
+0c. [`anti-brick-critical-actions.md`](./anti-brick-critical-actions.md) — account-gated critical auto / anti-brick (**1.4.34**, ≥ **4.9.36**)  
 1. [`../FLEET.md`](../FLEET.md) — min sürüm matrisi  
 2. [`polling.md`](./polling.md) — cadence  
 3. [`../api/01-auth.md`](../api/01-auth.md) — register / heartbeat / Bearer / rotate-token  
@@ -58,6 +59,8 @@ Bearer only. Token ProgramData. Query `?token=` gönderme.
 
 `contain_user` cloud whitelist’te **yok** → `logoff_user` + `reset_password` (+ `disable_account`).  
 Tam liste: [`../api/03-control-websocket.md`](../api/03-control-websocket.md).
+
+**Anti-brick (≥4.9.36):** `account_linked` değilse yerel kritik auto (`disable_account` / silent-hours disable) **yasak** — fail-closed skip. Detay: [`anti-brick-critical-actions.md`](./anti-brick-critical-actions.md).
 
 ---
 

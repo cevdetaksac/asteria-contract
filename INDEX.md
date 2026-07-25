@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.33** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.34** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.34** | Anti-brick: account-gated critical auto-actions + dashboard auto-link + undo mail | ≥**4.9.36** |
 | **1.4.33** | Contract hygiene: client entrypoints, remove legacy archive dumps | — (docs) |
 | **1.4.32** | Signing/heartbeat → **`asteria-chp-v1` / `asteria-heartbeat-v1`**; brand SoT scrub | ≥**4.9.35** |
 | **1.4.31** | Firewall brand `HP-*` → **`AR-BLOCK` / `AR-INTEL`** | ≥**4.9.33** |
@@ -56,6 +57,7 @@
 | [agent/server-management.md](agent/server-management.md) | Users / processes / services | target ≥ **4.9.4** |
 | [agent/rebrand-asteria.md](agent/rebrand-asteria.md) | Host, UI, signing/heartbeat Asteria cutover | ≥ **4.9.35** |
 | [agent/firewall-brand-migrate.md](agent/firewall-brand-migrate.md) | `HP-*` → `AR-BLOCK` / `AR-INTEL` | ≥ **4.9.33** |
+| [agent/anti-brick-critical-actions.md](agent/anti-brick-critical-actions.md) | Account-gated critical auto + anti-brick (C-BRICK) | ≥ **4.9.36** |
 
 ---
 
@@ -64,7 +66,7 @@
 | Dosya | Konu | Min client |
 |-------|------|------------|
 | [api/01-auth.md](api/01-auth.md) | Bearer, register, heartbeat, `machine_id`, **rotate-token** | 4.4.33+ / hw-id ≥**4.9.28** / rotate ≥**4.9.31** |
-| [api/02-account.md](api/02-account.md) | Account link / unlink / multi-server | unlink ≥**4.9.26** |
+| [api/02-account.md](api/02-account.md) | Account link / unlink / multi-server / dashboard auto-link | unlink ≥**4.9.26**; auto-link ≥**1.4.34** |
 | [api/03-control-websocket.md](api/03-control-websocket.md) | Control WS + komutlar + HMAC (`asteria-chp-v1`) | 4.5.x / signing ≥**4.9.35** |
 | [api/04-self-update.md](api/04-self-update.md) | Self-update ACK | 4.5.39+ |
 | [api/05-remote-desktop.md](api/05-remote-desktop.md) | RD v2 (WS/JPEG + WebRTC) | **≥4.9.0** (smooth ≥**4.9.20**) |
