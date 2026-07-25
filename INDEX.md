@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.31** · Repo: https://github.com/cevdetaksac/honeypot-contract  
+> **VERSION 1.4.31** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias: `honeypot.yesnext.com.tr`)
 
@@ -30,6 +30,7 @@
 |-------|------|-------|
 | [ROADMAP_TIERED_DEFENSE.md](ROADMAP_TIERED_DEFENSE.md) | Kademeli savunma, onboarding, anti-bait | Planning (living) |
 | [SECURITY_RESILIENCE_VNEXT.md](SECURITY_RESILIENCE_VNEXT.md) | Ortak güvenlik paketleri; §7A observe şemaları api/agent’ta | Plan + promoted observe |
+| Client dual-track | Motor harden + `asteria-gui.exe` — see client `docs/ASTERIA_DUAL_TRACK_ROADMAP.md` | Active plan |
 | [docs/archive/](docs/archive/) | Promoted design dumps / legacy prompts | Archive |
 
 ---
@@ -47,6 +48,7 @@
 | [agent/network-guard.md](agent/network-guard.md) | Offline alarm, golden network, soft inform, contain | ≥ **4.7.3** (panel ≥**4.9.12**; soft ≥**4.9.15**) |
 | [agent/system-recovery.md](agent/system-recovery.md) | Surface snapshot / drift / restore | target ≥ **4.9.12** |
 | [agent/gui-control-center.md](agent/gui-control-center.md) | GUI katmanlar, şerit, Ayarlar, popup SoT | ≥ **4.7.3** (şerit ≥**4.8.0**) |
+| [agent/gui-webview-bridge.md](agent/gui-webview-bridge.md) | **DRAFT** — `asteria-gui.exe` ↔ motor bridge | lab ≥ **4.10.0-beta** |
 | [agent/log-retention.md](agent/log-retention.md) | Yerel log 7 gün | ≥ **4.7.6** |
 | [agent/attacks-and-services.md](agent/attacks-and-services.md) | Attack, bait tunnels, ports | — |
 | [agent/threat-engine.md](agent/threat-engine.md) | Urgent/batch/health/config; whitelist enforce | ≥ **4.9.7** |
