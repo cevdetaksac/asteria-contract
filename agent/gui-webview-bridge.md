@@ -4,6 +4,7 @@
 > **Parent plan:** client `docs/ASTERIA_DUAL_TRACK_ROADMAP.md` Track G  
 > **UX SoT:** [`gui-control-center.md`](gui-control-center.md)  
 > **Arch:** [`../api/08-architecture.md`](../api/08-architecture.md)
+> **Lab implementation:** client 4.9.34 workspace spike — not released/normative.
 
 ## Decision
 
@@ -17,7 +18,8 @@
 ## Process rules
 
 1. GUI crash must not stop honeypots / firewall / control-WS.
-2. Tray may launch/focus `asteria-gui.exe`; GUI does not own tray lifecycle.
+2. `asteria-gui.exe` owns the interactive tray; the motor owns only the
+   scheduled-task/session launch policy.
 3. New IPC opcodes require this MD + tests before client ship.
 4. Cloud calls from UI go through GUI host → motor or host-held token proxy —
    never embed agent token in WebView.
@@ -41,6 +43,45 @@ type HostEvent =
 
 GUI host translates `op: "ipc"` to the existing control protocol; it does not
 invent motor behavior.
+
+## Implemented Control Center allowlist (lab)
+
+Host methods (Python `MotorBridge` / `window.pywebview.api`):
+
+| Method | Notes |
+|--------|--------|
+| `session` / `unlock` | GuiLock PIN gate |
+| `ping` / `status` | Motor health + STATUS snapshot |
+| `catalog` | Honeypot port/service table (no secrets) |
+| `ipc(cmd, args)` | Allowlisted motor ops only |
+| `cloud(method, path, body)` | Host-held token; `threats/config` GET/POST |
+| `pin(action, value, current)` | set / clear / check |
+| `shell(action)` | open_dashboard, open_servers, copy_token, open_logs, minimize, quit |
+| `account(action, email, password)` | status / link / unlink (host-held token) |
+| `harden(action, target)` | status checks + fix winrm|nla|antivirus |
+| `rdp(action, mode)` | status / move secure|rollback |
+| `ir(action, username)` | logoff / disable local account |
+| `update_banner(action)` | status / dismiss (`update_ui_status.json`) |
+| `i18n(lang)` | get/set `tr`|`en` + string table |
+
+**IPC allowlist:** `STATUS`, `THREAT_TOP`, `CLEAR_FIREWALL`, `BLOCK_IP`, `UNBLOCK_IP`,
+`RS_STATUS`, `RS_UNLOCK`, `NG_MAINT_*` / `NG_SNAPSHOT` / `NG_ACCEPT_SURFACE`,
+`HONEYPOT_LIST` / `HONEYPOT_START` / `HONEYPOT_STOP`.
+
+React Control Center pages: status / threat / iplist / services / layers / settings.
+Layers POST uses contract keys: `ransomware_protection_enabled`, `canary_files_enabled`,
+`protection.network_guard.enabled`.
+
+Previously the lab host exposed only:
+
+- `session()` — PIN enabled/locked booleans
+- `unlock(pin)` — native PBKDF2 verifier with existing lockout policy
+- `ping()` — motor availability only
+- `status()` — motor `STATUS`, rejected while GUI session is locked
+
+The PIN hash/salt remain native-side in ProgramData. JavaScript sees only the
+entered PIN for the duration of the unlock call; it never receives stored
+credentials, agent token, or `machine_id`.
 
 ## Open questions
 
