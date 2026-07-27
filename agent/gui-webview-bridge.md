@@ -53,10 +53,10 @@ Host methods (Python `MotorBridge` / `window.pywebview.api`):
 | `session` / `unlock` | GuiLock PIN gate |
 | `ping` / `status` | Motor health + STATUS snapshot |
 | `catalog` | Honeypot port/service table (no secrets) |
-| `ipc(cmd, args)` | Allowlisted motor ops only |
-| `cloud(method, path, body)` | Host-held token; `threats/config` GET/POST |
+| `ipc(cmd, args)` | Allowlisted motor ops only (includes `SELF_UPDATE`) |
+| `cloud(method, path, body)` | Host-held token; `threats/config` GET/POST; `alerts/list` GET |
 | `pin(action, value, current)` | set / clear / check |
-| `shell(action)` | open_dashboard, open_servers, copy_token, open_logs, minimize, quit |
+| `shell(action)` | open_dashboard, open_servers, copy_token, open_logs, minimize, quit; **check_updates** → silent motor `SELF_UPDATE` (no browser) |
 | `account(action, email, password)` | status / link / unlink (host-held token) |
 | `harden(action, target)` | status checks + fix winrm|nla|antivirus |
 | `rdp(action, mode)` | status / move secure|rollback |
@@ -66,7 +66,7 @@ Host methods (Python `MotorBridge` / `window.pywebview.api`):
 
 **IPC allowlist:** `STATUS`, `THREAT_TOP`, `CLEAR_FIREWALL`, `BLOCK_IP`, `UNBLOCK_IP`,
 `RS_STATUS`, `RS_UNLOCK`, `NG_MAINT_*` / `NG_SNAPSHOT` / `NG_ACCEPT_SURFACE`,
-`HONEYPOT_LIST` / `HONEYPOT_START` / `HONEYPOT_STOP`.
+`HONEYPOT_LIST` / `HONEYPOT_START` / `HONEYPOT_STOP`, `SELF_UPDATE`.
 
 React Control Center pages: status / threat / iplist / services / layers / settings.
 Layers POST uses contract keys: `ransomware_protection_enabled`, `canary_files_enabled`,

@@ -6,12 +6,16 @@
 
 | Piece | Path | Owner |
 |-------|------|--------|
-| Agent → viewer `stream_progress` events | [`agent/remote-stream-progress.md`](agent/remote-stream-progress.md) | **client ≥4.9.38** + cloud relay |
+| Agent → viewer `stream_progress` events | [`agent/remote-stream-progress.md`](agent/remote-stream-progress.md) | **client ≥4.9.48** + cloud relay |
 | Dashboard 4-step pipe + command-status ticks | cloud dashboard remote page | cloud shipped |
 
 - Cloud relays `stream_progress` / `remote_progress` / `progress` on RD agent WS → viewers
 - Dashboard no longer sticks on “Starting…” without pending/running/completed feedback
 - Complements P0 Winlogon/ICE honesty in [`agent/remote-desktop-p0.md`](agent/remote-desktop-p0.md)
+- **Client acceptance:** Asteria Client **4.9.48** implements C-RD-PROG-1..4; FLEET min client updated; lab rows in [`CLOUD_BACKLOG.md`](cloud/CLOUD_BACKLOG.md)
+
+### Control Center bridge sync
+- [`agent/gui-webview-bridge.md`](agent/gui-webview-bridge.md): `SELF_UPDATE`, `alerts/list`, silent `check_updates`
 
 ## 1.4.38 — 2026-07-27
 

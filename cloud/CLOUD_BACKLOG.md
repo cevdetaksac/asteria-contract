@@ -1,6 +1,7 @@
-# Cloud backlog — open owner: cloud (contract 1.4.38)
+# Cloud backlog — open owner: cloud (contract 1.4.39)
 
-> Client **4.9.46** implements local gates that **fail-closed** until these land.
+> Client **4.9.48** ships RD `stream_progress` (C-RD-PROG). Cloud relay already live ≥1.4.38.
+> Client **4.9.46** implements anti-brick local gates that **fail-closed** until CL-BRICK rows land.
 > Do not flip fleet canary masters / silent-hours auto until the P0 rows are green.
 
 ## P0 — anti-brick / account
@@ -32,6 +33,7 @@
 | ID | Work | Contract |
 |----|------|----------|
 | **LAB-RD-P0** | Lock console → non-black Winlogon ≤3s; UDP block → ICE failed + JPEG ≤2s | [`agent/remote-desktop-p0.md`](../agent/remote-desktop-p0.md) — client code ≥4.9.45 |
+| **LAB-RD-PROG** | Bağlan → Queue→Agent(`running`) ≤2s; mid-start kill → `failed`; subtitle without HTTP poll | [`agent/remote-stream-progress.md`](../agent/remote-stream-progress.md) — client ≥**4.9.48**, cloud relay ≥1.4.39 |
 
 ## Explicitly not cloud this sprint
 

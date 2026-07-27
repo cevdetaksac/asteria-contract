@@ -77,6 +77,8 @@ Rate-limit: ≤ **4 events/s**; coalesce noisy ICE ticks.
 
 ## Acceptance
 
+- [x] Client **≥4.9.48**: emits `stream_progress` on RD agent WS (C-RD-PROG-1..4)
+- [x] Cloud relay `stream_progress` / `remote_progress` / `progress` agent → viewers (1.4.38+)
 - [ ] Lab: Bağlan → UI moves Queue → Agent(`running`) within 2s of agent ack  
 - [ ] Lab: kill agent mid-start → `failed` or timeout copy (not eternal “Starting”)  
 - [ ] Lab: with progress events, subtitle updates without waiting for HTTP poll  
