@@ -34,9 +34,10 @@ Lock / Logon sibling selected; stream starts with `prefer=winlogon` /
 | **C-RD-P0-WL-5** | Health/`list_sessions` always includes sibling **Logon / Lock screen** row (`pre_logon:true`) per 1.4.23 |
 
 ### Acceptance
-- [ ] Locked console → Start on lock row → visible logon UI pixels (not black) within 3s  
-- [ ] User session row still starts Default (not forced Winlogon)  
-- [ ] Black-fill path never advertises `connection_state=connected` without `degraded`/`black_frame`
+- [x] Client code (≥4.9.45): Winlogon attach, `black_frame`, `winlogon_capture_black`, ICE honesty, JPEG fallback  
+- [ ] Lab: Locked console → Start on lock row → visible logon UI pixels (not black) within 3s  
+- [ ] Lab: User session row still starts Default (not forced Winlogon)  
+- [ ] Lab: Black-fill path never advertises `connection_state=connected` without `degraded`/`black_frame`
 
 ---
 
@@ -57,9 +58,10 @@ JPEG suppressed while DTLS never completes — operator waits on a dead pipe.
 | **C-RD-P0-ICE-5** | On ICE `failed`/`disconnected`/`closed`, clear “connected” UI signals and emit explicit reason (no zombie connected) |
 
 ### Acceptance
+- [x] Client code (≥4.9.45): ICE+DTLS before connected; jpeg_fallback_active; fail clears connected  
 - [ ] Lab: block UDP/TURN → UI shows checking→failed (not connected); JPEG fallback ≤2s  
 - [ ] Lab: healthy path → ICE connected before first H264 frame claimed  
-- [ ] No “connected” toast while `ice_state=checking` for >15s without timeout UX
+- [ ] Lab: No “connected” toast while `ice_state=checking` for >15s without timeout UX
 
 ---
 

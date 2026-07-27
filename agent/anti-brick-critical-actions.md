@@ -1,8 +1,8 @@
 # Anti-brick — account-gated critical actions
 
-> **Contract:** **1.4.34**  
-> **Min client:** **≥ 4.9.36**  
-> **Cloud:** silent-hours defaults OFF + dashboard auto-link + undo mail (this doc)  
+> **Contract:** **1.4.38** (was 1.4.34; undo_mail_path wire)  
+> **Min client:** **≥ 4.9.46** (1.3 probe + rolled_back alert; floor was 4.9.36)  
+> **Cloud:** silent-hours defaults OFF + dashboard auto-link + undo mail + **`undo_mail_path` on account-status** (this doc + [`../cloud/CLOUD_BACKLOG.md`](../cloud/CLOUD_BACKLOG.md))  
 > **Related:** [`api/02-account.md`](../api/02-account.md) · [`threat-engine.md`](./threat-engine.md) · [`server-management.md`](./server-management.md) · [`disaster-recovery.md`](./disaster-recovery.md)
 
 ## Problem (incident class)
@@ -133,8 +133,9 @@ Her **başarılı** admin-class disable sonrası (kaynak: client auto-response *
    - `POST /api/recovery/undo-disable` `{ "key": "…" }` (veya GET redeem)
    - Cloud imzalı `enable_account` kuyruğa alır (`priority: critical`)
 4. Key yok / expire → dashboard Users → Enable (account-linked client gerekir).
+5. **`GET /api/agent/account-status`** → `undo_mail_path: true` **yalnız** mailer + key path gerçekten canlıyken (1.4.38).
 
-Client auto-disable, undo-mail path cloud’da kapalıysa C-BRICK-1.3 gereği **yine skip**.
+Client auto-disable, undo-mail path cloud’da kapalıysa (`undo_mail_path` false/missing) C-BRICK-1.3 gereği **yine skip** (son admin yolu için).
 
 ---
 
@@ -143,27 +144,33 @@ Client auto-disable, undo-mail path cloud’da kapalıysa C-BRICK-1.3 gereği **
 Local auto veya komut uygulandıktan sonra client (mümkünse) doğrular:
 
 - En az bir aktif local admin **veya**
-- Cloud’un kabul ettiği break-glass (`exclude[]` on `disable_all_users`, veya yeni `create_user` admin)
+- Cloud’un kabul ettiği break-glass (`exclude[]` on `disable_all_users`, veya yeni `create_user` admin) **veya**
+- `undo_mail_path: true` iken bilerek son admin disable (C-BRICK-5 kurtarma)
 
-Aksi halde aksiyonu **geri al** (best-effort `enable_account`) + `critical_action_rolled_back` alert.
+Aksi halde aksiyonu **geri al** (best-effort `enable_account`) + urgent alert:
+
+- `threat_type`: **`critical_action_rolled_back`**
+- `auto_response_taken`: `["critical_action_rolled_back","enable_account"]`
 
 ---
 
 ## Acceptance checklist
 
-### Client ≥ 4.9.36
+### Client ≥ 4.9.46
 
-- [ ] Unlinked iken silent-hours `auto_disable_account` / admin `auto_logoff` **çalışmaz**; alert `skipped_unlinked`
-- [ ] Linked iken ve config ON iken davranış document’e uygun; admin-class’ta break-glass / undo path yoksa skip
-- [ ] `account-status` cache ≤15m; fail → skip destructive
-- [ ] Command result `status` ∈ {completed,failed,…}; hesap state `result` içinde
-- [ ] Silent-hours first-run defaults OFF (cloud config ile uyumlu)
+- [x] Unlinked iken silent-hours `auto_disable_account` / admin `auto_logoff` **çalışmaz**; alert `skipped_unlinked`
+- [x] Linked iken admin-class’ta break-glass / `undo_mail_path` yoksa skip (`skipped_no_break_glass`)
+- [x] `account-status` cache ≤15m; fail → skip destructive
+- [x] Command result `status` ∈ {completed,failed,…}; hesap state `result` içinde
+- [x] Rollback → `critical_action_rolled_back`
+- [x] Silent-hours first-run defaults OFF (+ fleet canary AND)
 
-### Cloud ≥ 1.4.34
+### Cloud ≥ 1.4.38 (P0 backlog)
 
 - [ ] DB + model defaults: silent_hours* OFF
 - [ ] Authenticated dashboard + token → auto-link (C-BRICK-3); foreign link → no steal
-- [ ] Admin-class disable → undo mail + key (C-BRICK-5)
+- [ ] Admin-class disable → undo mail + key (C-BRICK-5) **E2E**
+- [ ] `account-status.undo_mail_path` reflects real C-BRICK-5 readiness (never hardcode true)
 - [ ] `commands/result` `status=active|disabled` → normalize completed (compat)
 - [ ] Orphan online twin / unlinked banner on Servers
 

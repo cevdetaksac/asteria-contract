@@ -25,7 +25,8 @@
 | Brand → Asteria / API base `https://asteria.run` (legacy failover) | `cloud/PRODUCT_BRANDING.md`, `agent/rebrand-asteria.md` | cloud live ≥ **1.4.30**; client **≥ 4.9.32** |
 | Firewall brand `HP-*` → `AR-BLOCK-*` / `AR-INTEL-*` (clear+rewrite) | `agent/firewall-brand-migrate.md`, `api/06-firewall-blocks.md` | cloud live ≥ **1.4.31**; client **≥ 4.9.33** |
 | Signing/heartbeat contexts → `asteria-chp-v1` / `asteria-heartbeat-v1` | `agent/rebrand-asteria.md`, `api/03-control-websocket.md`, `api/01-auth.md` | cloud live ≥ **1.4.32**; client **≥ 4.9.35** |
-| Anti-brick: account-gated critical auto-actions; silent-hours default OFF; dashboard auto-link; undo mail | `agent/anti-brick-critical-actions.md`, `api/02-account.md` | cloud ≥ **1.4.34**; client **≥ 4.9.36** |
+| Anti-brick: account-gated critical auto-actions; silent-hours default OFF; dashboard auto-link; undo mail | `agent/anti-brick-critical-actions.md`, `api/02-account.md` | cloud ≥ **1.4.34**; client **≥ 4.9.36**; undo_mail_path + rolled_back ≥ **4.9.46** / contract **1.4.38** |
+| Cloud backlog index (undo mail, canary ops, promote) | `cloud/CLOUD_BACKLOG.md` | cloud ≥ **1.4.38** |
 | Dashboard deep-links catalog (`?token=` browser URLs / Settings shortcuts) | `cloud/dashboard-deep-links.md` | cloud ≥ **1.4.35** (docs; no new client floor) |
 | Cloud surface inventory (agent HTTP/WS/commands — client gap-scan) | `cloud/CLOUD_SURFACE.md` | cloud ≥ **1.4.36** (docs; no new client floor) |
 | Fleet canary `fleet_rollout` + auto-flag clear | `cloud/FLEET_CANARY.md`, `cloud/PROMOTION_GATES.md` | cloud ≥ **1.4.37**; client honor gates ≥ **4.9.37** |

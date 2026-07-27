@@ -1,5 +1,18 @@
 # Changelog — asteria-contract
 
+## 1.4.38 — 2026-07-27
+
+### Anti-brick client close-out + cloud backlog wire
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| `undo_mail_path` on `GET /api/agent/account-status` | [`api/02-account.md`](api/02-account.md) §undo_mail_path | **cloud P0** |
+| Client C-BRICK-1.3 probe + C-BRICK-6 `critical_action_rolled_back` | [`agent/anti-brick-critical-actions.md`](agent/anti-brick-critical-actions.md) | client ≥**4.9.46** |
+| Cloud C-BRICK-5 undo mail E2E + status flag | same + [`cloud/CLOUD_BACKLOG.md`](cloud/CLOUD_BACKLOG.md) | **cloud P0** |
+| Fleet canary / RD P0 acceptance doc sync | [`cloud/FLEET_CANARY.md`](cloud/FLEET_CANARY.md), [`agent/remote-desktop-p0.md`](agent/remote-desktop-p0.md) | ops lab + cloud docs |
+
+Fail-closed rule: if `undo_mail_path` is **missing**, client treats it as **false**.
+
 ## 1.4.37 — 2026-07-26
 
 ### Claude backlog close-out — canary, ZT schema, P0 RD, sunset, promote criteria

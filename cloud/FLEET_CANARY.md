@@ -108,6 +108,6 @@ Optional per-client override in `settings_json.fleet_rollout_override`:
 - [x] Out-of-canary auto flags cleared in payload  
 - [x] Default percent 0 / feature masters off  
 
-### Client (≥ 4.9.37)
-- [ ] C-CANARY-1…5  
-- [ ] Unit: gate false → no auto-disable / no auto-contain even if config true
+### Client (≥ 4.9.37; closed in **4.9.45+**)
+- [x] C-CANARY-1…5  
+- [x] Unit: gate false → no auto-disable / no auto-contain even if config true

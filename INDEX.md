@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.37** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.38** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.38** | Anti-brick undo_mail_path wire + C-BRICK-1.3/6 client; cloud backlog | ≥**4.9.46** |
 | **1.4.37** | Fleet canary · envelope v2 schema · RD P0 · brand sunset · promote gates | canary/RD ≥**4.9.37**; schema docs all |
 | **1.4.36** | Cloud surface inventory — agent HTTP/WS/commands gap-scan | — (docs) |
 | **1.4.35** | Dashboard deep-links (`?token=`) catalog for Settings shortcuts | — (docs) |
@@ -60,7 +61,7 @@
 | [agent/server-management.md](agent/server-management.md) | Users / processes / services | target ≥ **4.9.4** |
 | [agent/rebrand-asteria.md](agent/rebrand-asteria.md) | Host, UI, signing/heartbeat Asteria cutover | ≥ **4.9.35** |
 | [agent/firewall-brand-migrate.md](agent/firewall-brand-migrate.md) | `HP-*` → `AR-BLOCK` / `AR-INTEL` | ≥ **4.9.33** |
-| [agent/anti-brick-critical-actions.md](agent/anti-brick-critical-actions.md) | Account-gated critical auto + anti-brick (C-BRICK) | ≥ **4.9.36** |
+| [agent/anti-brick-critical-actions.md](agent/anti-brick-critical-actions.md) | Account-gated critical auto + anti-brick (C-BRICK) | ≥ **4.9.46** (1.3/6); floor **4.9.36** |
 | [agent/remote-desktop-p0.md](agent/remote-desktop-p0.md) | P0 Winlogon black-screen + WebRTC ICE honesty | ≥ **4.9.37** |
 
 ---
@@ -99,6 +100,7 @@
 | [cloud/dashboard-deep-links.md](cloud/dashboard-deep-links.md) | Browser `?token=` dashboard URLs / Settings shortcuts | Normative (1.4.35) |
 | [cloud/PROMOTION_GATES.md](cloud/PROMOTION_GATES.md) | Observe→enforce criteria (single SoT) | Normative (1.4.37) |
 | [cloud/FLEET_CANARY.md](cloud/FLEET_CANARY.md) | `fleet_rollout{}` canary gates | Normative (1.4.37) |
+| [cloud/CLOUD_BACKLOG.md](cloud/CLOUD_BACKLOG.md) | Cloud-owned P0/P1 remaining work | Status (1.4.38) |
 | [cloud/ZERO_TRUST_STATUS.md](cloud/ZERO_TRUST_STATUS.md) | ZT do/don’t | Status (1.4.37) |
 | [cloud/command-envelope-v2-design.md](cloud/command-envelope-v2-design.md) | ZT-601 design archive (schema → api/12) | Archive |
 | [cloud/operator-keyset-design.md](cloud/operator-keyset-design.md) | ZT-602/603 keys | Design-only |

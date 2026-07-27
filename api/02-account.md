@@ -227,9 +227,23 @@ Fallback: `GET /api/client_status?token=` içine aynı alanları eklemek.
     "email": "user@example.com",
     "display_name": "User"
   },
-  "linked_at": "2026-07-18T12:00:00Z"
+  "linked_at": "2026-07-18T12:00:00Z",
+  "undo_mail_path": true
 }
 ```
+
+### `undo_mail_path` (contract **≥1.4.38**, cloud P0)
+
+Additive boolean for anti-brick **C-BRICK-1.3 / C-BRICK-5**:
+
+| Value | Meaning |
+|-------|---------|
+| `true` | Cloud can send admin-class disable undo mail + one-time enable key (C-BRICK-5 live) |
+| `false` / **omitted** | Client **fail-closed** — treat as not live; admin-class auto-disable needs another local admin or skip |
+
+Aliases accepted by clients (same semantics): `recovery.undo_mail_ready`, `break_glass.undo_mail`.
+
+**Cloud MUST** set this from the real undo-mail feature flag / mailer health — never hardcode `true` in lab without C-BRICK-5.
 
 ### Başarılı yanıt (200) — bağlı değil
 
@@ -239,7 +253,8 @@ Fallback: `GET /api/client_status?token=` içine aynı alanları eklemek.
   "client_id": 123,
   "server_name": "WIN-XXXX",
   "account": null,
-  "linked_at": null
+  "linked_at": null,
+  "undo_mail_path": false
 }
 ```
 
