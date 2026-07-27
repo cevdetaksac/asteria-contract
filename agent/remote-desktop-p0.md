@@ -6,6 +6,7 @@
 > mislead operators during IR.  
 > Related: [`REMOTE_DESKTOP_WINLOGON.md`](./REMOTE_DESKTOP_WINLOGON.md) ·
 > [`REMOTE_DESKTOP_SMOOTHNESS.md`](./REMOTE_DESKTOP_SMOOTHNESS.md) ·
+> [`remote-stream-progress.md`](./remote-stream-progress.md) ·
 > [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md)
 
 **Priority: P0.** Both classes make the operator believe the host is blank or

@@ -1,5 +1,18 @@
 # Changelog — asteria-contract
 
+## 1.4.39 — 2026-07-27
+
+### Remote stream progress (live stage honesty)
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Agent → viewer `stream_progress` events | [`agent/remote-stream-progress.md`](agent/remote-stream-progress.md) | **client ≥4.9.38** + cloud relay |
+| Dashboard 4-step pipe + command-status ticks | cloud dashboard remote page | cloud shipped |
+
+- Cloud relays `stream_progress` / `remote_progress` / `progress` on RD agent WS → viewers
+- Dashboard no longer sticks on “Starting…” without pending/running/completed feedback
+- Complements P0 Winlogon/ICE honesty in [`agent/remote-desktop-p0.md`](agent/remote-desktop-p0.md)
+
 ## 1.4.38 — 2026-07-27
 
 ### Anti-brick client close-out + cloud backlog wire
