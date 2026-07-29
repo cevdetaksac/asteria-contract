@@ -66,6 +66,7 @@
 | [agent/remote-stream-progress.md](agent/remote-stream-progress.md) | Live `stream_progress` stages for RD connect UX | ≥ **4.9.38** |
 | [agent/firewall-management.md](agent/firewall-management.md) | Asteria FW inventory + dashboard page (1.4.40) | ≥ **4.9.40** |
 | [agent/firewall-windows-parity.md](agent/firewall-windows-parity.md) | Windows FW MMC parity (all rules + profiles + mutate) | ≥ **4.9.41** |
+| [agent/network-adapter-admin.md](agent/network-adapter-admin.md) | Adapter enable/IP/DNS + golden watchdog rollback | ≥ **4.9.42** |
 
 ---
 

@@ -16,6 +16,7 @@ Bu dosya **özet + link**. Şema/detay için ilgili MD’ye git; buraya kopyalam
 0b. [`firewall-brand-migrate.md`](./firewall-brand-migrate.md) — `AR-BLOCK` / `AR-INTEL` (**1.4.31**, ≥ **4.9.33**)  
 0c. [`firewall-management.md`](./firewall-management.md) — Asteria inventory + dashboard page (**1.4.40**, ≥ **4.9.40**)
 0c2. [`firewall-windows-parity.md`](./firewall-windows-parity.md) — Windows FW MMC parity (**1.4.41**, ≥ **4.9.41**)
+0c3. [`network-adapter-admin.md`](./network-adapter-admin.md) — adapter IP/DNS + golden watchdog (**1.4.42**, ≥ **4.9.42**)
 0d. [`anti-brick-critical-actions.md`](./anti-brick-critical-actions.md) — account-gated critical auto / anti-brick (**1.4.34**, ≥ **4.9.36**)  
 0e. [`../cloud/dashboard-deep-links.md`](../cloud/dashboard-deep-links.md) — Settings / tray browser shortcuts (`?token=`) (**1.4.35**)  
 0f. [`../cloud/CLOUD_SURFACE.md`](../cloud/CLOUD_SURFACE.md) — **cloud yetenekleri / HTTP+WS+komut envanteri** (gap-scan) (**1.4.36**)  

@@ -215,6 +215,7 @@ Cloud refuses unknown `command_type`. Source: `helpers.VALID_COMMAND_TYPES`.
 | `network_restore` | D† | ≥4.7.0 | †exempt if `dry_run:true` |
 | `network_accept_surface` | | ≥4.9.15 | |
 | `network_disable_adapter` | D† | ≥4.9.15 | †exempt if `dry_run:true` |
+| `network_adapter_apply` | D | ≥**4.9.42** | Enable/IP/DNS + local golden watchdog |
 | `network_maintenance_start` / `network_maintenance_end` | | ≥4.9.12 | |
 | `system_recovery_snapshot` / `list_system_recovery` / `system_recovery_diff` | | ≥4.9.12 | |
 | `system_recovery_restore` | D† | ≥4.9.12 | †exempt if `dry_run:true` |

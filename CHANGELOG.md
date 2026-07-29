@@ -1,5 +1,18 @@
 # Changelog — asteria-contract
 
+## 1.4.42 — 2026-07-29
+
+### Network Adapter Admin + golden watchdog
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Enable/disable + DHCP/static IPv4/DNS with local deadman | [`agent/network-adapter-admin.md`](agent/network-adapter-admin.md) | **client ≥4.9.42** |
+| `network_adapter_apply` (confirm) | cloud `VALID_COMMAND_TYPES` | cloud accepts ≥1.4.42 |
+| On probe fail ≤15s → restore golden for that adapter | client-local (cloud may be unreachable) | client |
+
+- Complements Network Guard; does **not** replace `auto_restore_network` / maintenance
+- Dashboard Adapters UI may land with or after client train
+
 ## 1.4.41 — 2026-07-29
 
 ### Windows Firewall MMC parity (dashboard + client)

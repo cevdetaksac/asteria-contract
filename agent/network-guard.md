@@ -113,6 +113,10 @@ Kurallar:
    **PIN / geri sayımlı zorlama yok** (kullanıcıyı darlama). PIN yalnız
    cloud confirm’li yıkıcı komutlarda (disable/restore) kalır.
 5. Soft alert dedupe: aynı değişiklik parmak izi ≥ **15 dk** (flap yok).
+6. **Remote adapter admin (1.4.42):** intentional enable / IPv4 / DNS from
+   dashboard uses [`network-adapter-admin.md`](./network-adapter-admin.md)
+   (`network_adapter_apply`) with a **local golden watchdog** — not maintenance.
+   Mid-apply, pause `auto_restore_network` so Guard does not fight the edit.
 
 ```json
 {
