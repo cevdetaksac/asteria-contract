@@ -1,5 +1,18 @@
 # Changelog — asteria-contract
 
+## 1.4.40 — 2026-07-29
+
+### Firewall Management page + `list_firewall`
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Host inventory command + profiles | [`agent/firewall-management.md`](agent/firewall-management.md) | **client ≥4.9.40** |
+| Dashboard `/dashboard/server/firewall` | cloud | cloud shipped |
+| `GET /api/firewall/overview` | cloud | cloud shipped |
+
+- Extends [`api/06-firewall-blocks.md`](api/06-firewall-blocks.md) without replacing Applied Blocks sync
+- Optional destructive `firewall_set_profile` (confirm-gated)
+
 ## 1.4.39 — 2026-07-27
 
 ### Remote stream progress (live stage honesty)

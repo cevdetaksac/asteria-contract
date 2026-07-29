@@ -45,6 +45,7 @@ Register / rotate responses already return the home link:
 | `/dashboard/threats` | Threat Center | Premium | Threats |
 | `/dashboard/blocks` | Firewall blocks + rules tabs | Premium | Blocking / IP rules |
 | `/dashboard/ports` | Listening ports | All | Ports |
+| `/dashboard/server/firewall` | Firewall mirror + host inventory | All† | Firewall |
 | `/dashboard/tunnels` | Bait tunnels | Premium | Tunnels |
 | `/dashboard/threat-intel` | Cloud IoC intel UI | Premium | Threat intel |
 | `/dashboard/remote` | Remote desktop | Premium* | Remote desktop |

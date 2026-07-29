@@ -64,6 +64,7 @@
 | [agent/anti-brick-critical-actions.md](agent/anti-brick-critical-actions.md) | Account-gated critical auto + anti-brick (C-BRICK) | ≥ **4.9.46** (1.3/6); floor **4.9.36** |
 | [agent/remote-desktop-p0.md](agent/remote-desktop-p0.md) | P0 Winlogon black-screen + WebRTC ICE honesty | ≥ **4.9.37** |
 | [agent/remote-stream-progress.md](agent/remote-stream-progress.md) | Live `stream_progress` stages for RD connect UX | ≥ **4.9.38** |
+| [agent/firewall-management.md](agent/firewall-management.md) | Full FW inventory + dashboard Firewall page | ≥ **4.9.40** |
 
 ---
 

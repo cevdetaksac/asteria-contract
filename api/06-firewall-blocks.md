@@ -15,6 +15,10 @@
 
 `ip_or_cidr`: tek IP, CIDR, veya `country:XX` (cloud destekliyorsa).
 
+**Dashboard Firewall Yönetimi** (full inventory / profiles): see
+[`../agent/firewall-management.md`](../agent/firewall-management.md) (`list_firewall`,
+cloud page `/dashboard/server/firewall`, contract ≥**1.4.40** / client ≥**4.9.40**).
+
 ### Whitelist — asla engelleme (client ≥ 4.9.7)
 
 `threats/config.whitelist_ips` / `whitelist_subnets`:
