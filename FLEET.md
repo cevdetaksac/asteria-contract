@@ -36,6 +36,7 @@
 | Firewall Management page + `list_firewall` | `agent/firewall-management.md` | client **≥ 4.9.40**; cloud ≥ **1.4.40** |
 | Windows Firewall MMC parity | `agent/firewall-windows-parity.md` | client **≥ 4.9.41**; cloud ≥ **1.4.41** |
 | Network Adapter Admin + golden watchdog | `agent/network-adapter-admin.md` | client **≥ 4.9.42**; cloud ≥ **1.4.42** |
+| Console RD Winlogon physical-parity | `cloud/remote-console-parity.md` | client **≥ 4.9.49**; cloud ≥ **1.4.43** |
 | Legacy dual-brand sunset target **2026-10-01** | `cloud/PRODUCT_BRANDING.md` | ops + client ≥**4.9.35** |
 | Uninstall PIN lifecycle (`uninstall_*` + `windows_user`) | `api/07-lifecycle-sessions.md` | cloud ≥ **1.4.9**; client with uninstall PIN gate |
 | Bare `successful_logon` score ≤70 + no auto-block (cloud reject shapes) | `agent/threat-engine.md` | cloud ≥ **1.4.11**; target client **≥4.9.7** |

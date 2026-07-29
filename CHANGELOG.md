@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.43 — 2026-07-29
+
+### Console Remote Desktop — physical-console / Winlogon parity
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Non-black Winlogon capture + SAS + post-logon Default | [`cloud/remote-console-parity.md`](cloud/remote-console-parity.md) | **client ≥4.9.49** |
+| Cloud: preserve `pre_logon`, no SID=1 hardcode, Winlogon UX | cloud remote page + `normalize_sessions` | cloud shipped |
+| Complements | [`REMOTE_DESKTOP_WINLOGON.md`](cloud/REMOTE_DESKTOP_WINLOGON.md), [`agent/remote-desktop-p0.md`](agent/remote-desktop-p0.md) | P0 black-frame still required |
+
 ## 1.4.42 — 2026-07-29
 
 ### Network Adapter Admin + golden watchdog

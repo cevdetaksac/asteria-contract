@@ -67,6 +67,7 @@
 | [agent/firewall-management.md](agent/firewall-management.md) | Asteria FW inventory + dashboard page (1.4.40) | ≥ **4.9.40** |
 | [agent/firewall-windows-parity.md](agent/firewall-windows-parity.md) | Windows FW MMC parity (all rules + profiles + mutate) | ≥ **4.9.41** |
 | [agent/network-adapter-admin.md](agent/network-adapter-admin.md) | Adapter enable/IP/DNS + golden watchdog rollback | ≥ **4.9.42** |
+| [cloud/remote-console-parity.md](cloud/remote-console-parity.md) | Logon screen = physical console Winlogon parity | ≥ **4.9.49** |
 
 ---
 

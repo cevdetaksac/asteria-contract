@@ -1,7 +1,8 @@
 # Console Winlogon / pre-logon Remote Desktop
 
-> **Contract VERSION:** root `VERSION` (**1.4.23**)  
+> **Contract VERSION:** root `VERSION` (**1.4.43** — see also [`remote-console-parity.md`](./remote-console-parity.md))  
 > **Client wire:** ≥ **4.9.21** · **sibling pre_logon + named Winlogon:** ≥ **4.9.26**  
+> **Physical-console acceptance:** ≥ **4.9.49** (C-RD-CON-*)  
 > **Canonical RD API:** [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md)  
 > **Cloud site:** `https://asteria.run`
 
