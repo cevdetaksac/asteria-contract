@@ -82,6 +82,9 @@ Signing: command HMAC context **`asteria-chp-v1`** · heartbeat **`asteria-heart
 | C-API-tunnel-status | POST | `/api/agent/tunnel-status` | Bearer | — | live | Agent → cloud tunnel state |
 | C-API-tunnel-status-get | GET | `/api/premium/tunnel-status` | Bearer | — | live | Pending tunnel commands |
 | C-API-tunnel-set | POST | `/api/premium/tunnel-set` | Bearer/Dash | — | live | Queue tunnel_start/stop |
+| C-API-relocate-service | POST | `/api/premium/relocate-service` | Bearer/Dash | — | live | Queue relocate_service |
+| C-API-relocate-port-save | POST | `/api/premium/relocate-port-save` | Bearer/Dash | — | live | Save preferred target port |
+| C-API-relocate-report | POST | `/api/agent/relocate-report` | Bearer | — | live | GUI/local relocate → cloud sync |
 
 ---
 
@@ -201,6 +204,7 @@ Cloud refuses unknown `command_type`. Source: `helpers.VALID_COMMAND_TYPES`.
 | `remote_input` / `remote_send_sas` | | ≥4.9.0 | |
 | `remote_session_prepare` | | ≥4.9.0 | password scrubbed in audit |
 | `tunnel_start` / `tunnel_stop` | | — | |
+| `relocate_service` | D | ≥**4.9.45** | Real-service port move + golden rollback; report via result / relocate-report |
 | `self_update` / `check_update` | | ≥4.5.39 | |
 | `unlock_ransomware_quarantine` | | ≥4.5.65 | |
 

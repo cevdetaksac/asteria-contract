@@ -1,5 +1,25 @@
 # Changelog — asteria-contract
 
+## 1.4.45 — 2026-07-29
+
+### Service Port Relocate — bidirectional sync (client + GUI)
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Client command + GUI + relocate-report + open_ports ≤5s | [`agent/service-port-relocate-client.md`](agent/service-port-relocate-client.md) | **client ≥4.9.45** |
+| Cloud: `commands/result` → `service_ports`, `POST /api/agent/relocate-report`, auto bait | routes_agent / routes_v4 | cloud shipped |
+| Dynamic ports via `relocate_state` (4XXXX defaults) | tunnel-status | both |
+
+## 1.4.44 — 2026-07-29
+
+### Service Port Relocate — one-click real-service → safe port
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| `relocate_service` command + golden rollback | [`agent/service-port-relocate.md`](agent/service-port-relocate.md) | **client ≥4.9.44** |
+| Cloud: relocate endpoint, port validation, tunnel-status enrichment | `routes_agent.py`, dashboard | cloud shipped |
+| Default safe ports: RDP 43389, MSSQL 41433, MySQL 43306, SSH 40022, FTP 40021 | contract table | — |
+
 ## 1.4.43 — 2026-07-29
 
 ### Console Remote Desktop — physical-console / Winlogon parity
