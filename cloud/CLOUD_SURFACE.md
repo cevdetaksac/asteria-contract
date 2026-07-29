@@ -175,8 +175,9 @@ Cloud refuses unknown `command_type`. Source: `helpers.VALID_COMMAND_TYPES`.
 | `unblock_ip` | | — | |
 | `clear_firewall` | D* | — | *D if `wipe_all_honeypot_rules` |
 | `sync_firewall_rules` | | — | |
-| `list_firewall` | | ≥**4.9.40** | Host profiles + Asteria rule inventory |
+| `list_firewall` | | ≥**4.9.41** | All inbound/outbound + profiles (`scope=all`); 4.9.40 Asteria-only degraded |
 | `firewall_set_profile` | D | ≥**4.9.40** | Confirm-gated profile mutate |
+| `firewall_rule` | D* | ≥**4.9.41** | `enable`/`disable`/`delete`/`add` — *D for delete/add |
 | `logoff_user` | | — | |
 | `disable_account` | D | — | Anti-brick gated locally — [`../agent/anti-brick-critical-actions.md`](../agent/anti-brick-critical-actions.md) |
 | `enable_account` | | — | |

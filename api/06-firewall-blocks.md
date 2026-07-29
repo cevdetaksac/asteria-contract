@@ -16,8 +16,11 @@
 `ip_or_cidr`: tek IP, CIDR, veya `country:XX` (cloud destekliyorsa).
 
 **Dashboard Firewall Yönetimi** (full inventory / profiles): see
-[`../agent/firewall-management.md`](../agent/firewall-management.md) (`list_firewall`,
-cloud page `/dashboard/server/firewall`, contract ≥**1.4.40** / client ≥**4.9.40**).
+Full host Windows Firewall management (profiles + all inbound/outbound rules +
+enable/disable/delete/add) is specified in
+[`../agent/firewall-windows-parity.md`](../agent/firewall-windows-parity.md)
+(contract ≥**1.4.41** / client ≥**4.9.41**). Asteria-only inventory (1.4.40) remains in
+[`../agent/firewall-management.md`](../agent/firewall-management.md).
 
 ### Whitelist — asla engelleme (client ≥ 4.9.7)
 

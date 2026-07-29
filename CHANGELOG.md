@@ -1,5 +1,19 @@
 # Changelog — asteria-contract
 
+## 1.4.41 — 2026-07-29
+
+### Windows Firewall MMC parity (dashboard + client)
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Full inbound/outbound inventory + profile + rule mutate | [`agent/firewall-windows-parity.md`](agent/firewall-windows-parity.md) | **client ≥4.9.41** |
+| Dashboard tabs: Profiles / Inbound / Outbound / Asteria | cloud `/dashboard/server/firewall` | cloud shipped |
+| `firewall_rule` (`enable`/`disable`/`delete`/`add`) | cloud + client | confirm on delete/add |
+| Expanded `list_firewall` (`scope=all`) | supersedes Asteria-only default in 1.4.40 | client ≥4.9.41 |
+
+- Keep [`agent/firewall-management.md`](agent/firewall-management.md) for 1.4.40 Asteria inventory (degraded path)
+- Applied Blocks / `block_ip` / `sync_firewall_rules` unchanged
+
 ## 1.4.40 — 2026-07-29
 
 ### Firewall Management page + `list_firewall`
