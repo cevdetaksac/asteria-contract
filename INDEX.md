@@ -57,6 +57,7 @@
 | [agent/attacks-and-services.md](agent/attacks-and-services.md) | Attack, bait tunnels, ports | — |
 | [agent/service-port-relocate.md](agent/service-port-relocate.md) | One-click real-service → safe port (cloud base) | ≥4.9.44 |
 | [agent/service-port-relocate-client.md](agent/service-port-relocate-client.md) | Bidirectional sync + GUI relocate-report | ≥**4.9.45** |
+| [agent/self-update-progress.md](agent/self-update-progress.md) | self_update download % / phase ticks | ≥**4.9.60** |
 | [agent/threat-engine.md](agent/threat-engine.md) | Urgent/batch/health/config; whitelist enforce | ≥ **4.9.7** |
 | [agent/defense-policy-client.md](agent/defense-policy-client.md) | Matrix apply, observe default, CTA | ≥ **4.9.17** |
 | [agent/remote-input.md](agent/remote-input.md) | Input protocol 2 + session helper | ≥ **4.9.0** |

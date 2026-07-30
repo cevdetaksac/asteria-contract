@@ -205,7 +205,7 @@ Cloud refuses unknown `command_type`. Source: `helpers.VALID_COMMAND_TYPES`.
 | `remote_session_prepare` | | ≥4.9.0 | password scrubbed in audit |
 | `tunnel_start` / `tunnel_stop` | | — | |
 | `relocate_service` | D | ≥**4.9.45** | Real-service port move + golden rollback; report via result / relocate-report |
-| `self_update` / `check_update` | | ≥4.5.39 | |
+| `self_update` / `check_update` | | ≥4.5.39 | Progress ticks ≥**4.9.60** — see self-update-progress.md |
 | `unlock_ransomware_quarantine` | | ≥4.5.65 | |
 
 ### Disaster recovery / Network Guard / System Recovery / GUI PIN

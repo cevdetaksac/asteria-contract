@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.46 — 2026-07-29
+
+### Self-update progress ticks (download % + stuck timeout)
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Progress via `commands/result` (`phase`, `progress_pct`, bytes) | [`agent/self-update-progress.md`](agent/self-update-progress.md) | **client ≥4.9.60** |
+| Dashboard progress bar + 120s silence / 15m max timeout | overview update card | cloud shipped |
+| Extends | [`api/04-self-update.md`](api/04-self-update.md) | — |
+
 ## 1.4.45 — 2026-07-29
 
 ### Service Port Relocate — bidirectional sync (client + GUI)

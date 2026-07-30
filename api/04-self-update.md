@@ -382,3 +382,10 @@ Fleet’te agent poll kapalıysa ACK gelmez → offline mesajı doğru davranı�
 
 **Control WS** (`AGENT_CONTROL_WEBSOCKET_PROMPT.md`) açılınca komut anında agent’a gider → Waiting → Updating geçişi poll gecikmesine bağlı kalmaz; yine de UI poll (1–2 sn) yeterli (WS zorunlu değil).
 
+---
+
+## Progress % (1.4.46+)
+
+Coarse phases above are not enough for large installers (~100 MB).  
+See **[`agent/self-update-progress.md`](../agent/self-update-progress.md)** for `phase` + `progress_pct` + bytes on `commands/result` while `running`.
+
