@@ -6,6 +6,7 @@
 > [`../agent/remote-desktop-p0.md`](../agent/remote-desktop-p0.md) ·
 > [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md) ·
 > [`../agent/remote-input.md`](../agent/remote-input.md) ·
+> [`../agent/remote-stream-progress.md`](../agent/remote-stream-progress.md) ·
 > [`REMOTE_DESKTOP_SMOOTHNESS.md`](./REMOTE_DESKTOP_SMOOTHNESS.md)
 
 ## Goal
@@ -114,8 +115,8 @@ do the same on the existing viewer surface.
 - [x] `pre_logon` preserved in session normalize
 - [x] No `session_id=1` hardcode
 - [x] Winlogon hint / black-frame UX wired
-- [ ] **C-RD-VIEW-1** software cursor visible and tracks mouse on Logon ekranı
-- [ ] **C-RD-VIEW-4..8** CAD / start wire / progress / WebRTC→JPEG single surface
+- [x] **C-RD-VIEW-1** software cursor visible and tracks mouse on Logon ekranı
+- [x] **C-RD-VIEW-4..9** CAD / start wire / progress / WebRTC→JPEG≤2s / degraded banner / version warn
 
 ---
 
