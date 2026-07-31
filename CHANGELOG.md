@@ -6,11 +6,12 @@
 
 | Piece | Path | Owner |
 |-------|------|--------|
-| Dashboard C-RD-VIEW-1..9 (software cursor, CAD, single surface) | [`cloud/remote-console-parity.md`](cloud/remote-console-parity.md) | **cloud / dashboard** |
-| Client Winlogon parity (unchanged bar) | same doc C-RD-CON-* | client ≥**4.9.49** |
+| Dashboard C-RD-VIEW-1..9 (software cursor, CAD, single surface) | [`cloud/remote-console-parity.md`](cloud/remote-console-parity.md) | **cloud / dashboard — shipped** |
+| Client Winlogon parity (lab rows open) | same doc C-RD-CON-* | client ≥**4.9.49** (fleet **4.9.69**) |
 
 - Clarifies: Proxmox Konsol feel is achievable **without noVNC/RFB** on current JPEG/WebRTC path
 - Hardware cursor often missing from DXGI/GDI frames → viewer MUST overlay a local cursor
+- Dashboard C-RD-VIEW acceptance checked (software cursor, ICE≤2s JPEG, degraded black banner, CAD, Logon Start wire)
 
 ## 1.4.46 — 2026-07-29
 

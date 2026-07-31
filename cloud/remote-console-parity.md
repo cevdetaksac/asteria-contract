@@ -89,13 +89,13 @@ do the same on the existing viewer surface.
 
 ---
 
-## Cloud (shipped ≥ 1.4.43; viewer cursor ≥ 1.4.47)
+## Cloud (shipped ≥ 1.4.43; viewer C-RD-VIEW shipped ≥ 1.4.47)
 
 - Preserve `pre_logon` / `can_capture` through `normalize_sessions`
 - Logon Start: `prefer=winlogon` + `pre_logon` + `desktop=Winlogon`, no username; no hard-coded SID `1`
 - UI: Winlogon banner + black-frame honesty (`showWinlogonHint`)
 - CAD on Winlogon path omits username
-- **1.4.47:** software cursor overlay + C-RD-VIEW-* acceptance on remote console page
+- **1.4.47:** software cursor overlay + full C-RD-VIEW-* on remote console page (**dashboard accepted**)
 
 ---
 
@@ -115,9 +115,18 @@ do the same on the existing viewer surface.
 - [x] `pre_logon` preserved in session normalize
 - [x] No `session_id=1` hardcode
 - [x] Winlogon hint / black-frame UX wired
-- [x] **C-RD-VIEW-1** software cursor visible and tracks mouse on Logon ekranı
-- [x] **C-RD-VIEW-4..9** CAD / start wire / progress / WebRTC→JPEG≤2s / degraded banner / version warn
+- [x] **C-RD-VIEW-1** software cursor (`rdSoftCursor` + `cursor:none`) — shipped with **1.4.47** viewer
+- [x] **C-RD-VIEW-2..3** pointer [0,1] content-box; move coalesce; critical flush
+- [x] **C-RD-VIEW-4..5** CAD → `/api/remote/cad` only; Logon Start wire (no username, `max_width:1280`)
+- [x] **C-RD-VIEW-6** black_frame / Winlogon black / `CAPTURE_NO_DESKTOP` degraded banner
+- [x] **C-RD-VIEW-7** ICE fail → JPEG ≤2s, same surface
+- [x] **C-RD-VIEW-8** `stream_progress` stages on existing pipe
+- [x] **C-RD-VIEW-9** agent &lt;4.9.26 warn / ≥4.9.49 recommend banner
 
+### Remaining (client lab — not dashboard)
+
+Fleet clients on **≥4.9.49** (current ship **4.9.69**) already carry C-RD-CON Winlogon code.
+Close client acceptance rows above on a locked console host; if sustained `gdi+black`, treat as client P0-A — viewer will show the honest banner.
 ---
 
 ## Min client
