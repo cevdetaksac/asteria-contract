@@ -1,5 +1,17 @@
 # Changelog — asteria-contract
 
+## 1.4.47 — 2026-07-31
+
+### Remote console viewer — Proxmox-like software cursor (existing wire)
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Dashboard C-RD-VIEW-1..9 (software cursor, CAD, single surface) | [`cloud/remote-console-parity.md`](cloud/remote-console-parity.md) | **cloud / dashboard** |
+| Client Winlogon parity (unchanged bar) | same doc C-RD-CON-* | client ≥**4.9.49** |
+
+- Clarifies: Proxmox Konsol feel is achievable **without noVNC/RFB** on current JPEG/WebRTC path
+- Hardware cursor often missing from DXGI/GDI frames → viewer MUST overlay a local cursor
+
 ## 1.4.46 — 2026-07-29
 
 ### Self-update progress ticks (download % + stuck timeout)

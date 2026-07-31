@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.38** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.47** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,9 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.47** | RD console viewer software cursor (C-RD-VIEW) — Proxmox-like without noVNC | dashboard; client ≥**4.9.49** |
+| **1.4.46** | Self-update progress ticks | ≥**4.9.60** |
+| **1.4.43** | Console RD Winlogon physical-parity (C-RD-CON) | ≥**4.9.49** |
 | **1.4.38** | Anti-brick undo_mail_path wire + C-BRICK-1.3/6 client; cloud backlog | ≥**4.9.46** |
 | **1.4.37** | Fleet canary · envelope v2 schema · RD P0 · brand sunset · promote gates | canary/RD ≥**4.9.37**; schema docs all |
 | **1.4.36** | Cloud surface inventory — agent HTTP/WS/commands gap-scan | — (docs) |
