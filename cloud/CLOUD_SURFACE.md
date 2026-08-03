@@ -63,8 +63,9 @@ Signing: command HMAC context **`asteria-chp-v1`** · heartbeat **`asteria-heart
 | C-API-presence | POST | `/api/presence` | Bearer | ≥4.9.8 | live | Sleep/suspend/shutdown HTTP fallback — [`../api/11-presence-realtime.md`](../api/11-presence-realtime.md) |
 | C-API-account-status | GET | `/api/agent/account-status` | Bearer | ≥4.9.26 | live | `account_linked` — required for anti-brick — [`../api/02-account.md`](../api/02-account.md) |
 | C-API-link-account | POST | `/api/agent/link-account` | Bearer | ≥4.9.26 | live | Optional direct link |
-| C-API-unlink-account | POST | `/api/agent/unlink-account` | Bearer | ≥4.9.26 | live | Settings unlink (password **or** confirm_code ≥1.4.48) |
-| C-API-unlink-request | POST | `/api/agent/unlink-account/request` | Bearer | optional | live ≥1.4.48 | CL-UNLINK-MAIL email code |
+| C-API-unlink-account | POST | `/api/agent/unlink-account` | Bearer | ≥4.9.26 | live | Direct unlink blocked when mailer live (`email_confirm_required`); OTP legacy optional |
+| C-API-unlink-request | POST | `/api/agent/unlink-account/request` | Bearer | ≥4.9.76 | live ≥1.4.48 | CL-UNLINK-MAIL magic link email |
+| C-WEB-unlink-confirm | GET | `/account/unlink-confirm?key=` | none (signed key) | ≥4.9.76 | live ≥1.4.48 | Redeem → drop membership |
 | C-API-linked-servers | GET | `/api/agent/linked-servers` | Bearer | — | live | Same-account fleet (no cookie) |
 
 ---
