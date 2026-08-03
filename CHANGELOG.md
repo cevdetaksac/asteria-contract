@@ -1,5 +1,17 @@
 # Changelog — asteria-contract
 
+## 1.4.48 — 2026-07-29
+
+### Anti-brick cloud P0 + unlink email confirm (P0d) + claim gate
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Dashboard `?token=` + account session → auto-link (no steal) | [`api/02-account.md`](api/02-account.md) P0c · C-BRICK-3 | **cloud shipped** |
+| `undo_mail_path` on `GET /api/agent/account-status` (real mailer readiness) | same · CL-BRICK-STATUS | **cloud shipped** |
+| `POST /api/agent/unlink-account/request` + `confirm_code`/`code` on unlink | same · P0d / CL-UNLINK-MAIL | **cloud shipped**; client ≥**4.9.75** |
+| First-run claim gate (unlinked → Control Center block) | same · client UX | client ≥**4.9.75** |
+| Backlog rows marked done | [`cloud/CLOUD_BACKLOG.md`](cloud/CLOUD_BACKLOG.md) | — |
+
 ## 1.4.47 — 2026-07-31
 
 ### Remote console viewer — Proxmox-like software cursor (existing wire)

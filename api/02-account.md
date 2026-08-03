@@ -22,6 +22,7 @@
 ### `POST /api/agent/unlink-account`
 
 > **Cloud shipped ≥ 1.4.26** — client Settings UI ≥4.9.26.
+> **P0d (≥1.4.48):** when mailer ready, also require `confirm_code` (see below).
 
 Auth: **yok** (email/password body'de). Agent token body'de — link ile simetrik.
 
@@ -54,7 +55,7 @@ Auth: **yok** (email/password body'de). Agent token body'de — link ile simetri
 |-----|--------|
 | 401 | Invalid credentials |
 | 404 | Client not found |
-| 422 | missing fields |
+| 422 | missing fields / `missing_confirm_code` |
 | 429 | rate limit |
 
 Client **≥4.9.26**: Ayarlar → **Hesap bağlantısı** → Bağlantıyı kes. Endpoint yoksa
@@ -89,7 +90,9 @@ Auth: yok (email/password body). Agent token body’de.
 4. Audit: `unlink_confirm_requested`.
 
 **200:** `{ "ok": true, "sent": true, "expires_in": 900 }`  
-**401** invalid credentials · **404** client not found · **429** rate limit
+**401** invalid credentials · **403** membership mismatch · **404** client not found · **429** rate limit · **503** mailer unavailable
+
+> **Cloud status ≥1.4.48:** live on `asteria.run`.
 
 ### `POST /api/agent/unlink-account` (confirm — additive fields)
 

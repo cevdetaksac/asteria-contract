@@ -9,7 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
-| **1.4.48** | Account claim gate + unlink email confirmation (P0d) | ≥**4.9.75** |
+| **1.4.48** | Anti-brick cloud P0 + claim gate + unlink email confirm (P0d) | cloud shipped; client ≥**4.9.75** |
 | **1.4.47** | RD console viewer software cursor (C-RD-VIEW) — Proxmox-like without noVNC | dashboard; client ≥**4.9.49** |
 | **1.4.46** | Self-update progress ticks | ≥**4.9.60** |
 | **1.4.43** | Console RD Winlogon physical-parity (C-RD-CON) | ≥**4.9.49** |

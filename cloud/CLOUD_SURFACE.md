@@ -63,7 +63,8 @@ Signing: command HMAC context **`asteria-chp-v1`** · heartbeat **`asteria-heart
 | C-API-presence | POST | `/api/presence` | Bearer | ≥4.9.8 | live | Sleep/suspend/shutdown HTTP fallback — [`../api/11-presence-realtime.md`](../api/11-presence-realtime.md) |
 | C-API-account-status | GET | `/api/agent/account-status` | Bearer | ≥4.9.26 | live | `account_linked` — required for anti-brick — [`../api/02-account.md`](../api/02-account.md) |
 | C-API-link-account | POST | `/api/agent/link-account` | Bearer | ≥4.9.26 | live | Optional direct link |
-| C-API-unlink-account | POST | `/api/agent/unlink-account` | Bearer | ≥4.9.26 | live | Settings unlink |
+| C-API-unlink-account | POST | `/api/agent/unlink-account` | Bearer | ≥4.9.26 | live | Settings unlink (password **or** confirm_code ≥1.4.48) |
+| C-API-unlink-request | POST | `/api/agent/unlink-account/request` | Bearer | optional | live ≥1.4.48 | CL-UNLINK-MAIL email code |
 | C-API-linked-servers | GET | `/api/agent/linked-servers` | Bearer | — | live | Same-account fleet (no cookie) |
 
 ---

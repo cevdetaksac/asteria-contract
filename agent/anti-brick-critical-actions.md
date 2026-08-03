@@ -168,9 +168,9 @@ Aksi halde aksiyonu **geri al** (best-effort `enable_account`) + urgent alert:
 ### Cloud ≥ 1.4.38 (P0 backlog)
 
 - [ ] DB + model defaults: silent_hours* OFF
-- [ ] Authenticated dashboard + token → auto-link (C-BRICK-3); foreign link → no steal
-- [ ] Admin-class disable → undo mail + key (C-BRICK-5) **E2E**
-- [ ] `account-status.undo_mail_path` reflects real C-BRICK-5 readiness (never hardcode true)
+- [x] Authenticated dashboard + token → auto-link (C-BRICK-3); foreign link → no steal
+- [x] Admin-class disable → undo mail + key (C-BRICK-5) **E2E** (hooks + redeem live; lab mailer-dependent)
+- [x] `account-status.undo_mail_path` reflects real C-BRICK-5 readiness (never hardcode true)
 - [ ] `commands/result` `status=active|disabled` → normalize completed (compat)
 - [ ] Orphan online twin / unlinked banner on Servers
 
