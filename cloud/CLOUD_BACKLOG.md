@@ -12,6 +12,7 @@
 | **CL-BRICK-STATUS** | `GET /api/agent/account-status` returns **`undo_mail_path: bool`** from real mailer/key readiness (omit/false = client skip) | [`api/02-account.md`](../api/02-account.md) |
 | **CL-BRICK-3** | Dashboard authenticated + agent token → idempotent auto-link; foreign link no-steal | C-BRICK-3 |
 | **CL-BRICK-DEFAULTS** | New threat_config / migrate: silent_hours* auto flags **OFF** | C-BRICK-2 |
+| **CL-UNLINK-MAIL** | `POST /api/agent/unlink-account/request` + confirm_code on unlink (email OTP) | [`api/02-account.md`](../api/02-account.md) P0d · client ≥**4.9.75** |
 
 ## P0 — fleet automation (already wired; ops + cloud env)
 

@@ -20,6 +20,7 @@
 | Dashboard Server Management (users/processes/services + `list_services`) | `agent/server-management.md` | target ≥ **4.9.4** (cloud UI live ≥ **1.4.8**) |
 | Dashboard Users — disabled inventory + enable/disable (`include_disabled:true`, C-USER) | `cloud/SERVER_USER_MANAGEMENT.md`, `agent/server-management.md` | cloud ≥ **1.4.24**; client list/mutate already ≥ **4.9.4** |
 | Account unlink from client Settings (`POST /api/agent/unlink-account`) | `api/02-account.md` | cloud live ≥ **1.4.27**; client **≥ 4.9.26** |
+| Account claim gate + unlink email OTP (P0d) | `api/02-account.md` | contract **1.4.48**; client **≥ 4.9.75**; cloud **CL-UNLINK-MAIL** |
 | Hardware-bound `machine_id` (MAC+MachineGuid fingerprint; clone split) | `api/01-auth.md` | contract **1.4.26**; client **≥ 4.9.28** |
 | In-place token rotate (`POST /api/agent/rotate-token` old→new, same `client_id`) | `api/01-auth.md` | cloud live ≥ **1.4.29**; client **≥ 4.9.31** |
 | Brand → Asteria / API base `https://asteria.run` (legacy failover) | `cloud/PRODUCT_BRANDING.md`, `agent/rebrand-asteria.md` | cloud live ≥ **1.4.30**; client **≥ 4.9.32** |

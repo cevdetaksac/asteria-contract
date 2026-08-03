@@ -65,6 +65,59 @@ web `/servers` fallback (`unlink_api_unavailable`).
 
 ---
 
+## P0d — Unlink email confirmation (contract **1.4.48**)
+
+> **Amaç:** Hesaptan ayırma tek parola ile olmasın; bağlı hesabın e-postasına
+> one-time kod gitsin. Client’lar birbirine karışmaz — yalnız bu account↔client
+> membership silinir (C-BRICK-3 no-steal ile simetrik).
+
+### `POST /api/agent/unlink-account/request`
+
+Auth: yok (email/password body). Agent token body’de.
+
+```json
+{
+  "email": "user@example.com",
+  "password": "secret",
+  "token": "<agent-client-token>"
+}
+```
+
+1. Email+password Account authenticate.
+2. Token → Client; membership bu account’a ait olmalı (değilse **403**).
+3. 6 haneli kod üret (TTL ≤ **15 dk**, tek kullanımlık); linked email’e gönder.
+4. Audit: `unlink_confirm_requested`.
+
+**200:** `{ "ok": true, "sent": true, "expires_in": 900 }`  
+**401** invalid credentials · **404** client not found · **429** rate limit
+
+### `POST /api/agent/unlink-account` (confirm — additive fields)
+
+Mevcut unlink body’ye **zorunlu** (P0d live iken):
+
+```json
+{
+  "email": "user@example.com",
+  "password": "secret",
+  "token": "<agent-client-token>",
+  "confirm_code": "123456"
+}
+```
+
+Alias: `code`. Kod yok/yanlış → **401/422** `confirm_code_invalid` / `missing_confirm_code`.
+
+Client ≥**4.9.75**: GUI önce `/request` dener; **404** → soft fallback
+(password+PIN+email retype) + kullanıcıya “mail onayı yakında zorunlu” notu.
+Cloud live olunca kod adımı zorunlu.
+
+### First-run claim (client UX, ≥4.9.75)
+
+Token var ama `account_linked != true` → Control Center **Claim gate**:
+bağlanmadan ana UI yok; brick riski (pasif kritik auto / remote list) açıkça
+yazılır. Dashboard `?token=` + oturum → C-BRICK-3 auto-link alternatif yol.
+
+---
+
 ## P0c — Dashboard auto-link (contract **1.4.34**, anti-brick)
 
 > Normative detail: [`agent/anti-brick-critical-actions.md`](../agent/anti-brick-critical-actions.md) **C-BRICK-3**.

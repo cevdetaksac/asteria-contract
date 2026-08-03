@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.47** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.48** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.48** | Account claim gate + unlink email confirmation (P0d) | ≥**4.9.75** |
 | **1.4.47** | RD console viewer software cursor (C-RD-VIEW) — Proxmox-like without noVNC | dashboard; client ≥**4.9.49** |
 | **1.4.46** | Self-update progress ticks | ≥**4.9.60** |
 | **1.4.43** | Console RD Winlogon physical-parity (C-RD-CON) | ≥**4.9.49** |
