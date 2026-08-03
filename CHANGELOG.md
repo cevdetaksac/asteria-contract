@@ -1,5 +1,19 @@
 # Changelog — asteria-contract
 
+## 1.4.49 — 2026-08-03
+
+### Windows Tools Repair — remote OS repair toolkit
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Control WS: `tools_repair_catalog` / `tools_repair_diagnose` / `tools_repair` | [`agent/tools-repair.md`](agent/tools-repair.md) | **client ≥4.9.79** |
+| Soft vs destructive `action` allowlist (share/print/SFC/Winsock…) | same | motor SYSTEM |
+| Cloud: add to `VALID_COMMAND_TYPES`; destructive gate †soft/`dry_run` exempt | `helpers` + dashboard Repair panel | cloud TBD |
+| Local twin | GUI `tools()` — [`agent/gui-webview-bridge.md`](agent/gui-webview-bridge.md) | client |
+
+- Complements [`agent/system-recovery.md`](agent/system-recovery.md); does **not** replace baseline restore
+- No arbitrary shell; no remote MMC open (Session-0)
+
 ## 1.4.48 — 2026-07-29
 
 ### Anti-brick cloud P0 + unlink email confirm (P0d) + claim gate

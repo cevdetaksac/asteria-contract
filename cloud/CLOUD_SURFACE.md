@@ -225,6 +225,8 @@ Cloud refuses unknown `command_type`. Source: `helpers.VALID_COMMAND_TYPES`.
 | `network_maintenance_start` / `network_maintenance_end` | | ≥4.9.12 | |
 | `system_recovery_snapshot` / `list_system_recovery` / `system_recovery_diff` | | ≥4.9.12 | |
 | `system_recovery_restore` | D† | ≥4.9.12 | †exempt if `dry_run:true` |
+| `tools_repair_catalog` / `tools_repair_diagnose` | | ≥**4.9.79** | [`../agent/tools-repair.md`](../agent/tools-repair.md) |
+| `tools_repair` | D† | ≥**4.9.79** | †exempt soft `action` / `dry_run:true` |
 | `set_gui_pin` / `clear_gui_pin` | D | ≥4.8.3 | `pin` scrubbed |
 
 **Not in whitelist (do not send):** `contain_user` — compose `logoff_user` + `reset_password` (+ optional `disable_account`).

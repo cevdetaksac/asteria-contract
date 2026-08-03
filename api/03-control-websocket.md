@@ -239,6 +239,9 @@ Client ayrıca whitelist + protected targets uygular; onay **sunucu tarafı** zo
 | `list_system_recovery` | — | Recovery baseline sürümleri/özeti — ≥4.9.12 |
 | `system_recovery_diff` | `version?` | Baseline vs canlı allowlist diff — ≥4.9.12 |
 | `system_recovery_restore` | `targets[]?`, `dry_run?`, `rollback_version?` | Allowlist yüzeyi geri yükle. **Mutate** = confirm. `dry_run:true` = plan only. ≥4.9.12 |
+| `tools_repair_catalog` | — | Windows onarım kart kataloğu + diagnose özeti — ≥4.9.79 ([`../agent/tools-repair.md`](../agent/tools-repair.md)) |
+| `tools_repair_diagnose` | — | Bozuk bileşen taraması (TaskMgr/Explorer/servis/WebView2…) — ≥4.9.79 |
+| `tools_repair` | `action`, `confirm?`, `dry_run?` | Allowlist OS onarım. Soft action confirm istemez. **Destructive** (`winsock_reset` / `firewall_reset` / `wu_reset`) = `confirm:true`. `dry_run:true` = plan only. ≥4.9.79 |
 | `set_gui_pin` | `pin` (4-12 hane, yalnız rakam) | Dashboard'dan yerel GUI PIN tanımla/değiştir (confirm; result PIN içermez) — ≥4.8.3 |
 | `clear_gui_pin` | — | Dashboard'dan yerel GUI PIN'i sıfırla/kaldır (confirm) — ≥4.8.3 |
 
