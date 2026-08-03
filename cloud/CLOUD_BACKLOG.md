@@ -2,7 +2,7 @@
 
 > Client **4.9.48** ships RD `stream_progress` (C-RD-PROG). Cloud relay already live ≥1.4.38.
 > Anti-brick P0 cloud rows (CL-BRICK-3 / STATUS / UNLINK-MAIL) closed in **1.4.48**.
-> Client claim gate + unlink OTP GUI ≥**4.9.75**.
+> Client claim gate ≥**4.9.75**; unlink magic-link GUI ≥**4.9.76**.
 > Do not flip fleet canary masters / silent-hours auto until remaining ops gates are green.
 
 ## P0 — anti-brick / account
@@ -12,7 +12,7 @@
 | **CL-BRICK-5** | Admin-class disable → instant undo **email + one-time key** → queued `enable_account` | **shipped** (hooks + redeem ≥1.4.34) |
 | **CL-BRICK-STATUS** | `GET /api/agent/account-status` → **`undo_mail_path: bool`** from real mailer/key readiness | **shipped ≥1.4.48** |
 | **CL-BRICK-3** | Dashboard authenticated + agent token → idempotent auto-link; foreign link no-steal | **shipped ≥1.4.48** |
-| **CL-UNLINK-MAIL** | `POST /api/agent/unlink-account/request` + `confirm_code` on unlink (P0d) | **shipped ≥1.4.48** · client ≥**4.9.75** |
+| **CL-UNLINK-MAIL** | `POST /api/agent/unlink-account/request` → email **magic link** redeem; direct unlink → `missing_confirm_code` | **shipped ≥1.4.48** · client ≥**4.9.76** |
 | **CL-BRICK-DEFAULTS** | New threat_config / migrate: silent_hours* auto flags **OFF** | C-BRICK-2 |
 
 ## P0 — fleet automation (already wired; ops + cloud env)

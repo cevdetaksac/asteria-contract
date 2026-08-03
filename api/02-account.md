@@ -66,11 +66,11 @@ web `/servers` fallback (`unlink_api_unavailable`).
 
 ---
 
-## P0d — Unlink email confirmation (contract **1.4.48**)
+## P0d — Unlink email confirmation (contract **1.4.48**, client ≥**4.9.76**)
 
 > **Amaç:** Hesaptan ayırma tek parola ile olmasın; bağlı hesabın e-postasına
-> one-time kod gitsin. Client’lar birbirine karışmaz — yalnız bu account↔client
-> membership silinir (C-BRICK-3 no-steal ile simetrik).
+> **onay bağlantısı (magic link)** gitsin. Kullanıcı linke tıklayınca membership
+> silinir. Client’lar birbirine karışmaz — yalnız bu account↔client satırı.
 
 ### `POST /api/agent/unlink-account/request`
 
@@ -86,32 +86,30 @@ Auth: yok (email/password body). Agent token body’de.
 
 1. Email+password Account authenticate.
 2. Token → Client; membership bu account’a ait olmalı (değilse **403**).
-3. 6 haneli kod üret (TTL ≤ **15 dk**, tek kullanımlık); linked email’e gönder.
+3. Signed one-time **unlink URL** üret (TTL ≤ **15 dk**, tek kullanımlık); linked email’e gönder.
 4. Audit: `unlink_confirm_requested`.
+5. Agent GUI **hemen unlink etmez** — kullanıcıya “e-postanıza onay bağlantısı gönderildi” gösterir ve `account-status` poll eder.
 
-**200:** `{ "ok": true, "sent": true, "expires_in": 900 }`  
+**200:** `{ "ok": true, "sent": true, "expires_in": 900, "channel": "email_link" }`  
 **401** invalid credentials · **403** membership mismatch · **404** client not found · **429** rate limit · **503** mailer unavailable
 
-> **Cloud status ≥1.4.48:** live on `asteria.run`.
+> **Cloud status ≥1.4.48:** live on `asteria.run` (email magic-link redeem).
 
-### `POST /api/agent/unlink-account` (confirm — additive fields)
+### Email link redeem (cloud web)
 
-Mevcut unlink body’ye **zorunlu** (P0d live iken):
+`GET /account/unlink-confirm?key=…` (veya eşdeğeri):
 
-```json
-{
-  "email": "user@example.com",
-  "password": "secret",
-  "token": "<agent-client-token>",
-  "confirm_code": "123456"
-}
-```
+1. Key doğrula (TTL / single-use).
+2. İlgili `AccountClient` satırını sil.
+3. Success sayfası: “Sunucu hesabınızdan ayrıldı.”
+4. Sonraki agent `account-status` / heartbeat → `account_linked: false`.
 
-Alias: `code`. Kod yok/yanlış → **401/422** `confirm_code_invalid` / `missing_confirm_code`.
+### `POST /api/agent/unlink-account` (direct)
 
-Client ≥**4.9.75**: GUI önce `/request` dener; **404** → soft fallback
-(password+PIN+email retype) + kullanıcıya “mail onayı yakında zorunlu” notu.
-Cloud live olunca kod adımı zorunlu.
+Kod/link olmadan çağrı → **422** `missing_confirm_code` (veya `email_confirm_required`).  
+Agent ≥4.9.76 bunu **invalid code** sanmaz; kullanıcıyı `unlink-account/request` akışına yönlendirir.
+
+Opsiyonel legacy: body’de `confirm_code` hâlâ kabul edilebilir (OTP), ama **tercih edilen kanal magic link**.
 
 ### First-run claim (client UX, ≥4.9.75)
 
