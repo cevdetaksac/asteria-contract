@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.48** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.49** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.49** | Windows Tools Repair — remote OS repair toolkit | ≥**4.9.79**; cloud whitelist + dashboard |
 | **1.4.48** | Anti-brick cloud P0 + claim gate + unlink email magic-link (P0d) | cloud shipped; client ≥**4.9.76** |
 | **1.4.47** | RD console viewer software cursor (C-RD-VIEW) — Proxmox-like without noVNC | dashboard; client ≥**4.9.49** |
 | **1.4.46** | Self-update progress ticks | ≥**4.9.60** |

@@ -54,6 +54,7 @@ Register / rotate responses already return the home link:
 | `/dashboard/server/services` | Windows services | All† | Services |
 | `/dashboard/server/network` | Network Guard panel | All† | Network |
 | `/dashboard/server/recovery` | System recovery | All† | Recovery |
+| `/dashboard/server/tools` | Tools / Repairs (`tools_repair_*`) | All† | Tools / Repairs |
 | `/dashboard/settings` | Account / notify / password | All | Settings |
 | `/dashboard/logout` | End **server** dashboard session | All | (rarely expose) |
 

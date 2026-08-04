@@ -66,7 +66,27 @@ GUI oturumu admin değilse yerel kart `admin_required` dönebilir — uzak yol t
 | `time_sync` | hayır | daily | |
 | `auto_fix_findings` | hayır | critical | Son diagnose soft fix’leri |
 | `fix_taskmgr` / `fix_regedit` / `fix_cmd` / `fix_shell` | hayır | critical | |
-| `restart_explorer` / `restart_taskmgr` | hayır | critical | Explorer Session-0’da sınırlı etki |
+| `restart_explorer` / `restart_taskmgr` | hayır | critical | **User session required** — see § Explorer session |
+
+### Explorer session (`restart_explorer`)
+
+Motor SYSTEM / Session-0’da `CreateProcess("explorer.exe")` **yanlış**tır:
+
+- Görev Yöneticisi’nde `explorer.exe` görünür
+- Masaüstü / Başlat / görev çubuğu **gelmez** (headless shell)
+- Operatörün Run → `explorer.exe` ile düzeltmesi, sürecin **etkileşimli oturumda** başlamasındandır
+
+**Doğru client implementasyonu:**
+
+1. Aktif kullanıcı oturumunu bul (`WTSGetActiveConsoleSessionId` / WTS enumerate; RDP ise aktif `WTSActive` session — SID 0 değil)
+2. O oturumdaki `explorer.exe` süreçlerini sonlandır (yalnız o session)
+3. `WTSQueryUserToken` + `CreateProcessAsUser` ile `explorer.exe` başlat
+4. Desktop: `WinSta0\Default` (interactive)
+5. Result’ta `session_id` raporla; Session-0 start denendiyse fail: `explorer_wrong_session`
+
+`restart_taskmgr` aynı kural (kullanıcı oturumu).  
+GUI yerel `tools("repair","restart_explorer")` de aynı helper’ı kullanmalı.
+
 | `policy_restore` | hayır | critical | Tercihen `system_recovery_restore` |
 | `restart_critical_services` | hayır | services | |
 | `webview2` | hayır | runtime | GUI Runtime; motor-only host’ta opsiyonel |
@@ -192,3 +212,4 @@ id’leri değişmez.
 6. `share_network_fix` elevated motor → guest auth + discovery services attempted  
 7. GUI `tools("repair","printer_fix")` aynı allowlist id ile çalışır  
 8. Otomatik drift → tools_repair kuyruk **yok**
+9. `restart_explorer` → masaüstü/taskbar geri gelir (user session `CreateProcessAsUser`; Session-0 headless explorer **reject**)

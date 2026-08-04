@@ -174,9 +174,11 @@ Aşağıdakiler **dashboard’da açık onay** olmadan cloud kuyruğa yazılmaz 
   **must not** require `confirm:true`.
 - `suspend_process` (şüpheli süreci askıya al — açık kullanıcı onayı zorunlu)
 - `set_gui_pin` / `clear_gui_pin` (yerel GUI anti-tamper PIN'ini ez/sıfırla — ≥4.8.3)
+- `tools_repair` destructive actions (`winsock_reset` / `firewall_reset` / `wu_reset`) —
+  soft `action` ve `dry_run:true` **must not** require confirm (contract **1.4.49**)
 
 Uygulama (cloud): `POST /api/commands/send` gövdesinde **`confirm: true`** yoksa **400** döner
-(`helpers.DESTRUCTIVE_COMMAND_TYPES`). Dashboard onay modalı geçildiğinde `confirm: true` gönderir.
+(`helpers.requires_destructive_confirm` / `DESTRUCTIVE_COMMAND_TYPES`). Dashboard onay modalı geçildiğinde `confirm: true` gönderir.
 Cloud-internal maintenance akışları (blok temizliği → `clear_firewall`) bu endpoint’i kullanmaz; gate dashboard/API çağrıları içindir.
 
 > `clear_autologon` yıkıcı **değildir** (autologon geri alma) — onay gerekmez.

@@ -37,7 +37,7 @@
 | Firewall Management page + `list_firewall` | `agent/firewall-management.md` | client **≥ 4.9.40**; cloud ≥ **1.4.40** |
 | Windows Firewall MMC parity | `agent/firewall-windows-parity.md` | client **≥ 4.9.41**; cloud ≥ **1.4.41** |
 | Network Adapter Admin + golden watchdog | `agent/network-adapter-admin.md` | client **≥ 4.9.42**; cloud ≥ **1.4.42** |
-| Windows Tools Repair (remote OS repair toolkit) | `agent/tools-repair.md` | client **≥ 4.9.79**; cloud ≥ **1.4.49** (VALID_COMMAND_TYPES TBD) |
+| Windows Tools Repair (remote OS repair toolkit) | `agent/tools-repair.md` | client **≥ 4.9.79**; cloud ≥ **1.4.49** (whitelist + `/dashboard/server/tools` shipped) |
 | Console RD Winlogon physical-parity | `cloud/remote-console-parity.md` | client **≥ 4.9.49**; cloud ≥ **1.4.43**; viewer cursor C-RD-VIEW ≥ **1.4.47** |
 | Legacy dual-brand sunset target **2026-10-01** | `cloud/PRODUCT_BRANDING.md` | ops + client ≥**4.9.35** |
 | Uninstall PIN lifecycle (`uninstall_*` + `windows_user`) | `api/07-lifecycle-sessions.md` | cloud ≥ **1.4.9**; client with uninstall PIN gate |
