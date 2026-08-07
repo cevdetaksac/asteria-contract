@@ -1,5 +1,14 @@
 # Changelog — asteria-contract
 
+## 1.4.54 — 2026-08-07
+
+### C-RD-CAD meta lab close (client **4.9.86**)
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| `software_sas_generation` int (lab=1), `ui_*` ≠ unknown, `success` + `effect` | [`agent/remote-cad-winlogon.md`](agent/remote-cad-winlogon.md) | **≥4.9.86** ✅ |
+| Residual: JPEG/WS viewport may stay solid blue (no bright chrome) while agent reports `sas_ui` | same · capture polish | optional follow-up |
+
 ## 1.4.53 — 2026-08-07
 
 ### C-RD-CAD honesty lab note (client **4.9.85**) — effect still open
