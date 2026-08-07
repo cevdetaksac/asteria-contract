@@ -1,5 +1,17 @@
 # Changelog — asteria-contract
 
+## 1.4.55 — 2026-08-07
+
+### Winlogon Logon chrome pixels (solid blue ≠ success)
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Flat blue/black frames fail; require LogonUI/SAS chrome | [`agent/winlogon-logon-chrome.md`](agent/winlogon-logon-chrome.md) | **client ≥4.9.87** |
+| Lab Derin-Web 4.9.86: CAD meta `sas_ui` but JPEG variance=0 solid blue | same | client must close |
+
+- Separates **1.4.54 CAD meta accept** from **usable operator pixels**
+- Complements C-RD-S0 / C-RD-CAD
+
 ## 1.4.54 — 2026-08-07
 
 ### C-RD-CAD meta lab close (client **4.9.86**)
