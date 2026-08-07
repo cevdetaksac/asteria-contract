@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.50** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.51** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.51** | C-RD-S0 lab close — Session-0 Logon pixels on **4.9.84** | ≥**4.9.84** (accepted) |
 | **1.4.50** | Winlogon Session-0 capture P0 (Logon UI black / jpeg=0B helper) | **≥4.9.84**; cloud omits SID on Logon Start |
 | **1.4.49** | Windows Tools Repair — remote OS repair toolkit | ≥**4.9.79**; cloud whitelist + dashboard |
 | **1.4.48** | Anti-brick cloud P0 + claim gate + unlink email magic-link (P0d) | cloud shipped; client ≥**4.9.76** |
@@ -72,7 +73,7 @@
 | [agent/firewall-brand-migrate.md](agent/firewall-brand-migrate.md) | `HP-*` → `AR-BLOCK` / `AR-INTEL` | ≥ **4.9.33** |
 | [agent/anti-brick-critical-actions.md](agent/anti-brick-critical-actions.md) | Account-gated critical auto + anti-brick (C-BRICK) | ≥ **4.9.46** (1.3/6); floor **4.9.36** |
 | [agent/remote-desktop-p0.md](agent/remote-desktop-p0.md) | P0 Winlogon black-screen + WebRTC ICE honesty | ≥ **4.9.37** |
-| [agent/winlogon-session0-capture.md](agent/winlogon-session0-capture.md) | Session-0 → console Winlogon helper (C-RD-S0) | ≥ **4.9.84** |
+| [agent/winlogon-session0-capture.md](agent/winlogon-session0-capture.md) | Session-0 → console Winlogon helper (C-RD-S0) | ≥ **4.9.84** ✅ |
 | [agent/remote-stream-progress.md](agent/remote-stream-progress.md) | Live `stream_progress` stages for RD connect UX | ≥ **4.9.38** |
 | [agent/firewall-management.md](agent/firewall-management.md) | Asteria FW inventory + dashboard page (1.4.40) | ≥ **4.9.40** |
 | [agent/firewall-windows-parity.md](agent/firewall-windows-parity.md) | Windows FW MMC parity (all rules + profiles + mutate) | ≥ **4.9.41** |

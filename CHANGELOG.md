@@ -1,5 +1,17 @@
 # Changelog — asteria-contract
 
+## 1.4.51 — 2026-08-07
+
+### C-RD-S0 lab close (client **4.9.84**)
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Session-0 Winlogon helper acceptance checked | [`agent/winlogon-session0-capture.md`](agent/winlogon-session0-capture.md) | client **≥4.9.84** |
+| Lab host Derin-Web: Logon Start (no SID) → lock/logon UI ≤3s, `streaming:true`, `capture_method=persistent-winlogon-helper:raw` | same | cloud retest 2026-08-07 |
+
+- Closes open C-RD-S0 acceptance rows opened in **1.4.50**
+- WebRTC may still fall back to JPEG-WS on some hosts (smoothness / ICE separate from S0 pixels)
+
 ## 1.4.50 — 2026-08-07
 
 ### Winlogon Session-0 capture P0 (Logon UI black)

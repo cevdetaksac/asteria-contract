@@ -43,7 +43,7 @@ Lock / Logon sibling selected; stream starts with `prefer=winlogon` /
 - [ ] Lab: Locked console → Start on lock row → visible logon UI pixels (not black) within 3s  
 - [ ] Lab: User session row still starts Default (not forced Winlogon)  
 - [ ] Lab: Black-fill path never advertises `connection_state=connected` without `degraded`/`black_frame`  
-- [ ] Lab (1.4.50): cloud omits `session_id` → Session-0 helper still captures Winlogon pixels (not jpeg=0B)
+- [x] Lab (1.4.50→1.4.51): cloud omits `session_id` → Session-0 helper captures Winlogon pixels (**4.9.84**)
 
 ---
 

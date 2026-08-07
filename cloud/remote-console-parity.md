@@ -79,7 +79,7 @@ do the same on the existing viewer surface.
 | **C-RD-VIEW-6** | On `black_frame` / `winlogon_capture_black` / `CAPTURE_NO_DESKTOP`: explicit degraded banner — never a silent empty player |
 | **C-RD-VIEW-7** | Prefer WebRTC when advertised; ICE fail → JPEG-WS ≤2s on the **same** surface |
 | **C-RD-VIEW-8** | Show `stream_progress` (`running` → `capturing` → `ws`/`webrtc` → `live`) |
-| **C-RD-VIEW-9** | Min client gate: warn if agent &lt; **4.9.26**; recommend ≥ **4.9.49** for console parity acceptance |
+| **C-RD-VIEW-9** | Min client gate: warn if agent &lt; **4.9.26**; recommend ≥ **4.9.84** for Session-0 Logon pixels (C-RD-S0) |
 
 ---
 
@@ -106,12 +106,12 @@ do the same on the existing viewer surface.
 
 ### Client ≥ 4.9.49 (or train closing C-RD-CON-*)
 
-- [ ] Empty host (no user logged on): Logon ekranı → non-black logon UI ≤ 10s
+- [x] Empty host (no user logged on): Logon ekranı → non-black logon UI ≤ 10s — **4.9.84 Derin-Web**
 - [ ] User Active + lock: sibling Logon row → lock UI, not that user's Default desktop
 - [ ] Type password on stream → unlock/logon succeeds → Default desktop appears
 - [ ] CAD while on Winlogon → SAS UI (Task Manager / password change options as applicable)
-- [ ] Omit `session_id` → still attaches correct console (not wrong RDP session)
-- [ ] No sustained `gdi+black` while `desktop=Winlogon` in hello/meta
+- [x] Omit `session_id` → still attaches correct console (not wrong RDP session / invent SID 1)
+- [x] No sustained `gdi+black` while `desktop=Winlogon` in hello/meta — helper `persistent-winlogon-helper:raw`
 
 ### Cloud / dashboard
 
@@ -124,7 +124,7 @@ do the same on the existing viewer surface.
 - [x] **C-RD-VIEW-6** black_frame / Winlogon black / `CAPTURE_NO_DESKTOP` degraded banner
 - [x] **C-RD-VIEW-7** ICE fail → JPEG ≤2s, same surface
 - [x] **C-RD-VIEW-8** `stream_progress` stages on existing pipe
-- [x] **C-RD-VIEW-9** agent &lt;4.9.26 warn / ≥4.9.49 recommend banner
+- [x] **C-RD-VIEW-9** agent &lt;4.9.26 warn / ≥4.9.84 Session-0 Logon recommend banner
 
 ### Remaining (client lab — not dashboard)
 
