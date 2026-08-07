@@ -1,25 +1,38 @@
 # Remote CAD + Winlogon input honesty (P0)
 
-> **Contract VERSION:** **1.4.52**  
-> Status: **Normative (client P0)**  
-> Min client to close: **≥ 4.9.85** (or train closing C-RD-CAD-* / C-RD-IN-WL-*)  
+> **Contract VERSION:** **1.4.53** (opened **1.4.52**)  
+> Status: **Honesty accepted on ≥4.9.85 — SAS UI effect still open (→ ≥4.9.86)**  
 > Related: [`remote-input.md`](./remote-input.md) ·
 > [`winlogon-session0-capture.md`](./winlogon-session0-capture.md) ·
 > [`../cloud/remote-console-parity.md`](../cloud/remote-console-parity.md) ·
 > [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md)
 
-## Lab evidence (2026-08-07 — Derin-Web / client **4.9.84**)
+## Lab evidence
+
+### Fail honesty baseline (Derin-Web / **4.9.84**)
 
 Capture (C-RD-S0) works: Logon Start → lock UI pixels live over JPEG-WS.
 
 | Action | Cloud / agent | Observed on stream |
 |--------|---------------|--------------------|
-| Toolbar **CAD** → `POST /api/remote/cad` → `remote_send_sas` | `success:true`, `message:"SendSAS ok"`, `detail:"SendSAS(0) called"`, `session_id:1`, `execution_time_ms` ≈0–15 | **No change** — still “Kilidi açmak için Ctrl+Alt+Delete…” |
-| Esc / Tab / Enter / Alt+Tab / Win+D | Dashboard toast “gönderildi” | Lock UI unchanged (expected until SAS; **cannot verify inject** without `inputs_applied`) |
-| `type_text` | Toast “Metin agent’a iletildi” | No credential field (blocked by missing SAS) |
-| Pointer click | Dispatched on viewer | No Ease-of-Access / UI response observed |
+| Toolbar **CAD** → `remote_send_sas` | `success:true`, `SendSAS ok` / `SendSAS(0) called` | **No change** — CAD tip unchanged |
+| Keys / type / click | Toast “gönderildi” | No `inputs_applied` to verify |
 
-**Verdict:** Agent reports **false-positive SAS success**. `SendSAS` is a `VOID` API — calling `SendSAS(FALSE)` from Session 0 without console-session affinity / SoftwareSASGeneration does **not** raise the Secure Attention Sequence on the mirrored Winlogon desktop. Operator thinks CAD worked; IR stuck on lock prompt.
+**Verdict (4.9.84):** False-positive SAS success.
+
+### Honesty pass + effect fail (Derin-Web / **4.9.85** — 2026-08-07)
+
+| Check | Result |
+|-------|--------|
+| Agent version | **4.9.85** (auto-updated) |
+| CAD result | `success:false`, `error:SAS_NO_EFFECT`, ~2014ms |
+| Detail | `path=helper`, `SendSAS(FALSE) invoked; no_sas_effect`, `as_user:false`, `session_id:1` |
+| `software_sas_generation` | **`null`** (must report policy int or `SOFTWARE_SAS_DISABLED`) |
+| `ui_before` / `ui_after` | **`unknown`** (effect detector weak) |
+| Stream meta | `inputs_applied`≥7, `last_input_event` present ✅ (C-RD-IN-WL-3) |
+| Visible SAS / password UI ≤2s | **FAIL** (viewport stayed solid / unchanged) |
+
+Release: https://github.com/cevdetaksac/asteria-client/releases/tag/v4.9.85
 
 ---
 
@@ -62,15 +75,23 @@ Capture (C-RD-S0) works: Logon Start → lock UI pixels live over JPEG-WS.
 
 Host: lock/logon UI live (C-RD-S0 green). Agent ≥ target.
 
-- [ ] CAD → within 2s stream shows SAS/security options **or** password field (not unchanged CAD tip)  
-- [ ] Three consecutive CAD while stuck on tip → result NOT all `success:true` with only `SendSAS(0) called`  
-- [ ] `SOFTWARE_SAS_DISABLED` when policy blocks services  
+- [ ] CAD → within 2s stream shows SAS/security options **or** password field (not unchanged CAD tip) — **open after 4.9.85**  
+- [x] Three consecutive CAD while stuck on tip → result NOT all `success:true` with only `SendSAS(0) called` — **4.9.85 → `SAS_NO_EFFECT`**  
+- [ ] `SOFTWARE_SAS_DISABLED` when policy blocks services — **lab still reports `software_sas_generation:null`**  
 - [ ] After real SAS: type password chars via toolbar/`type_text` appear in field (or masked)  
-- [ ] Meta `inputs_applied` increases on key/click during Winlogon stream  
+- [x] Meta `inputs_applied` increases on key/click during Winlogon stream — **4.9.85**  
 - [ ] Esc dismisses SAS overlay when applicable  
+
+### Residual for **≥4.9.86** (must-fix)
+
+| ID | Gap on 4.9.85 |
+|----|----------------|
+| **C-RD-CAD-1** | Helper `SendSAS(FALSE)` still no visible SAS |
+| **C-RD-CAD-3** | Report real `software_sas_generation` (0/1/2/3); auto-enable Services/Both when agent owns policy or fail `SOFTWARE_SAS_DISABLED` |
+| **C-RD-CAD-4/5** | `ui_before`/`ui_after` = `unknown` — improve effect detect (OCR optional; prefer named-desktop / LogonUI state) so `SAS_NO_EFFECT` is trustworthy when tip still visible |
 
 ---
 
 ## Operator handoff (client chat)
 
-> Contract **1.4.52** / `agent/remote-cad-winlogon.md`. Lab Derin-Web **4.9.84**: capture OK; CAD returns `SendSAS ok` / `SendSAS(0) called` but lock UI never leaves “Press Ctrl+Alt+Delete”. Fix C-RD-CAD-1…6 (console affinity + SoftwareSASGeneration + no false success) and C-RD-IN-WL-* (Winlogon inject + `inputs_applied`). Target **≥4.9.85**.
+> Contract **1.4.53** residual. **4.9.85** honesty ✅ (`SAS_NO_EFFECT`, `inputs_applied`). Real SAS UI still ❌ on Derin-Web: helper path, `software_sas_generation:null`, `ui_*=unknown`. Ship **≥4.9.86**: effective console SAS + policy value in result + reliable UI effect detect. Docs: `agent/remote-cad-winlogon.md`.

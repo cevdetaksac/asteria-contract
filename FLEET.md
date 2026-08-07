@@ -40,7 +40,7 @@
 | Windows Tools Repair (remote OS repair toolkit) | `agent/tools-repair.md` | client **≥ 4.9.79**; cloud ≥ **1.4.49** (whitelist + `/dashboard/server/tools` shipped) |
 | Console RD Winlogon physical-parity | `cloud/remote-console-parity.md` | client **≥ 4.9.49**; cloud ≥ **1.4.43**; viewer cursor C-RD-VIEW ≥ **1.4.47** |
 | Winlogon Session-0 capture (pre-logon helper / no invent SID 1) | `agent/winlogon-session0-capture.md` | client **≥ 4.9.84** (**accepted** 1.4.51); cloud omit SID ≥ **1.4.50** |
-| Remote CAD + Winlogon input honesty (real SAS / no false SendSAS ok) | `agent/remote-cad-winlogon.md` | client **≥ 4.9.85**; cloud CAD ≥ **1.4.52** |
+| Remote CAD + Winlogon input honesty (real SAS / no false SendSAS ok) | `agent/remote-cad-winlogon.md` | honesty **≥4.9.85** ✅; SAS UI effect → **≥4.9.86**; cloud CAD ≥ **1.4.52** |
 | Legacy dual-brand sunset target **2026-10-01** | `cloud/PRODUCT_BRANDING.md` | ops + client ≥**4.9.35** |
 | Uninstall PIN lifecycle (`uninstall_*` + `windows_user`) | `api/07-lifecycle-sessions.md` | cloud ≥ **1.4.9**; client with uninstall PIN gate |
 | Bare `successful_logon` score ≤70 + no auto-block (cloud reject shapes) | `agent/threat-engine.md` | cloud ≥ **1.4.11**; target client **≥4.9.7** |

@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.53 — 2026-08-07
+
+### C-RD-CAD honesty lab note (client **4.9.85**) — effect still open
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Honesty accepted: `SAS_NO_EFFECT` / `success:false` (no more false SendSAS ok) | [`agent/remote-cad-winlogon.md`](agent/remote-cad-winlogon.md) | client **4.9.85** ✅ |
+| `inputs_applied` / `last_input_event` on Winlogon stream | same C-RD-IN-WL-3 | ✅ lab Derin-Web |
+| Residual: real SAS UI ≤2s still FAIL (`software_sas_generation:null`, `ui_*=unknown`) | same | **client next** (≥**4.9.86** target) |
+
 ## 1.4.52 — 2026-08-07
 
 ### Remote CAD + Winlogon input honesty (P0)

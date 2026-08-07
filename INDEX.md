@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.52** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.53** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.53** | CAD honesty lab note — `SAS_NO_EFFECT` OK; real SAS UI still open | honesty **4.9.85**; effect → **≥4.9.86** |
 | **1.4.52** | CAD / Winlogon input honesty — no false SendSAS success | **≥4.9.85**; cloud CAD poll shipped |
 | **1.4.51** | C-RD-S0 lab close — Session-0 Logon pixels on **4.9.84** | ≥**4.9.84** (accepted) |
 | **1.4.50** | Winlogon Session-0 capture P0 (Logon UI black / jpeg=0B helper) | **≥4.9.84**; cloud omits SID on Logon Start |
