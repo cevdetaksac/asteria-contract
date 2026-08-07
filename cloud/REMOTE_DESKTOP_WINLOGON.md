@@ -1,8 +1,9 @@
 # Console Winlogon / pre-logon Remote Desktop
 
-> **Contract VERSION:** root `VERSION` (**1.4.47** — see also [`remote-console-parity.md`](./remote-console-parity.md) C-RD-VIEW-*)  
+> **Contract VERSION:** root `VERSION` (**1.4.50** — see also [`remote-console-parity.md`](./remote-console-parity.md) C-RD-VIEW-*)  
 > **Client wire:** ≥ **4.9.21** · **sibling pre_logon + named Winlogon:** ≥ **4.9.26**  
 > **Physical-console acceptance:** ≥ **4.9.49** (C-RD-CON-* / C-RD-VIEW-*)  
+> **Session-0 helper (Logon pixels):** ≥ **4.9.84** — [`../agent/winlogon-session0-capture.md`](../agent/winlogon-session0-capture.md)  
 > **Canonical RD API:** [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md)  
 > **Cloud site:** `https://asteria.run`
 
@@ -48,7 +49,6 @@ Lock / Logon satırı seçiliyken:
     "prefer": "winlogon",
     "pre_logon": true,
     "desktop": "Winlogon",
-    "session_id": 2,
     "stream_id": "…",
     "fps": 30, "quality": 40, "max_width": 1280
   }
@@ -56,6 +56,8 @@ Lock / Logon satırı seçiliyken:
 ```
 
 - **`username` yok** — agent user Default’a yapışmasın.
+- **`session_id` yok** (cloud ≥**1.4.50** / CL-RD-S0) — agent
+  `WTSGetActiveConsoleSessionId` ile çözer (**SID 1 uydurma**).
 - User satırı (`s:2` + username) → normal start; sibling pre_logon yüzünden **otomatik
   winlogon’a çevrilmez**.
 
@@ -80,13 +82,13 @@ Prepare (0 oturum / Logon seçimi):
 
 ### Cloud
 - [x] Sibling `pre_logon` + user aynı SID → iki ayrı select option
-- [x] Lock satırı Start → `prefer=winlogon` + `pre_logon` + `desktop` + SID, no username
+- [x] Lock satırı Start → `prefer=winlogon` + `pre_logon` + `desktop`, **no username**, **no session_id** (≥1.4.50)
 - [x] User satırı Start → username/session, **not** forced winlogon
 - [x] CAD = `remote_send_sas`
 
-### Client (≥4.9.26+)
+### Client (≥4.9.26+; Session-0 pixels ≥**4.9.84**)
 - [x] Always emit Logon/Lock `pre_logon` row (even when user Active)
 - [x] Honor `prefer` / `desktop` / `pre_logon` on start
-- [ ] Non-black Winlogon pixels (no persistent `gdi+black`)
+- [ ] Non-black Winlogon pixels (no persistent `gdi+black` / jpeg=0B helper) — **C-RD-S0**
 - [ ] Type creds on stream → Default desktop
 - [ ] CAD SendSAS

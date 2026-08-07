@@ -40,12 +40,15 @@
   no interactive desktop → `NO_INTERACTIVE_SESSION`; 0×0 / black capture →
   `CAPTURE_NO_DESKTOP`; frames `< 1500 B` are rejected as too small.
 - **Console / Logon screen (Winlogon):** Start with `prefer=winlogon` +
-  `pre_logon=true` + `desktop=Winlogon`, **no username**. Normative rules:
+  `pre_logon=true` + `desktop=Winlogon`, **no username**. Cloud ≥**1.4.50**
+  **omits `session_id`** on this path. Normative rules:
   [`../cloud/REMOTE_DESKTOP_WINLOGON.md`](../cloud/REMOTE_DESKTOP_WINLOGON.md) +
   physical-console acceptance
   [`../cloud/remote-console-parity.md`](../cloud/remote-console-parity.md)
-  (≥**1.4.43**, client ≥**4.9.49**). Omit `session_id` → agent resolves active
-  console SID (never assume `1`).
+  (≥**1.4.43**, client ≥**4.9.49**) + Session-0 helper
+  [`../agent/winlogon-session0-capture.md`](../agent/winlogon-session0-capture.md)
+  (client ≥**4.9.84**). Omit `session_id` → agent resolves active console SID
+  (never invent `1`); capture MUST run in the interactive session, not Session 0.
 
 ## 1. Agent WS `hello` (agent → server, once on connect)
 

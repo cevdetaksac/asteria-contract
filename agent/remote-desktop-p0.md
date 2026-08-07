@@ -1,19 +1,22 @@
 # Remote Desktop P0 — Winlogon black-screen & WebRTC ICE honesty
 
-> **Contract VERSION:** **1.4.37**  
+> **Contract VERSION:** **1.4.50** (P0 originally **1.4.37**)  
 > Status: **Normative (client P0)**  
 > Cloud C-WL / smoothness mostly shipped; **client bugs remain open** and
 > mislead operators during IR.  
-> Related: [`REMOTE_DESKTOP_WINLOGON.md`](./REMOTE_DESKTOP_WINLOGON.md) ·
-> [`REMOTE_DESKTOP_SMOOTHNESS.md`](./REMOTE_DESKTOP_SMOOTHNESS.md) ·
+> **Session-0 spawn path (2026-08 lab):** see
+> [`winlogon-session0-capture.md`](./winlogon-session0-capture.md) (**C-RD-S0-***,
+> client ≥**4.9.84**).  
+> Related: [`../cloud/REMOTE_DESKTOP_WINLOGON.md`](../cloud/REMOTE_DESKTOP_WINLOGON.md) ·
+> [`../cloud/REMOTE_DESKTOP_SMOOTHNESS.md`](../cloud/REMOTE_DESKTOP_SMOOTHNESS.md) ·
 > [`remote-stream-progress.md`](./remote-stream-progress.md) ·
 > [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md)
 
 **Priority: P0.** Both classes make the operator believe the host is blank or
 “connected” when it is not — wrong IR decisions.
 
-Min client target for close-out: **≥ 4.9.37** (or next RD patch train that
-satisfies the acceptance table).
+Min client target for close-out: **≥ 4.9.84** for Session-0 Logon pixels
+(C-RD-S0); honesty codes from **≥ 4.9.37** / **≥ 4.9.45**.
 
 ---
 
@@ -33,12 +36,14 @@ Lock / Logon sibling selected; stream starts with `prefer=winlogon` /
 | **C-RD-P0-WL-3** | Honor cloud start params: `prefer=winlogon`, `pre_logon=true`, `desktop=Winlogon`, **no username** on lock row |
 | **C-RD-P0-WL-4** | If GDI returns unbroken black for **≥2s** after start → retry DXGI/BitBlt path once, then emit control error `winlogon_capture_black` (do not silently “succeed”) |
 | **C-RD-P0-WL-5** | Health/`list_sessions` always includes sibling **Logon / Lock screen** row (`pre_logon:true`) per 1.4.23 |
+| **C-RD-P0-WL-6** | Session-0 agents: follow **C-RD-S0-*** ([`winlogon-session0-capture.md`](./winlogon-session0-capture.md)) — helper jpeg=0B / invent SID 1 is FAIL |
 
 ### Acceptance
 - [x] Client code (≥4.9.45): Winlogon attach, `black_frame`, `winlogon_capture_black`, ICE honesty, JPEG fallback  
 - [ ] Lab: Locked console → Start on lock row → visible logon UI pixels (not black) within 3s  
 - [ ] Lab: User session row still starts Default (not forced Winlogon)  
-- [ ] Lab: Black-fill path never advertises `connection_state=connected` without `degraded`/`black_frame`
+- [ ] Lab: Black-fill path never advertises `connection_state=connected` without `degraded`/`black_frame`  
+- [ ] Lab (1.4.50): cloud omits `session_id` → Session-0 helper still captures Winlogon pixels (not jpeg=0B)
 
 ---
 

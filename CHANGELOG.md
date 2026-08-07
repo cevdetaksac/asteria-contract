@@ -1,5 +1,21 @@
 # Changelog — asteria-contract
 
+## 1.4.50 — 2026-08-07
+
+### Winlogon Session-0 capture P0 (Logon UI black)
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Session-0 → interactive Winlogon helper (C-RD-S0-*) | [`agent/winlogon-session0-capture.md`](agent/winlogon-session0-capture.md) | **client ≥4.9.84** |
+| Cloud Logon Start omits `session_id` (CL-RD-S0) | `routes_remote` + remote dashboard | **cloud shipped** |
+| Lab: Derin-Web 4.9.83 → `winlogon_capture_black`, jpeg=0B / Session 0 | same doc | client must close |
+
+- Complements [`agent/remote-desktop-p0.md`](agent/remote-desktop-p0.md) P0-A and
+  [`cloud/remote-console-parity.md`](cloud/remote-console-parity.md) C-RD-CON-2
+- Cloud cannot fix pixels by re-sending SID; agent must spawn helper into console
+  `winsta0\Winlogon` (pre-logon: Winlogon/LogonUI token fallback when
+  `WTSQueryUserToken` fails)
+
 ## 1.4.49 — 2026-08-03
 
 ### Windows Tools Repair — remote OS repair toolkit

@@ -1,9 +1,10 @@
 # Console Remote Desktop — physical-console parity (Winlogon)
 
-> **Contract VERSION:** **1.4.47**  
-> Status: **Normative (client ≥ 4.9.49 · dashboard C-RD-VIEW ≥ 1.4.47)**  
+> **Contract VERSION:** **1.4.50** (viewer C-RD-VIEW since **1.4.47**)  
+> Status: **Normative (client ≥ 4.9.49 · Session-0 pixels ≥ 4.9.84 · dashboard C-RD-VIEW ≥ 1.4.47)**  
 > Related: [`REMOTE_DESKTOP_WINLOGON.md`](./REMOTE_DESKTOP_WINLOGON.md) ·
 > [`../agent/remote-desktop-p0.md`](../agent/remote-desktop-p0.md) ·
+> [`../agent/winlogon-session0-capture.md`](../agent/winlogon-session0-capture.md) ·
 > [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md) ·
 > [`../agent/remote-input.md`](../agent/remote-input.md) ·
 > [`../agent/remote-stream-progress.md`](../agent/remote-stream-progress.md) ·
@@ -39,17 +40,19 @@ Transport remains **WebRTC and/or JPEG-over-WS** (existing Asteria remote wire).
     "prefer": "winlogon",
     "pre_logon": true,
     "desktop": "Winlogon",
-    "session_id": 2,
     "stream_id": "…",
     "fps": 12, "quality": 40, "max_width": 1280
   }
 }
 ```
 
+Cloud ≥**1.4.50** **omits** `session_id` on this path (CL-RD-S0). Optional SID only for
+non-logon user/session rows.
+
 | ID | Rule |
 |----|------|
 | **C-RD-CON-1** | Honor `prefer=winlogon` / `pre_logon` / `desktop=Winlogon` even when another user session is Active (sibling lock row) |
-| **C-RD-CON-2** | If `session_id` omitted, resolve with `WTSGetActiveConsoleSessionId` (or equivalent) — **do not assume SID 1** |
+| **C-RD-CON-2** | If `session_id` omitted, resolve with `WTSGetActiveConsoleSessionId` (or equivalent) — **do not assume SID 1**. Session-0 spawn: [`../agent/winlogon-session0-capture.md`](../agent/winlogon-session0-capture.md) |
 | **C-RD-CON-3** | **Never** bind username on this path (cloud strips it). Username forces Default desktop stick |
 | **C-RD-CON-4** | Capture named desktop `Winlogon` first; `OpenInputDesktop` alone is insufficient when Default is active |
 | **C-RD-CON-5** | Persistent `capture_method=gdi+black` / all-black frames while claiming `desktop=Winlogon` = **FAIL** (see P0-A) |
@@ -89,12 +92,12 @@ do the same on the existing viewer surface.
 
 ---
 
-## Cloud (shipped ≥ 1.4.43; viewer C-RD-VIEW shipped ≥ 1.4.47)
+## Cloud (shipped ≥ 1.4.43; viewer C-RD-VIEW shipped ≥ 1.4.47; omit SID ≥ **1.4.50**)
 
 - Preserve `pre_logon` / `can_capture` through `normalize_sessions`
-- Logon Start: `prefer=winlogon` + `pre_logon` + `desktop=Winlogon`, no username; no hard-coded SID `1`
+- Logon Start: `prefer=winlogon` + `pre_logon` + `desktop=Winlogon`, no username; **omit `session_id`** (do not bind health SID 1)
 - UI: Winlogon banner + black-frame honesty (`showWinlogonHint`)
-- CAD on Winlogon path omits username
+- CAD on Winlogon path omits username **and** forced SID
 - **1.4.47:** software cursor overlay + full C-RD-VIEW-* on remote console page (**dashboard accepted**)
 
 ---
@@ -125,11 +128,12 @@ do the same on the existing viewer surface.
 
 ### Remaining (client lab — not dashboard)
 
-Fleet clients on **≥4.9.49** (current ship **4.9.69**) already carry C-RD-CON Winlogon code.
-Close client acceptance rows above on a locked console host; if sustained `gdi+black`, treat as client P0-A — viewer will show the honest banner.
+Fleet clients on **≥4.9.49** carry C-RD-CON Winlogon attach; **≥4.9.83** still fails
+Session-0 helper spawn on some hosts (`jpeg=0B`) — close with **≥4.9.84** / C-RD-S0.
+If sustained `gdi+black`, treat as client P0-A — viewer shows the honest banner.
 ---
 
 ## Min client
 
-**≥ 4.9.49** recommended for IR console parity.  
-Wire floor remains ≥ **4.9.26**; P0 black-frame code ≥ **4.9.45** — this doc raises the **acceptance** bar for "physical console" UX.
+**≥ 4.9.49** for IR console parity wire; **≥ 4.9.84** for Session-0 Logon **pixels**.  
+Wire floor remains ≥ **4.9.26**; P0 black-frame honesty ≥ **4.9.45**.
