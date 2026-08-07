@@ -1,5 +1,16 @@
 # Changelog — asteria-contract
 
+## 1.4.52 — 2026-08-07
+
+### Remote CAD + Winlogon input honesty (P0)
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| CAD must raise real SAS on stream console (no false `SendSAS ok`) | [`agent/remote-cad-winlogon.md`](agent/remote-cad-winlogon.md) | **client ≥4.9.85** |
+| Winlogon inject + `inputs_applied` meta (C-RD-IN-WL) | same | client ≥**4.9.85** |
+| Cloud: CAD = `remote_send_sas` only; winlogon prefer; no synthetic key | `routes_remote` + dashboard poll result | **cloud shipped** |
+| Lab Derin-Web 4.9.84: Capture OK; CAD `SendSAS(0) called` but lock tip unchanged | same | client must close |
+
 ## 1.4.51 — 2026-08-07
 
 ### C-RD-S0 lab close (client **4.9.84**)

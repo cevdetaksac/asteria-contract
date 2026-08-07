@@ -203,10 +203,16 @@ Session 0, target is an interactive RDP/console session) go through a
 
 ## CAD (Ctrl+Alt+Del)
 
-A plain `key=ctrl+alt+delete` cannot produce the Secure Attention Sequence. The
-dashboard uses `POST /api/remote/cad` → pending `remote_send_sas` command
-(`params.session_id`); the agent runs `SendSAS` in an elevated service and posts
-an honest `ok` / error result.
+A plain `key=ctrl+alt+delete` **cannot** produce the Secure Attention Sequence.
+Dashboard uses `POST /api/remote/cad` → pending `remote_send_sas` only
+(**CL-RD-CAD**, contract **1.4.52**).
+
+Normative Session-0 / lock-screen rules (false `SendSAS ok`, SoftwareSASGeneration,
+console affinity, `inputs_applied`):
+[`remote-cad-winlogon.md`](./remote-cad-winlogon.md) — client ≥ **4.9.85**.
+
+Legacy note: older clouds may also push a synthetic key event; agents MUST ignore
+it for SAS purposes (C-RD-CAD-6).
 
 ---
 

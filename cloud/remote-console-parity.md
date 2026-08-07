@@ -109,7 +109,7 @@ do the same on the existing viewer surface.
 - [x] Empty host (no user logged on): Logon ekranı → non-black logon UI ≤ 10s — **4.9.84 Derin-Web**
 - [ ] User Active + lock: sibling Logon row → lock UI, not that user's Default desktop
 - [ ] Type password on stream → unlock/logon succeeds → Default desktop appears
-- [ ] CAD while on Winlogon → SAS UI (Task Manager / password change options as applicable)
+- [ ] CAD while on Winlogon → SAS UI (Task Manager / password change options as applicable) — **open 1.4.52 / client ≥4.9.85** (lab: false SendSAS ok on 4.9.84)
 - [x] Omit `session_id` → still attaches correct console (not wrong RDP session / invent SID 1)
 - [x] No sustained `gdi+black` while `desktop=Winlogon` in hello/meta — helper `persistent-winlogon-helper:raw`
 

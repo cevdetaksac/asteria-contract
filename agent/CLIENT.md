@@ -24,7 +24,8 @@ Bu dosya **özet + link**. Şema/detay için ilgili MD’ye git; buraya kopyalam
 0f. [`../cloud/CLOUD_SURFACE.md`](../cloud/CLOUD_SURFACE.md) — **cloud yetenekleri / HTTP+WS+komut envanteri** (gap-scan) (**1.4.36**)  
 0g. [`../cloud/FLEET_CANARY.md`](../cloud/FLEET_CANARY.md) + [`../cloud/PROMOTION_GATES.md`](../cloud/PROMOTION_GATES.md) — automation canary / observe→enforce (**1.4.37**, ≥ **4.9.37**)  
 0h. [`remote-desktop-p0.md`](./remote-desktop-p0.md) — **P0** Winlogon black + ICE honesty (**1.4.37+**, ≥ **4.9.37**)
-0h2. [`winlogon-session0-capture.md`](./winlogon-session0-capture.md) — **P0** Session-0 → Winlogon helper (**1.4.50**, ≥ **4.9.84**)
+0h2. [`winlogon-session0-capture.md`](./winlogon-session0-capture.md) — **P0** Session-0 → Winlogon helper (**1.4.50/51**, ≥ **4.9.84**)
+0h3. [`remote-cad-winlogon.md`](./remote-cad-winlogon.md) — **P0** CAD SendSAS honesty + Winlogon input (**1.4.52**, ≥ **4.9.85**)
 0i. [`../api/12-command-envelope-v2.md`](../api/12-command-envelope-v2.md) — envelope v2 schema (observe-only; **no emit**) (**1.4.37**)  
 1. [`../FLEET.md`](../FLEET.md) — min sürüm matrisi  
 2. [`polling.md`](./polling.md) — cadence  
