@@ -2,17 +2,17 @@
 
 ## 1.4.59 — 2026-08-15
 
-### P0 remote start topologies + Threat Intel + inspect + installer
+### Named console topology + inspect confirm ban
 
 | Piece | Path | Owner |
 |-------|------|--------|
-| Default Connect `topology=follow` — **do not** send `prefer=winlogon` | [`cloud/remote-console-parity.md`](cloud/remote-console-parity.md) | cloud shipped; **client ≥4.9.95** |
-| Logon/Lock row `topology=winlogon` + prefer/pre_logon/desktop | same | cloud + client |
-| Same `stream_id` after Enter; no second Start; no auto Active SID | **C-RD-TOPO-*** | client |
-| Threat Intel IoC browser; optional ACK `firewall_current`; cloud 304 counter | [`api/09-threat-intel.md`](api/09-threat-intel.md) | poll/ACK ≥4.5.61; `firewall_current` optional ≥4.9.94 |
-| `inspect_process` no confirm; rundll32 name ≠ Kritik | [`agent/process-inspect.md`](agent/process-inspect.md) | client ≥4.9.93; cloud whitelist |
-| Trust metadata pending **must not** block download / `self_update` | [`api/04-self-update.md`](api/04-self-update.md) | cloud + client |
-| Release asset **only** `asteria-client-installer.exe` | same | client CI + cloud picker |
+| Default Connect = `topology=follow` only (no prefer/pre_logon/desktop) | [`cloud/remote-console-parity.md`](cloud/remote-console-parity.md) **C-RD-TOPO-1** | **cloud P0** |
+| Logon/Lock row = `topology=winlogon` | same **C-RD-TOPO-2** | cloud |
+| Client named topology; 4.9.94 follow-skip is not acceptance | client **≥4.9.95** | client |
+| `inspect_process` no confirm UI | [`agent/process-inspect.md`](agent/process-inspect.md) CL-PROC-INSPECT-6 | **cloud P0** |
+| Trust null must not block download; sole installer asset | [`api/04-self-update.md`](api/04-self-update.md) CL-UPD-* | **cloud P0** |
+| Threat-intel ACK `firewall_current` optional; 304 no ACK | [`api/09-threat-intel.md`](api/09-threat-intel.md) | additive |
+| Paste for dashboard | [`cloud/CLOUD_HANDOFF_1.4.59.md`](cloud/CLOUD_HANDOFF_1.4.59.md) | cloud |
 
 ## 1.4.58 — 2026-08-15
 

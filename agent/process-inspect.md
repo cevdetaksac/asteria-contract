@@ -39,6 +39,7 @@ Suggested UI:
 ## Command `inspect_process`
 
 **Not destructive.** Whitelist `VALID_COMMAND_TYPES`. Confirm gate: **no**.
+Dashboard MUST NOT show “Onayla ve Gönder” / generic destructive confirm.
 
 Dashboard **?** / İncele → `{ "pid": N }` immediately.  
 **FAIL:** generic “Onayla ve Gönder” / `confirm:true` required. Inspect must queue without a confirm modal.
@@ -116,7 +117,7 @@ Rate: dashboard **one inspect per click**; client has no extra heavy poll.
 | **CL-PROC-INSPECT-2** | Process table: **?** / İncele → dispatch `inspect_process` `{pid}` → modal |
 | **CL-PROC-INSPECT-3** | Modal shows cmdline, parent, rundll32 dll/export, peers, verdict |
 | **CL-PROC-INSPECT-4** | Do not mark Kritik from image name `rundll32.exe` alone |
-| **CL-PROC-INSPECT-5** | Older agents (`unsupported`) → modal: “agent ≥4.9.93 gerekli” |
+| **CL-PROC-INSPECT-6** | **No confirm UI.** Dispatch immediately. Destructive-command modal is a contract FAIL |
 
 ---
 

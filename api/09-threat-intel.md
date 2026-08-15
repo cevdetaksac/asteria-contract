@@ -1,7 +1,7 @@
 # Threat Intel Feed — API contract
 
 > **Contract:** asteria-contract · see root `VERSION`  
-> **Client:** ≥ **4.5.61** poll/ACK · **≥ 4.9.7** intel apply · **≥ 4.9.33** `AR-INTEL-*` brand prefix  
+> **Client:** ≥ **4.5.61** poll/ACK · **≥ 4.9.7** intel apply · **≥ 4.9.33** `AR-INTEL-*` · ACK `firewall_current` optional **≥4.9.94**  
 > **API base:** `https://asteria.run`  
 > **Auth:** `Authorization: Bearer <token>` (agent API’de `?token=` yok)  
 > **Cloud ingest:** [`../cloud/threat-intel-ingest.md`](../cloud/threat-intel-ingest.md)  
@@ -27,7 +27,7 @@ If-None-Match: "W/\"sha256:…\""   # or opaque etag from prior 200
 | Code | Client |
 |------|--------|
 | **200** | Bundle kaydet (ProgramData), layer’ları uygula, **ACK gönder** |
-| **304** | Cache tut; `last_check_at` yenile; expire/orphan reconcile (ACK yalnız FW değiştiyse) |
+| **304** | Cache tut; `last_check_at` yenile; expire/orphan reconcile. **No ACK** (1.4.59). |
 | **404/501/503** | Soft-fail; cache tut; sonraki poll |
 | Diğer 4xx/5xx | Soft-fail; retry |
 
@@ -52,6 +52,7 @@ Content-Type: application/json
     "firewall_added": 5,
     "firewall_skipped": 2,
     "firewall_removed": 1,
+    "firewall_current": 12,
     "ransomware_rules": 28,
     "process_watch": 3,
     "banners": 1,
@@ -65,6 +66,7 @@ Content-Type: application/json
 | `firewall_added` | Yeni `AR-INTEL-*` kuralları |
 | `firewall_skipped` | severity / allowlist / expire / cap / fail |
 | `firewall_removed` | orphan veya policy-off purge |
+| `firewall_current` | Additive **1.4.59** · int · standing `AR-INTEL-*` count after apply (optional ≥4.9.94). Cloud ingest may ignore. |
 | `errors[]` | Soft hatalar — dolu olsa bile ACK gönderilmeli |
 | `firewall_current` | *(opsiyonel, ≥4.9.94)* Şu an duran `AR-INTEL-*` kural sayısı |
 
