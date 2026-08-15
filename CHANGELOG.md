@@ -1,5 +1,20 @@
 # Changelog — asteria-contract
 
+## 1.4.68 — 2026-08-15
+
+### Remote Desktop pixels (C-RD-PIX) — client P0
+
+Dashboard lab (Derin-Web): Default Connect `topology=follow` reaches the agent,
+but the viewer stays on **“Görüntü tam değil”** (`gdi+black` /
+`persistent-user-helper`, solid 1024×768). Cloud honesty is working; **capture
+chrome is not**.
+
+| Piece | Path |
+|-------|------|
+| PIX-1…7: healthy ≠ JPEG bytes; empty-host helper; logged-on DXGI; no WebRTC-on-black | [`features/remote-desktop.md`](features/remote-desktop.md) |
+| Lab runs A–E + open PIX ticks | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) |
+| Floor | client **≥ 4.9.97** for pixels (topology names still ≥ **4.9.95**) |
+
 ## 1.4.67 — 2026-08-15
 
 ### Client lab checklist + cloud sprint closed

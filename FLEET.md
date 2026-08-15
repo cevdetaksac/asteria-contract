@@ -18,7 +18,7 @@
 | OOB-501 offline urgent queue: `POST /api/alerts/urgent/batch` + soft idempotency on urgent | `api/10-offline-urgent-queue.md` | cloud live ≥ **1.4.7**; client flag `security.offline_urgent_queue` default **off** |
 | Dashboard Server Management (users/processes/services + `list_services`) | `features/server-management.md` | target ≥ **4.9.4** (cloud UI live ≥ **1.4.8**) |
 | On-demand process inspect (`inspect_process` modal) | `features/process-inspect.md` | client **≥ 4.9.93**; cloud whitelist + **no confirm** **1.4.59** |
-| Console follow vs lock (`topology=follow` / `winlogon`) | `features/remote-desktop.md` | client **≥ 4.9.95**; cloud **1.4.59+** |
+| Console follow vs lock (`topology=follow` / `winlogon`) | `features/remote-desktop.md` | client **≥ 4.9.95**; pixels **≥ 4.9.97**; cloud **1.4.59+** |
 | Dashboard Users — disabled inventory + enable/disable (`include_disabled:true`, C-USER) | `features/server-management.md` | cloud ≥ **1.4.24**; client list/mutate already ≥ **4.9.4** |
 | Account unlink from client Settings (`POST /api/agent/unlink-account`) | `api/02-account.md` | cloud live ≥ **1.4.27**; client **≥ 4.9.26** |
 | Account claim gate + unlink email OTP (P0d) | `api/02-account.md` | contract **1.4.48**; client **≥ 4.9.75**; cloud **CL-UNLINK-MAIL** |
@@ -29,12 +29,12 @@
 | Signing/heartbeat contexts → `asteria-chp-v1` / `asteria-heartbeat-v1` | `agent/rebrand-asteria.md`, `api/03-control-websocket.md`, `api/01-auth.md` | cloud live ≥ **1.4.32**; client **≥ 4.9.35** |
 | Anti-brick: account-gated critical auto-actions; silent-hours default OFF; dashboard auto-link; undo mail | `features/account-safety.md`, `api/02-account.md` | cloud ≥ **1.4.34**; client **≥ 4.9.36**; undo_mail_path + rolled_back ≥ **4.9.46** / contract **1.4.38** |
 | Cloud / dashboard tick list | `cloud/CLOUD_CHECKLIST.md` | cloud ≥ **1.4.67** (ticked) |
-| Client / agent lab tick list | `features/CLIENT_CHECKLIST.md` | client **≥ 4.9.95** RD · **≥ 4.9.96** recommended |
+| Client / agent lab tick list | `features/CLIENT_CHECKLIST.md` | client **≥ 4.9.97** RD pixels · **≥ 4.9.95** topo · **≥ 4.9.96** intel/installer |
 | Dashboard deep-links catalog (`?token=` browser URLs / Settings shortcuts) | `cloud/dashboard-deep-links.md` | cloud ≥ **1.4.35** (docs; no new client floor) |
 | Cloud surface inventory (agent HTTP/WS/commands — client gap-scan) | `cloud/CLOUD_SURFACE.md` | cloud ≥ **1.4.36** (docs; no new client floor) |
 | Fleet canary `fleet_rollout` + auto-flag clear | `cloud/FLEET_CANARY.md`, `cloud/PROMOTION_GATES.md` | cloud ≥ **1.4.37**; client honor gates ≥ **4.9.37** |
 | Envelope v2 schema (observe-only; no production emit) | `api/12-command-envelope-v2.md` | cloud ≥ **1.4.37**; client observe optional |
-| Remote Desktop (topology, follow, Winlogon, CAD, WebRTC, P0) | `features/remote-desktop.md` | client **≥ 4.9.95** (wire ≥4.9.0; Logon pixels ≥4.9.84) |
+| Remote Desktop (topology, follow, Winlogon, CAD, WebRTC, P0, PIX) | `features/remote-desktop.md` | client **≥ 4.9.95** topo · **≥ 4.9.97** Logon pixels (wire ≥4.9.0; S0 helper ≥4.9.84 must not regress) |
 | Firewall Management page + `list_firewall` | `features/firewall.md` | client **≥ 4.9.40**; cloud ≥ **1.4.40** |
 | Windows Firewall MMC parity | `features/firewall.md` | client **≥ 4.9.41**; cloud ≥ **1.4.41** |
 | Network Adapter Admin + golden watchdog | `features/network-adapter.md` | client **≥ 4.9.42**; cloud ≥ **1.4.42** |
