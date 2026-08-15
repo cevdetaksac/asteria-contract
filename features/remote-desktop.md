@@ -1,8 +1,9 @@
 # Remote Desktop — single contract
 
-> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.69** · Agent floor
-> **≥ 4.9.95** named topology · **≥ 4.9.97** Logon/empty-host **pixels** (not
-> black GDI). Older IDs (C-RD-*, C-WL, C-RD-S0, …) still apply; they live
+> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.70** · Agent floor
+> **≥ 4.9.95** named topology · **≥ 4.9.100** physical-console **pixels**
+> (lock / logon / logoff, not black GDI). **4.9.97–4.9.99** PIX floor is
+> superseded: 4.9.99 lab still `gdi+black`. Older IDs still apply; they live
 > **in this file**.
 >
 > Do not add MUST IDs under stub `agent/remote-*` or `api/05` paths.
@@ -37,11 +38,11 @@ Winlogon helper + `SESSION0_HELPER_SPAWN_FAILED` + jpeg=0B.
 
 | ID | Rule |
 |----|------|
-| **C-RD-TOPO-1** | Default Connect / “Logon · varsayılan”: `topology=follow`. **Do not send** `prefer`, `pre_logon`, `desktop`, `session_id`, `username`. **Logged-on console** → DXGI/NVENC `WinSta0\Default`. **Empty host / only LogonUI** → interactive Winlogon helper with **real LogonUI pixels** (same quality as TOPO-2). Never Session-0 BitBlt. Never `gdi+black` / solid-black JPEG claimed as live. |
+| **C-RD-TOPO-1** | Default Connect / “Logon · varsayılan”: `topology=follow`. **Do not send** `prefer`, `pre_logon`, `desktop`, `session_id`, `username`. Agent follows the **physical input desktop**: locked/empty → Winlogon helper + LogonUI pixels; unlocked Default → DXGI/NVENC. A WTS username still listed is **not** proof Default is live (Win+L). Never Session-0 BitBlt. Never `gdi+black` claimed as live. |
 | **C-RD-TOPO-2** | Logon / Lock **row** (empty host, lock, SAS): `topology=winlogon` + `prefer=winlogon` + `pre_logon=true` + `desktop=Winlogon`. Omit SID and username. Helper is legitimate. |
 | **C-RD-TOPO-3** | User shortcut: `session_id` + `username`. Do **not** auto-select the first Active SID. |
-| **C-RD-TOPO-4** | After Enter: **same `stream_id`**, no second Start, no “pick administrator”. `WTSGetActiveConsoleSessionId` → `WinSta0\Default`. Winlogon spawn while Default is live must not be a terminal FAIL. |
-| **C-RD-TOPO-5** | Min agent **≥4.9.95** topology names. **≥4.9.97** for C-RD-PIX (Logon pixels). Warn if &lt;4.9.26. |
+| **C-RD-TOPO-4** | After Enter **or** unlock: **same `stream_id`**, no second Start, no “pick administrator”. After **lock / logoff**: same `stream_id` back to Winlogon helper. Winlogon spawn while Default is actually live must not be a terminal FAIL. |
+| **C-RD-TOPO-5** | Min agent **≥4.9.95** topology names. **≥4.9.100** for C-RD-PIX + lock/logoff follow. Warn if &lt;4.9.26. Recommend **≥4.9.100**. 4.9.94 follow-skip and 4.9.99 `gdi+black` lab are **not** acceptance. |
 
 **A — Default Connect**
 
@@ -84,6 +85,8 @@ Same `stream_id`. Dashboard must not ask the operator to pick the user again.
 | **C-RD-FOLLOW-6** | Omit `session_id` = follow (C-RD-TOPO-1). Do not bind first Active SID. |
 | **C-RD-FOLLOW-7** | Input targets the **same** desktop as capture. Dual-write Winlogon+Default after logon is forbidden (4× keys). |
 | **C-RD-FOLLOW-8** | Live `t:meta` updates `desktop`, `session_id`, `username`, `capture_method` (not start snapshot). |
+| **C-RD-FOLLOW-9** | After **lock / logoff**: same `stream_id`, `phase=switching` then Winlogon helper (`CreateProcessAsUser` + `lpDesktop=winsta0\\Winlogon` + **winlogon.exe / LogonUI token**, not the logged-on user token). LogonUI chrome must return. |
+| **C-RD-FOLLOW-10** | Switch to Default **only** when the helper reports `desktop=Default` (input desktop actually switched). **FAIL** to treat `list_sessions` username / Active as unlock. 4.9.99 lab: username listed + `persistent-user-helper` + `gdi+black`. |
 
 ---
 
@@ -116,9 +119,10 @@ Hardware cursor is usually **not** in the bitstream. Draw a local software curso
 | **C-RD-VIEW-5** | Default Connect = TOPO-1; Lock row = TOPO-2 |
 | **C-RD-VIEW-6** | `black_frame` / `winlogon_capture_black` / `CAPTURE_NO_DESKTOP` → degraded banner |
 | **C-RD-VIEW-7** | WebRTC when advertised; ICE fail → JPEG-WS ≤2s on the **same** surface |
-| **C-RD-VIEW-8** | Show `stream_progress` (`running` → `capturing` → `ws`/`webrtc` → `live`) |
-| **C-RD-VIEW-9** | Warn agent &lt;4.9.26; recommend ≥4.9.95 |
+| **C-RD-VIEW-8** | Show `stream_progress` (`running` → `capturing` → `ws`/`webrtc` → `switching` → `live`). Honor `switching` on unlock **and** lock/logoff. |
+| **C-RD-VIEW-9** | Warn agent &lt;4.9.26; recommend **≥4.9.100**. &lt;4.9.100 cannot close PIX / lock-follow. |
 | **C-RD-VIEW-10** | Do not auto-select first Active user. Frozen frames drop Live badge |
+| **C-RD-VIEW-11** | Default Connect / follow must **not** auto-open a dashboard “Kullanıcıya bağlan” password modal over the player. Operator types on the remote surface (physical console). Optional shortcut is a separate action. |
 
 **C-WL (shipped):** show sibling pre_logon row; Winlogon hint; refresh sessions after logon.
 
@@ -158,14 +162,14 @@ is still black** — see C-RD-PIX.
 
 ---
 
-## Pixels / chrome (C-RD-PIX) — P0 · ≥4.9.97
+## Pixels / chrome (C-RD-PIX) — P0 · ≥4.9.100
 
-Lab 2026-08-15 Derin-Web (dashboard Default Connect, `topology=follow`): cloud
-queued start OK; viewer stayed on **“Görüntü tam değil”**. Agent meta:
-`desktop=Winlogon`, `capture_method=persistent-user-helper`, `gdi+black` /
-`black_frame`, JPEG ~1024×768 (bytes &gt;1500) **solid black**, WebRTC advertised
-(`nvenc`) while picture dead. **This is a client capture FAIL**, not a cloud
-viewer bug. Cloud already surfaces VIEW-6 / P0-WL-2.
+Lab **2026-08-15 Derin-Web on 4.9.99**: Default Connect `topology=follow`;
+viewer “Görüntü tam değil”; meta `desktop=Winlogon`,
+`capture_method=persistent-user-helper`, `gdi+black`, JPEG ~1024×768 ~98%
+black, WebRTC advertised (`nvenc`) while picture dead. **Client capture FAIL**
+(Follow jumped to user-helper because username was still listed). Cloud viewer
+honesty already worked. **Ship / recommend client ≥4.9.100.**
 
 | ID | Rule |
 |----|------|
@@ -182,8 +186,8 @@ viewer bug. Cloud already surfaces VIEW-6 / P0-WL-2.
 | What you see in meta / JPEG | Verdict |
 |-----------------------------|---------|
 | `dxgi` / `nvenc` + wallpaper or desktop chrome, `black_frame=false` | PASS (TOPO-1 logged-on) |
-| `persistent-winlogon-helper:raw` + LogonUI/password box pixels | PASS (empty host or lock row) |
-| `gdi+black`, solid 1024×768 black, `persistent-user-helper` + Winlogon | **FAIL** PIX-2/3 |
+| `persistent-winlogon-helper:raw` + LogonUI/password box pixels | PASS (empty host, lock, or after logoff) |
+| `gdi+black`, solid 1024×768 black, `persistent-user-helper` + Winlogon | **FAIL** PIX-2/3 / FOLLOW-10 |
 | jpeg 0 B + `SESSION0_HELPER_SPAWN_FAILED` on TOPO-1 **logged-on** | **FAIL** TOPO-1 |
 | jpeg 0 B on **empty** host | **FAIL** S0 unless helper retry then PIX-2 |
 
@@ -262,7 +266,7 @@ honesty banner). Remaining boxes are **agent + lab host**.
 
 ### Host prep (do not skip)
 
-1. Note agent version on Derin-Web (or lab). **&lt;4.9.95** cannot close TOPO. **&lt;4.9.97** cannot close PIX.
+1. Note agent version on Derin-Web (or lab). **&lt;4.9.95** cannot close TOPO. **&lt;4.9.100** cannot close PIX / FOLLOW-9/10.
 2. Two physical states, **two separate runs** (reboot or logoff between if needed):
    - **Empty / lock:** no one interactively logged on at console (Logon or Win+L).
    - **Logged-on:** `administrator` (or lab user) **Active** on console, Default desktop visible on the physical screen.
@@ -287,11 +291,12 @@ honesty banner). Remaining boxes are **agent + lab host**.
 - [ ] **No** `SESSION0_HELPER_SPAWN_FAILED`. **No** Winlogon helper spawn.
 - [ ] jpeg&gt;0, `black_frame=false`.
 
-### Run D — follow after Enter (FOLLOW)
+### Run D — follow after Enter **and** after lock/logoff (FOLLOW-1…10)
 
 - [ ] From Run A: type password on the stream, Enter.
 - [ ] Same `stream_id`. ≤2s freeze, `phase=switching` then `live` Default shell.
 - [ ] Input after logon hits Default only (no 4× keys).
+- [ ] Win+L or logoff on the **same** stream: LogonUI/lock chrome returns (not `gdi+black`). No second Start.
 
 ### Run E — ICE honesty
 

@@ -1,9 +1,9 @@
 # Cloud / dashboard checklist
 
-> Contract **≥ 1.4.67**. Cloud this file, tick `[x]`, PR note with commit/date.
+> Contract **≥ 1.4.70**. Cloud this file, tick `[x]`, PR note with commit/date.
 > Do **not** add new SoT markdown here — implement against `features/*`.
 >
-> Pin: client **≥ 4.9.96** recommended · RD topology **≥ 4.9.95** · inspect **≥ 4.9.93**
+> Pin: client **≥ 4.9.100** recommended for RD lock/logon/logoff · topology **≥ 4.9.95** · inspect **≥ 4.9.93**
 > API: `https://asteria.run` · HMAC `asteria-chp-v1`
 
 **Read first:** [`../features/README.md`](../features/README.md)  
@@ -21,7 +21,8 @@ SoT: [`../features/remote-desktop.md`](../features/remote-desktop.md)
 - [x] **C-RD-TOPO-2** Lock / Logon **row**: `topology=winlogon` + `prefer=winlogon` + `pre_logon=true` + `desktop=Winlogon`. Omit SID and username.
 - [x] **C-RD-TOPO-3** User shortcut: `session_id` + `username`. Never auto-pick first Active SID.
 - [x] **C-RD-TOPO-4** After Enter: **same `stream_id`**, no second Start, no “pick administrator”.
-- [x] **C-RD-TOPO-5** Warn agent &lt;4.9.26; recommend **≥4.9.95**. 4.9.94 follow-skip is not acceptance.
+- [x] **C-RD-TOPO-5** Warn agent &lt;4.9.26; 4.9.94 follow-skip is not acceptance.
+- [ ] **C-RD-TOPO-5 / VIEW-9 (1.4.70)** Recommend **≥4.9.100**. Banner copy must not say “≥4.9.45 P0” as the current floor. Agent &lt;4.9.100 cannot close PIX / lock-follow.
 - [x] **C-RD-VIEW-1** Software cursor over video/JPEG (hardware cursor not in bitstream).
 - [x] **C-RD-VIEW-4 / CL-RD-CAD-1** CAD = `POST /api/remote/cad` → `remote_send_sas` only. No synthetic Ctrl+Alt+Del key.
 - [x] **C-RD-VIEW-6** `black_frame` / `winlogon_capture_black` / `CAPTURE_NO_DESKTOP` → degraded banner, not healthy Live.
@@ -33,6 +34,8 @@ SoT: [`../features/remote-desktop.md`](../features/remote-desktop.md)
 - [x] **C-RD-CON-8** `list_sessions` / dashboard always expose Logon/Lock sibling (`pre_logon`) even if the agent omitted it.
 - [x] **CL-RD-S0-5 / C-RD-P0-WL-2** `SESSION0_HELPER_SPAWN_FAILED` / sub-1500 B JPEG / `black_frame` never paint a healthy Live badge.
 - [x] **C-RD-VIEW-8 / FOLLOW-4** Honor `phase=switching`; Live may drop to switching/degraded; frozen frames &gt;2s drop Live.
+- [ ] **C-RD-FOLLOW-9/10 (1.4.70)** Same `stream_id` on **lock/logoff** as on unlock. Do **not** send a second Start or auto-pick the user. Do **not** treat `list_sessions` username as “Default is live”.
+- [ ] **C-RD-VIEW-11 (1.4.70)** Default Connect must **not** auto-open “Kullanıcıya bağlan” / password modal over the player. Operator types on the remote surface.
 
 ---
 
@@ -100,6 +103,6 @@ SoT: [`../features/threat-intel.md`](../features/threat-intel.md)
 
 ## After you ship
 
-1. Cloud boxes above are ticked on **1.4.67**.
+1. Cloud boxes on **1.4.67** Start/honesty stay `[x]`. **1.4.70** VIEW-9 / FOLLOW-9/10 / VIEW-11 are **open** until production dashboard matches.
 2. Pull `asteria-contract` on the cloud host and `publish_contract.sh`.
-3. **Client:** tick [`../features/CLIENT_CHECKLIST.md`](../features/CLIENT_CHECKLIST.md) on a logged-on lab host (**≥4.9.95** RD / **≥4.9.96** recommended). Default Connect must not spawn Winlogon / jpeg=0B.
+3. **Client:** tick [`../features/CLIENT_CHECKLIST.md`](../features/CLIENT_CHECKLIST.md) only after Derin-Web (or lab) is on **≥4.9.100** and Runs A–D pass.

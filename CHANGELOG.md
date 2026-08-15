@@ -1,5 +1,24 @@
 # Changelog — asteria-contract
 
+## 1.4.70 — 2026-08-15
+
+### Physical-console follow (lock / logon / logoff) — client **4.9.100**
+
+Derin-Web lab on **4.9.99**: Default Connect still `persistent-user-helper` +
+`gdi+black` while `administrator` stayed listed. Root cause: Follow treated a
+WTS username as “Default is live” and jumped off Winlogon while the **input
+desktop** was still Winlogon. User token cannot BitBlt `winsta0\Winlogon`.
+
+Client **4.9.100** (GitHub): same `stream_id` — Winlogon helper + `winlogon.exe`
+token while locked/logged-off; DXGI Default only after helper reports
+`desktop=Default`; lock/logoff returns to Winlogon.
+
+| Piece | Path |
+|-------|------|
+| FOLLOW-9/10, PIX floor **≥4.9.100**, TOPO-5 recommend | [`features/remote-desktop.md`](features/remote-desktop.md) |
+| Client lab still **open** (PIX not ticked) | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) |
+| Cloud: recommend 4.9.100; no credential modal over the player; banner copy | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) |
+
 ## 1.4.69 — 2026-08-15
 
 ### Remote Desktop pixels (C-RD-PIX) — client P0
