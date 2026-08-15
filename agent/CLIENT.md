@@ -26,7 +26,7 @@ Bu dosya **özet + link**. Şema/detay için ilgili MD’ye git; buraya kopyalam
 0h. [`remote-desktop-p0.md`](./remote-desktop-p0.md) — **P0** Winlogon black + ICE honesty (**1.4.37+**, ≥ **4.9.37**)
 0h2. [`winlogon-session0-capture.md`](./winlogon-session0-capture.md) — **P0** Session-0 → Winlogon helper (**1.4.50/51**, ≥ **4.9.84**)
 0h3. [`remote-cad-winlogon.md`](./remote-cad-winlogon.md) — **P0** CAD SendSAS honesty + Winlogon input (**1.4.52–54**, ≥ **4.9.86**)
-0h4. [`winlogon-logon-chrome.md`](./winlogon-logon-chrome.md) — **P0** Logon/SAS chrome pixels, solid blue ≠ success (**1.4.55**, ≥ **4.9.87**)
+0h4. [`winlogon-logon-chrome.md`](./winlogon-logon-chrome.md) — **P0** Logon chrome + settle live meta (**1.4.55–56**, ≥ **4.9.87** / lab **≥4.9.91**)
 0i. [`../api/12-command-envelope-v2.md`](../api/12-command-envelope-v2.md) — envelope v2 schema (observe-only; **no emit**) (**1.4.37**)  
 1. [`../FLEET.md`](../FLEET.md) — min sürüm matrisi  
 2. [`polling.md`](./polling.md) — cadence  

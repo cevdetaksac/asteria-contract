@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.55** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.56** · Repo: https://github.com/cevdetaksac/asteria-contract  
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.56** | Logon lab: live meta after settle (not start snapshot); `phase=degraded` | **≥4.9.91**; cloud live meta |
 | **1.4.55** | Logon chrome pixels — solid blue ≠ Winlogon success | **≥4.9.87** |
 | **1.4.54** | CAD meta lab close — sas_gen int + ui≠unknown + effect (`4.9.86`) | ≥**4.9.86** (meta accepted) |
 | **1.4.53** | CAD honesty lab note — `SAS_NO_EFFECT` OK; real SAS UI still open | honesty **4.9.85**; effect → **≥4.9.86** |
@@ -79,7 +80,7 @@
 | [agent/remote-desktop-p0.md](agent/remote-desktop-p0.md) | P0 Winlogon black-screen + WebRTC ICE honesty | ≥ **4.9.37** |
 | [agent/winlogon-session0-capture.md](agent/winlogon-session0-capture.md) | Session-0 → console Winlogon helper (C-RD-S0) | ≥ **4.9.84** ✅ |
 | [agent/remote-cad-winlogon.md](agent/remote-cad-winlogon.md) | CAD SendSAS honesty + Winlogon input (C-RD-CAD / IN-WL) | ≥ **4.9.86** ✅ |
-| [agent/winlogon-logon-chrome.md](agent/winlogon-logon-chrome.md) | Logon/SAS chrome pixels (solid blue ≠ success) | ≥ **4.9.87** |
+| [agent/winlogon-logon-chrome.md](agent/winlogon-logon-chrome.md) | Logon/SAS chrome pixels; lab uses settle live meta (≥4.9.91) | ≥ **4.9.87** / lab **≥4.9.91** |
 | [agent/remote-stream-progress.md](agent/remote-stream-progress.md) | Live `stream_progress` stages for RD connect UX | ≥ **4.9.38** |
 | [agent/firewall-management.md](agent/firewall-management.md) | Asteria FW inventory + dashboard page (1.4.40) | ≥ **4.9.40** |
 | [agent/firewall-windows-parity.md](agent/firewall-windows-parity.md) | Windows FW MMC parity (all rules + profiles + mutate) | ≥ **4.9.41** |

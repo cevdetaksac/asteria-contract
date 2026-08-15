@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.56 — 2026-08-15
+
+### Logon lab: do not freeze `remote_stream_start` snapshot
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Per-frame `t:meta` settle fields; `stream_progress.phase=degraded` | [`agent/winlogon-logon-chrome.md`](agent/winlogon-logon-chrome.md), [`agent/remote-stream-progress.md`](agent/remote-stream-progress.md) | **client ≥4.9.91** |
+| Status/dashboard use last live meta (method/chrome/variance/hwnd/`inputs_applied`) | cloud `routes_remote` + `dashboard_remote` | cloud shipped |
+| Soft-start `success=true` + `gdi+flat` is **not** terminal; `winlogon_capture_flat` only on real error / `phase=failed` | same | cloud + client |
+
 ## 1.4.55 — 2026-08-07
 
 ### Winlogon Logon chrome pixels (solid blue ≠ success)

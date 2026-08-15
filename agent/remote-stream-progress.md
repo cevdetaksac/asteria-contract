@@ -1,6 +1,6 @@
 # Remote stream progress — live stage events (dashboard honesty)
 
-> **Contract VERSION:** **1.4.39**  
+> **Contract VERSION:** **1.4.56** (phase `degraded` added; original 1.4.39)  
 > Status: **Normative (client ≥ 4.9.38 target)**  
 > Related: [`remote-desktop-p0.md`](./remote-desktop-p0.md) ·
 > [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md) ·
@@ -48,7 +48,8 @@ Aliases accepted by cloud/dashboard: `t: "remote_progress"` | `"progress"`.
 | `capturing` / `encoding` / `streaming` | Producing media | 3 · Channel |
 | `ws` / `channel_open` | Agent media WS up | 3 · Channel |
 | `webrtc` / `ice` / `dtls` | WebRTC path | 3 · Channel |
-| `live` / `connected` | First real frame / media up | 4 · Live |
+| `degraded` | LogonUI chrome waiting (soft-start; **not** fail) | 3 · Channel |
+| `live` / `connected` | First real frame / media up — **not** with +flat/+black | 4 · Live |
 | `failed` / `error` | Terminal failure (`error` field) | fail |
 
 Emit **at least**:
@@ -67,7 +68,8 @@ Rate-limit: ≤ **4 events/s**; coalesce noisy ICE ticks.
 | **C-RD-PROG-1** | During `remote_stream_start` and `remote_session_prepare`, emit `stream_progress` on agent RD WS (or control WS if RD agent socket not yet up — cloud may only relay RD agent WS today) |
 | **C-RD-PROG-2** | Never stay silent > **3 s** while status is `running` without a progress tick or terminal result |
 | **C-RD-PROG-3** | `failed` progress MUST include `error` matching command result (`CAPTURE_NO_DESKTOP`, `AUTH_FAILED`, …) |
-| **C-RD-PROG-4** | Do not emit `live`/`connected` for black-fill-only frames (see P0-A) |
+| **C-RD-PROG-4** | Do not emit `live`/`connected` for black-fill-only **or** unbroken flat frames (see P0-A / C-RD-CHROME-8) |
+| **C-RD-PROG-5** | `phase=degraded` means LogonUI chrome pending; MUST NOT be treated as `failed` |
 
 ## Cloud (shipped with 1.4.38 dashboard)
 
