@@ -1,5 +1,7 @@
 # Anti-brick — account-gated critical actions
 
+> **Behavior SoT:** [`../features/account-safety.md`](../features/account-safety.md) (**≥ 1.4.61**). Appendix below.
+
 > **Contract:** **1.4.38** (was 1.4.34; undo_mail_path wire)  
 > **Min client:** **≥ 4.9.46** (1.3 probe + rolled_back alert; floor was 4.9.36)  
 > **Cloud:** silent-hours defaults OFF + dashboard auto-link + undo mail + **`undo_mail_path` on account-status** (this doc + [`../cloud/CLOUD_BACKLOG.md`](../cloud/CLOUD_BACKLOG.md))  

@@ -1,4 +1,7 @@
-# Threat Intel Feed — API contract
+# Threat Intel Feed
+
+> **Behavior SoT:** [`../features/threat-intel.md`](../features/threat-intel.md) (**≥ 1.4.61**).
+> Envelope/HTTP details below are appendix. Conflicts → feature file wins.
 
 > **Contract:** asteria-contract · see root `VERSION`  
 > **Client:** ≥ **4.5.61** poll/ACK · **≥ 4.9.7** intel apply · **≥ 4.9.33** `AR-INTEL-*` · ACK `firewall_current` optional **≥4.9.94**  

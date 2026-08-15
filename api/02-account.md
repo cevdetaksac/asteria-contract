@@ -1,5 +1,7 @@
 # Account Link & Multi-Server
 
+> **Behavior SoT:** [`../features/account-safety.md`](../features/account-safety.md) (**≥ 1.4.61**). Appendix below.
+
 > Cloud / Dashboard API sözleşmeleri — agent prompt’larından birleştirildi.
 > API: `https://asteria.run`
 

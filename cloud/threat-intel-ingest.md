@@ -1,4 +1,7 @@
-# CLOUD — Threat Intel & Security Layers Feed
+# CLOUD — Threat Intel ingest
+
+> **Moved.** [`../features/threat-intel.md`](../features/threat-intel.md) (**≥ 1.4.61**).
+> Client does not fetch external feeds.
 
 > **Audience:** Cloud / Dashboard API implementers  
 > **Client:** ≥ **4.5.61** poll/ACK · **≥ 4.9.7** normative `HP-INTEL-*` apply  

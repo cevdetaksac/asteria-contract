@@ -1,5 +1,8 @@
 # Self-Update & Dashboard Feedback
 
+> **Behavior SoT:** [`../features/self-update.md`](../features/self-update.md) (**≥ 1.4.61**).
+> This file is a historical appendix. Conflicts → feature file wins.
+
 > Cloud / Dashboard API sözleşmeleri — agent prompt’larından birleştirildi.
 > API: `https://asteria.run`
 

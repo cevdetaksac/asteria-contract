@@ -1,4 +1,6 @@
-# Self-Update progress ticks (download % + phases)
+# Self-Update progress ticks
+
+> **Moved.** [`../features/self-update.md`](../features/self-update.md) (**≥ 1.4.61**).
 
 > **Contract VERSION:** **1.4.46**  
 > Status: **Normative (client ≥ 4.9.60 recommended; min ≥ 4.9.54 with progress)**  

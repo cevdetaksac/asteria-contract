@@ -1,5 +1,7 @@
 # Service Port Relocate — one-click real-service → safe port
 
+> **Behavior SoT:** [`../features/service-port.md`](../features/service-port.md) (**≥ 1.4.61**). Appendix below.
+
 > **Contract VERSION:** **1.4.44** (base) · extended by **1.4.45**  
 > Status: **Normative** — see **[`service-port-relocate-client.md`](./service-port-relocate-client.md)** for bidirectional sync + GUI (client ≥ **4.9.45**)  
 > Related: [`attacks-and-services.md`](./attacks-and-services.md) ·

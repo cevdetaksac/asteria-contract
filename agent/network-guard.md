@@ -1,5 +1,7 @@
 # Network Guard — offline fidye bombası + ağ sürücüsü yedek/kurtarma
 
+> **Behavior SoT:** [`../features/network-guard.md`](../features/network-guard.md) (**≥ 1.4.61**). Appendix below.
+
 > **Contract VERSION:** root `VERSION`
 > **API base:** `https://asteria.run`
 > **Min client:** **≥ 4.7.0** (Network Guard); dashboard panel / `auto_restore_network` ≥ **4.9.12**; soft surface inform ≥ **4.9.15** (contract **1.4.17**)

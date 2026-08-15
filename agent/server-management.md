@@ -1,5 +1,7 @@
 # Server Management — Dashboard ↔ Client
 
+> **Behavior SoT:** [`../features/server-management.md`](../features/server-management.md) · inspect [`../features/process-inspect.md`](../features/process-inspect.md) (**≥ 1.4.61**). Appendix below.
+
 > Contract **1.4.8** (+ cloud Users **1.4.24**) · Status: **normative (additive)**  
 > Production floor unchanged: **client ≥ 4.9.0**  
 > Target ship: client **≥ 4.9.4** (or next patch that lands this package)  

@@ -1,5 +1,7 @@
 # Firewall Management — Asteria inventory (1.4.40)
 
+> **Behavior SoT:** [`../features/firewall.md`](../features/firewall.md) (**≥ 1.4.61**). Appendix below.
+
 > **Contract VERSION:** **1.4.40** (superseded for full host parity by **1.4.41**  
 > [`firewall-windows-parity.md`](./firewall-windows-parity.md) — client ≥ **4.9.41**)  
 > Status: **Normative for Asteria-scoped inventory (client ≥ 4.9.40)**; keep implementing  

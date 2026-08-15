@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.60** · Repo: https://github.com/cevdetaksac/asteria-contract
+> **VERSION 1.4.61** · Repo: https://github.com/cevdetaksac/asteria-contract
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,7 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
-| **1.4.60** | Feature contracts: Remote Desktop is one file | [`features/remote-desktop.md`](features/remote-desktop.md) |
+| **1.4.61** | Fold remaining products into `features/*` | [`features/README.md`](features/README.md) |
 | **1.4.58** | Console-first RD: default Logon; follow Default after logon | **≥4.9.93**; cloud default winlogon |
 | **1.4.57** | On-demand `inspect_process` + rundll32 LOLBIN false-positive fix | **≥4.9.93** |
 | **1.4.56** | Logon lab: live meta after settle (not start snapshot); `phase=degraded` | **≥4.9.91**; cloud live meta |
@@ -59,8 +59,17 @@
 
 | Dosya | Konu | Min client |
 |-------|------|------------|
-| [features/README.md](features/README.md) | Model: client + cloud read one MD per feature | — |
-| [features/remote-desktop.md](features/remote-desktop.md) | **RD SoT** — topology, follow, viewer, Session-0, CAD, P0 | **≥ 4.9.95** |
+| [features/README.md](features/README.md) | One MD per product | — |
+| [features/remote-desktop.md](features/remote-desktop.md) | RD | **≥ 4.9.95** |
+| [features/self-update.md](features/self-update.md) | Self-update trust/asset/progress | **≥ 4.9.96** |
+| [features/process-inspect.md](features/process-inspect.md) | `inspect_process` | **≥ 4.9.93** |
+| [features/server-management.md](features/server-management.md) | Users / processes / services | **≥ 4.9.4** |
+| [features/threat-intel.md](features/threat-intel.md) | Intel bundle ACK | **≥ 4.9.96** |
+| [features/firewall.md](features/firewall.md) | AR-BLOCK / inventory / MMC | **≥ 4.9.41** |
+| [features/defense-policy.md](features/defense-policy.md) | Observe / balanced / isolate | **≥ 4.9.17** |
+| [features/network-guard.md](features/network-guard.md) | Alert-only + restore confirm | **≥ 4.7.3** |
+| [features/account-safety.md](features/account-safety.md) | Link / unlink / anti-brick | **≥ 4.9.46** |
+| [features/service-port.md](features/service-port.md) | Relocate listen port | **≥ 4.9.45** |
 
 Pointers (do not extend): `api/05-remote-desktop.md` (envelopes), `agent/remote-input.md` (input appendix), `cloud/remote-console-parity.md` and other `*remote*` / `*winlogon*` stubs.
 

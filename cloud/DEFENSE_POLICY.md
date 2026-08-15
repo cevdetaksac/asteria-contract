@@ -1,5 +1,7 @@
 # Defense Policy — Cloud implementation (tiered response)
 
+> **Behavior SoT:** [`../features/defense-policy.md`](../features/defense-policy.md) (**≥ 1.4.61**). Appendix below.
+
 > **Contract VERSION:** root `VERSION` (**1.4.19**)  
 > **Status:** Normative for **cloud + dashboard** (client apply target ≥ **4.9.17**)  
 > **Planning SoT:** [`../ROADMAP_TIERED_DEFENSE.md`](../ROADMAP_TIERED_DEFENSE.md)  

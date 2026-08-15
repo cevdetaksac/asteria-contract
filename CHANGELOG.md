@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.61 — 2026-08-15
+
+### Fold remaining features; drop duplicate SoTs
+
+| Piece | Path |
+|-------|------|
+| Self-update, inspect, threat-intel, firewall, defense, network, account, relocate | [`features/`](features/README.md) |
+| 304 intel ACK forbidden; `firewall_current` on 200 | [`features/threat-intel.md`](features/threat-intel.md) · client **≥4.9.96** |
+| Inspect never confirm-gated on agent catalog | [`features/process-inspect.md`](features/process-inspect.md) |
+
 ## 1.4.60 — 2026-08-15
 
 ### Feature contracts (Remote Desktop folded)

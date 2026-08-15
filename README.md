@@ -4,7 +4,7 @@
 
 | | |
 |--|--|
-| **VERSION** | [`VERSION`](VERSION) (**1.4.60**) |
+| **VERSION** | [`VERSION`](VERSION) (**1.4.61**) |
 | **Index** | [`INDEX.md`](INDEX.md) |
 | **Features** | [`features/README.md`](features/README.md) — one MD per product |
 | **Index** | [`INDEX.md`](INDEX.md) |

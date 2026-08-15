@@ -1,5 +1,7 @@
 # Firewall blocks & sync
 
+> **Behavior SoT:** [`../features/firewall.md`](../features/firewall.md) (**≥ 1.4.61**). Appendix below.
+
 > **Contract VERSION:** root `VERSION` (**1.4.31+** AR-* prefix; see rebrand for signing)  
 > **Auth:** Bearer  
 > **İlgili:** [`../agent/register-protection.md`](../agent/register-protection.md) · threat-intel `AR-INTEL-*` → [`09-threat-intel.md`](./09-threat-intel.md)  

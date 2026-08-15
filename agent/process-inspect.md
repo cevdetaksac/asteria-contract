@@ -1,4 +1,6 @@
-# Process inspect (on-demand) — C-PROC-INSPECT
+# Process inspect (on-demand)
+
+> **Moved.** [`../features/process-inspect.md`](../features/process-inspect.md) (**≥ 1.4.61**).
 
 > **Contract VERSION:** **1.4.59**  
 > **Client:** ≥ **4.9.93**  
