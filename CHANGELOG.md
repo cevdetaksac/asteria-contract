@@ -1,5 +1,18 @@
 # Changelog — asteria-contract
 
+## 1.4.58 — 2026-08-15
+
+### Console-first remote (Logon default; follow after logon)
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Default Connect = console Logon (`prefer=winlogon`, no `session_id`) | [`cloud/remote-console-parity.md`](cloud/remote-console-parity.md) | cloud + dashboard shipped |
+| User/session list is **optional shortcut**, not a prerequisite | same · `dashboard_remote` | cloud |
+| After credentials: **same `stream_id`** follows console to `WinSta0\Default` (no second Start) | **C-RD-FOLLOW-*** | **client ≥4.9.93** |
+| Frozen last JPEG after Enter = FAIL (helper stuck on Winlogon) | same | client P0 |
+
+Lab 4.9.92: password+Enter logged on (`administrator` SID 3 Active) while capture stayed on Winlogon helper; `age_sec` grew, `diag=agent_ws_no_frames`.
+
 ## 1.4.57 — 2026-08-15
 
 ### On-demand process inspect (C-PROC-INSPECT) + rundll32 FP

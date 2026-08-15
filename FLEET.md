@@ -40,6 +40,7 @@
 | Network Adapter Admin + golden watchdog | `agent/network-adapter-admin.md` | client **≥ 4.9.42**; cloud ≥ **1.4.42** |
 | Windows Tools Repair (remote OS repair toolkit) | `agent/tools-repair.md` | client **≥ 4.9.79**; cloud ≥ **1.4.49** (whitelist + `/dashboard/server/tools` shipped) |
 | Console RD Winlogon physical-parity | `cloud/remote-console-parity.md` | client **≥ 4.9.49**; cloud ≥ **1.4.43**; viewer cursor C-RD-VIEW ≥ **1.4.47** |
+| Console-first Logon + follow Default after logon (C-RD-FOLLOW) | `cloud/remote-console-parity.md` | client **≥ 4.9.93**; cloud default winlogon ≥ **1.4.58** |
 | Winlogon Session-0 capture (pre-logon helper / no invent SID 1) | `agent/winlogon-session0-capture.md` | client **≥ 4.9.84** (**accepted** 1.4.51); cloud omit SID ≥ **1.4.50** |
 | Remote CAD + Winlogon input honesty (real SAS / no false SendSAS ok) | `agent/remote-cad-winlogon.md` | meta **≥4.9.86** ✅ (1.4.54); cloud CAD ≥ **1.4.52** |
 | Winlogon Logon/SAS chrome (no solid-blue false live) | `agent/winlogon-logon-chrome.md` | chrome **≥ 4.9.87**; live-meta lab **≥ 4.9.91** / contract **1.4.56** |

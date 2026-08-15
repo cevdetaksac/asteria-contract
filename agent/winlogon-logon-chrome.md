@@ -6,7 +6,7 @@
 > Min client (live meta / soft-start lab): **≥ 4.9.91**  
 > Related: [`winlogon-session0-capture.md`](./winlogon-session0-capture.md) ·
 > [`remote-cad-winlogon.md`](./remote-cad-winlogon.md) ·
-> [`../cloud/remote-console-parity.md`](../cloud/remote-console-parity.md)
+> [`../cloud/remote-console-parity.md`](../cloud/remote-console-parity.md) (**C-RD-FOLLOW**, 1.4.58)
 
 ## Lab evidence (2026-08-07 — Derin-Web / **4.9.86**)
 
@@ -74,4 +74,4 @@ Host: Logon row Connect on console lock/logon.
 
 ## Operator handoff
 
-> Contract **1.4.56**. Lab **≥4.9.91**: do not freeze start snapshot (`gdi+flat`/`hwnd=0`/`inputs_applied=2`). Score settle live meta + `inputs_applied++`. Soft-start / `phase=degraded` are not fail.
+> Contract **1.4.58**. Dashboard default = Logon/console. After Enter, client **≥4.9.93** MUST follow Default (C-RD-FOLLOW). Lab **≥4.9.91**: score settle live meta, not start snapshot.

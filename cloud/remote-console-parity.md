@@ -1,7 +1,7 @@
 # Console Remote Desktop — physical-console parity (Winlogon)
 
-> **Contract VERSION:** **1.4.50** (viewer C-RD-VIEW since **1.4.47**)  
-> Status: **Normative (client ≥ 4.9.49 · Session-0 pixels ≥ 4.9.84 · dashboard C-RD-VIEW ≥ 1.4.47)**  
+> **Contract VERSION:** **1.4.58** (viewer C-RD-VIEW since **1.4.47**; console-first + follow **1.4.58**)  
+> Status: **Normative (client ≥ 4.9.49 · Session-0 pixels ≥ 4.9.84 · follow after logon ≥ 4.9.93 · dashboard C-RD-VIEW ≥ 1.4.47)**  
 > Related: [`REMOTE_DESKTOP_WINLOGON.md`](./REMOTE_DESKTOP_WINLOGON.md) ·
 > [`../agent/remote-desktop-p0.md`](../agent/remote-desktop-p0.md) ·
 > [`../agent/winlogon-session0-capture.md`](../agent/winlogon-session0-capture.md) ·
@@ -56,7 +56,7 @@ non-logon user/session rows.
 | **C-RD-CON-3** | **Never** bind username on this path (cloud strips it). Username forces Default desktop stick |
 | **C-RD-CON-4** | Capture named desktop `Winlogon` first; `OpenInputDesktop` alone is insufficient when Default is active |
 | **C-RD-CON-5** | Persistent `capture_method=gdi+black` / all-black frames while claiming `desktop=Winlogon` = **FAIL** (see P0-A) |
-| **C-RD-CON-6** | After credentials accepted, switch capture to Default for that session without requiring a second Start |
+| **C-RD-CON-6** | After credentials accepted, switch capture **and input** to Default for that console session **without** a second Start (see **C-RD-FOLLOW-***)
 | **C-RD-CON-7** | `remote_send_sas` must target the same console/session as the stream (no username on Winlogon CAD) |
 | **C-RD-CON-8** | Health / `list_sessions` always emit a **Logon / Lock** row with `pre_logon:true` (+ `can_capture` when known), including as sibling of an Active user on the same SID |
 | **C-RD-CON-9** | Surface progress honestly: `stream_progress` stages + capture meta (`desktop`, `capture_method`, `black_frame`) |
@@ -75,15 +75,44 @@ do the same on the existing viewer surface.
 | **C-RD-VIEW-2** | Map pointer with normalized `x,y ∈ [0,1]` against `meta.native_width/height` + `origin_x/y` ([`05-remote-desktop.md`](../api/05-remote-desktop.md) §2). Support negative origins |
 | **C-RD-VIEW-3** | Coalesce only `move`; flush `mousedown` / `mouseup` / `wheel` / `key*` immediately (C-RD-4) |
 | **C-RD-VIEW-4** | Toolbar **CAD** → `remote_send_sas` / `POST /api/remote/cad` **only** — never Ctrl+Alt+Delete as typed keys |
-| **C-RD-VIEW-5** | Lock/logon row Start uses C-WL / C-RD-CON start wire (`prefer=winlogon`, `pre_logon`, `desktop=Winlogon`, **no username**) |
+| **C-RD-VIEW-5** | Default Connect is Logon/console (`prefer=winlogon`, `pre_logon`, `desktop=Winlogon`, **no username**, **no session_id**). User/session rows are optional shortcuts. |
 | **C-RD-VIEW-6** | On `black_frame` / `winlogon_capture_black` / `CAPTURE_NO_DESKTOP`: explicit degraded banner — never a silent empty player |
 | **C-RD-VIEW-7** | Prefer WebRTC when advertised; ICE fail → JPEG-WS ≤2s on the **same** surface |
 | **C-RD-VIEW-8** | Show `stream_progress` (`running` → `capturing` → `ws`/`webrtc` → `live`) |
-| **C-RD-VIEW-9** | Min client gate: warn if agent &lt; **4.9.26**; recommend ≥ **4.9.84** for Session-0 Logon pixels (C-RD-S0) |
+| **C-RD-VIEW-9** | Min client gate: warn if agent &lt; **4.9.26**; recommend ≥ **4.9.93** for logon→desktop follow (C-RD-FOLLOW) |
+| **C-RD-VIEW-10** | Do **not** auto-select the first Active user. Default option = Logon. Frozen frames (`diag=agent_ws_no_frames` / `age_sec` high) MUST drop Live badge. |
 
 ---
 
-## Non-goals
+## After logon: follow the console (C-RD-FOLLOW-*) — **P0 · ≥4.9.93**
+
+Chrome Remote Desktop model: one connection to the **physical console**.
+The operator types credentials **on the stream**. When Windows creates/activates
+the interactive user session, capture and input **stay on that console**.
+A user list is optional (direct attach to an already-open session). It is **not**
+required to start, and **must not** be required after Enter.
+
+Lab **4.9.92** FAIL: password+Enter → `administrator` SID Active, helper still on
+Winlogon, last JPEG frozen, `diag=agent_ws_no_frames`.
+
+| ID | Rule |
+|----|------|
+| **C-RD-FOLLOW-1** | After interactive logon or unlock, capture **and** input MUST follow `WTSGetActiveConsoleSessionId` onto `WinSta0\Default` of that session. **Same `stream_id`.** No second `remote_stream_start`. Dashboard must not ask the operator to pick the user again. |
+| **C-RD-FOLLOW-2** | Do **not** leave the Winlogon helper attached once LogonUI/SAS is dismissed and the console is a user Default desktop. If the helper is session-bound, tear it down and reattach (or spawn) on the new SID. |
+| **C-RD-FOLLOW-3** | Handle `WTS_CONSOLE_CONNECT`, `WTS_SESSION_LOGON`, `WTS_SESSION_UNLOCK`, and secure-desktop → Default switches: `SetThreadDesktop` / helper rebind **before** the next frame. |
+| **C-RD-FOLLOW-4** | Across the switch, frames MUST NOT freeze on the last Logon JPEG for &gt;2s. Emit `stream_progress.phase=switching` then `live`. A growing `age_sec` with `agent_ws_no_frames` after a successful logon is **FAIL**. |
+| **C-RD-FOLLOW-5** | After Default attach, prefer DXGI / NVENC (or the normal interactive-session encoder). Winlogon JPEG helper (~4 fps) is **not** the post-logon path. |
+| **C-RD-FOLLOW-6** | `remote_stream_start` **without** `session_id` = console follow (`prefer=winlogon` until Default exists, then follow). Do **not** bind the first Active SID from `list_sessions`. Optional `session_id` / `username` is the shortcut path only. |
+| **C-RD-FOLLOW-7** | Input (key / mouse / CAD) targets the **same** desktop as capture after the switch. Dual-write Winlogon+Default after logon is forbidden (causes 4× keys). |
+| **C-RD-FOLLOW-8** | `t:meta` MUST update `desktop`, `session_id`, `username`, `capture_method` after follow (live meta, not start snapshot). |
+
+### Client handoff (paste)
+
+Target **≥4.9.93**. Contract **1.4.58**. Close C-RD-FOLLOW-1…8 on the same train as chrome/input (4.9.92).
+
+Proof on Derin-Web: Logon Start (no user pick) → CAD → type password → Enter → **desktop wallpaper / shell**, `desktop=default`, frames keep moving, `inputs_applied++` still works. Do **not** require Stop → pick administrator → Connect.
+
+---
 
 - Hypervisor / iLO / Proxmox VGA passthrough (out of agent scope)
 - Capturing Session 0 service desktop as a substitute for Winlogon
@@ -108,7 +137,7 @@ do the same on the existing viewer surface.
 
 - [x] Empty host (no user logged on): Logon ekranı → non-black logon UI ≤ 10s — **4.9.84 Derin-Web**
 - [ ] User Active + lock: sibling Logon row → lock UI, not that user's Default desktop
-- [ ] Type password on stream → unlock/logon succeeds → Default desktop appears
+- [ ] Type password on stream → unlock/logon succeeds → **Default desktop appears on the same stream** (C-RD-FOLLOW; open through **4.9.92**)
 - [ ] CAD while on Winlogon → SAS UI (Task Manager / password change options as applicable) — **open 1.4.52 / client ≥4.9.85** (lab: false SendSAS ok on 4.9.84)
 - [x] Omit `session_id` → still attaches correct console (not wrong RDP session / invent SID 1)
 - [x] No sustained `gdi+black` while `desktop=Winlogon` in hello/meta — helper `persistent-winlogon-helper:raw`
@@ -124,16 +153,14 @@ do the same on the existing viewer surface.
 - [x] **C-RD-VIEW-6** black_frame / Winlogon black / `CAPTURE_NO_DESKTOP` degraded banner
 - [x] **C-RD-VIEW-7** ICE fail → JPEG ≤2s, same surface
 - [x] **C-RD-VIEW-8** `stream_progress` stages on existing pipe
-- [x] **C-RD-VIEW-9** agent &lt;4.9.26 warn / ≥4.9.84 Session-0 Logon recommend banner
+- [x] **C-RD-VIEW-9** agent &lt;4.9.26 warn / ≥4.9.93 follow recommend
+- [x] **C-RD-VIEW-10** default option Logon; no auto-pick Active user; stale Live dropped
 
 ### Remaining (client lab — not dashboard)
 
-Fleet clients on **≥4.9.49** carry C-RD-CON Winlogon attach; **≥4.9.83** still fails
-Session-0 helper spawn on some hosts (`jpeg=0B`) — close with **≥4.9.84** / C-RD-S0.
-If sustained `gdi+black`, treat as client P0-A — viewer shows the honest banner.
+**C-RD-FOLLOW** after Enter: **≥4.9.93**. 4.9.92 stays on Winlogon helper → frozen JPEG.
 ---
 
 ## Min client
 
-**≥ 4.9.49** for IR console parity wire; **≥ 4.9.84** for Session-0 Logon **pixels**.  
-Wire floor remains ≥ **4.9.26**; P0 black-frame honesty ≥ **4.9.45**.
+**≥ 4.9.49** wire; **≥ 4.9.84** Session-0 Logon pixels; **≥ 4.9.93** C-RD-FOLLOW (logon → Default, same stream).
