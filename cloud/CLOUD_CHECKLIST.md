@@ -1,9 +1,9 @@
 # Cloud / dashboard checklist
 
-> Contract **≥ 1.4.70**. Cloud this file, tick `[x]`, PR note with commit/date.
+> Contract **≥ 1.4.71**. Cloud this file, tick `[x]`, PR note with commit/date.
 > Do **not** add new SoT markdown here — implement against `features/*`.
 >
-> Pin: client **≥ 4.9.100** recommended for RD lock/logon/logoff · topology **≥ 4.9.95** · inspect **≥ 4.9.93**
+> Pin: client **≥ 4.9.101** recommended (smoothness) · **≥ 4.9.100** PIX/lock-follow · topology **≥ 4.9.95** · inspect **≥ 4.9.93**
 > API: `https://asteria.run` · HMAC `asteria-chp-v1`
 
 **Read first:** [`../features/README.md`](../features/README.md)  
@@ -17,12 +17,15 @@ How to mark: `[x]` = verified in **production** dashboard/API (not just code rev
 
 SoT: [`../features/remote-desktop.md`](../features/remote-desktop.md)
 
-- [x] **C-RD-TOPO-1** Default Connect / “Logon · varsayılan” Start: `{ topology:"follow", stream_id, fps }` only. Do **not** send `prefer`, `pre_logon`, `desktop`, `session_id`, `username`.
+- [x] **C-RD-TOPO-1** Default Connect / “Logon · varsayılan” Start: `{ topology:"follow", stream_id }` only. Do **not** send `prefer`, `pre_logon`, `desktop`, `session_id`, `username`. **1.4.71:** also send `fps:30`, `quality:72`, `max_width:1920` (see SMOOTH-1).
 - [x] **C-RD-TOPO-2** Lock / Logon **row**: `topology=winlogon` + `prefer=winlogon` + `pre_logon=true` + `desktop=Winlogon`. Omit SID and username.
 - [x] **C-RD-TOPO-3** User shortcut: `session_id` + `username`. Never auto-pick first Active SID.
 - [x] **C-RD-TOPO-4** After Enter: **same `stream_id`**, no second Start, no “pick administrator”.
 - [x] **C-RD-TOPO-5** Warn agent &lt;4.9.26; 4.9.94 follow-skip is not acceptance.
-- [ ] **C-RD-TOPO-5 / VIEW-9 (1.4.70)** Recommend **≥4.9.100**. Banner copy must not say “≥4.9.45 P0” as the current floor. Agent &lt;4.9.100 cannot close PIX / lock-follow.
+- [ ] **C-RD-TOPO-5 / VIEW-9 (1.4.70/71)** Recommend **≥4.9.101** (smoothness) and **≥4.9.100** (PIX). Banner copy must not say “≥4.9.45 P0” as the current floor.
+- [ ] **C-RD-SMOOTH-1 (1.4.71)** Every `remote_stream_start` uses `fps≥30`, `quality≥72`, `max_width:1920`. Remove `fps:12` / `quality:40` / `max_width:1280` from dashboard defaults and samples.
+- [ ] **C-RD-SMOOTH-2 (1.4.71)** WebRTC offer includes `ice_servers` with **TURNS on 443** (and STUN). Host UDP through Cloudflare is often dead; TCP 443 alone is not WebRTC media.
+- [ ] **C-RD-SMOOTH-5 (1.4.71)** Viewer paints JPEG-WS as video (≥24 fps), not a 12 Hz image. ICE fail keeps the same surface at video rate.
 - [x] **C-RD-VIEW-1** Software cursor over video/JPEG (hardware cursor not in bitstream).
 - [x] **C-RD-VIEW-4 / CL-RD-CAD-1** CAD = `POST /api/remote/cad` → `remote_send_sas` only. No synthetic Ctrl+Alt+Del key.
 - [x] **C-RD-VIEW-6** `black_frame` / `winlogon_capture_black` / `CAPTURE_NO_DESKTOP` → degraded banner, not healthy Live.
@@ -103,6 +106,6 @@ SoT: [`../features/threat-intel.md`](../features/threat-intel.md)
 
 ## After you ship
 
-1. Cloud boxes on **1.4.67** Start/honesty stay `[x]`. **1.4.70** VIEW-9 / FOLLOW-9/10 / VIEW-11 are **open** until production dashboard matches.
+1. Cloud boxes on **1.4.67** Start/honesty stay `[x]`. **1.4.70** VIEW-9 / FOLLOW-9/10 / VIEW-11 and **1.4.71** SMOOTH-1/2/5 are **open** until production dashboard matches.
 2. Pull `asteria-contract` on the cloud host and `publish_contract.sh`.
-3. **Client:** tick [`../features/CLIENT_CHECKLIST.md`](../features/CLIENT_CHECKLIST.md) only after Derin-Web (or lab) is on **≥4.9.100** and Runs A–D pass.
+3. **Client:** tick [`../features/CLIENT_CHECKLIST.md`](../features/CLIENT_CHECKLIST.md) only after Derin-Web (or lab) is on **≥4.9.101** and Runs A–F pass.

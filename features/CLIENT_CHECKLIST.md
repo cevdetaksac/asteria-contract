@@ -1,17 +1,17 @@
 # Client / agent checklist
 
-> Contract **≥ 1.4.70**. Windows agent this file. Do **not** add new SoT here —
+> Contract **≥ 1.4.71**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.100** for RD **pixels + lock/logoff follow** (C-RD-PIX, FOLLOW-9/10)
+> Pin: **≥ 4.9.101** for RD **smoothness** (C-RD-SMOOTH) · **≥ 4.9.100** for
+> **pixels + lock/logoff follow** (C-RD-PIX, FOLLOW-9/10)
 > · topology names **≥ 4.9.95** · intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
 > **4.9.94 follow-skip is not acceptance.** **4.9.99 gdi+black lab is not acceptance.**
 > **gdi+black / solid-black JPEG is not acceptance.**
 >
-> **2026-08-15:** agent **4.9.100** on GitHub. Unit suite: inspect / update / intel /
-> wire / CON-8 / S0 / CAD ticked. **Open:** C-RD-PIX + TOPO **console lab** on
-> production after host self-update to 4.9.100 (4.9.99 Derin-Web still FAIL:
-> `persistent-user-helper` + `gdi+black` because username listed ≠ unlocked).
+> **2026-08-15:** agent **4.9.101** on GitHub (smoothness). **Open:** C-RD-PIX + TOPO
+> **console lab** after host self-update (4.9.99 Derin-Web still FAIL:
+> `persistent-user-helper` + `gdi+black`).
 
 **Read first:** [`README.md`](./README.md) · RD SoT: [`remote-desktop.md`](./remote-desktop.md)  
 **Cloud ticks:** [`../cloud/CLOUD_CHECKLIST.md`](../cloud/CLOUD_CHECKLIST.md)
@@ -38,13 +38,14 @@ Do **Run A and Run C separately** (empty host vs logged-on). Mixing them hides b
 
 ### Topology / follow / S0 / CAD
 
-- [ ] **C-RD-TOPO-1** Honor `{ topology:"follow", stream_id, fps }` with **no** `prefer`/`pre_logon`/`desktop`/SID. Combine with PIX-3 or PIX-4 depending on **input desktop**, not WTS username. *(4.9.100 shipped — live lab still open)*
+- [ ] **C-RD-TOPO-1** Honor `{ topology:"follow", stream_id, fps }` with **no** `prefer`/`pre_logon`/`desktop`/SID. Combine with PIX-3 or PIX-4 depending on **input desktop**, not WTS username. *(4.9.101 shipped — live lab still open)*
 - [ ] **C-RD-TOPO-2** Lock row `{ topology:"winlogon", prefer:"winlogon", pre_logon:true, desktop:"Winlogon" }`, no SID. Pixels = LogonUI, not wallpaper. *(live lab still open)*
 - [ ] **C-RD-TOPO-4 / FOLLOW-1…10** Enter/unlock: **same `stream_id`**, Default ≤2s. Lock/logoff: same stream back to Winlogon chrome. No dual-write input. *(live lab still open)*
 - [x] **C-RD-CON-8** Every `list_sessions` includes Logon/Lock sibling `pre_logon:true` (no SID `1`).
 - [x] **C-RD-S0** Path B helper in the **interactive** session. jpeg≈0B → `SESSION0_HELPER_SPAWN_FAILED` (`streaming:false`) unless TOPO-1 **logged-on** DXGI skip. *(accepted 4.9.84 — PIX-3 must not regress to gdi+black)*
 - [x] **CAD / input** `remote_send_sas` only. Meta `inputs_applied` / `last_input_event` live. Input desktop = capture desktop. *(accepted 4.9.86)*
 - [x] **WebRTC advertise** only if real. *(unit)* ICE fail → JPEG-WS; no zombie `connected`. *(ICE live lab still open — PIX-6)*
+- [x] **C-RD-SMOOTH-1/4** Start knobs floor 30/72/1920; coalescing does not degrade fps. *(unit 4.9.101 — live ≥24 fps lab still open)*
 
 ### Lab commands (copy)
 

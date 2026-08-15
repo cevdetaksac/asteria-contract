@@ -4,9 +4,9 @@
 
 | | |
 |--|--|
-| **VERSION** | [`VERSION`](VERSION) (**1.4.70**) |
+| **VERSION** | [`VERSION`](VERSION) (**1.4.71**) |
 | **Features** | [`features/README.md`](features/README.md) — one MD per product |
-| **Cloud checklist** | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) — 1.4.70 lock-follow items open |
+| **Cloud checklist** | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) — 1.4.71 smoothness + 1.4.70 lock-follow items open |
 | **Client checklist** | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) — lab host ticks |
 | **Index** | [`INDEX.md`](INDEX.md) |
 | **Fleet** | [`FLEET.md`](FLEET.md) — floor client ≥ **4.9.0** |

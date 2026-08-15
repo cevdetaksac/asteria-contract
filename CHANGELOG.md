@@ -1,5 +1,23 @@
 # Changelog — asteria-contract
 
+## 1.4.71 — 2026-08-15
+
+### Remote Desktop smoothness (C-RD-SMOOTH) — client **4.9.101**
+
+Lab Resource Monitor: agent egress is **TCP 443** (Cloudflare). WebRTC UDP
+often never completes, so JPEG-WS is the live path. Dashboard sample Start
+`fps:12` / `quality:40` / `max_width:1280` plus adaptive treating coalescing
+as congestion produced ~8 fps slideshows on gigabit links.
+
+Client **4.9.101** floors Start to video (30 fps / q72 / 1920), does not
+degrade on coalesced stale JPEGs, advertises `needs_turn` / 12 Mbps, and
+accepts WebRTC offers that omit `protocol:1`.
+
+| Piece | Path |
+|-------|------|
+| C-RD-SMOOTH-1…6 | [`features/remote-desktop.md`](features/remote-desktop.md) |
+| Cloud: Start knobs + TURNS:443 | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) |
+
 ## 1.4.70 — 2026-08-15
 
 ### Physical-console follow (lock / logon / logoff) — client **4.9.100**

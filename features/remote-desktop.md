@@ -1,7 +1,8 @@
 # Remote Desktop — single contract
 
-> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.70** · Agent floor
+> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.71** · Agent floor
 > **≥ 4.9.95** named topology · **≥ 4.9.100** physical-console **pixels**
+> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH)
 > (lock / logon / logoff, not black GDI). **4.9.97–4.9.99** PIX floor is
 > superseded: 4.9.99 lab still `gdi+black`. Older IDs still apply; they live
 > **in this file**.
@@ -42,14 +43,14 @@ Winlogon helper + `SESSION0_HELPER_SPAWN_FAILED` + jpeg=0B.
 | **C-RD-TOPO-2** | Logon / Lock **row** (empty host, lock, SAS): `topology=winlogon` + `prefer=winlogon` + `pre_logon=true` + `desktop=Winlogon`. Omit SID and username. Helper is legitimate. |
 | **C-RD-TOPO-3** | User shortcut: `session_id` + `username`. Do **not** auto-select the first Active SID. |
 | **C-RD-TOPO-4** | After Enter **or** unlock: **same `stream_id`**, no second Start, no “pick administrator”. After **lock / logoff**: same `stream_id` back to Winlogon helper. Winlogon spawn while Default is actually live must not be a terminal FAIL. |
-| **C-RD-TOPO-5** | Min agent **≥4.9.95** topology names. **≥4.9.100** for C-RD-PIX + lock/logoff follow. Warn if &lt;4.9.26. Recommend **≥4.9.100**. 4.9.94 follow-skip and 4.9.99 `gdi+black` lab are **not** acceptance. |
+| **C-RD-TOPO-5** | Min agent **≥4.9.95** topology names. **≥4.9.100** for C-RD-PIX + lock/logoff follow. **≥4.9.101** for C-RD-SMOOTH. Warn if &lt;4.9.26. Recommend **≥4.9.101**. 4.9.94 follow-skip and 4.9.99 `gdi+black` lab are **not** acceptance. |
 
 **A — Default Connect**
 
 ```json
 {
   "command_type": "remote_stream_start",
-  "params": { "topology": "follow", "stream_id": "…", "fps": 12 }
+  "params": { "topology": "follow", "stream_id": "…", "fps": 30, "quality": 72, "max_width": 1920 }
 }
 ```
 
@@ -64,7 +65,7 @@ Winlogon helper + `SESSION0_HELPER_SPAWN_FAILED` + jpeg=0B.
     "pre_logon": true,
     "desktop": "Winlogon",
     "stream_id": "…",
-    "fps": 12, "quality": 40, "max_width": 1280
+    "fps": 30, "quality": 72, "max_width": 1920
   }
 }
 ```
@@ -120,7 +121,7 @@ Hardware cursor is usually **not** in the bitstream. Draw a local software curso
 | **C-RD-VIEW-6** | `black_frame` / `winlogon_capture_black` / `CAPTURE_NO_DESKTOP` → degraded banner |
 | **C-RD-VIEW-7** | WebRTC when advertised; ICE fail → JPEG-WS ≤2s on the **same** surface |
 | **C-RD-VIEW-8** | Show `stream_progress` (`running` → `capturing` → `ws`/`webrtc` → `switching` → `live`). Honor `switching` on unlock **and** lock/logoff. |
-| **C-RD-VIEW-9** | Warn agent &lt;4.9.26; recommend **≥4.9.100**. &lt;4.9.100 cannot close PIX / lock-follow. |
+| **C-RD-VIEW-9** | Warn agent &lt;4.9.26; recommend **≥4.9.101** for smoothness and **≥4.9.100** for PIX / lock-follow. |
 | **C-RD-VIEW-10** | Do not auto-select first Active user. Frozen frames drop Live badge |
 | **C-RD-VIEW-11** | Default Connect / follow must **not** auto-open a dashboard “Kullanıcıya bağlan” password modal over the player. Operator types on the remote surface (physical console). Optional shortcut is a separate action. |
 
@@ -206,23 +207,36 @@ honesty already worked. **Ship / recommend client ≥4.9.100.**
 
 ---
 
-## Transport + smoothness
+## Transport + smoothness (C-RD-SMOOTH) — ≥4.9.101
 
-Priority: **WebRTC** (if advertised) → **JPEG-WS** (healthy default) → JPEG-HTTP.
+Priority: **WebRTC** (if advertised **and ICE connects**) → **JPEG-WS** (healthy
+default, including when UDP is blocked) → JPEG-HTTP.
 Healthy stream does **not** also POST every frame over HTTP.
 
+Hosts and many operators have **≥100 Mbit**. Do not ship a 12 fps / Q40 / 1280
+slideshow. If ICE stays on TCP 443 only, JPEG-WS **is** the video path.
+
 - `protocol: 2` = app envelope (`hello`, `meta`, `input`, `input_ack`)
-- `protocol: 1` = WebRTC signaling (`webrtc_offer` / answer / reject / ice)
+- `protocol: 1` = WebRTC signaling (`webrtc_offer` / answer / reject / ice).
+  Agent **≥4.9.101** treats omitted protocol on offer/answer/ice as `1`.
 - Non-trickle ICE only
 - Cloud offers WebRTC only if `capabilities.webrtc.available` and `"webrtc"∈transports`
+- `hello.capabilities.webrtc.needs_turn` + `preferred_ice: turns`
+- `hello.capabilities.smoothness` = capture_fps / jpeg_fallback_fps / max_width / target_bitrate_bps
 
-| ID | Cloud / viewer |
-|----|----------------|
+| ID | Rule |
+|----|------|
 | **C-RD-1** | Offer WebRTC only when advertised |
 | **C-RD-2** | While WebRTC connected, do not also paint JPEG |
 | **C-RD-4** | Move coalesce OK; key/button/wheel flush immediately |
-| **C-RD-5** | ICE reject → JPEG fallback UI at once |
+| **C-RD-5** | ICE reject → JPEG fallback UI at once **at video rate** (not 8–12 fps) |
 | **C-RD-7** | Restart: drop old peer; new `stream_id` |
+| **C-RD-SMOOTH-1** | Start knobs: `fps` **≥30** (clamp 30–60), `quality` **≥72** (55–90), `max_width` **1920**. Do **not** send `fps:12` / `quality:40` / `max_width:1280`. Agent ≥4.9.101 lifts those legacy values itself; older agents will slideshow. |
+| **C-RD-SMOOTH-2** | Include `ice_servers` on the offer: **TURNS** (TLS) on **443** plus STUN. Cloudflare-proxied origins often block host UDP; TURNS:443 is the WebRTC path that can work. |
+| **C-RD-SMOOTH-3** | Target encode **1080p30–60**, ~8–12 Mbps when the viewer reports ≥50 Mbit. Do not cap at 1 Mbps / 30 fps in the peer. |
+| **C-RD-SMOOTH-4** | JPEG-WS latest-frame coalescing is **correct** (drop stale). Do not treat coalesced count as congestion that lowers fps. |
+| **C-RD-SMOOTH-5** | Viewer: decode/paint as video (`requestAnimationFrame` / `<video>`), not a 12 Hz `<img>` refresh. Prefer WebRTC `<video>` when ICE is connected. |
+| **C-RD-SMOOTH-6** | Recommend agent **≥4.9.101** for smoothness. PIX/lock-follow still **≥4.9.100**. |
 
 ---
 
@@ -241,7 +255,7 @@ First text frame on agent WS:
     "transports": ["webrtc", "jpeg-ws", "jpeg-http"],
     "fallback": "jpeg-ws",
     "codecs": ["jpeg", "h264"],
-    "webrtc": { "available": true, "signaling": 1, "ice": "non-trickle" }
+    "webrtc": { "available": true, "signaling": 1, "ice": "non-trickle", "needs_turn": true, "preferred_ice": "turns" }
   }
 }
 ```
@@ -301,6 +315,12 @@ honesty banner). Remaining boxes are **agent + lab host**.
 ### Run E — ICE honesty
 
 - [ ] Force ICE fail (or wait reject): JPEG-WS chrome ≤2s, no zombie connected.
+
+### Run F — smoothness (C-RD-SMOOTH) · ≥4.9.101
+
+- [ ] Start params include `fps≥30`, `quality≥72`, `max_width=1920` (not 12/40/1280).
+- [ ] ICE fail or TCP-only 443: JPEG-WS stays **≥24 fps** on a gigabit/100 Mbit viewer (not ~8 fps).
+- [ ] If TURNS:443 is in `ice_servers`, WebRTC may connect; otherwise JPEG-WS is the video path.
 
 Historical ticks (do not regress):
 
