@@ -67,7 +67,7 @@ Do not publish `cloud-client-installer.exe` / extra exes.
 ## Additive (not required) — Threat Intel
 
 ACK `stats.firewall_current` (int, standing `AR-INTEL-*` count) optional ≥4.9.94.
-No ACK on **304**. ACK on **200**. External ThreatFox/CISA fetch is cloud-side.
+No ACK on **304**. ACK on **200**. Abuse.ch / CISA: client does **not** fetch; cloud ingest only.
 
 ## Acceptance
 
