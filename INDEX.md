@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.58** · Repo: https://github.com/cevdetaksac/asteria-contract
+> **VERSION 1.4.59** · Repo: https://github.com/cevdetaksac/asteria-contract
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.59** | Named RD topology (`follow` vs `winlogon`) + inspect no-confirm | **≥4.9.95**; cloud [`CLOUD_HANDOFF_1.4.59.md`](cloud/CLOUD_HANDOFF_1.4.59.md) |
 | **1.4.58** | Console-first RD: default Logon; follow Default after logon | **≥4.9.93**; cloud default winlogon |
 | **1.4.57** | On-demand `inspect_process` + rundll32 LOLBIN false-positive fix | **≥4.9.93** |
 | **1.4.56** | Logon lab: live meta after settle (not start snapshot); `phase=degraded` | **≥4.9.91**; cloud live meta |
@@ -89,7 +90,7 @@
 | [agent/firewall-windows-parity.md](agent/firewall-windows-parity.md) | Windows FW MMC parity (all rules + profiles + mutate) | ≥ **4.9.41** |
 | [agent/network-adapter-admin.md](agent/network-adapter-admin.md) | Adapter enable/IP/DNS + golden watchdog rollback | ≥ **4.9.42** |
 | [agent/tools-repair.md](agent/tools-repair.md) | Remote Windows repair toolkit (share/print/SFC/…) | ≥ **4.9.79** |
-| [cloud/remote-console-parity.md](cloud/remote-console-parity.md) | Console-first Logon + C-RD-FOLLOW after logon | ≥ **4.9.93** (wire ≥4.9.49) |
+| [cloud/remote-console-parity.md](cloud/remote-console-parity.md) | Named topology follow vs winlogon + C-RD-FOLLOW | ≥ **4.9.95** |
 
 ---
 

@@ -1,5 +1,17 @@
 # Changelog — asteria-contract
 
+## 1.4.59 — 2026-08-15
+
+### Named console topology + inspect confirm ban
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| Default Connect = `topology=follow` (not forced Winlogon helper) | [`cloud/remote-console-parity.md`](cloud/remote-console-parity.md) C-RD-VIEW-5 | **cloud P0** |
+| Logon/Lock row = `topology=winlogon` | same | cloud |
+| Client skip helper on live Default; force on lock row | client **≥4.9.95** | client |
+| Paste for dashboard | [`cloud/CLOUD_HANDOFF_1.4.59.md`](cloud/CLOUD_HANDOFF_1.4.59.md) | cloud |
+| `inspect_process` must not use destructive confirm UI | [`agent/process-inspect.md`](agent/process-inspect.md) CL-PROC-INSPECT-6 | **cloud P0** |
+
 ## 1.4.58 — 2026-08-15
 
 ### Console-first remote (Logon default; follow after logon)
