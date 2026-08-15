@@ -5,7 +5,7 @@
 > **Contract VERSION:** **1.4.46**  
 > Status: **Normative (client ≥ 4.9.60 recommended; min ≥ 4.9.54 with progress)**  
 > Extends: [`api/04-self-update.md`](../api/04-self-update.md)  
-> Pattern: same honesty model as [`remote-stream-progress.md`](./remote-stream-progress.md)
+> Pattern: same honesty model as RD `stream_progress` in [`../features/remote-desktop.md`](../features/remote-desktop.md)
 
 ## Problem
 

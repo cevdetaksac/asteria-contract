@@ -43,17 +43,7 @@
 - **Honesty invariants (unchanged from v1):** `streaming:true` is never faked;
   no interactive desktop → `NO_INTERACTIVE_SESSION`; 0×0 / black capture →
   `CAPTURE_NO_DESKTOP`; frames `< 1500 B` are rejected as too small.
-- **Console / Logon screen (Winlogon row):** `topology=winlogon` + `prefer=winlogon` +
-  `pre_logon=true` + `desktop=Winlogon`, **no username**. **Default Connect** is
-  `topology=follow` with **no** `prefer=winlogon` (1.4.59). Cloud ≥**1.4.50**
-  **omits `session_id`** on the Winlogon path. Normative:
-  [`../cloud/REMOTE_DESKTOP_WINLOGON.md`](../cloud/REMOTE_DESKTOP_WINLOGON.md) +
-  physical-console acceptance
-  [`../cloud/remote-console-parity.md`](../cloud/remote-console-parity.md)
-  (≥**1.4.43**, client ≥**4.9.49**) + Session-0 helper
-  [`../agent/winlogon-session0-capture.md`](../agent/winlogon-session0-capture.md)
-  (client ≥**4.9.84**). Omit `session_id` → agent resolves active console SID
-  (never invent `1`); capture MUST run in the interactive session, not Session 0.
+> **Console / Logon:** [`../features/remote-desktop.md`](../features/remote-desktop.md) (C-RD-TOPO / S0 / FOLLOW).
 
 ## 1. Agent WS `hello` (agent → server, once on connect)
 
@@ -331,7 +321,7 @@ logs or status. If the runtime constructor itself fails, the viewer sees only
 > **Promoted (contract 1.4.20 / client ≥4.9.20):** raw RGB WebRTC path (no JPEG
 > double-encode), HW H.264 when FFmpeg exposes nvenc/qsv/amf, idle frame skip,
 > input fluidity. Cloud/viewer checklist:
-> [../cloud/REMOTE_DESKTOP_SMOOTHNESS.md](../cloud/REMOTE_DESKTOP_SMOOTHNESS.md).
+> [`../features/remote-desktop.md`](../features/remote-desktop.md).
 
 Historical note: early 4.9.x WebRTC connected but felt less fluid than commercial
 RD due to JPEG staging into aiortc. Status:

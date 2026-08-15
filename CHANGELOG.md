@@ -1,5 +1,11 @@
 # Changelog — asteria-contract
 
+## 1.4.63 — 2026-08-15
+
+### Remove stub-only RD pointer files
+
+Deleted empty “Moved” stubs (`agent/remote-desktop-p0.md`, Session-0/CAD/chrome/progress, `cloud/REMOTE_DESKTOP_*`, `CLOUD_HANDOFF_1.4.59.md`, `remote-console-parity.md`). Live links point at [`features/remote-desktop.md`](features/remote-desktop.md).
+
 ## 1.4.62 — 2026-08-15
 
 ### Finish feature map

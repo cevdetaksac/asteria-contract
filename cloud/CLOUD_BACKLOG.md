@@ -34,8 +34,8 @@
 
 | ID | Work | Contract |
 |----|------|----------|
-| **LAB-RD-P0** | Lock console → non-black Winlogon ≤3s; UDP block → ICE failed + JPEG ≤2s | [`agent/remote-desktop-p0.md`](../agent/remote-desktop-p0.md) — client code ≥4.9.45 |
-| **LAB-RD-PROG** | Bağlan → Queue→Agent(`running`) ≤2s; mid-start kill → `failed`; subtitle without HTTP poll | [`agent/remote-stream-progress.md`](../agent/remote-stream-progress.md) — client ≥**4.9.48**, cloud relay ≥1.4.39 |
+| **LAB-RD-P0** | Lock console → non-black Winlogon ≤3s; UDP block → ICE failed + JPEG ≤2s | [`features/remote-desktop.md`](../features/remote-desktop.md) — client ≥4.9.95 |
+| **LAB-RD-PROG** | Bağlan → Queue→Agent(`running`) ≤2s; mid-start kill → `failed`; subtitle without HTTP poll | [`features/remote-desktop.md`](../features/remote-desktop.md) — client ≥**4.9.48**, cloud relay ≥1.4.39 |
 
 ## Explicitly not cloud this sprint
 

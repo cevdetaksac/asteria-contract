@@ -103,7 +103,6 @@
 | [agent/threat-engine.md](agent/threat-engine.md) | Urgent/batch/health/config; whitelist enforce | ≥ **4.9.7** |
 | [agent/defense-policy-client.md](agent/defense-policy-client.md) | Matrix apply, observe default, CTA | ≥ **4.9.17** |
 | [agent/remote-input.md](agent/remote-input.md) | Input envelope appendix → [`features/remote-desktop.md`](features/remote-desktop.md) | ≥ **4.9.0** |
-| [agent/remote-desktop-p0.md](agent/remote-desktop-p0.md) | Pointer → feature RD | ≥ **4.9.37** |
 | [agent/server-management.md](agent/server-management.md) | Users / processes / services | target ≥ **4.9.4** |
 | [agent/process-inspect.md](agent/process-inspect.md) | On-demand process evidence (`inspect_process`) | ≥ **4.9.93** |
 | [agent/rebrand-asteria.md](agent/rebrand-asteria.md) | Host, UI, signing/heartbeat Asteria cutover | ≥ **4.9.35** |
@@ -143,8 +142,6 @@
 | [cloud/CLOUD_SURFACE.md](cloud/CLOUD_SURFACE.md) | Agent HTTP/WS/commands inventory — client gap-scan | Normative (1.4.36) |
 | [cloud/DEFENSE_POLICY.md](cloud/DEFENSE_POLICY.md) | Tiered policy + auto-promote (C-P0…) | Normative (1.4.19) |
 | [cloud/SERVER_USER_MANAGEMENT.md](cloud/SERVER_USER_MANAGEMENT.md) | Users C-USER-1…7 | Normative (1.4.24) |
-| [cloud/REMOTE_DESKTOP_WINLOGON.md](cloud/REMOTE_DESKTOP_WINLOGON.md) | Winlogon / pre_logon C-WL | Normative (1.4.23) |
-| [cloud/REMOTE_DESKTOP_SMOOTHNESS.md](cloud/REMOTE_DESKTOP_SMOOTHNESS.md) | WebRTC smoothness C-RD | Normative (1.4.20) |
 | [cloud/threat-intel-ingest.md](cloud/threat-intel-ingest.md) | Harici feed → bundle | Normative |
 | [cloud/PRODUCT_BRANDING.md](cloud/PRODUCT_BRANDING.md) | Wire identity / no big-bang rename | Decision |
 | [cloud/dashboard-deep-links.md](cloud/dashboard-deep-links.md) | Browser `?token=` dashboard URLs / Settings shortcuts | Normative (1.4.35) |

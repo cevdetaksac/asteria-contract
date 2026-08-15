@@ -19,16 +19,12 @@ Bu dosya **özet + link**. Davranış SoT: [`../features/README.md`](../features
 0c2. [`firewall-windows-parity.md`](./firewall-windows-parity.md) — Windows FW MMC parity (**1.4.41**, ≥ **4.9.41**)
 0c3. [`network-adapter-admin.md`](./network-adapter-admin.md) — adapter IP/DNS + golden watchdog (**1.4.42**, ≥ **4.9.42**)
 0c3b. [`tools-repair.md`](./tools-repair.md) — uzaktan Windows onarım toolkit (**1.4.49**, ≥ **4.9.79**)
-0c4. [`../features/remote-desktop.md`](../features/remote-desktop.md) — **RD SoT** Default Connect = follow; Lock = winlogon (**1.4.60**, ≥ **4.9.95**)
-0d. [`anti-brick-critical-actions.md`](./anti-brick-critical-actions.md) — account-gated critical auto / anti-brick (**1.4.34**, ≥ **4.9.36**)  
-0e. [`../cloud/dashboard-deep-links.md`](../cloud/dashboard-deep-links.md) — Settings / tray browser shortcuts (`?token=`) (**1.4.35**)  
-0f. [`../cloud/CLOUD_SURFACE.md`](../cloud/CLOUD_SURFACE.md) — **cloud yetenekleri / HTTP+WS+komut envanteri** (gap-scan) (**1.4.36**)  
-0g. [`../cloud/FLEET_CANARY.md`](../cloud/FLEET_CANARY.md) + [`../cloud/PROMOTION_GATES.md`](../cloud/PROMOTION_GATES.md) — automation canary / observe→enforce (**1.4.37**, ≥ **4.9.37**)  
-0h. [`remote-desktop-p0.md`](./remote-desktop-p0.md) — **P0** Winlogon black + ICE honesty (**1.4.37+**, ≥ **4.9.37**)
-0h2. [`winlogon-session0-capture.md`](./winlogon-session0-capture.md) — **P0** Session-0 → Winlogon helper (**1.4.50/51**, ≥ **4.9.84**)
-0h3. [`remote-cad-winlogon.md`](./remote-cad-winlogon.md) — **P0** CAD SendSAS honesty + Winlogon input (**1.4.52–54**, ≥ **4.9.86**)
-0h4. [`winlogon-logon-chrome.md`](./winlogon-logon-chrome.md) — **P0** Logon chrome + settle live meta (**1.4.55–56**, ≥ **4.9.87** / lab **≥4.9.91**)
-0i. [`../api/12-command-envelope-v2.md`](../api/12-command-envelope-v2.md) — envelope v2 schema (observe-only; **no emit**) (**1.4.37**)  
+0c4. [`../features/remote-desktop.md`](../features/remote-desktop.md) — RD SoT (**≥ 4.9.95**)  
+0d. [`anti-brick-critical-actions.md`](./anti-brick-critical-actions.md) — anti-brick (**1.4.34**, ≥ **4.9.36**)  
+0e. [`../cloud/dashboard-deep-links.md`](../cloud/dashboard-deep-links.md) — Settings / tray browser shortcuts  
+0f. [`../cloud/CLOUD_SURFACE.md`](../cloud/CLOUD_SURFACE.md) — HTTP+WS+komut envanteri (**1.4.36**)  
+0g. [`../cloud/FLEET_CANARY.md`](../cloud/FLEET_CANARY.md) + [`../cloud/PROMOTION_GATES.md`](../cloud/PROMOTION_GATES.md) — canary (**1.4.37**, ≥ **4.9.37**)  
+0i. [`../api/12-command-envelope-v2.md`](../api/12-command-envelope-v2.md) — envelope v2 (observe-only)  
 1. [`../FLEET.md`](../FLEET.md) — min sürüm matrisi  
 2. [`polling.md`](./polling.md) — cadence  
 3. [`../api/01-auth.md`](../api/01-auth.md) — register / heartbeat / Bearer / rotate-token  

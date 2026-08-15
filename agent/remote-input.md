@@ -5,7 +5,7 @@
 
 > **Canonical:** `asteria-contract/agent/remote-input.md`
 > **Min client (input protocol 2 + persistent session helper):** ≥ **4.9.0**
-> **Smoothness (move budget / short critical ACK / DC preferred):** ≥ **4.9.20** — see [`../cloud/REMOTE_DESKTOP_SMOOTHNESS.md`](../cloud/REMOTE_DESKTOP_SMOOTHNESS.md)
+> **Smoothness (move budget / short critical ACK / DC preferred):** ≥ **4.9.20** — see [`../features/remote-desktop.md`](../features/remote-desktop.md)
 > **Legacy floor (frame-ACK `inputs[]` piggyback):** ≥ **4.5.55**
 > **Related:** [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md) (canonical Remote Desktop v2)
 
@@ -212,7 +212,7 @@ Dashboard uses `POST /api/remote/cad` → pending `remote_send_sas` only
 
 Normative Session-0 / lock-screen rules (false `SendSAS ok`, SoftwareSASGeneration,
 console affinity, `inputs_applied`):
-[`remote-cad-winlogon.md`](./remote-cad-winlogon.md) — client ≥ **4.9.85**.
+[`../features/remote-desktop.md`](../features/remote-desktop.md) — client ≥ **4.9.85**.
 
 Legacy note: older clouds may also push a synthetic key event; agents MUST ignore
 it for SAS purposes (C-RD-CAD-6).

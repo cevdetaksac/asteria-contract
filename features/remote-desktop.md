@@ -4,8 +4,7 @@
 > **≥ 4.9.95** for named topology. Older IDs (C-RD-*, C-WL, C-RD-S0, …) still
 > apply; they live **in this file**.
 >
-> Do not implement from `api/05-*`, `agent/remote-*`, `cloud/REMOTE_DESKTOP_*`,
-> or `cloud/remote-console-parity.md` — those are pointers.
+> Do not add MUST IDs under old `agent/remote-*` or `cloud/REMOTE_DESKTOP_*` paths — those files were removed.
 
 **API:** `https://asteria.run`  
 **Commands:** `remote_stream_start` / `stop` / `remote_input` / `remote_send_sas`

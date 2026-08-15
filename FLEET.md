@@ -33,16 +33,11 @@
 | Cloud surface inventory (agent HTTP/WS/commands — client gap-scan) | `cloud/CLOUD_SURFACE.md` | cloud ≥ **1.4.36** (docs; no new client floor) |
 | Fleet canary `fleet_rollout` + auto-flag clear | `cloud/FLEET_CANARY.md`, `cloud/PROMOTION_GATES.md` | cloud ≥ **1.4.37**; client honor gates ≥ **4.9.37** |
 | Envelope v2 schema (observe-only; no production emit) | `api/12-command-envelope-v2.md` | cloud ≥ **1.4.37**; client observe optional |
-| RD P0 Winlogon black + ICE honesty | `agent/remote-desktop-p0.md` | client **≥ 4.9.37** |
-| RD stream progress events | `agent/remote-stream-progress.md` | client **≥ 4.9.48**; cloud relay ≥ **1.4.39** |
+| Remote Desktop (topology, follow, Winlogon, CAD, WebRTC, P0) | `features/remote-desktop.md` | client **≥ 4.9.95** (wire ≥4.9.0; Logon pixels ≥4.9.84) |
 | Firewall Management page + `list_firewall` | `agent/firewall-management.md` | client **≥ 4.9.40**; cloud ≥ **1.4.40** |
 | Windows Firewall MMC parity | `agent/firewall-windows-parity.md` | client **≥ 4.9.41**; cloud ≥ **1.4.41** |
 | Network Adapter Admin + golden watchdog | `agent/network-adapter-admin.md` | client **≥ 4.9.42**; cloud ≥ **1.4.42** |
-| Windows Tools Repair (remote OS repair toolkit) | `agent/tools-repair.md` | client **≥ 4.9.79**; cloud ≥ **1.4.49** (whitelist + `/dashboard/server/tools` shipped) |
-| Remote Desktop (topology, follow, Winlogon, CAD, WebRTC) | `features/remote-desktop.md` | client **≥ 4.9.95** (wire ≥4.9.0; Logon pixels ≥4.9.84) |
-| Winlogon Session-0 capture (pre-logon helper / no invent SID 1) | `agent/winlogon-session0-capture.md` | client **≥ 4.9.84** (**accepted** 1.4.51); cloud omit SID ≥ **1.4.50** |
-| Remote CAD + Winlogon input honesty (real SAS / no false SendSAS ok) | `agent/remote-cad-winlogon.md` | meta **≥4.9.86** ✅ (1.4.54); cloud CAD ≥ **1.4.52** |
-| Winlogon Logon/SAS chrome (no solid-blue false live) | `agent/winlogon-logon-chrome.md` | chrome **≥ 4.9.87**; live-meta lab **≥ 4.9.91** / contract **1.4.56** |
+| Windows Tools Repair (remote OS repair toolkit) | `agent/tools-repair.md` | client **≥ 4.9.79**; cloud ≥ **1.4.49** |
 | Legacy dual-brand sunset target **2026-10-01** | `cloud/PRODUCT_BRANDING.md` | ops + client ≥**4.9.35** |
 | Uninstall PIN lifecycle (`uninstall_*` + `windows_user`) | `api/07-lifecycle-sessions.md` | cloud ≥ **1.4.9**; client with uninstall PIN gate |
 | Bare `successful_logon` score ≤70 + no auto-block (cloud reject shapes) | `agent/threat-engine.md` | cloud ≥ **1.4.11**; target client **≥4.9.7** |
