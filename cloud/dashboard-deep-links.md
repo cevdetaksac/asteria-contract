@@ -59,7 +59,7 @@ Register / rotate responses already return the home link:
 | `/dashboard/logout` | End **server** dashboard session | All | (rarely expose) |
 
 \* Remote desktop floor: client ≥ **4.9.0** ([`features/remote-desktop.md`](../features/remote-desktop.md)).  
-† Server management: target client ≥ **4.9.4** ([`agent/server-management.md`](../agent/server-management.md)).
+† Server management: target client ≥ **4.9.4** ([`features/server-management.md`](../features/server-management.md)).
 
 ### Account fleet (no agent token in path — account cookie)
 

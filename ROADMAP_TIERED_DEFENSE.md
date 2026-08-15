@@ -186,8 +186,8 @@ Preset’ler §3.1 **kural matrisine** derlenir; ileride Custom Policy aynı şe
 Gemini’nin “enum değil, ajanın işlediği kural matrisi” önerisi **Enterprise SaaS için doğru**.  
 Mevcut `threat_config_updated` + `GET /api/threats/config` omurgası üzerine oturur
 ([`api/03-control-websocket.md`](api/03-control-websocket.md),
-[`agent/threat-engine.md`](agent/threat-engine.md),
-[`agent/persistence-and-tamper.md`](agent/persistence-and-tamper.md)).
+[`features/threat-engine.md`](features/threat-engine.md),
+[`features/persistence.md`](features/persistence.md)).
 
 ### Adım A — Veri modeli / payload (**Kabul, varsayılanlar düzeltilerek**)
 

@@ -77,7 +77,7 @@ When either is present (or `alert_id` equals that stable id):
 ```
 
 Payload shape otherwise matches existing
-[`../agent/threat-engine.md`](../agent/threat-engine.md) urgent wire.
+[`../features/threat-engine.md`](../features/threat-engine.md) urgent wire.
 `payload` / body must already be redacted (no passwords, tokens, PIN,
 TURN credentials, private keys).
 

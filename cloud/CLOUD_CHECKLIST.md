@@ -1,6 +1,6 @@
 # Cloud / dashboard checklist
 
-> Contract **≥ 1.4.65**. Cloud this file, tick `[x]`, PR note with commit/date.
+> Contract **≥ 1.4.66**. Cloud this file, tick `[x]`, PR note with commit/date.
 > Do **not** add new SoT markdown here — implement against `features/*`.
 >
 > Pin: client **≥ 4.9.96** recommended · RD topology **≥ 4.9.95** · inspect **≥ 4.9.93**

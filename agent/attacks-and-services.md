@@ -87,7 +87,7 @@ Cadence ~**5 dk**. Cloud `settings_json.open_ports` yazar; dashboard honeypot i�
 1. Bait protokol handshake + credential capture; başarılı gerçek login **yok**.
 2. Her yakalamada `/api/attack` (veya batch politikası varsa).
 3. Desired tunnel state’e uy; rapor `tunnel-status` ile.
-4. `protection.block_rules` / local fail sayacı **gerçek** auth fail event’leri içindir — bait capture ayrı kanal (`agent/register-protection.md`, `agent/threat-engine.md`).
+4. `protection.block_rules` / local fail sayacı **gerçek** auth fail event’leri içindir — bait capture ayrı kanal (`agent/register-protection.md`, `features/threat-engine.md`).
 
 ---
 

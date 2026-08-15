@@ -163,7 +163,7 @@ Aşağıdakiler **dashboard’da açık onay** olmadan cloud kuyruğa yazılmaz 
 - `enable_lockdown` (emergency lockdown)
 - `clear_firewall` (`wipe_all_honeypot_rules=true` dahil)
 - `kill_process` (exact-target process kill — açık kullanıcı onayı zorunlu)
-- `create_user` (yeni/yeniden hesap — [`../agent/disaster-recovery.md`](../agent/disaster-recovery.md))
+- `create_user` (yeni/yeniden hesap — [`../features/disaster-recovery.md`](../features/disaster-recovery.md))
 - `remote_logon` / `set_autologon` / `reboot` (autologon + yeniden başlatma break-glass)
 - `network_restore` (ağ baseline'dan geri yükle — **mutating** path only —
   [`../features/network-guard.md`](../features/network-guard.md)). Dry-run-only
@@ -213,8 +213,8 @@ Client ayrıca whitelist + protected targets uygular; onay **sunucu tarafı** zo
 | `suspend_process` | `pid`, `expected_image`, `expected_path?`, `process_start_time` | Açık onay sonrası exact-process suspend; PID reuse korumalı — ≥4.7.3 |
 | `resume_process` | `pid`, `expected_image`, `expected_path?`, `process_start_time` | Exact-process resume; non-destructive — ≥4.7.3 |
 | `block_process` | name/path | |
-| `list_sessions` / `list_processes` / `list_local_users` / `list_services` | see [`../agent/server-management.md`](../agent/server-management.md) | Sunucu Yönetimi + Remote inventory (`list_services` additive ≥1.4.8) |
-| `inspect_process` | `pid` | On-demand evidence pack (modal) — ≥**4.9.93** [`../agent/process-inspect.md`](../agent/process-inspect.md) |
+| `list_sessions` / `list_processes` / `list_local_users` / `list_services` | see [`../features/server-management.md`](../features/server-management.md) | Sunucu Yönetimi + Remote inventory (`list_services` additive ≥1.4.8) |
+| `inspect_process` | `pid` | On-demand evidence pack (modal) — ≥**4.9.93** [`../features/process-inspect.md`](../features/process-inspect.md) |
 | `stop_service` / `start_service` / `restart_service` | `name` **or** `service_name` | SCM control |
 | `enable_lockdown` / `disable_lockdown` | management_ip? | Acil |
 | `collect_diagnostics` | — | |
@@ -225,8 +225,8 @@ Client ayrıca whitelist + protected targets uygular; onay **sunucu tarafı** zo
 | `tunnel_start` / `tunnel_stop` | `service`, port? | Bait listen |
 | `self_update` | `force`, `tag`, `download_url` | Installer |
 | `check_update` | — | Sürüm kontrol |
-| `unlock_ransomware_quarantine` | — | IFEO / quarantine temizle ([`../agent/ransomware-shield.md`](../agent/ransomware-shield.md)) |
-| `create_user` | `username`, `password`, `groups[]`, `if_exists` | Yeni/yeniden Administrator — ≥4.6.0 ([`../agent/disaster-recovery.md`](../agent/disaster-recovery.md)) |
+| `unlock_ransomware_quarantine` | — | IFEO / quarantine temizle ([`../features/ransomware.md`](../features/ransomware.md)) |
+| `create_user` | `username`, `password`, `groups[]`, `if_exists` | Yeni/yeniden Administrator — ≥4.6.0 ([`../features/disaster-recovery.md`](../features/disaster-recovery.md)) |
 | `remote_logon` | `username`, `password`, `mode`, `reboot` | Kimlikle uzaktan oturum (reconnect / autologon+reboot) — ≥4.6.0 |
 | `set_autologon` / `clear_autologon` | `username`, `password`, `count` | Autologon arm/temizle — ≥4.6.0 |
 | `reboot` | `grace_sec`, `reason` | Onaylı yeniden başlatma — ≥4.6.0 |
@@ -238,11 +238,11 @@ Client ayrıca whitelist + protected targets uygular; onay **sunucu tarafı** zo
 | `network_maintenance_end` | `snapshot?` (default **true**) | Bakımı bitir; varsayılan yeni golden al + korumayı aç — ≥4.9.12 |
 | `network_accept_surface` | — | Additive yüzey değişimini **yeni golden** kabul et (`network_snapshot` alias) — ≥4.9.15 / 1.4.17 |
 | `network_disable_adapter` | `name` (zorunlu), `dry_run?` | Belirli adaptörü disable. **Mutate = confirm.** Otomatik çağrılmaz — ≥4.9.15 |
-| `system_recovery_snapshot` | — | Saldırı yüzeyi (policy/service/firewall) snapshot — ≥4.9.12 ([`../agent/system-recovery.md`](../agent/system-recovery.md)) |
+| `system_recovery_snapshot` | — | Saldırı yüzeyi (policy/service/firewall) snapshot — ≥4.9.12 ([`../features/system-recovery.md`](../features/system-recovery.md)) |
 | `list_system_recovery` | — | Recovery baseline sürümleri/özeti — ≥4.9.12 |
 | `system_recovery_diff` | `version?` | Baseline vs canlı allowlist diff — ≥4.9.12 |
 | `system_recovery_restore` | `targets[]?`, `dry_run?`, `rollback_version?` | Allowlist yüzeyi geri yükle. **Mutate** = confirm. `dry_run:true` = plan only. ≥4.9.12 |
-| `tools_repair_catalog` | — | Windows onarım kart kataloğu + diagnose özeti — ≥4.9.79 ([`../agent/tools-repair.md`](../agent/tools-repair.md)) |
+| `tools_repair_catalog` | — | Windows onarım kart kataloğu + diagnose özeti — ≥4.9.79 ([`../features/tools-repair.md`](../features/tools-repair.md)) |
 | `tools_repair_diagnose` | — | Bozuk bileşen taraması (TaskMgr/Explorer/servis/WebView2…) — ≥4.9.79 |
 | `tools_repair` | `action`, `confirm?`, `dry_run?` | Allowlist OS onarım. Soft action confirm istemez. **Destructive** (`winsock_reset` / `firewall_reset` / `wu_reset`) = `confirm:true`. `dry_run:true` = plan only. ≥4.9.79 |
 | `set_gui_pin` | `pin` (4-12 hane, yalnız rakam) | Dashboard'dan yerel GUI PIN tanımla/değiştir (confirm; result PIN içermez) — ≥4.8.3 |
@@ -304,7 +304,7 @@ Dry-run result `data` example:
 
 **GUI PIN semantiği (≥4.8.3):** PIN store `ProgramData/.../gui_lock.json` — SYSTEM daemon komutu uygular, GUI süreci dosya mtime'ından değişikliği otomatik algılar (restart gerekmez) ve aktif oturum kilidini düşürür. Hesap bağlıysa GUI PIN diyalogları "dashboard üzerinden tanımlayabilir/sıfırlayabilirsiniz" ipucu gösterir (`is_account_linked()`), böylece PIN unutulduğunda kurtarma yolu görünürdür. Client doğrulaması: `pin` eksik → `missing_pin`, format dışı → `invalid_pin_format`.
 
-Detay: self-update → [`04-self-update.md`](./04-self-update.md); remote → [`05-remote-desktop.md`](./05-remote-desktop.md) + [`../agent/remote-input.md`](../agent/remote-input.md); firewall → [`06-firewall-blocks.md`](./06-firewall-blocks.md); kurtarma → [`../agent/disaster-recovery.md`](../agent/disaster-recovery.md); kalıcılık/tamper → [`../agent/persistence-and-tamper.md`](../agent/persistence-and-tamper.md).
+Detay: self-update → [`../features/self-update.md`](../features/self-update.md); remote → [`../features/remote-desktop.md`](../features/remote-desktop.md); firewall → [`06-firewall-blocks.md`](./06-firewall-blocks.md); kurtarma → [`../features/disaster-recovery.md`](../features/disaster-recovery.md); kalıcılık → [`../features/persistence.md`](../features/persistence.md).
 
 ---
 

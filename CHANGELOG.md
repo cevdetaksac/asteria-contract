@@ -1,5 +1,13 @@
 # Changelog — asteria-contract
 
+## 1.4.66 — 2026-08-15
+
+### Delete leftover product stubs
+
+Removed empty “Moved” files (`agent/` product copies, `api/04` `05` `09`,
+`cloud/DEFENSE_POLICY.md`, `cloud/SERVER_USER_MANAGEMENT.md`, `CLOUD_BACKLOG.md`).
+Live links now point at [`features/`](features/README.md). Do not recreate them.
+
 ## 1.4.65 — 2026-08-15
 
 ### Fold remaining product MDs into `features/`

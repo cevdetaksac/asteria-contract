@@ -31,7 +31,7 @@ Scattered checklists elsewhere point here; do not invent parallel criteria.
 | **Silent-hours auto-actions** | Config may store flags; cloud **clears** out-of-canary | Anti-brick C-BRICK satisfied; canary `silent_hours_auto_actions` ≥7d; undo-mail E2E green; no unlinked auto-disable incidents |
 | **Network Guard auto-contain / auto-kill** | Policy may request; cloud clears out-of-canary | Soft-inform + golden baseline stable; canary `network_guard_auto_contain` ≥7d; no false-contain on DHCP/VPN churn lab |
 | **Defense `isolate_armed`** | Observe→balanced auto-promote only | Never auto-arm; canary `defense_isolate_armed` + operator confirm path; paranoid preset only |
-| **Defense observe→balanced** | Auto-promote after N days | Already normative (`DEFENSE_POLICY`); never auto→paranoid / never auto-arm isolate |
+| **Defense observe→balanced** | Auto-promote after N days | Already normative (`features/defense-policy.md`); never auto→paranoid / never auto-arm isolate |
 | **Legacy dual-brand host / HMAC verify** | Dual accept during cutover | Sunset criteria in [`PRODUCT_BRANDING.md`](./PRODUCT_BRANDING.md) §Sunset |
 
 ---

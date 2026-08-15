@@ -59,7 +59,7 @@ Host methods (Python `MotorBridge` / `window.pywebview.api`):
 | `shell(action)` | open_dashboard, open_servers, copy_token, open_logs, minimize, quit; **check_updates** → silent motor `SELF_UPDATE` (no browser) |
 | `account(action, email, password)` | status / link / unlink (host-held token) |
 | `harden(action, target)` | status checks + fix winrm|nla|antivirus |
-| `tools(action, target, confirm)` | Local twin of remote `tools_repair*` — catalog/diagnose/repair/open; allowlisted (`agent/tools-repair.md`) |
+| `tools(action, target, confirm)` | Local twin of remote `tools_repair*` — catalog/diagnose/repair/open; allowlisted ([`features/tools-repair.md`](../features/tools-repair.md)) |
 | `rdp(action, mode)` | status / move secure|rollback |
 | `ir(action, username)` | logoff / disable local account |
 | `update_banner(action)` | status / dismiss (`update_ui_status.json`) |

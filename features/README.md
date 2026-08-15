@@ -1,6 +1,6 @@
 # Feature contracts
 
-> Contract **≥ 1.4.65**. One product → **one MD**. Shared wire: [`../api/01-auth.md`](../api/01-auth.md),
+> Contract **≥ 1.4.66**. One product → **one MD**. Shared wire: [`../api/01-auth.md`](../api/01-auth.md),
 > [`../api/03-control-websocket.md`](../api/03-control-websocket.md).
 > Cloud ticks: [`../cloud/CLOUD_CHECKLIST.md`](../cloud/CLOUD_CHECKLIST.md).
 
@@ -26,4 +26,4 @@
 | Control Center GUI | [`gui.md`](./gui.md) |
 | Presence | [`presence.md`](./presence.md) |
 
-Old `agent/` `api/04` `api/05` `api/09` `cloud/DEFENSE_POLICY.md` `cloud/SERVER_USER_MANAGEMENT.md` paths are **stubs**. Edit **this folder** only. **Feature file wins.**
+Edit **this folder** only. Deleted `agent/` product copies, `api/04` `05` `09`, and old cloud policy/user MDs must not come back. **Feature file wins.**

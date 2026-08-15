@@ -35,9 +35,9 @@ These rules apply to every workstream:
 Canonical references:
 
 - [`features/network-guard.md`](features/network-guard.md)
-- [`agent/persistence-and-tamper.md`](agent/persistence-and-tamper.md)
+- [`features/persistence.md`](features/persistence.md)
 - [`api/03-control-websocket.md`](api/03-control-websocket.md)
-- [`api/04-self-update.md`](api/04-self-update.md)
+- [`features/self-update.md`](features/self-update.md)
 - [`api/08-architecture.md`](api/08-architecture.md)
 
 ## 2. Shared execution protocol
