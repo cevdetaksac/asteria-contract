@@ -3,15 +3,15 @@
 > Contract **≥ 1.4.71**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.101** for RD **smoothness** (C-RD-SMOOTH) · **≥ 4.9.100** for
-> **pixels + lock/logoff follow** (C-RD-PIX, FOLLOW-9/10)
-> · topology names **≥ 4.9.95** · intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
+> Pin: **≥ 4.9.102** for RD **pixels attempt** (C-RD-PIX-3 lock+username) ·
+> **≥ 4.9.101** smoothness · **≥ 4.9.100** lock/logoff follow contract ·
+> topology names **≥ 4.9.95** · intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
 > **4.9.94 follow-skip is not acceptance.** **4.9.99 gdi+black lab is not acceptance.**
 > **gdi+black / solid-black JPEG is not acceptance.**
 >
-> **2026-08-15:** agent **4.9.101** on GitHub (smoothness). **Open:** C-RD-PIX + TOPO
-> **console lab** after host self-update (4.9.99 Derin-Web still FAIL:
-> `persistent-user-helper` + `gdi+black`).
+> **2026-08-16:** agent **4.9.102** on GitHub (PIX-3 helper). **Open:** C-RD-PIX + TOPO
+> **console lab** — do not tick until Derin-Web Run A/C pass. 4.9.101 smoothness
+> unit is not PIX acceptance (`persistent-user-helper` + `gdi+black`).
 
 **Read first:** [`README.md`](./README.md) · RD SoT: [`remote-desktop.md`](./remote-desktop.md)  
 **Cloud ticks:** [`../cloud/CLOUD_CHECKLIST.md`](../cloud/CLOUD_CHECKLIST.md)
