@@ -15,6 +15,9 @@ Dashboard **Şimdi güncelle** butonu → cloud `POST /api/commands/send` → ag
 
 Zamanlanmış otomatik güncelleme (saatlik/günlük) **ayrı kalsın**; bu komut takvimden bağımsız tetikler.
 
+**1.4.59:** GitHub release asset **yalnız** `asteria-client-installer.exe`.  
+Dashboard “trust metadata pending” (`signed=null`) **observe-only** — indirme / `self_update` **BLOKlanmaz**. Agent Authenticode yok diye GET’i reddetmesin.
+
 ---
 
 ## Cloud (hazır)
@@ -36,8 +39,8 @@ Zamanlanmış otomatik güncelleme (saatlik/günlük) **ayrı kalsın**; bu komu
     "force": true,
     "channel": "stable",
     "tag": "v4.5.10",
-    "download_url": "https://github.com/cevdetaksac/asteria-client/releases/download/v4.5.10/cloud-client-installer.exe",
-    "installer_name": "cloud-client-installer.exe",
+    "download_url": "https://github.com/cevdetaksac/asteria-client/releases/download/v4.5.10/asteria-client-installer.exe",
+    "installer_name": "asteria-client-installer.exe",
     "size": 27400000,
     "triggered_by": "dashboard"
   },

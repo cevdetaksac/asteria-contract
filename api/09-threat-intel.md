@@ -66,6 +66,9 @@ Content-Type: application/json
 | `firewall_skipped` | severity / allowlist / expire / cap / fail |
 | `firewall_removed` | orphan veya policy-off purge |
 | `errors[]` | Soft hatalar — dolu olsa bile ACK gönderilmeli |
+| `firewall_current` | *(opsiyonel, ≥4.9.94)* Şu an duran `AR-INTEL-*` kural sayısı |
+
+**304:** Firewall değişmediyse ACK gönderme. Cloud `If-None-Match` 304 sayacı dashboard’da tutulur; client ekstra alan göndermez.
 
 Soft-fail if endpoint missing. Dashboard “Agent ACK” / fleet sync bundan beslenir.
 

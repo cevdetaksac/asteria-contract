@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.58** · Repo: https://github.com/cevdetaksac/asteria-contract
+> **VERSION 1.4.59** · Repo: https://github.com/cevdetaksac/asteria-contract
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.59** | Start topologies (`follow` vs `winlogon`); Threat Intel IoC UI; inspect no-confirm; installer name; trust metadata non-blocking | **≥4.9.95** remote follow; inspect **≥4.9.93**; intel ACK optional **≥4.9.94** |
 | **1.4.58** | Console-first RD: default Logon; follow Default after logon | **≥4.9.93**; cloud default winlogon |
 | **1.4.57** | On-demand `inspect_process` + rundll32 LOLBIN false-positive fix | **≥4.9.93** |
 | **1.4.56** | Logon lab: live meta after settle (not start snapshot); `phase=degraded` | **≥4.9.91**; cloud live meta |

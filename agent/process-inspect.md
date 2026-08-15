@@ -1,6 +1,6 @@
 # Process inspect (on-demand) — C-PROC-INSPECT
 
-> **Contract VERSION:** **1.4.57**  
+> **Contract VERSION:** **1.4.59**  
 > **Client:** ≥ **4.9.93**  
 > Related: [`server-management.md`](./server-management.md) ·
 > [`../api/07-lifecycle-sessions.md`](../api/07-lifecycle-sessions.md) ·
@@ -39,6 +39,9 @@ Suggested UI:
 ## Command `inspect_process`
 
 **Not destructive.** Whitelist `VALID_COMMAND_TYPES`. Confirm gate: **no**.
+
+Dashboard **?** / İncele → `{ "pid": N }` immediately.  
+**FAIL:** generic “Onayla ve Gönder” / `confirm:true` required. Inspect must queue without a confirm modal.
 
 **Params:**
 
