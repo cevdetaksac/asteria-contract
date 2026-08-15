@@ -1,6 +1,6 @@
 # Contract INDEX
 
-> [`VERSION`](VERSION) (**1.4.68**) → [`features/README.md`](features/README.md) → that product MD.  
+> [`VERSION`](VERSION) (**1.4.69**) → [`features/README.md`](features/README.md) → that product MD.  
 > Repo: https://github.com/cevdetaksac/asteria-contract · Fleet: [`FLEET.md`](FLEET.md)  
 > Production floor: **client ≥ 4.9.0** · API: `https://asteria.run`  
 > **Cloud work:** [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) (done this sprint)  

@@ -1,6 +1,6 @@
 # Changelog — asteria-contract
 
-## 1.4.68 — 2026-08-15
+## 1.4.69 — 2026-08-15
 
 ### Remote Desktop pixels (C-RD-PIX) — client P0
 
@@ -14,6 +14,14 @@ chrome is not**.
 | PIX-1…7: healthy ≠ JPEG bytes; empty-host helper; logged-on DXGI; no WebRTC-on-black | [`features/remote-desktop.md`](features/remote-desktop.md) |
 | Lab runs A–E + open PIX ticks | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) |
 | Floor | client **≥ 4.9.97** for pixels (topology names still ≥ **4.9.95**) |
+
+## 1.4.68 — 2026-08-15
+
+### Client checklist ticks (4.9.96)
+
+Inspect / self-update / threat-intel / shared wire / CON-8 / S0 / CAD marked
+`[x]` on [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md).
+RD TOPO-1/2/FOLLOW live pixels remain open for logged-on lab.
 
 ## 1.4.67 — 2026-08-15
 

@@ -1,6 +1,6 @@
 # Remote Desktop — single contract
 
-> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.68** · Agent floor
+> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.69** · Agent floor
 > **≥ 4.9.95** named topology · **≥ 4.9.97** Logon/empty-host **pixels** (not
 > black GDI). Older IDs (C-RD-*, C-WL, C-RD-S0, …) still apply; they live
 > **in this file**.

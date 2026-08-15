@@ -4,7 +4,7 @@
 
 | | |
 |--|--|
-| **VERSION** | [`VERSION`](VERSION) (**1.4.67**) |
+| **VERSION** | [`VERSION`](VERSION) (**1.4.68**) |
 | **Features** | [`features/README.md`](features/README.md) — one MD per product |
 | **Cloud checklist** | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) — ticked in production |
 | **Client checklist** | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) — lab host ticks |
@@ -32,7 +32,7 @@
 
 ```bash
 git clone https://github.com/cevdetaksac/asteria-contract.git
-cat VERSION   # expect 1.4.67+
+cat VERSION   # expect 1.4.68+
 ```
 
 Cloud host: `cd /data/asteria.run/contract && git pull && ../scripts/publish_contract.sh`  
