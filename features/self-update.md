@@ -32,3 +32,7 @@ Phases: `queued` → `downloading` → `verifying` → `installing` → terminal
 Single-flight gate: overlapping Update now returns the in-flight snapshot.
 
 `check_update` is inspect-only (no install).
+
+## Client verify
+
+Tick [`CLIENT_CHECKLIST.md`](./CLIENT_CHECKLIST.md) § Self-update. Floor **≥ 4.9.96** (asset name). Progress ticks **≥ 4.9.60**.

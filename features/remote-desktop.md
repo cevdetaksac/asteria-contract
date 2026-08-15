@@ -221,7 +221,9 @@ behind move flood.
 
 ---
 
-## Acceptance (lab)
+## Acceptance (lab) — **client** ticks [`CLIENT_CHECKLIST.md`](./CLIENT_CHECKLIST.md)
+
+Cloud dashboard P0 for RD is done. Remaining boxes are **agent + lab host**:
 
 - [ ] Default Connect follow + logged-on console → DXGI frames, jpeg&gt;0, no spawn FAIL (**≥4.9.95**)
 - [ ] Lock row → Winlogon / LogonUI pixels, not that user’s Default
@@ -229,6 +231,7 @@ behind move flood.
 - [ ] ICE fail → JPEG-WS ≤2s, no zombie “connected”
 - [x] Session-0 empty host Logon pixels (**4.9.84**)
 - [x] CAD meta honesty (**4.9.86**)
+- [x] Cloud Start shapes / CAD / Live honesty (see [`../cloud/CLOUD_CHECKLIST.md`](../cloud/CLOUD_CHECKLIST.md))
 
 ---
 

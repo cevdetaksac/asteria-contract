@@ -25,4 +25,8 @@ Not destructive. **Confirm gate: no.** “Onayla ve Gönder” / required `confi
 | **C-PROC-INSPECT-3** | Client: `.dll,Entry` not lolbin |
 | **CL-PROC-INSPECT-1** | Cloud: whitelist `inspect_process` |
 | **CL-PROC-INSPECT-2** | **?** / İncele → dispatch immediately |
-| **CL-PROC-INSPECT-6** | **No confirm UI** |
+| **CL-PROC-INSPECT-6** | Cloud: **No confirm UI** |
+
+## Client verify
+
+Tick [`CLIENT_CHECKLIST.md`](./CLIENT_CHECKLIST.md) § Process inspect. Floor **≥ 4.9.93**.

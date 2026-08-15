@@ -4,9 +4,10 @@
 
 | | |
 |--|--|
-| **VERSION** | [`VERSION`](VERSION) (**1.4.66**) |
+| **VERSION** | [`VERSION`](VERSION) (**1.4.67**) |
 | **Features** | [`features/README.md`](features/README.md) — one MD per product |
-| **Cloud checklist** | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) — tick in production |
+| **Cloud checklist** | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) — ticked in production |
+| **Client checklist** | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) — lab host ticks |
 | **Index** | [`INDEX.md`](INDEX.md) |
 | **Fleet** | [`FLEET.md`](FLEET.md) — floor client ≥ **4.9.0** |
 | **API** | `https://asteria.run` · Bearer token (not `?token=` on agent API) |
@@ -17,7 +18,7 @@
 | Party | Start |
 |-------|--------|
 | **Cloud / dashboard** | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) then the linked `features/*` |
-| **Windows client** | `features/*` — do not invent endpoints |
+| **Windows client** | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) then the linked `features/*` |
 | **Cursor / agents** | `VERSION` → `features/README.md` → product MD |
 
 ## Rules
@@ -31,7 +32,7 @@
 
 ```bash
 git clone https://github.com/cevdetaksac/asteria-contract.git
-cat VERSION   # expect 1.4.66+
+cat VERSION   # expect 1.4.67+
 ```
 
 Cloud host: `cd /data/asteria.run/contract && git pull && ../scripts/publish_contract.sh`  

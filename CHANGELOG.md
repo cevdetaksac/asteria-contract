@@ -1,5 +1,16 @@
 # Changelog — asteria-contract
 
+## 1.4.67 — 2026-08-15
+
+### Client lab checklist + cloud sprint closed
+
+| Piece | Path |
+|-------|------|
+| Windows agent tick list (RD / inspect / update / intel) | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) |
+| Cloud P0/P1 dashboard work | done — [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) |
+
+Remaining open boxes are **client lab**, not cloud implement.
+
 ## 1.4.66 — 2026-08-15
 
 ### Delete leftover product stubs

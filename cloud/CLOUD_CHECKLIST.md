@@ -1,6 +1,6 @@
 # Cloud / dashboard checklist
 
-> Contract **≥ 1.4.66**. Cloud this file, tick `[x]`, PR note with commit/date.
+> Contract **≥ 1.4.67**. Cloud this file, tick `[x]`, PR note with commit/date.
 > Do **not** add new SoT markdown here — implement against `features/*`.
 >
 > Pin: client **≥ 4.9.96** recommended · RD topology **≥ 4.9.95** · inspect **≥ 4.9.93**
@@ -100,6 +100,6 @@ SoT: [`../features/threat-intel.md`](../features/threat-intel.md)
 
 ## After you ship
 
-1. Tick boxes above in a contract PR **or** reply with ID list + dashboard commit.
+1. Cloud boxes above are ticked on **1.4.67**.
 2. Pull `asteria-contract` on the cloud host and `publish_contract.sh`.
-3. Lab: Default Connect on a **logged-on** host must not spawn Winlogon / jpeg=0B (`SESSION0_HELPER_SPAWN_FAILED`).
+3. **Client:** tick [`../features/CLIENT_CHECKLIST.md`](../features/CLIENT_CHECKLIST.md) on a logged-on lab host (**≥4.9.95** RD / **≥4.9.96** recommended). Default Connect must not spawn Winlogon / jpeg=0B.

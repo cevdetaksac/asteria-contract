@@ -20,3 +20,7 @@ ACK `stats`: `firewall_added` / `skipped` / `removed` / **`firewall_current`** (
 WS `threat_intel_updated` → GET immediately.
 
 Apply: `AR-INTEL-<id>` in+out (not `AR-BLOCK` / AutoResponse 24h). `auto_block_firewall=false` purges intel rules.
+
+## Client verify
+
+Tick [`CLIENT_CHECKLIST.md`](./CLIENT_CHECKLIST.md) § Threat intel. **304 = no ACK.** Floor **≥ 4.9.96** for `firewall_current` + 304 hygiene.

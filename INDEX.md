@@ -1,9 +1,10 @@
 # Contract INDEX
 
-> [`VERSION`](VERSION) (**1.4.66**) → [`features/README.md`](features/README.md) → that product MD.  
+> [`VERSION`](VERSION) (**1.4.67**) → [`features/README.md`](features/README.md) → that product MD.  
 > Repo: https://github.com/cevdetaksac/asteria-contract · Fleet: [`FLEET.md`](FLEET.md)  
 > Production floor: **client ≥ 4.9.0** · API: `https://asteria.run`  
-> **Cloud work:** [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md)
+> **Cloud work:** [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) (done this sprint)  
+> **Client work:** [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md)
 
 **Product SoT is only `features/`.** Shared wire is `api/` below. Do not recreate deleted `agent/` product files, `api/04` `05` `09`, or `cloud/DEFENSE_POLICY.md`.
 
@@ -14,6 +15,7 @@
 | Dosya | Min client |
 |-------|------------|
 | [features/README.md](features/README.md) | — |
+| [features/CLIENT_CHECKLIST.md](features/CLIENT_CHECKLIST.md) | lab ticks |
 | [features/remote-desktop.md](features/remote-desktop.md) | **≥ 4.9.95** |
 | [features/self-update.md](features/self-update.md) | **≥ 4.9.96** |
 | [features/process-inspect.md](features/process-inspect.md) | **≥ 4.9.93** |
