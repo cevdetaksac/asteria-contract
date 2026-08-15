@@ -2,7 +2,7 @@
 
 > API: `https://asteria.run`  
 > Client: **≥ 4.5.66** (protection.block_rules + WS threat_intel_updated; canary UX ≥4.5.65)  
-> Ransomware: [`../agent/ransomware-shield.md`](../agent/ransomware-shield.md)
+> Ransomware: [`../features/ransomware.md`](../features/ransomware.md)
 
 ---
 
@@ -64,7 +64,7 @@ JSON replies start with `{`. Helpers: `client_daemon_ipc.py`.
 akışı yerel IPC kullanır (`NG_MAINT_*`, `NG_SNAPSHOT`, `NG_ACCEPT_SURFACE`).
 Dashboard aynı işi Control WS komutlarıyla yapar
 (`network_maintenance_*`, `network_snapshot`, `network_accept_surface`) —
-[`../agent/network-guard.md`](../agent/network-guard.md). Soft inform yolunda
+[`../features/network-guard.md`](../features/network-guard.md). Soft inform yolunda
 PIN yok; `network_disable_adapter` yalnız WS + confirm.
 
 **`THREAT_TOP` (≥4.7.6):** frontend GUI kendi threat engine'ini tutmaz; "Toplam
@@ -123,7 +123,7 @@ Threat intel: tek worker + coalesce (paralel PS fırtınası yok). Servis toggle
 
 ## STATUS örneği (≥4.9.15 / contract 1.4.17)
 
-Normative `network_guard` alanları: [`../agent/network-guard.md`](../agent/network-guard.md).
+Normative `network_guard` alanları: [`../features/network-guard.md`](../features/network-guard.md).
 Aşağıdaki örnek cloud health persist + GUI koruma şeridi için yeterlidir.
 
 ```json

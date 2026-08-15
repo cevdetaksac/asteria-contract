@@ -1,10 +1,9 @@
 # Threat intel — single contract
 
-> **SoT** **≥ 1.4.61** · Client poll **≥ 4.5.61** · apply **≥ 4.9.7** · `AR-INTEL-*` **≥ 4.9.33**
+> **SoT** **≥ 1.4.65** · Client poll **≥ 4.5.61** · apply **≥ 4.9.7** · `AR-INTEL-*` **≥ 4.9.33**
 > · `firewall_current` + 304-no-ACK **≥ 4.9.96**
-> Pointers: [`../api/09-threat-intel.md`](../api/09-threat-intel.md),
-> [`../cloud/threat-intel-ingest.md`](../cloud/threat-intel-ingest.md)
-> Local EventLog engine is **not** this file (`agent/threat-engine.md`).
+> Cloud ingest (feeds): [`../cloud/threat-intel-ingest.md`](../cloud/threat-intel-ingest.md)
+> Local EventLog engine: [`threat-engine.md`](./threat-engine.md).
 
 Client **does not** fetch Abuse.ch / CISA / ThreatFox. Cloud ingest only.
 

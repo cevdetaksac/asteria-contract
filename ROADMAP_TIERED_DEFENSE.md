@@ -1,8 +1,8 @@
 # Tiered Defense & Resilience Roadmap
 
-> **Status:** Planning (living document) — **onboarding 2026-07-23** · cloud normative **1.4.19** → [`cloud/DEFENSE_POLICY.md`](cloud/DEFENSE_POLICY.md) · client [`agent/defense-policy-client.md`](agent/defense-policy-client.md)  
+> **Status:** Planning (living document) — **onboarding 2026-07-23** · cloud normative **1.4.19** → [`features/defense-policy.md`](features/defense-policy.md) · client [`features/defense-policy.md`](features/defense-policy.md)  
 > **Audience:** Client · Cloud/API · Dashboard · QA  
-> **Related:** [`agent/network-guard.md`](agent/network-guard.md) · [`agent/ransomware-shield.md`](agent/ransomware-shield.md) · [`cloud/DEFENSE_POLICY.md`](cloud/DEFENSE_POLICY.md) · [`SECURITY_RESILIENCE_VNEXT.md`](SECURITY_RESILIENCE_VNEXT.md) · soft inform **1.4.17 / ≥4.9.15** · matrix **≥4.9.16** · observe-default **≥4.9.17**  
+> **Related:** [`features/network-guard.md`](features/network-guard.md) · [`features/ransomware.md`](features/ransomware.md) · [`features/defense-policy.md`](features/defense-policy.md) · [`SECURITY_RESILIENCE_VNEXT.md`](SECURITY_RESILIENCE_VNEXT.md) · soft inform **1.4.17 / ≥4.9.15** · matrix **≥4.9.16** · observe-default **≥4.9.17**  
 > **Repo:** https://github.com/cevdetaksac/asteria-contract
 
 Bu dosya Gemini + ürün ekibi değerlendirmelerinin **birleşik yol haritasıdır**.  
@@ -154,7 +154,7 @@ Tek canary dokunuşu / imza bozma / alert spam → **asla** ağ kesme veya “pa
 **Cloud alan:** `protection.defense_policy` = `observe|balanced|paranoid`  
 + onboarding: `observe_started_at`, `observe_auto_promote_days` (default **3**),  
 `observe_auto_promote_enabled`, `defense_policy_locked` —  
-[`cloud/DEFENSE_POLICY.md`](cloud/DEFENSE_POLICY.md) §1.4.
+[`features/defense-policy.md`](features/defense-policy.md) §1.4.
 
 **Kurallar:**
 
@@ -411,8 +411,8 @@ başlatmak.
 
 ## 9. Sonraki somut adım
 
-1. Cloud: [`cloud/DEFENSE_POLICY.md`](cloud/DEFENSE_POLICY.md) **C-P0-1…C-P0-10** (observe default + auto-promote)  
-2. Client ≥4.9.17: observe hydrate + CTA + promote backup ([`agent/defense-policy-client.md`](agent/defense-policy-client.md))  
+1. Cloud: [`features/defense-policy.md`](features/defense-policy.md) **C-P0-1…C-P0-10** (observe default + auto-promote)  
+2. Client ≥4.9.17: observe hydrate + CTA + promote backup ([`features/defense-policy.md`](features/defense-policy.md))  
 3. Lab: observe canary (alert only) → promote → balanced kill/Q; ağ ayakta  
 4. Dashboard: eğitim + kilitle + gün sayısı  
 

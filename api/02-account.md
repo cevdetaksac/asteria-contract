@@ -123,7 +123,7 @@ yazılır. Dashboard `?token=` + oturum → C-BRICK-3 auto-link alternatif yol.
 
 ## P0c — Dashboard auto-link (contract **1.4.34**, anti-brick)
 
-> Normative detail: [`agent/anti-brick-critical-actions.md`](../agent/anti-brick-critical-actions.md) **C-BRICK-3**.
+> Normative detail: [`features/account-safety.md`](../features/account-safety.md).
 
 Authenticated **account session** (dashboard cookie / account Bearer) bir istekte
 geçerli **agent client token** taşıyorsa ve bu account↔client `AccountClient`

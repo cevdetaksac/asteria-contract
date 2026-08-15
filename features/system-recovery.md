@@ -1,6 +1,6 @@
 # System recovery — single contract
 
-> **SoT** **≥ 1.4.62**. Pointer: [`../agent/system-recovery.md`](../agent/system-recovery.md)
+> **SoT** **≥ 1.4.65**
 
 Allowlist snapshot of TaskMgr/Regedit/CMD policy, critical services, firewall
 profile. Drift watch + `system_recovery_restore` (dry_run exempt from confirm).

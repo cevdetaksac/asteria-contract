@@ -4,8 +4,8 @@
 
 > **Contract VERSION:** root `VERSION` (**1.4.31+** AR-* prefix; see rebrand for signing)  
 > **Auth:** Bearer  
-> **İlgili:** [`../agent/register-protection.md`](../agent/register-protection.md) · threat-intel `AR-INTEL-*` → [`09-threat-intel.md`](./09-threat-intel.md)  
-> **Brand migrate:** [`../agent/firewall-brand-migrate.md`](../agent/firewall-brand-migrate.md) (client ≥ **4.9.33**)
+> **İlgili:** [`../agent/register-protection.md`](../agent/register-protection.md) · threat-intel `AR-INTEL-*` → [`../features/threat-intel.md`](../features/threat-intel.md)  
+> **Brand migrate:** [`../features/firewall.md`](../features/firewall.md) (client ≥ **4.9.33**)
 
 Üç kaynak (karıştırma):
 
@@ -17,12 +17,7 @@
 
 `ip_or_cidr`: tek IP, CIDR, veya `country:XX` (cloud destekliyorsa).
 
-**Dashboard Firewall Yönetimi** (full inventory / profiles): see
-Full host Windows Firewall management (profiles + all inbound/outbound rules +
-enable/disable/delete/add) is specified in
-[`../agent/firewall-windows-parity.md`](../agent/firewall-windows-parity.md)
-(contract ≥**1.4.41** / client ≥**4.9.41**). Asteria-only inventory (1.4.40) remains in
-[`../agent/firewall-management.md`](../agent/firewall-management.md).
+**Dashboard Firewall Yönetimi** (full inventory / profiles): [`../features/firewall.md`](../features/firewall.md).
 
 ### Whitelist — asla engelleme (client ≥ 4.9.7)
 
@@ -32,7 +27,7 @@ enable/disable/delete/add) is specified in
 - Whitelist güncellenince veya block denemesi whitelist’e çarparsa client
   mevcut `AR-BLOCK-*` / `HP-BLOCK-*` **ve** eşleşen `AR-INTEL-*` / `HP-INTEL-*`
   kurallarını **derhal siler** (`enforce_whitelist_unblocks`).
-- Bare `successful_logon` zaten BLOCK üretmez → [`../agent/threat-engine.md`](../agent/threat-engine.md).
+- Bare `successful_logon` zaten BLOCK üretmez → [`../features/threat-engine.md`](../features/threat-engine.md).
 
 ---
 
@@ -134,4 +129,4 @@ Agent eşikleri **local** `protection.block_rules` + cloud worker pending-blocks
 - [ ] Whitelist IP auto-block denemesi → cloud `rejected`/`whitelisted` + client FW’de kural yok
 - [ ] Whitelist’e eklenen önceden bloklu IP → `remove_pending` + `unblock_ip` / pending-unblocks → `block-removed` ACK `updated>0`
 - [ ] Çıplak `successful_logon` auto-block → cloud `successful_logon_no_autoblock` reject
-- [ ] Brand migrate ≥4.9.33: HP→AR ([`firewall-brand-migrate.md`](../agent/firewall-brand-migrate.md))
+- [ ] Brand migrate ≥4.9.33: HP→AR ([`features/firewall.md`](../features/firewall.md))

@@ -166,7 +166,7 @@ Aşağıdakiler **dashboard’da açık onay** olmadan cloud kuyruğa yazılmaz 
 - `create_user` (yeni/yeniden hesap — [`../agent/disaster-recovery.md`](../agent/disaster-recovery.md))
 - `remote_logon` / `set_autologon` / `reboot` (autologon + yeniden başlatma break-glass)
 - `network_restore` (ağ baseline'dan geri yükle — **mutating** path only —
-  [`../agent/network-guard.md`](../agent/network-guard.md)). Dry-run-only
+  [`../features/network-guard.md`](../features/network-guard.md)). Dry-run-only
   (`params.dry_run=true` and no mutate) **must not** require destructive
   `confirm:true`.
 - `network_disable_adapter` (belirli adaptörü disable — **mutating** only,
@@ -230,7 +230,7 @@ Client ayrıca whitelist + protected targets uygular; onay **sunucu tarafı** zo
 | `remote_logon` | `username`, `password`, `mode`, `reboot` | Kimlikle uzaktan oturum (reconnect / autologon+reboot) — ≥4.6.0 |
 | `set_autologon` / `clear_autologon` | `username`, `password`, `count` | Autologon arm/temizle — ≥4.6.0 |
 | `reboot` | `grace_sec`, `reason` | Onaylı yeniden başlatma — ≥4.6.0 |
-| `network_snapshot` | — | Golden ağ baseline al (bilinçli IP değişiminden **önce** veya bakımda) — ≥4.7.0 ([`../agent/network-guard.md`](../agent/network-guard.md)) |
+| `network_snapshot` | — | Golden ağ baseline al (bilinçli IP değişiminden **önce** veya bakımda) — ≥4.7.0 ([`../features/network-guard.md`](../features/network-guard.md)) |
 | `network_restore` | `targets[]?`, `dry_run?`, `rollback_version?` | Baseline'dan ağ/sürücü/IPv4 geri yükle. **Mutate** = confirm. `dry_run:true` = plan only. `targets`: adapter\|ipv4\|dns\|firewall\|mapped_drive. ≥4.7.0 |
 | `list_network_baseline` | — | Golden + **live** adapters (ipv4/dns) + history + drift — rich ≥4.9.12 |
 | `network_diff` | `version?` | Live vs golden: `changes` (subtractive) + `inform_changes` (additive, ≥4.9.15) + `surface_inform` — ≥4.9.12 / inform ≥4.9.15 |

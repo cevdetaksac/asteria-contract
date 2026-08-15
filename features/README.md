@@ -1,6 +1,6 @@
 # Feature contracts
 
-> Contract **≥ 1.4.64**. One product → **one MD**. Shared: [`../api/01-auth.md`](../api/01-auth.md),
+> Contract **≥ 1.4.65**. One product → **one MD**. Shared wire: [`../api/01-auth.md`](../api/01-auth.md),
 > [`../api/03-control-websocket.md`](../api/03-control-websocket.md).
 > Cloud ticks: [`../cloud/CLOUD_CHECKLIST.md`](../cloud/CLOUD_CHECKLIST.md).
 
@@ -26,4 +26,4 @@
 | Control Center GUI | [`gui.md`](./gui.md) |
 | Presence | [`presence.md`](./presence.md) |
 
-Old `agent/` `api/` `cloud/` paths are pointers or appendices. **Feature file wins.**
+Old `agent/` `api/04` `api/05` `api/09` `cloud/DEFENSE_POLICY.md` `cloud/SERVER_USER_MANAGEMENT.md` paths are **stubs**. Edit **this folder** only. **Feature file wins.**

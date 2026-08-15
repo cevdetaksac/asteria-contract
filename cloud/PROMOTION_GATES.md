@@ -2,7 +2,7 @@
 
 > **Contract VERSION:** **1.4.37**  
 > Status: **Normative**  
-> Related: [`FLEET_CANARY.md`](./FLEET_CANARY.md) · [`../api/10-offline-urgent-queue.md`](../api/10-offline-urgent-queue.md) · [`DEFENSE_POLICY.md`](./DEFENSE_POLICY.md) · [`ZERO_TRUST_STATUS.md`](./ZERO_TRUST_STATUS.md) · [`../api/12-command-envelope-v2.md`](../api/12-command-envelope-v2.md)
+> Related: [`FLEET_CANARY.md`](./FLEET_CANARY.md) · [`../api/10-offline-urgent-queue.md`](../api/10-offline-urgent-queue.md) · [`../features/defense-policy.md`](../features/defense-policy.md) · [`ZERO_TRUST_STATUS.md`](./ZERO_TRUST_STATUS.md) · [`../api/12-command-envelope-v2.md`](../api/12-command-envelope-v2.md)
 
 This file answers: **when may an observe-mode feature move to enforce / fleet-on?**  
 Scattered checklists elsewhere point here; do not invent parallel criteria.

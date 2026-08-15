@@ -34,7 +34,7 @@ These rules apply to every workstream:
 
 Canonical references:
 
-- [`agent/network-guard.md`](agent/network-guard.md)
+- [`features/network-guard.md`](features/network-guard.md)
 - [`agent/persistence-and-tamper.md`](agent/persistence-and-tamper.md)
 - [`api/03-control-websocket.md`](api/03-control-websocket.md)
 - [`api/04-self-update.md`](api/04-self-update.md)
@@ -388,7 +388,7 @@ remains **4.9.0**; no enforce toggles are on:
   `api/08-architecture.md`;
 - DEC-201/202 `canary_coverage` + DEC-205/206/208/209 `deception_health[]`;
 - NET-501/502 `network_restore` `dry_run` / `rollback_version` —
-  `api/03-control-websocket.md` + `agent/network-guard.md`;
+  `api/03-control-websocket.md` + `features/network-guard.md`;
 - OOB-501 DPAPI+HMAC local queue primitive (**ingest promoted** → `api/10-offline-urgent-queue.md`, cloud ≥1.4.7; client flag default off);
 - ID-402/403 `event_log_health.password_burst` (wire name SoT; not
   `identity_burst`);

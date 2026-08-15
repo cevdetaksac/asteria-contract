@@ -1,9 +1,7 @@
 # Firewall — single contract
 
-> **SoT** **≥ 1.4.61**. Pointers: [`../api/06-firewall-blocks.md`](../api/06-firewall-blocks.md),
-> [`../agent/firewall-management.md`](../agent/firewall-management.md),
-> [`../agent/firewall-windows-parity.md`](../agent/firewall-windows-parity.md),
-> [`../agent/firewall-brand-migrate.md`](../agent/firewall-brand-migrate.md)
+> **SoT** **≥ 1.4.65** · Client inventory **≥ 4.9.40** · MMC parity **≥ 4.9.41** · brand **≥ 4.9.33**
+> Shared AR-BLOCK wire: [`../api/06-firewall-blocks.md`](../api/06-firewall-blocks.md)
 
 Two families:
 

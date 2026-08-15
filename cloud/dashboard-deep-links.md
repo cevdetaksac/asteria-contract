@@ -58,7 +58,7 @@ Register / rotate responses already return the home link:
 | `/dashboard/settings` | Account / notify / password | All | Settings |
 | `/dashboard/logout` | End **server** dashboard session | All | (rarely expose) |
 
-\* Remote desktop floor: client ≥ **4.9.0** ([`api/05-remote-desktop.md`](../api/05-remote-desktop.md)).  
+\* Remote desktop floor: client ≥ **4.9.0** ([`features/remote-desktop.md`](../features/remote-desktop.md)).  
 † Server management: target client ≥ **4.9.4** ([`agent/server-management.md`](../agent/server-management.md)).
 
 ### Account fleet (no agent token in path — account cookie)
@@ -138,7 +138,7 @@ After **token rotate**, rebuild all templates with the new token; stale bookmark
 ## Auth / session behavior (operators)
 
 1. Browser hits `…?token={TOKEN}` → cloud resolves client by token → may require **account password** if server is account-linked (no separate dash password when linked).
-2. Authenticated account + foreign-or-unlinked token may **auto-link** (C-BRICK-3) — [`agent/anti-brick-critical-actions.md`](../agent/anti-brick-critical-actions.md).
+2. Authenticated account + foreign-or-unlinked token may **auto-link** (C-BRICK-3) — [`features/account-safety.md`](../features/account-safety.md).
 3. Token in URL is a **capability**; treat like a secret in screenshots / chat. Prefer copy-from-Settings over pasting into public tickets.
 
 ---

@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.65 — 2026-08-15
+
+### Fold remaining product MDs into `features/`
+
+Duplicate bodies under `agent/*` (product files), `api/04`, `api/05`, `api/09`,
+`cloud/DEFENSE_POLICY.md`, `cloud/SERVER_USER_MANAGEMENT.md` are **stubs**.
+Client + cloud edit only [`features/README.md`](features/README.md) + that product MD.
+Shared wire stays in `api/01` `02` `03` `06` `07` `08` `10` `11` `12`.
+C-USER table and defense invariants live in the feature files.
+
 ## 1.4.64 — 2026-08-15
 
 ### Cloud checklist + index slim

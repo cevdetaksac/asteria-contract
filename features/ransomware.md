@@ -1,6 +1,6 @@
 # Ransomware shield — single contract
 
-> **SoT** **≥ 1.4.62**. Pointer: [`../agent/ransomware-shield.md`](../agent/ransomware-shield.md)
+> **SoT** **≥ 1.4.65**
 
 Canaries must be enumerable (Hidden+System + sort-bait `!000_`). Extreme ADS hide
 means ransomware never touches bait. Hit → kill writer + IFEO quarantine until

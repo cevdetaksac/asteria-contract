@@ -9,7 +9,7 @@ Automation that can mislead IR or brick a host (silent-hours auto-disable,
 Network Guard auto-contain, offline urgent queue enablement, isolate arming)
 MUST NOT go fleet-wide in one flip. This doc is the wire + ops SoT.
 
-Related: [`PROMOTION_GATES.md`](./PROMOTION_GATES.md) · [`../agent/anti-brick-critical-actions.md`](../agent/anti-brick-critical-actions.md)
+Related: [`PROMOTION_GATES.md`](./PROMOTION_GATES.md) · [`../features/account-safety.md`](../features/account-safety.md)
 
 ---
 

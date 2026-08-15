@@ -1,6 +1,6 @@
 # Process inspect — single contract
 
-> **SoT** **≥ 1.4.61** · Client **≥ 4.9.93** · Related inventory: [`../agent/server-management.md`](../agent/server-management.md)
+> **SoT** **≥ 1.4.65** · Client **≥ 4.9.93** · Inventory: [`server-management.md`](./server-management.md)
 
 Health `top_processes[]` stays **lean**. Heavy evidence only via `inspect_process`.
 

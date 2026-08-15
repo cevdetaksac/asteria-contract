@@ -3,7 +3,7 @@
 > **Contract:** ≥ **1.4.36** · **Audience:** Windows client developers  
 > **Base:** `https://asteria.run` · **Control WS:** `wss://asteria.run/ws/agent/control`  
 > **Purpose:** Single scannable list of what the cloud exposes to the agent — capabilities, HTTP paths, WS messages, command types.  
-> **Detail SoT:** linked `api/*` / `agent/*` MDs remain normative for schemas; this file is the **index**.
+> **Detail SoT:** [`../features/README.md`](../features/README.md) + shared `api/01` `03` `06`. This file is the HTTP/WS **index**.
 
 ### How the client team should use this
 
@@ -94,7 +94,7 @@ Signing: command HMAC context **`asteria-chp-v1`** · heartbeat **`asteria-heart
 
 | ID | Method | Path | Auth | Min client | Status | Notes |
 |----|--------|------|------|------------|--------|-------|
-| C-API-alerts-urgent | POST | `/api/alerts/urgent` | Bearer | — | live | Primary threat alert SoT — [`../agent/threat-engine.md`](../agent/threat-engine.md) |
+| C-API-alerts-urgent | POST | `/api/alerts/urgent` | Bearer | — | live | Primary threat alert SoT — [`../features/threat-engine.md`](../features/threat-engine.md) |
 | C-API-alerts-urgent-batch | POST | `/api/alerts/urgent/batch` | Bearer | observe | observe | Offline urgent queue — [`../api/10-offline-urgent-queue.md`](../api/10-offline-urgent-queue.md) |
 | C-API-alerts-auto-block | POST | `/api/alerts/auto-block` | Bearer | — | live | Alias also `/api/v4/auto-block` |
 | C-API-alerts-lifecycle | POST/GET | `/api/alerts/lifecycle` | Bearer | — | live | Lifecycle events |
@@ -106,7 +106,7 @@ Signing: command HMAC context **`asteria-chp-v1`** · heartbeat **`asteria-heart
 | C-API-threats-summary | GET | `/api/threats/summary` | Bearer | — | live | |
 | C-API-auto-blocks | GET | `/api/auto-blocks` | Bearer | — | live | |
 | C-API-notif-prefs | PUT | `/api/notifications/preferences` | Bearer | — | live | |
-| C-API-threat-intel | GET | `/api/agent/threat-intel` | Bearer | ≥4.5.61 | live | ETag bundle — [`../api/09-threat-intel.md`](../api/09-threat-intel.md) |
+| C-API-threat-intel | GET | `/api/agent/threat-intel` | Bearer | ≥4.5.61 | live | ETag bundle — [`../features/threat-intel.md`](../features/threat-intel.md) |
 | C-API-threat-intel-ack | POST | `/api/agent/threat-intel/ack` | Bearer | ≥4.5.61 | live | |
 | C-API-security-resilience | GET | `/api/security-resilience/status` | Bearer | observe | observe | P1 observe schemas |
 
@@ -163,7 +163,7 @@ Catalog whitelist = `helpers.VALID_COMMAND_TYPES` (§7). Detail: [`../api/03-con
 | C-WS-presence-ack | cloud→agent | `presence_ack` | ≥4.9.8 | live | |
 | C-WS-error | cloud→agent | `error` | — | live | Log + reconnect policy |
 
-Remote desktop WS (separate): `/ws/remote/agent`, `/ws/remote/view` — [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md).
+Remote desktop WS (separate): `/ws/remote/agent`, `/ws/remote/view` — [`../features/remote-desktop.md`](../features/remote-desktop.md).
 
 ---
 
@@ -184,7 +184,7 @@ Cloud refuses unknown `command_type`. Source: `helpers.VALID_COMMAND_TYPES`.
 | `firewall_set_profile` | D | ≥**4.9.40** | Confirm-gated profile mutate |
 | `firewall_rule` | D* | ≥**4.9.41** | `enable`/`disable`/`delete`/`add` — *D for delete/add |
 | `logoff_user` | | — | |
-| `disable_account` | D | — | Anti-brick gated locally — [`../agent/anti-brick-critical-actions.md`](../agent/anti-brick-critical-actions.md) |
+| `disable_account` | D | — | Anti-brick gated locally — [`../features/account-safety.md`](../features/account-safety.md) |
 | `enable_account` | | — | |
 | `disable_all_users` | D | — | |
 | `reset_password` | D | — | |
@@ -196,7 +196,7 @@ Cloud refuses unknown `command_type`. Source: `helpers.VALID_COMMAND_TYPES`.
 | `stop_service` / `start_service` / `restart_service` | | ≥4.9.4 | |
 | `enable_lockdown` / `disable_lockdown` | D / — | — | |
 | `list_sessions` / `list_local_users` / `list_processes` | | ≥4.9.4 | |
-| `inspect_process` | | ≥**4.9.93** | On-demand PID evidence; not destructive — [`../agent/process-inspect.md`](../agent/process-inspect.md) |
+| `inspect_process` | | ≥**4.9.93** | On-demand PID evidence; not destructive — [`../features/process-inspect.md`](../features/process-inspect.md) |
 | `collect_diagnostics` | | — | |
 
 ### Remote desktop / tunnels / update
@@ -226,7 +226,7 @@ Cloud refuses unknown `command_type`. Source: `helpers.VALID_COMMAND_TYPES`.
 | `network_maintenance_start` / `network_maintenance_end` | | ≥4.9.12 | |
 | `system_recovery_snapshot` / `list_system_recovery` / `system_recovery_diff` | | ≥4.9.12 | |
 | `system_recovery_restore` | D† | ≥4.9.12 | †exempt if `dry_run:true` |
-| `tools_repair_catalog` / `tools_repair_diagnose` | | ≥**4.9.79** | [`../agent/tools-repair.md`](../agent/tools-repair.md) |
+| `tools_repair_catalog` / `tools_repair_diagnose` | | ≥**4.9.79** | [`../features/tools-repair.md`](../features/tools-repair.md) |
 | `tools_repair` | D† | ≥**4.9.79** | †exempt soft `action` / `dry_run:true` |
 | `set_gui_pin` / `clear_gui_pin` | D | ≥4.8.3 | `pin` scrubbed |
 

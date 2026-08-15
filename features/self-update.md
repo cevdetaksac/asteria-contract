@@ -1,8 +1,6 @@
 # Self-update — single contract
 
-> **SoT** contract **≥ 1.4.61** · Client **≥ 4.9.96** (asset alias) / progress **≥ 4.9.60**
-> Pointers: [`../api/04-self-update.md`](../api/04-self-update.md),
-> [`../agent/self-update-progress.md`](../agent/self-update-progress.md)
+> **SoT** contract **≥ 1.4.65** · Client **≥ 4.9.96** (asset alias) / progress **≥ 4.9.60**
 
 Dashboard **Şimdi güncelle** → `self_update` (TTL 30m). Scheduled auto-update is separate.
 

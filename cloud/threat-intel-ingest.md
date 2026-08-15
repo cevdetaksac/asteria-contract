@@ -6,7 +6,7 @@
 > **Audience:** Cloud / Dashboard API implementers  
 > **Client:** ≥ **4.5.61** poll/ACK · **≥ 4.9.7** normative `HP-INTEL-*` apply  
 > **API base:** `https://asteria.run`  
-> **Related client contract:** [`../api/09-threat-intel.md`](../api/09-threat-intel.md)
+> **Related client contract:** [`../features/threat-intel.md`](../features/threat-intel.md)
 
 Bu doküman, **cloud tarafında** yapılması gereken işleri tarif eder.
 Amaç: güncel tehditleri (ransomware IoC, KEV CVE, C2 IP, şüpheli process/cmdline, uzantılar)
@@ -299,7 +299,7 @@ Lockdown = canary hit / VSS wipe / kritik local process (mevcut shield).
 | Ransomware shield | extensions / cmdline merge from bundle |
 | Firewall agent | `HP-INTEL-*` rules from `firewall_blocks` |
 
-Detaylı client sözleşmesi: [`api/09-threat-intel.md`](../api/09-threat-intel.md).
+Detaylı client sözleşmesi: [`features/threat-intel.md`](../features/threat-intel.md).
 
 ---
 

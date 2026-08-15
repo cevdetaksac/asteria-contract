@@ -1,10 +1,10 @@
 # Remote Desktop — single contract
 
-> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.60** · Agent floor
+> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.65** · Agent floor
 > **≥ 4.9.95** for named topology. Older IDs (C-RD-*, C-WL, C-RD-S0, …) still
 > apply; they live **in this file**.
 >
-> Do not add MUST IDs under old `agent/remote-*` or `cloud/REMOTE_DESKTOP_*` paths — those files were removed.
+> Do not add MUST IDs under stub `agent/remote-*` or `api/05` paths.
 
 **API:** `https://asteria.run`  
 **Commands:** `remote_stream_start` / `stop` / `remote_input` / `remote_send_sas`
