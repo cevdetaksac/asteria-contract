@@ -1,7 +1,8 @@
 # Feature contracts
 
-> Contract **≥ 1.4.62**. One product → **one MD**. Shared: [`../api/01-auth.md`](../api/01-auth.md),
+> Contract **≥ 1.4.64**. One product → **one MD**. Shared: [`../api/01-auth.md`](../api/01-auth.md),
 > [`../api/03-control-websocket.md`](../api/03-control-websocket.md).
+> Cloud ticks: [`../cloud/CLOUD_CHECKLIST.md`](../cloud/CLOUD_CHECKLIST.md).
 
 | Feature | SoT |
 |---------|-----|

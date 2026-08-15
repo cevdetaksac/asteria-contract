@@ -1,69 +1,38 @@
 # Asteria — Shared Contract
 
-**Single source of truth** for Windows client ↔ Cloud API behavior.
+**Single source of truth** for Windows client ↔ Cloud API.
 
 | | |
 |--|--|
-| **VERSION** | [`VERSION`](VERSION) (**1.4.62**) |
-| **Index** | [`INDEX.md`](INDEX.md) |
+| **VERSION** | [`VERSION`](VERSION) (**1.4.64**) |
 | **Features** | [`features/README.md`](features/README.md) — one MD per product |
+| **Cloud checklist** | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) — tick in production |
 | **Index** | [`INDEX.md`](INDEX.md) |
-| **Changelog** | [`CHANGELOG.md`](CHANGELOG.md) |
-| **Fleet matrix** | [`FLEET.md`](FLEET.md) — production floor client ≥ **4.9.0** |
-| **Brand SoT** | [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md) · [`cloud/PRODUCT_BRANDING.md`](cloud/PRODUCT_BRANDING.md) |
-| **API base** | `https://asteria.run` (legacy nginx alias until fleet migrates — details in rebrand SoT) |
-| **Auth** | `Authorization: Bearer <token>` — agent API must not rely on `?token=` query |
-| **Signing** | Command HMAC **`asteria-chp-v1`** · heartbeat **`asteria-heartbeat-v1`** (client ≥ **4.9.35**) |
+| **Fleet** | [`FLEET.md`](FLEET.md) — floor client ≥ **4.9.0** |
+| **API** | `https://asteria.run` · Bearer token (not `?token=` on agent API) |
+| **Signing** | HMAC **`asteria-chp-v1`** · heartbeat **`asteria-heartbeat-v1`** |
 
-## Who uses this?
+## Who reads what
 
-| Party | Role |
-|-------|------|
-| **Windows client** | Implements the contract; does not invent endpoints |
-| **Cloud / API** | Implements the same MDs; PM2/nginx/dashboard HTML are **not** in this repo |
-| **Cursor / agents** | Read `VERSION` → `INDEX.md` → relevant MD before coding |
-
-## Client start here
-
-1. [`VERSION`](VERSION) → [`INDEX.md`](INDEX.md) → [`agent/CLIENT.md`](agent/CLIENT.md)  
-2. **Cloud capabilities (gap-scan):** [`cloud/CLOUD_SURFACE.md`](cloud/CLOUD_SURFACE.md) (**1.4.36+**)  
-3. Cutover checklist: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md) (**1.4.32+**, client ≥ **4.9.35**)  
-4. Firewall prefixes: [`agent/firewall-brand-migrate.md`](agent/firewall-brand-migrate.md)  
-5. Min versions: [`FLEET.md`](FLEET.md)
+| Party | Start |
+|-------|--------|
+| **Cloud / dashboard** | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) then the linked `features/*` |
+| **Windows client** | `features/*` — do not invent endpoints |
+| **Cursor / agents** | `VERSION` → `features/README.md` → product MD |
 
 ## Rules
 
-1. Behavior / API change → **first** MD + CHANGELOG + VERSION bump here → then code.
-2. Ambiguity → add `## Open questions` in the MD; do not guess.
-3. Client does not pull external threat feeds; only the cloud threat-intel bundle.
-4. Minimum client version is stated per MD (see `FLEET.md`).
-5. No cloud-only ops (PM2, nginx, dashboard HTML) in this repo.
-6. Design-only / roadmap docs are marked as such. Product behavior SoT is `features/*` (RD first); shared wire remains `api/01`–`03`.
-7. Former YesNext / Honeypot names live **only** in [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md).
+1. Behavior change → MD + CHANGELOG + VERSION here **first**, then code.
+2. Feature file wins over `agent/` `api/` `cloud/` appendices.
+3. Client does not pull external threat feeds.
+4. No PM2 / nginx / dashboard HTML in this repo.
 
-## Clone
+## Clone / publish
 
 ```bash
 git clone https://github.com/cevdetaksac/asteria-contract.git
-cd asteria-contract
-cat VERSION   # expect 1.4.36+
+cat VERSION   # expect 1.4.64+
 ```
 
-Client workspace pointer: `asteria-client/contract/` → this repo.
-
-## Layout
-
-| Path | Content |
-|------|---------|
-| `api/` | HTTP / WS wire contracts |
-| `agent/` | Client-side behavior |
-| `cloud/` | Cloud must-do (C-* checklists) + marked design/roadmap notes |
-
-## Cloud publish (operators)
-
-```bash
-cd /data/asteria.run/contract && git pull && ../scripts/publish_contract.sh
-```
-
-HTTPS mirror: `https://asteria.run/static/shared-contract.zip`  
-Meta: `GET /api/public/contract`
+Cloud host: `cd /data/asteria.run/contract && git pull && ../scripts/publish_contract.sh`  
+Mirror: `https://asteria.run/static/shared-contract.zip`

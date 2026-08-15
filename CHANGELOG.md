@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.64 — 2026-08-15
+
+### Cloud checklist + index slim
+
+| Piece | Path |
+|-------|------|
+| Dashboard/API tick list | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) |
+| INDEX is features-first; backlog points at checklist | [`INDEX.md`](INDEX.md) |
+| Stub-only inspect/self-update-progress bodies dropped | `agent/process-inspect.md`, `agent/self-update-progress.md` |
+
 ## 1.4.63 — 2026-08-15
 
 ### Remove stub-only RD pointer files
