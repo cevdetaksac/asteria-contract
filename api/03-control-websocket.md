@@ -214,6 +214,7 @@ Client ayrıca whitelist + protected targets uygular; onay **sunucu tarafı** zo
 | `resume_process` | `pid`, `expected_image`, `expected_path?`, `process_start_time` | Exact-process resume; non-destructive — ≥4.7.3 |
 | `block_process` | name/path | |
 | `list_sessions` / `list_processes` / `list_local_users` / `list_services` | see [`../agent/server-management.md`](../agent/server-management.md) | Sunucu Yönetimi + Remote inventory (`list_services` additive ≥1.4.8) |
+| `inspect_process` | `pid` | On-demand evidence pack (modal) — ≥**4.9.93** [`../agent/process-inspect.md`](../agent/process-inspect.md) |
 | `stop_service` / `start_service` / `restart_service` | `name` **or** `service_name` | SCM control |
 | `enable_lockdown` / `disable_lockdown` | management_ip? | Acil |
 | `collect_diagnostics` | — | |

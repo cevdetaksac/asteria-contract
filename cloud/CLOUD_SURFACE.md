@@ -196,6 +196,7 @@ Cloud refuses unknown `command_type`. Source: `helpers.VALID_COMMAND_TYPES`.
 | `stop_service` / `start_service` / `restart_service` | | ≥4.9.4 | |
 | `enable_lockdown` / `disable_lockdown` | D / — | — | |
 | `list_sessions` / `list_local_users` / `list_processes` | | ≥4.9.4 | |
+| `inspect_process` | | ≥**4.9.93** | On-demand PID evidence; not destructive — [`../agent/process-inspect.md`](../agent/process-inspect.md) |
 | `collect_diagnostics` | | — | |
 
 ### Remote desktop / tunnels / update

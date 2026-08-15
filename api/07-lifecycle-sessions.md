@@ -286,7 +286,8 @@ Mümkünse **tüm kullanıcı süreçleri** (limit ~120–150; Idle’ı dahil e
 | `memory_percent` | Tercihen | |
 | `username` | Tercihen | |
 | `started_at` / `runtime_sec` | Tercihen | Dashboard “ne zamandır çalışıyor” |
-| `cmdline` | Tercihen | Şüphe analizi |
+| `cmdline` | Tercihen | Şüphe analizi — **kısa** (≤500). Tam satır: `inspect_process` |
+| `inspectable` | Opsiyonel | `true` → dashboard **?** (client ≥**4.9.93**) |
 | `signed` | Tercihen | `false` → sunucu `unsigned` bayrağı |
 | `suspicious` | Opsiyonel | Client kendi heuristiğini işaretleyebilir |
 | `suspicion_reasons` | Opsiyonel | `["temp_path","unsigned","lolbin"]` |
@@ -297,7 +298,7 @@ Aşağıdakilerden biri varsa `suspicious: true` ve reason ekle:
 
 - Path altında: `\Temp\`, `\AppData\Local\Temp\`, `\Downloads\`, `\Public\`
 - İsim: `mimikatz`, `procdump`, `psexec`, `nc.exe`, `ncat`, `cobalt`, `beacon`, `ransom`…
-- LOLBIN + şüpheli argüman: `powershell -enc`, `wscript`, `mshta`, `rundll32 http`, `certutil -urlcache`
+- LOLBIN + şüpheli argüman: `powershell -enc`, `wscript`, `mshta`, `rundll32 http` / `javascript:` / UNC — **not** mere `foo.dll,Entry`
 - İmzasız + yüksek CPU veya yeni spawn
 - Parent process anormal (ör. Office → cmd → powershell)
 

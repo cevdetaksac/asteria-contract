@@ -1,5 +1,16 @@
 # Changelog — asteria-contract
 
+## 1.4.57 — 2026-08-15
+
+### On-demand process inspect (C-PROC-INSPECT) + rundll32 FP
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| `inspect_process` `{pid}` — cmdline/parent/rundll32 dll+export/peers/verdict | [`agent/process-inspect.md`](agent/process-inspect.md) | **client ≥4.9.93** |
+| Health `top_processes` stays lean; `inspectable:true` | same + [`api/07-lifecycle-sessions.md`](api/07-lifecycle-sessions.md) | client |
+| rundll32 `foo.dll,Entry` is **not** `lolbin`; http/javascript/UNC is | same | client |
+| Cloud: whitelist + **?** modal; no Kritik from name alone | `VALID_COMMAND_TYPES` + processes page | **cloud next** |
+
 ## 1.4.56 — 2026-08-15
 
 ### Logon lab: do not freeze `remote_stream_start` snapshot

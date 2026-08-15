@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.56** · Repo: https://github.com/cevdetaksac/asteria-contract  
+> **VERSION 1.4.57** · Repo: https://github.com/cevdetaksac/asteria-contract
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,6 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
+| **1.4.57** | On-demand `inspect_process` + rundll32 LOLBIN false-positive fix | **≥4.9.93** |
 | **1.4.56** | Logon lab: live meta after settle (not start snapshot); `phase=degraded` | **≥4.9.91**; cloud live meta |
 | **1.4.55** | Logon chrome pixels — solid blue ≠ Winlogon success | **≥4.9.87** |
 | **1.4.54** | CAD meta lab close — sas_gen int + ui≠unknown + effect (`4.9.86`) | ≥**4.9.86** (meta accepted) |
@@ -74,6 +75,7 @@
 | [agent/defense-policy-client.md](agent/defense-policy-client.md) | Matrix apply, observe default, CTA | ≥ **4.9.17** |
 | [agent/remote-input.md](agent/remote-input.md) | Input protocol 2 + session helper | ≥ **4.9.0** |
 | [agent/server-management.md](agent/server-management.md) | Users / processes / services | target ≥ **4.9.4** |
+| [agent/process-inspect.md](agent/process-inspect.md) | On-demand process evidence (`inspect_process`) | ≥ **4.9.93** |
 | [agent/rebrand-asteria.md](agent/rebrand-asteria.md) | Host, UI, signing/heartbeat Asteria cutover | ≥ **4.9.35** |
 | [agent/firewall-brand-migrate.md](agent/firewall-brand-migrate.md) | `HP-*` → `AR-BLOCK` / `AR-INTEL` | ≥ **4.9.33** |
 | [agent/anti-brick-critical-actions.md](agent/anti-brick-critical-actions.md) | Account-gated critical auto + anti-brick (C-BRICK) | ≥ **4.9.46** (1.3/6); floor **4.9.36** |

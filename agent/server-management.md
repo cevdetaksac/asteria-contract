@@ -107,6 +107,14 @@ Each row should include at least: `username`, `session_id`, `status`,
 (`pid`, `name`, `cpu_percent`, `memory_mb`, `path`, `username`, …).
 
 Cap ≤ 150 unique PIDs (top CPU ∪ top memory ∪ suspicious).
+Rows MAY include `inspectable: true`. Do **not** put peer lists or full
+cmdline packs here — use [`process-inspect.md`](./process-inspect.md)
+`inspect_process` (client ≥**4.9.93**).
+
+### `inspect_process` **(additive — process row “?” modal)**
+
+See [`process-inspect.md`](./process-inspect.md). Params `{ "pid": 5860 }`.
+Not on health cadence. Cloud whitelist required.
 
 ### `list_services` **(additive — required for Services page table)**
 
