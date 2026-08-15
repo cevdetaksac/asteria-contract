@@ -18,7 +18,7 @@ Bu dosya **özet + link**. Şema/detay için ilgili MD’ye git; buraya kopyalam
 0c2. [`firewall-windows-parity.md`](./firewall-windows-parity.md) — Windows FW MMC parity (**1.4.41**, ≥ **4.9.41**)
 0c3. [`network-adapter-admin.md`](./network-adapter-admin.md) — adapter IP/DNS + golden watchdog (**1.4.42**, ≥ **4.9.42**)
 0c3b. [`tools-repair.md`](./tools-repair.md) — uzaktan Windows onarım toolkit (**1.4.49**, ≥ **4.9.79**)
-0c4. [`../cloud/remote-console-parity.md`](../cloud/remote-console-parity.md) — Default Connect = **follow** (no `prefer=winlogon`); Lock row = winlogon (**1.4.59**, ≥ **4.9.95**)
+0c4. [`../features/remote-desktop.md`](../features/remote-desktop.md) — **RD SoT** Default Connect = follow; Lock = winlogon (**1.4.60**, ≥ **4.9.95**)
 0d. [`anti-brick-critical-actions.md`](./anti-brick-critical-actions.md) — account-gated critical auto / anti-brick (**1.4.34**, ≥ **4.9.36**)  
 0e. [`../cloud/dashboard-deep-links.md`](../cloud/dashboard-deep-links.md) — Settings / tray browser shortcuts (`?token=`) (**1.4.35**)  
 0f. [`../cloud/CLOUD_SURFACE.md`](../cloud/CLOUD_SURFACE.md) — **cloud yetenekleri / HTTP+WS+komut envanteri** (gap-scan) (**1.4.36**)  
@@ -37,7 +37,7 @@ Bu dosya **özet + link**. Şema/detay için ilgili MD’ye git; buraya kopyalam
 7. [`threat-engine.md`](./threat-engine.md) — v4 alerts/health/config  
 8. [`../api/09-threat-intel.md`](../api/09-threat-intel.md) — cloud IoC bundle  
 9. [`ransomware-shield.md`](./ransomware-shield.md) — canary / quarantine / unlock  
-10. [`remote-input.md`](./remote-input.md) + [`../api/05-remote-desktop.md`](../api/05-remote-desktop.md)  
+10. [`../features/remote-desktop.md`](../features/remote-desktop.md) (not `05` + `remote-input` scatter)  
 11. [`persistence-and-tamper.md`](./persistence-and-tamper.md) — survival + tamper (≥4.6.0)  
 12. [`disaster-recovery.md`](./disaster-recovery.md) — `create_user` / `remote_logon` (≥4.6.0)  
 13. [`network-guard.md`](./network-guard.md) — golden ağ + soft inform + contain (≥4.7.3 / panel ≥4.9.12 / soft ≥4.9.15)  

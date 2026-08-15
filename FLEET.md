@@ -12,14 +12,13 @@
 | Remote Desktop v2: WS/JPEG healthy path + adaptive telemetry + latest-frame coalescing | `api/05-remote-desktop.md` | **4.9.0** |
 | Remote input protocol 2 + mobile gestures + ACK + persistent session helper | `agent/remote-input.md` | **4.9.0** |
 | Remote Desktop optional WebRTC signaling (protocol=1, non-trickle, H264, data-channel input, cloud-supplied `ice_servers` in offer) | `api/05-remote-desktop.md` | **4.9.0** |
-| Remote Desktop WebRTC smoothness (raw RGB, HW H.264, input fluidity) | `api/05-remote-desktop.md`, `cloud/REMOTE_DESKTOP_SMOOTHNESS.md` | client **≥ 4.9.20** / contract **1.4.20** |
-| Remote Desktop console Winlogon / pre-logon (empty session → logon UI) | `api/05-remote-desktop.md`, `cloud/REMOTE_DESKTOP_WINLOGON.md` | sibling pre_logon + prefer/desktop ≥ **4.9.26** / contract **1.4.23** (cloud C-WL shipped; wire from **4.9.21**) |
+| Remote Desktop WebRTC smoothness | `features/remote-desktop.md` | client **≥ 4.9.20** |
 | WebRTC strict JPEG suppression, 30–60 fps media pacing, optional DXGI capture and effective media telemetry | `api/05-remote-desktop.md` | **4.9.1** |
 | P1 observe schemas: heartbeat_proof, access_integrity, etw_shadow correlation, password_burst, device_identity, canary_coverage, deception_health, network_restore dry_run/rollback | `api/08-architecture.md`, `api/01-auth.md`, `api/03-control-websocket.md` | **4.9.1** (flags default off) |
 | OOB-501 offline urgent queue: `POST /api/alerts/urgent/batch` + soft idempotency on urgent | `api/10-offline-urgent-queue.md` | cloud live ≥ **1.4.7**; client flag `security.offline_urgent_queue` default **off** |
 | Dashboard Server Management (users/processes/services + `list_services`) | `agent/server-management.md` | target ≥ **4.9.4** (cloud UI live ≥ **1.4.8**) |
 | On-demand process inspect (`inspect_process` modal) | `agent/process-inspect.md` | client **≥ 4.9.93**; cloud whitelist + **no confirm** **1.4.59** |
-| Console follow vs lock topology (`topology=follow` / `winlogon`) | `cloud/remote-console-parity.md` | client **≥ 4.9.95**; cloud **1.4.59** |
+| Console follow vs lock (`topology=follow` / `winlogon`) | `features/remote-desktop.md` | client **≥ 4.9.95**; cloud **1.4.59+** |
 | Dashboard Users — disabled inventory + enable/disable (`include_disabled:true`, C-USER) | `cloud/SERVER_USER_MANAGEMENT.md`, `agent/server-management.md` | cloud ≥ **1.4.24**; client list/mutate already ≥ **4.9.4** |
 | Account unlink from client Settings (`POST /api/agent/unlink-account`) | `api/02-account.md` | cloud live ≥ **1.4.27**; client **≥ 4.9.26** |
 | Account claim gate + unlink email OTP (P0d) | `api/02-account.md` | contract **1.4.48**; client **≥ 4.9.75**; cloud **CL-UNLINK-MAIL** |
@@ -40,8 +39,7 @@
 | Windows Firewall MMC parity | `agent/firewall-windows-parity.md` | client **≥ 4.9.41**; cloud ≥ **1.4.41** |
 | Network Adapter Admin + golden watchdog | `agent/network-adapter-admin.md` | client **≥ 4.9.42**; cloud ≥ **1.4.42** |
 | Windows Tools Repair (remote OS repair toolkit) | `agent/tools-repair.md` | client **≥ 4.9.79**; cloud ≥ **1.4.49** (whitelist + `/dashboard/server/tools` shipped) |
-| Console RD Winlogon physical-parity | `cloud/remote-console-parity.md` | client **≥ 4.9.49**; cloud ≥ **1.4.43**; viewer cursor C-RD-VIEW ≥ **1.4.47** |
-| Console-first Logon + follow Default after logon (C-RD-FOLLOW) | `cloud/remote-console-parity.md` | client **≥ 4.9.95** named topology; follow wire ≥ **4.9.93**; cloud **1.4.59** |
+| Remote Desktop (topology, follow, Winlogon, CAD, WebRTC) | `features/remote-desktop.md` | client **≥ 4.9.95** (wire ≥4.9.0; Logon pixels ≥4.9.84) |
 | Winlogon Session-0 capture (pre-logon helper / no invent SID 1) | `agent/winlogon-session0-capture.md` | client **≥ 4.9.84** (**accepted** 1.4.51); cloud omit SID ≥ **1.4.50** |
 | Remote CAD + Winlogon input honesty (real SAS / no false SendSAS ok) | `agent/remote-cad-winlogon.md` | meta **≥4.9.86** ✅ (1.4.54); cloud CAD ≥ **1.4.52** |
 | Winlogon Logon/SAS chrome (no solid-blue false live) | `agent/winlogon-logon-chrome.md` | chrome **≥ 4.9.87**; live-meta lab **≥ 4.9.91** / contract **1.4.56** |

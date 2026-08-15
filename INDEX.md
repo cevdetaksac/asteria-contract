@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.59** · Repo: https://github.com/cevdetaksac/asteria-contract
+> **VERSION 1.4.60** · Repo: https://github.com/cevdetaksac/asteria-contract
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,7 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
-| **1.4.59** | C-RD-TOPO follow vs winlogon + inspect no-confirm + update trust/asset | **≥4.9.95**; [`CLOUD_HANDOFF_1.4.59.md`](cloud/CLOUD_HANDOFF_1.4.59.md) |
+| **1.4.60** | Feature contracts: Remote Desktop is one file | [`features/remote-desktop.md`](features/remote-desktop.md) |
 | **1.4.58** | Console-first RD: default Logon; follow Default after logon | **≥4.9.93**; cloud default winlogon |
 | **1.4.57** | On-demand `inspect_process` + rundll32 LOLBIN false-positive fix | **≥4.9.93** |
 | **1.4.56** | Logon lab: live meta after settle (not start snapshot); `phase=degraded` | **≥4.9.91**; cloud live meta |
@@ -55,7 +55,16 @@
 
 ---
 
-## agent/
+## features/ (one file per product)
+
+| Dosya | Konu | Min client |
+|-------|------|------------|
+| [features/README.md](features/README.md) | Model: client + cloud read one MD per feature | — |
+| [features/remote-desktop.md](features/remote-desktop.md) | **RD SoT** — topology, follow, viewer, Session-0, CAD, P0 | **≥ 4.9.95** |
+
+Pointers (do not extend): `api/05-remote-desktop.md` (envelopes), `agent/remote-input.md` (input appendix), `cloud/remote-console-parity.md` and other `*remote*` / `*winlogon*` stubs.
+
+---
 
 | Dosya | Konu | Min client |
 |-------|------|------------|
@@ -75,22 +84,17 @@
 | [agent/self-update-progress.md](agent/self-update-progress.md) | self_update download % / phase ticks | ≥**4.9.60** |
 | [agent/threat-engine.md](agent/threat-engine.md) | Urgent/batch/health/config; whitelist enforce | ≥ **4.9.7** |
 | [agent/defense-policy-client.md](agent/defense-policy-client.md) | Matrix apply, observe default, CTA | ≥ **4.9.17** |
-| [agent/remote-input.md](agent/remote-input.md) | Input protocol 2 + session helper | ≥ **4.9.0** |
+| [agent/remote-input.md](agent/remote-input.md) | Input envelope appendix → [`features/remote-desktop.md`](features/remote-desktop.md) | ≥ **4.9.0** |
+| [agent/remote-desktop-p0.md](agent/remote-desktop-p0.md) | Pointer → feature RD | ≥ **4.9.37** |
 | [agent/server-management.md](agent/server-management.md) | Users / processes / services | target ≥ **4.9.4** |
 | [agent/process-inspect.md](agent/process-inspect.md) | On-demand process evidence (`inspect_process`) | ≥ **4.9.93** |
 | [agent/rebrand-asteria.md](agent/rebrand-asteria.md) | Host, UI, signing/heartbeat Asteria cutover | ≥ **4.9.35** |
 | [agent/firewall-brand-migrate.md](agent/firewall-brand-migrate.md) | `HP-*` → `AR-BLOCK` / `AR-INTEL` | ≥ **4.9.33** |
 | [agent/anti-brick-critical-actions.md](agent/anti-brick-critical-actions.md) | Account-gated critical auto + anti-brick (C-BRICK) | ≥ **4.9.46** (1.3/6); floor **4.9.36** |
-| [agent/remote-desktop-p0.md](agent/remote-desktop-p0.md) | P0 Winlogon black-screen + WebRTC ICE honesty | ≥ **4.9.37** |
-| [agent/winlogon-session0-capture.md](agent/winlogon-session0-capture.md) | Session-0 → console Winlogon helper (C-RD-S0) | ≥ **4.9.84** ✅ |
-| [agent/remote-cad-winlogon.md](agent/remote-cad-winlogon.md) | CAD SendSAS honesty + Winlogon input (C-RD-CAD / IN-WL) | ≥ **4.9.86** ✅ |
-| [agent/winlogon-logon-chrome.md](agent/winlogon-logon-chrome.md) | Logon/SAS chrome pixels; lab uses settle live meta (≥4.9.91) | ≥ **4.9.87** / lab **≥4.9.91** |
-| [agent/remote-stream-progress.md](agent/remote-stream-progress.md) | Live `stream_progress` stages for RD connect UX | ≥ **4.9.38** |
 | [agent/firewall-management.md](agent/firewall-management.md) | Asteria FW inventory + dashboard page (1.4.40) | ≥ **4.9.40** |
 | [agent/firewall-windows-parity.md](agent/firewall-windows-parity.md) | Windows FW MMC parity (all rules + profiles + mutate) | ≥ **4.9.41** |
 | [agent/network-adapter-admin.md](agent/network-adapter-admin.md) | Adapter enable/IP/DNS + golden watchdog rollback | ≥ **4.9.42** |
 | [agent/tools-repair.md](agent/tools-repair.md) | Remote Windows repair toolkit (share/print/SFC/…) | ≥ **4.9.79** |
-| [cloud/remote-console-parity.md](cloud/remote-console-parity.md) | Named topology follow vs winlogon + C-RD-FOLLOW | ≥ **4.9.95** |
 
 ---
 
@@ -102,7 +106,7 @@
 | [api/02-account.md](api/02-account.md) | Account link / unlink / multi-server / dashboard auto-link | unlink ≥**4.9.26**; auto-link ≥**1.4.34** |
 | [api/03-control-websocket.md](api/03-control-websocket.md) | Control WS + komutlar + HMAC (`asteria-chp-v1`) | 4.5.x / signing ≥**4.9.35** |
 | [api/04-self-update.md](api/04-self-update.md) | Self-update ACK | 4.5.39+ |
-| [api/05-remote-desktop.md](api/05-remote-desktop.md) | RD v2 (WS/JPEG + WebRTC) | **≥4.9.0** (smooth ≥**4.9.20**) |
+| [api/05-remote-desktop.md](api/05-remote-desktop.md) | RD WS envelope appendix → [`features/remote-desktop.md`](features/remote-desktop.md) | **≥4.9.0** |
 | [api/06-firewall-blocks.md](api/06-firewall-blocks.md) | AR-BLOCK / sync / clear (+ HP wipe) | 4.5.40+ / brand ≥**4.9.33** |
 | [api/07-lifecycle-sessions.md](api/07-lifecycle-sessions.md) | Lifecycle / sessions / processes | — |
 | [api/08-architecture.md](api/08-architecture.md) | Daemon vs GUI IPC | ≥ **4.5.66** |

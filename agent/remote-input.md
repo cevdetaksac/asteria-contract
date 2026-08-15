@@ -1,5 +1,8 @@
 # Remote Desktop — input path
 
+> **Behavior SoT:** [`../features/remote-desktop.md`](../features/remote-desktop.md) (**≥ 1.4.60**).
+> This file is the input-envelope appendix. Conflicts → feature file wins.
+
 > **Canonical:** `asteria-contract/agent/remote-input.md`
 > **Min client (input protocol 2 + persistent session helper):** ≥ **4.9.0**
 > **Smoothness (move budget / short critical ACK / DC preferred):** ≥ **4.9.20** — see [`../cloud/REMOTE_DESKTOP_SMOOTHNESS.md`](../cloud/REMOTE_DESKTOP_SMOOTHNESS.md)

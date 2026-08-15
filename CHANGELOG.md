@@ -1,5 +1,17 @@
 # Changelog — asteria-contract
 
+## 1.4.60 — 2026-08-15
+
+### Feature contracts (Remote Desktop folded)
+
+| Piece | Path | Owner |
+|-------|------|--------|
+| One file per product; client + cloud read only that MD | [`features/README.md`](features/README.md) | both |
+| Remote Desktop SoT (C-RD-TOPO + FOLLOW + VIEW + S0 + CAD + P0) | [`features/remote-desktop.md`](features/remote-desktop.md) | **both** |
+| Old RD paths are pointers (or envelope appendix) | `api/05`, `agent/remote-*`, `cloud/REMOTE_DESKTOP_*`, `remote-console-parity` | do not extend |
+
+Next folds: self-update, process-inspect, threat-intel, firewall.
+
 ## 1.4.59 — 2026-08-15
 
 ### Named console topology + inspect confirm ban

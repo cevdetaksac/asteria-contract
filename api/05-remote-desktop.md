@@ -1,5 +1,9 @@
 # Remote Desktop
 
+> **Behavior SoT (MUST IDs, topologies, lab):** [`../features/remote-desktop.md`](../features/remote-desktop.md) (**≥ 1.4.60**).
+> **This file** is the WS/HTTP **envelope appendix** (hello / meta / WebRTC signaling).
+> If a line here conflicts with the feature file, **the feature file wins**.
+
 > **Canonical** cloud / dashboard contract for the Windows client Remote
 > Desktop feature. This file is the single source of truth; the prompt-sourced
 > material below the v2 section is **legacy** and retained for history only.

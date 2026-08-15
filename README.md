@@ -4,7 +4,9 @@
 
 | | |
 |--|--|
-| **VERSION** | [`VERSION`](VERSION) (**1.4.36**) |
+| **VERSION** | [`VERSION`](VERSION) (**1.4.60**) |
+| **Index** | [`INDEX.md`](INDEX.md) |
+| **Features** | [`features/README.md`](features/README.md) — one MD per product |
 | **Index** | [`INDEX.md`](INDEX.md) |
 | **Changelog** | [`CHANGELOG.md`](CHANGELOG.md) |
 | **Fleet matrix** | [`FLEET.md`](FLEET.md) — production floor client ≥ **4.9.0** |
@@ -36,7 +38,7 @@
 3. Client does not pull external threat feeds; only the cloud threat-intel bundle.
 4. Minimum client version is stated per MD (see `FLEET.md`).
 5. No cloud-only ops (PM2, nginx, dashboard HTML) in this repo.
-6. Design-only / roadmap docs are marked as such — wire SoT is `api/` + `agent/`.
+6. Design-only / roadmap docs are marked as such. Product behavior SoT is `features/*` (RD first); shared wire remains `api/01`–`03`.
 7. Former YesNext / Honeypot names live **only** in [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md).
 
 ## Clone
