@@ -1,5 +1,13 @@
 # Changelog — asteria-contract
 
+## 1.4.68 — 2026-08-15
+
+### Client checklist ticks (4.9.96)
+
+Inspect / self-update / threat-intel / shared wire / CON-8 / S0 / CAD marked
+`[x]` on [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md).
+RD TOPO-1/2/FOLLOW live pixels remain open for logged-on lab.
+
 ## 1.4.67 — 2026-08-15
 
 ### Client lab checklist + cloud sprint closed
