@@ -1,5 +1,7 @@
 # Service Port Relocate — Client Implementation (bidirectional sync)
 
+> **Behavior SoT:** [`../features/service-port.md`](../features/service-port.md) (**≥ 1.4.62**). Appendix below.
+
 > **Contract VERSION:** **1.4.45**  
 > Status: **Normative (client ≥ 4.9.45)**  
 > Supersedes / extends: [`service-port-relocate.md`](./service-port-relocate.md) (1.4.44)  

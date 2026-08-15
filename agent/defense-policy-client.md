@@ -1,5 +1,7 @@
 # Defense Policy — Client apply
 
+> **Behavior SoT:** [`../features/defense-policy.md`](../features/defense-policy.md) (**≥ 1.4.62**). Appendix below.
+
 > **Contract VERSION:** root `VERSION` (**1.4.19**)  
 > **Min client:** ≥ **4.9.17** (matrix core ≥ **4.9.16**)  
 > **Cloud SoT:** [`../cloud/DEFENSE_POLICY.md`](../cloud/DEFENSE_POLICY.md)  

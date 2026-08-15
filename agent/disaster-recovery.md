@@ -1,5 +1,7 @@
 # Disaster recovery — remote user create + logon (break-glass)
 
+> **Behavior SoT:** [`../features/disaster-recovery.md`](../features/disaster-recovery.md) (**≥ 1.4.62**). Appendix below.
+
 > **Contract VERSION:** root `VERSION`
 > **API base:** `https://asteria.run`
 > **Min client:** **≥ 4.6.0** (`create_user`, `remote_logon`, autologon break-glass)

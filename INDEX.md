@@ -1,7 +1,7 @@
 # Contract INDEX
 
 > Oku: [`VERSION`](VERSION) → bu dosya → satırdaki MD.  
-> **VERSION 1.4.61** · Repo: https://github.com/cevdetaksac/asteria-contract
+> **VERSION 1.4.62** · Repo: https://github.com/cevdetaksac/asteria-contract
 > Fleet: [`FLEET.md`](FLEET.md) · Production floor: **client ≥ 4.9.0**  
 > **API base:** `https://asteria.run` (legacy alias details: [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md))
 
@@ -9,7 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
-| **1.4.61** | Fold remaining products into `features/*` | [`features/README.md`](features/README.md) |
+| **1.4.62** | Remaining products folded into `features/*` | [`features/README.md`](features/README.md) |
 | **1.4.58** | Console-first RD: default Logon; follow Default after logon | **≥4.9.93**; cloud default winlogon |
 | **1.4.57** | On-demand `inspect_process` + rundll32 LOLBIN false-positive fix | **≥4.9.93** |
 | **1.4.56** | Logon lab: live meta after settle (not start snapshot); `phase=degraded` | **≥4.9.91**; cloud live meta |
@@ -70,10 +70,19 @@
 | [features/network-guard.md](features/network-guard.md) | Alert-only + restore confirm | **≥ 4.7.3** |
 | [features/account-safety.md](features/account-safety.md) | Link / unlink / anti-brick | **≥ 4.9.46** |
 | [features/service-port.md](features/service-port.md) | Relocate listen port | **≥ 4.9.45** |
-
-Pointers (do not extend): `api/05-remote-desktop.md` (envelopes), `agent/remote-input.md` (input appendix), `cloud/remote-console-parity.md` and other `*remote*` / `*winlogon*` stubs.
+| [features/ransomware.md](features/ransomware.md) | Canary / quarantine | **≥ 4.5.65** |
+| [features/persistence.md](features/persistence.md) | Guardian / tamper | **≥ 4.6.0** |
+| [features/disaster-recovery.md](features/disaster-recovery.md) | Break-glass user / logon | **≥ 4.6.0** |
+| [features/system-recovery.md](features/system-recovery.md) | Surface snapshot | **≥ 4.9.12** |
+| [features/tools-repair.md](features/tools-repair.md) | OS repair toolkit | **≥ 4.9.79** |
+| [features/network-adapter.md](features/network-adapter.md) | NIC IP/DNS | **≥ 4.9.42** |
+| [features/gui.md](features/gui.md) | Control Center STATUS-only | **≥ 4.8.0** |
+| [features/presence.md](features/presence.md) | Sleep / goodbye | **≥ 4.9.8** |
+| [features/threat-engine.md](features/threat-engine.md) | Local EventLog score | **≥ 4.9.7** |
 
 ---
+
+## agent/
 
 | Dosya | Konu | Min client |
 |-------|------|------------|

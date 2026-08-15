@@ -1,5 +1,7 @@
 # GUI Control Center — UX + live config contract
 
+> **Behavior SoT:** [`../features/gui.md`](../features/gui.md) (**≥ 1.4.62**). Appendix below.
+
 > **Client:** Windows GUI ≥4.7.3  
 > **Amaç:** Teknik olmayan kullanıcıya “ne korunuyor, şu an ne oluyor ve hangi
 > aksiyonu alabilirim?” sorularını tek bakışta cevaplamak.

@@ -1,5 +1,7 @@
 # Windows Tools Repair — uzaktan OS onarım araç seti
 
+> **Behavior SoT:** [`../features/tools-repair.md`](../features/tools-repair.md) (**≥ 1.4.62**). Appendix below.
+
 > **Contract VERSION:** root `VERSION` (**1.4.49**)  
 > **Min client:** target **≥ 4.9.79** (additive; production floor unchanged)  
 > İlgili: [`system-recovery.md`](system-recovery.md) · [`disaster-recovery.md`](disaster-recovery.md) ·

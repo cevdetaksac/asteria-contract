@@ -1,5 +1,12 @@
 # Changelog — asteria-contract
 
+## 1.4.62 — 2026-08-15
+
+### Finish feature map
+
+Ransomware, persistence, disaster/system recovery, tools-repair, NIC admin,
+GUI STATUS-only, presence, local threat-engine. Sibling `agent/` files are appendices.
+
 ## 1.4.61 — 2026-08-15
 
 ### Fold remaining features; drop duplicate SoTs

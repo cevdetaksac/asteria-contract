@@ -1,5 +1,7 @@
 # Realtime agent presence (sleep / shutdown / offline)
 
+> **Behavior SoT:** [`../features/presence.md`](../features/presence.md) (**≥ 1.4.62**). Appendix below.
+
 > **Contract VERSION:** root `VERSION` (≥ **1.4.12**)  
 > **Min client (target):** **≥ 4.9.8** (additive; older clients keep age-based presence)  
 > **Cloud:** live — Control WS + `POST /api/presence` + dashboard `GET /api/client_status`  

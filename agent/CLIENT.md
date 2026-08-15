@@ -6,13 +6,14 @@
 > **Brand / signing SoT:** [`rebrand-asteria.md`](./rebrand-asteria.md) — contract **≥ 1.4.32**, client **≥ 4.9.35**  
 > **Production floor:** client ≥ **4.9.0** (feature floors in `FLEET.md`)
 
-Bu dosya **özet + link**. Şema/detay için ilgili MD’ye git; buraya kopyalama.
+Bu dosya **özet + link**. Davranış SoT: [`../features/README.md`](../features/README.md).
 
 ---
 
 ## Okuma sırası (yeni agent / sprint)
 
-0. [`rebrand-asteria.md`](./rebrand-asteria.md) — host, UI, **`asteria-chp-v1` / `asteria-heartbeat-v1`**, path trust (**1.4.32+**, ≥ **4.9.35**)  
+0. [`../features/README.md`](../features/README.md) — ürün sözleşmeleri  
+0b. [`rebrand-asteria.md`](./rebrand-asteria.md) — host / signing (**≥ 4.9.35**)  
 0b. [`firewall-brand-migrate.md`](./firewall-brand-migrate.md) — `AR-BLOCK` / `AR-INTEL` (**1.4.31**, ≥ **4.9.33**)  
 0c. [`firewall-management.md`](./firewall-management.md) — Asteria inventory + dashboard page (**1.4.40**, ≥ **4.9.40**)
 0c2. [`firewall-windows-parity.md`](./firewall-windows-parity.md) — Windows FW MMC parity (**1.4.41**, ≥ **4.9.41**)

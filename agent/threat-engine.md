@@ -1,5 +1,7 @@
 # Threat engine (v4 HTTP) — local detection
 
+> **Behavior SoT:** [`../features/threat-engine.md`](../features/threat-engine.md) (**≥ 1.4.62**). Appendix below.
+
 > **Contract VERSION:** root `VERSION`  
 > **Client policy:** bare-success / whitelist / silent-hours FW rules ≥ **4.9.7**  
 > **≠** cloud intel bundle → [`../api/09-threat-intel.md`](../api/09-threat-intel.md)  

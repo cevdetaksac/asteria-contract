@@ -1,5 +1,7 @@
 # Firewall Management — Windows Firewall parity
 
+> **Behavior SoT:** [`../features/firewall.md`](../features/firewall.md) (**≥ 1.4.62**). Appendix below.
+
 > **Contract VERSION:** **1.4.41**  
 > Status: **Normative (client ≥ 4.9.41)**  
 > Related: [`../api/06-firewall-blocks.md`](../api/06-firewall-blocks.md) ·

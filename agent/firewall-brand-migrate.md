@@ -1,5 +1,7 @@
 # Firewall brand migrate — `HP-*` → `AR-*`
 
+> **Behavior SoT:** [`../features/firewall.md`](../features/firewall.md) (**≥ 1.4.62**). Appendix below.
+
 > **Contract:** **1.4.31** · Min client: **≥ 4.9.33**  
 > SoT wire names: [`../api/06-firewall-blocks.md`](../api/06-firewall-blocks.md) · intel: [`../api/09-threat-intel.md`](../api/09-threat-intel.md)  
 > Brand: [`../cloud/PRODUCT_BRANDING.md`](../cloud/PRODUCT_BRANDING.md)

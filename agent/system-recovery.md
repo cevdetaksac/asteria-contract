@@ -1,5 +1,7 @@
 # System Recovery — saldırı yüzeyi snapshot / drift / restore
 
+> **Behavior SoT:** [`../features/system-recovery.md`](../features/system-recovery.md) (**≥ 1.4.62**). Appendix below.
+
 > **Contract VERSION:** root `VERSION` (**1.4.13**)  
 > **Min client:** target **≥ 4.9.12** (additive; production floor ≥ 4.9.0)  
 > İlgili: [`network-guard.md`](network-guard.md) · [`persistence-and-tamper.md`](persistence-and-tamper.md) ·

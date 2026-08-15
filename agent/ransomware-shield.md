@@ -1,5 +1,7 @@
 # Ransomware shield & canary UX
 
+> **Behavior SoT:** [`../features/ransomware.md`](../features/ransomware.md) (**≥ 1.4.62**). Appendix below.
+
 > **Canonical:** `asteria-contract/agent/ransomware-shield.md`  
 > **Min client:** ≥ **4.5.65** (UX) · quarantine unlock IPC ≥4.5.62 · user canary watch ≥4.5.64
 

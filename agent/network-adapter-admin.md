@@ -1,5 +1,7 @@
 # Network Adapter Admin — Windows-like NIC control + golden watchdog
 
+> **Behavior SoT:** [`../features/network-adapter.md`](../features/network-adapter.md) (**≥ 1.4.62**). Appendix below.
+
 > **Contract VERSION:** **1.4.42**  
 > Status: **Normative (client ≥ 4.9.42)**  
 > Related: [`network-guard.md`](./network-guard.md) ·

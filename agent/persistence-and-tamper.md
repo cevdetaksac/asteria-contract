@@ -1,5 +1,7 @@
 # Persistence & tamper protection (survival model)
 
+> **Behavior SoT:** [`../features/persistence.md`](../features/persistence.md) (**≥ 1.4.62**). Appendix below.
+
 > **Contract VERSION:** root `VERSION`
 > **API base:** `https://asteria.run`
 > **Min client:** **≥ 4.6.0** (Guardian service + tamper wire)

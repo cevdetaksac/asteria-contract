@@ -1,5 +1,7 @@
 # Server User Management — Cloud/Dashboard (C-USER-*)
 
+> **Behavior SoT:** [`../features/server-management.md`](../features/server-management.md) (**≥ 1.4.62**). Appendix below.
+
 > **Contract VERSION:** root `VERSION` (**1.4.24**)  
 > **Client wire:** `list_local_users` + `enable_account` / `disable_account` — see
 > [`../agent/server-management.md`](../agent/server-management.md)  
