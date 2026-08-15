@@ -9,7 +9,7 @@
 
 | Contract | Konu | Client |
 |----------|------|--------|
-| **1.4.59** | Named RD topology (`follow` vs `winlogon`) + inspect no-confirm | **≥4.9.95**; cloud [`CLOUD_HANDOFF_1.4.59.md`](cloud/CLOUD_HANDOFF_1.4.59.md) |
+| **1.4.59** | C-RD-TOPO follow vs winlogon + inspect no-confirm + update trust/asset | **≥4.9.95**; [`CLOUD_HANDOFF_1.4.59.md`](cloud/CLOUD_HANDOFF_1.4.59.md) |
 | **1.4.58** | Console-first RD: default Logon; follow Default after logon | **≥4.9.93**; cloud default winlogon |
 | **1.4.57** | On-demand `inspect_process` + rundll32 LOLBIN false-positive fix | **≥4.9.93** |
 | **1.4.56** | Logon lab: live meta after settle (not start snapshot); `phase=degraded` | **≥4.9.91**; cloud live meta |

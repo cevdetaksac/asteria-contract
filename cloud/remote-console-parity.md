@@ -1,7 +1,7 @@
 # Console Remote Desktop — physical-console parity (Winlogon)
 
 > **Contract VERSION:** **1.4.59** (viewer C-RD-VIEW since **1.4.47**; named topology **1.4.59**)  
-> Status: **Normative (client ≥ 4.9.49 · Session-0 pixels ≥ 4.9.84 · follow after logon ≥ 4.9.93 · dashboard C-RD-VIEW ≥ 1.4.47)**  
+> Status: **Normative (C-RD-TOPO ≥4.9.95 · Session-0 pixels ≥ 4.9.84 · follow after logon ≥ 4.9.93 · dashboard C-RD-VIEW ≥ 1.4.47)**  
 > Related: [`REMOTE_DESKTOP_WINLOGON.md`](./REMOTE_DESKTOP_WINLOGON.md) ·
 > [`../agent/remote-desktop-p0.md`](../agent/remote-desktop-p0.md) ·
 > [`../agent/winlogon-session0-capture.md`](../agent/winlogon-session0-capture.md) ·
@@ -31,12 +31,36 @@ Transport remains **WebRTC and/or JPEG-over-WS** (existing Asteria remote wire).
 
 ---
 
-## Start wire (unchanged shape, stricter rules)
+## Named Start topologies (C-RD-TOPO-*) — **P0 · 1.4.59 · agent ≥4.9.95**
+
+Lab **4.9.94** follow-skip is **incomplete** (legacy `prefer=winlogon` still on
+default Connect). Target agent **≥4.9.95**. Cloud MUST send **one** of A/B/C —
+never a single Start shape for every Connect.
+
+| ID | Rule |
+|----|------|
+| **C-RD-TOPO-1** | Default Connect / “Logon · varsayılan”: `params.topology = "follow"`. **Do not send** `prefer`, `pre_logon`, `desktop`, `session_id`, `username`. Lab 4.9.93 FAIL: `prefer=winlogon` → Winlogon helper + `SESSION0_HELPER_SPAWN_FAILED` + jpeg=0B while console user already Active. Follow uses DXGI/NVENC Default. |
+| **C-RD-TOPO-2** | Logon / Lock **row** (empty host, lock, SAS): `topology = "winlogon"` + `prefer: "winlogon"` + `pre_logon: true` + `desktop: "Winlogon"`. Omit `session_id` and `username`. Winlogon helper is legitimate here. |
+| **C-RD-TOPO-3** | User shortcut: `session_id` + `username`. Do **not** auto-select the first Active SID. |
+| **C-RD-TOPO-4** | After Enter: **same `stream_id`**, no second Start, no “pick administrator”. Follow `WTSGetActiveConsoleSessionId` → `WinSta0\Default` (C-RD-FOLLOW). Winlogon spawn while Default is live must not be a terminal FAIL. |
+| **C-RD-TOPO-5** | Min agent for this wire: **≥4.9.95**. Warn below 4.9.26; 4.9.94 is not acceptance. |
+
+**A — Default Connect**
+
+```json
+{
+  "command_type": "remote_stream_start",
+  "params": { "topology": "follow", "stream_id": "…", "fps": 12 }
+}
+```
+
+**B — Logon / Lock row**
 
 ```json
 {
   "command_type": "remote_stream_start",
   "params": {
+    "topology": "winlogon",
     "prefer": "winlogon",
     "pre_logon": true,
     "desktop": "Winlogon",
@@ -46,8 +70,10 @@ Transport remains **WebRTC and/or JPEG-over-WS** (existing Asteria remote wire).
 }
 ```
 
-Cloud ≥**1.4.50** **omits** `session_id` on this path (CL-RD-S0). Optional SID only for
-non-logon user/session rows.
+Cloud ≥**1.4.50** **omits** `session_id` on A and B (CL-RD-S0). Optional SID only for
+path C (user/session rows).
+
+## Start wire (C-RD-CON-* still apply on path B)
 
 | ID | Rule |
 |----|------|
@@ -75,7 +101,7 @@ do the same on the existing viewer surface.
 | **C-RD-VIEW-2** | Map pointer with normalized `x,y ∈ [0,1]` against `meta.native_width/height` + `origin_x/y` ([`05-remote-desktop.md`](../api/05-remote-desktop.md) §2). Support negative origins |
 | **C-RD-VIEW-3** | Coalesce only `move`; flush `mousedown` / `mouseup` / `wheel` / `key*` immediately (C-RD-4) |
 | **C-RD-VIEW-4** | Toolbar **CAD** → `remote_send_sas` / `POST /api/remote/cad` **only** — never Ctrl+Alt+Delete as typed keys |
-| **C-RD-VIEW-5** | Default Connect is **console follow** (`topology=follow`, **no username**, **no session_id**). Do **not** send `topology=winlogon` / forced `prefer=winlogon` on this click. Logon/Lock **row** is the only path that sends `topology=winlogon`. User/session rows are optional shortcuts. |
+| **C-RD-VIEW-5** | Default Connect = **C-RD-TOPO-1** (`topology=follow` only). Logon/Lock row = **C-RD-TOPO-2**. |
 | **C-RD-VIEW-6** | On `black_frame` / `winlogon_capture_black` / `CAPTURE_NO_DESKTOP`: explicit degraded banner — never a silent empty player |
 | **C-RD-VIEW-7** | Prefer WebRTC when advertised; ICE fail → JPEG-WS ≤2s on the **same** surface |
 | **C-RD-VIEW-8** | Show `stream_progress` (`running` → `capturing` → `ws`/`webrtc` → `live`) |
@@ -124,8 +150,8 @@ Proof on Derin-Web: Logon Start (no user pick) → CAD → type password → Ent
 ## Cloud (shipped ≥ 1.4.43; viewer C-RD-VIEW shipped ≥ 1.4.47; omit SID ≥ **1.4.50**)
 
 - Preserve `pre_logon` / `can_capture` through `normalize_sessions`
-- Default Connect: `topology=follow`, no username, **omit `session_id`**
-- Logon/Lock row: `topology=winlogon` + `prefer=winlogon` + `pre_logon` + `desktop=Winlogon`
+- Default Connect: **C-RD-TOPO-1** (`topology=follow` only — no prefer/pre_logon/desktop)
+- Logon/Lock row: **C-RD-TOPO-2**
 - UI: Winlogon banner + black-frame honesty (`showWinlogonHint`)
 - CAD on Winlogon path omits username **and** forced SID
 - **1.4.47:** software cursor overlay + full C-RD-VIEW-* on remote console page (**dashboard accepted**)

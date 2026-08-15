@@ -1,57 +1,75 @@
-# Cloud handoff — contract 1.4.59 (paste to dashboard / API)
+# Cloud handoff — contract 1.4.59 (tag `v1.4.59`)
 
-Ship these **this week**. Client **4.9.95** names the topology; old
-`prefer=winlogon` + omit `session_id` still means **follow**, not lock.
+> Target agent **≥4.9.95**. Lab **4.9.94** follow-skip is incomplete.
+> Tree: https://github.com/cevdetaksac/asteria-contract/tree/v1.4.59
+>
+> SoT: [`remote-console-parity.md`](./remote-console-parity.md) (**C-RD-TOPO**),
+> [`../agent/process-inspect.md`](../agent/process-inspect.md),
+> [`../api/04-self-update.md`](../api/04-self-update.md),
+> [`../api/09-threat-intel.md`](../api/09-threat-intel.md)
 
-## P0 — Remote Start (Derin-Web black / spawn fail)
+## P0-1  `remote_stream_start` is not one shape
 
-**Stop** using one Start shape for every Connect.
+Normative: **C-RD-TOPO-1…5**
 
-| Operator click | Params (required) | Must not |
-|----------------|-------------------|----------|
-| Default Connect / “Logon · varsayılan” / follow console | `topology: "follow"` — **omit** `session_id`, **omit** `username`. `prefer` optional (`follow` or omit). | `topology: "winlogon"` · `prefer: "winlogon"` as a *forced lock* |
-| Logon / Lock **row** (sibling, empty host, CAD to SAS) | `topology: "winlogon"` + `prefer: "winlogon"` + `pre_logon: true` + `desktop: "Winlogon"` — omit username; omit SID unless that row has one | Treat this as Default desktop |
-| User/session shortcut | `session_id` + `username` — no winlogon prefer | Auto-pick first Active SID |
+**A) Default Connect / “Logon · varsayılan”**
 
-Client ≥**4.9.94/95**: omit-SID + live user Default → **no Winlogon helper**.
-If dashboard keeps sending lock-shaped Start for “varsayılan”, 4.9.95 will
-still spawn Winlogon when `topology=winlogon`.
+`params.topology = "follow"`
 
-**C-RD-VIEW-5 (updated):** default Connect = **follow console**, not Winlogon helper.
+**Do not send:** `prefer`, `pre_logon`, `desktop`, `session_id`, `username`
 
-After Enter: same `stream_id`, no second Start, no “pick administrator”
-(C-RD-FOLLOW). Min agent gate: recommend **≥4.9.95** (follow+named topology).
+Lab 4.9.93 FAIL: `prefer=winlogon` → Winlogon helper + `SESSION0_HELPER_SPAWN_FAILED`
++ jpeg=0B (console already administrator Active). Follow DXGI/NVENC Default.
 
-ICE fail: JPEG-WS on the **same** surface ≤2s; do not leave a 4fps nvenc
-leftover badge while the player is dead.
+```json
+{
+  "command_type": "remote_stream_start",
+  "params": { "topology": "follow", "stream_id": "…", "fps": 12 }
+}
+```
 
-## P0 — `inspect_process` (1.4.57 still open on UI)
+**B) Logon / Lock row** (empty host, lock, SAS)
 
-Command is **not destructive**. Confirm gate: **no**.
+`params.topology = "winlogon"`
+`prefer: "winlogon"`, `pre_logon: true`, `desktop: "Winlogon"`
+`session_id` omitted, `username` omitted. Helper is legitimate.
 
-- `VALID_COMMAND_TYPES` includes `inspect_process`
-- **?** / İncele → queue `{ "pid": N }` **immediately**
-- **Forbidden:** “Onayla ve Gönder” / generic destructive confirm modal
-- Do not map image name `rundll32.exe` to **Kritik**
-- `rundll32 foo.dll,Entry` is normal; http / javascript: / UNC is lolbin
-- Older agent → “client ≥4.9.93 gerekli”, not a silent fail
+**C) User shortcut:** `session_id` + `username`. Do not auto-pick first Active SID.
 
-## P1 — Trust / update UI (do not block download)
+**D) After Enter:** same `stream_id`; no second Start; no “pick administrator”;
+`WTSGetActiveConsoleSessionId` → `WinSta0\Default` (C-RD-FOLLOW).
+Winlogon spawn while Default is live must not be a terminal FAIL.
 
-`trust metadata pending` / null signing fields = **observe**. Must **not**
-block `self_update` or show as the reason 0% is stuck.
+Min: **≥4.9.95**
 
-Fleet on **≤4.9.72**: one **elevated** installer land (chicken-egg). Cloud
-cannot patch ACL/helper on the old agent. Do not stack overlapping Update now.
+## P0-2  `inspect_process`
 
-## P1 — Dual installer name
+- Add to command catalog (`VALID_COMMAND_TYPES`). Not destructive.
+- Confirm **no**. “Onayla ve Gönder” / required `confirm:true` = FAIL.
+- Dashboard **?** / İncele → immediately `{ "pid": N }` (int > 0).
+- Image name `rundll32.exe` is not Kritik/lolbin.
+- `dll,Entry` is normal. lolbin only: `http` / `javascript:` / UNC `\\`
+- DLL outside System32 → `lolbin_off_system_dll` (İncele; not auto-Kritik).
+- Health `top_processes` stays lean; heavy evidence only from inspect.
 
-Publish **only** `asteria-client-installer.exe`. Stop requiring
-`cloud-client-installer.exe` except for agents **≤4.9.40** if any remain.
+## P0-3  Trust metadata pending must not block download
 
-## Acceptance (dashboard)
+`signed=null` / `checksum_valid=null` / “trust metadata pending” = **observe**.
+`self_update` GET / GitHub asset / dashboard download is not rejected.
+Missing Authenticode must not abort installer download.
 
-1. Derin-Web, user already at desktop: default Connect → wallpaper/shell,
-   `desktop=default`, **no** `SESSION0_HELPER_SPAWN_FAILED`.
-2. Empty or locked host: Logon/Lock **row** → logon/lock pixels.
-3. Process **?**: inspect modal without confirm; rundll32 Control Panel not Kritik.
+## P0-4  Release asset
+
+GitHub Release downloadable binary: **only** `asteria-client-installer.exe`.
+Do not publish `cloud-client-installer.exe` / extra exes.
+`self_update` `installer_name` + `download_url` must point at that file.
+
+## Additive (not required) — Threat Intel
+
+ACK `stats.firewall_current` (int, standing `AR-INTEL-*` count) optional ≥4.9.94.
+No ACK on **304**. ACK on **200**. External ThreatFox/CISA fetch is cloud-side.
+
+## Acceptance
+
+Default Connect follow + logged-on console DXGI frames (jpeg>0),
+Lock row Winlogon UI, inspect without confirm, single installer asset.

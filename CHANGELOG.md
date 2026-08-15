@@ -6,11 +6,13 @@
 
 | Piece | Path | Owner |
 |-------|------|--------|
-| Default Connect = `topology=follow` (not forced Winlogon helper) | [`cloud/remote-console-parity.md`](cloud/remote-console-parity.md) C-RD-VIEW-5 | **cloud P0** |
-| Logon/Lock row = `topology=winlogon` | same | cloud |
-| Client skip helper on live Default; force on lock row | client **≥4.9.95** | client |
+| Default Connect = `topology=follow` only (no prefer/pre_logon/desktop) | [`cloud/remote-console-parity.md`](cloud/remote-console-parity.md) **C-RD-TOPO-1** | **cloud P0** |
+| Logon/Lock row = `topology=winlogon` | same **C-RD-TOPO-2** | cloud |
+| Client named topology; 4.9.94 follow-skip is not acceptance | client **≥4.9.95** | client |
+| `inspect_process` no confirm UI | [`agent/process-inspect.md`](agent/process-inspect.md) CL-PROC-INSPECT-6 | **cloud P0** |
+| Trust null must not block download; sole installer asset | [`api/04-self-update.md`](api/04-self-update.md) CL-UPD-* | **cloud P0** |
+| Threat-intel ACK `firewall_current` optional; 304 no ACK | [`api/09-threat-intel.md`](api/09-threat-intel.md) | additive |
 | Paste for dashboard | [`cloud/CLOUD_HANDOFF_1.4.59.md`](cloud/CLOUD_HANDOFF_1.4.59.md) | cloud |
-| `inspect_process` must not use destructive confirm UI | [`agent/process-inspect.md`](agent/process-inspect.md) CL-PROC-INSPECT-6 | **cloud P0** |
 
 ## 1.4.58 — 2026-08-15
 

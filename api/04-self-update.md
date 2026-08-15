@@ -9,6 +9,17 @@
 
 # AGENT_SELF_UPDATE_PROMPT.md
 
+## Contract 1.4.59 (P0-3 / P0-4)
+
+| ID | Rule |
+|----|------|
+| **CL-UPD-TRUST-1** | `signed=null` / `checksum_valid=null` / dashboard “trust metadata pending” is **observe**. It MUST NOT reject `self_update`, GitHub asset GET, or dashboard download. |
+| **CL-UPD-TRUST-2** | Missing Authenticode MUST NOT abort installer download. Enforcement (if ever) is a separate production gate, default off. |
+| **CL-UPD-ASSET-1** | GitHub Release downloadable binary is **only** `asteria-client-installer.exe`. Do not publish `cloud-client-installer.exe` or extra exes. |
+| **CL-UPD-ASSET-2** | Pending `self_update` `installer_name` + `download_url` MUST point at `asteria-client-installer.exe`. |
+
+---
+
 ## Amaç
 
 Dashboard **Şimdi güncelle** butonu → cloud `POST /api/commands/send` → agent pending poll → **hemen self-update**.
@@ -35,9 +46,9 @@ Zamanlanmış otomatik güncelleme (saatlik/günlük) **ayrı kalsın**; bu komu
   "params": {
     "force": true,
     "channel": "stable",
-    "tag": "v4.5.10",
-    "download_url": "https://github.com/cevdetaksac/asteria-client/releases/download/v4.5.10/cloud-client-installer.exe",
-    "installer_name": "cloud-client-installer.exe",
+    "tag": "v4.9.95",
+    "download_url": "https://github.com/cevdetaksac/asteria-client/releases/download/v4.9.95/asteria-client-installer.exe",
+    "installer_name": "asteria-client-installer.exe",
     "size": 27400000,
     "triggered_by": "dashboard"
   },
@@ -59,7 +70,7 @@ Result: `POST /api/commands/result` (mevcut).
 2. `download_url` yoksa GitHub latest veya cloud `/api/public/latest-release` çöz
 3. Installer’ı güvenli temp’e indir (ProgramData veya `%TEMP%\AsteriaUpdate\ (legacy: `%TEMP%\YesNextUpdate\`)`)
 4. Mümkünse hash / boyut doğrula (`size`)
-5. Silent install (mevcut updater ile aynı path — örn. `cloud-client-installer.exe /S` veya bilinen flag’ler)
+5. Silent install (`asteria-client-installer.exe /S`; legacy ≤4.9.40 may still look for `cloud-client-installer.exe`)
 6. SYSTEM daemon ayakta kalsın; GUI varsa soft restart
 7. Result gönder:
 
@@ -121,7 +132,7 @@ Cloud release kayıtları additive olarak şu alanları saklar:
 {
   "tag": "v4.9.0",
   "channel": "stable",
-  "artifact_name": "cloud-client-installer.exe",
+  "artifact_name": "asteria-client-installer.exe",
   "artifact_size": 61091740,
   "sha256": null,
   "signed": null,
@@ -138,9 +149,8 @@ Cloud release kayıtları additive olarak şu alanları saklar:
 ```
 
 `null` değeri **unknown / metadata henüz build pipeline'dan gelmedi** demektir;
-`false` ile aynı değildir. Current 4.9.0 release/download wire bu aşamada
-değişmez ve client bu alanları göndermek zorunda değildir. Dashboard unknown,
-signed/publisher/checksum durumlarını dürüstçe gösterir.
+`false` ile aynı değildir (**CL-UPD-TRUST-1**). Dashboard unknown,
+signed/publisher/checksum durumlarını dürüstçe gösterir ve **indirmeyi kesmez**.
 
 Future production gate (henüz enforce edilmez): `signed=true`,
 `publisher_valid=true`, `checksum_valid=true` olmayan artifact production
