@@ -30,6 +30,9 @@ SoT: [`../features/remote-desktop.md`](../features/remote-desktop.md)
 - [x] **C-RD-1** Offer WebRTC only if `capabilities.webrtc.available` and `"webrtc"∈transports`.
 - [x] **C-RD-2** While WebRTC connected, do not also paint JPEG.
 - [x] **CL-RD-S0-1/2** Path B (lock row) omits `session_id` and `username`.
+- [x] **C-RD-CON-8** `list_sessions` / dashboard always expose Logon/Lock sibling (`pre_logon`) even if the agent omitted it.
+- [x] **CL-RD-S0-5 / C-RD-P0-WL-2** `SESSION0_HELPER_SPAWN_FAILED` / sub-1500 B JPEG / `black_frame` never paint a healthy Live badge.
+- [x] **C-RD-VIEW-8 / FOLLOW-4** Honor `phase=switching`; Live may drop to switching/degraded; frozen frames &gt;2s drop Live.
 
 ---
 
