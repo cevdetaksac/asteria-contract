@@ -1,5 +1,25 @@
 # Changelog — asteria-contract
 
+## 1.4.72 — 2026-08-17
+
+### RD lab: agent **4.9.103** string ≠ PIX PASS
+
+Cloud RD P0 (VIEW-9 / SMOOTH-1/2/5 / FOLLOW-9/10 / VIEW-11) verified on
+`asteria.run` and ticked in [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md).
+
+Derin-Web **2026-08-17** on agent **4.9.103**: Default Connect and
+`administrator` SID Start still show viewer **“Winlogon bağlı — görüntü siyah”**
+with `capture_method=persistent-user-helper`, `black_frame=true`, ~1024×768,
+WebRTC failed, encode meta ~**8 fps / Q40**. Cloud honesty is correct (no Live).
+**PIX / TOPO lab ticks stay open.** Recommend pin **≥4.9.103** only after
+Runs A–F PASS; shipping the version string alone is **not** acceptance.
+
+| Piece | Path |
+|-------|------|
+| Lab FAIL note + recommend ≥4.9.103 | [`features/remote-desktop.md`](features/remote-desktop.md) |
+| Client boxes stay `[ ]` until console PASS | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) |
+| Cloud boxes `[x]` (prod 2026-08-17) | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) |
+
 ## 1.4.71 — 2026-08-15
 
 ### Remote Desktop smoothness (C-RD-SMOOTH) — client **4.9.101**

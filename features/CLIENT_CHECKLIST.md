@@ -1,21 +1,23 @@
 # Client / agent checklist
 
-> Contract **≥ 1.4.71**. Windows agent this file. Do **not** add new SoT here —
+> Contract **≥ 1.4.72**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.103** for RD **pixels + DXGI Default + SMOOTH floors** ·
-> **≥ 4.9.100** lock/logoff follow · topology names **≥ 4.9.95** ·
-> intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
-> **4.9.94 follow-skip is not acceptance.** **4.9.99–4.9.102 gdi+black lab is not acceptance.**
-> **gdi+black / solid-black JPEG is not acceptance.**
+> Pin: **≥ 4.9.103** for RD **pixels + DXGI Default + SMOOTH** · topology
+> **≥ 4.9.95** · intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
+> **4.9.94 follow-skip is not acceptance.**
+> **4.9.99–4.9.103 Derin-Web `gdi+black` / `persistent-user-helper` is not acceptance.**
+> **Version string alone is not acceptance — console lab required.**
 >
-> **2026-08-17:** agent **4.9.103** shipped (GitHub). **Implementation complete** for
-> PIX/TOPO/FOLLOW/SMOOTH client rules. **Open ticks = console lab only** (Derin-Web
-> Run A–F). Do **not** `[x]` PIX/TOPO from unit alone. Last live FAIL was **4.9.102**
-> Run C (`persistent-user-helper` `gdi+black` @ 8fps).
+> **2026-08-17 lab (asteria.run / Derin-Web):** agent reports **4.9.103** and is
+> online, but Default Connect **and** `administrator` SID Start still FAIL:
+> overlay “Winlogon bağlı — görüntü siyah”, `capture_method=persistent-user-helper`,
+> `black_frame=true`, ~1024×768, WebRTC failed, encode meta ~**8 fps / Q40**.
+> Cloud honesty OK (no Live). **Do not `[x]` PIX/TOPO/FOLLOW/SMOOTH live boxes
+> until Runs A–F PASS on this host (or equivalent console).**
 
 **Read first:** [`README.md`](./README.md) · RD SoT: [`remote-desktop.md`](./remote-desktop.md)  
-**Cloud ticks:** [`../cloud/CLOUD_CHECKLIST.md`](../cloud/CLOUD_CHECKLIST.md)
+**Cloud ticks:** [`../cloud/CLOUD_CHECKLIST.md`](../cloud/CLOUD_CHECKLIST.md) (1.4.72: cloud RD P0 closed)
 
 How to mark PIX/TOPO: `[x]` only after a real console lab (not unit-only).
 
@@ -25,42 +27,50 @@ How to mark PIX/TOPO: `[x]` only after a real console lab (not unit-only).
 
 SoT: [`remote-desktop.md`](./remote-desktop.md)
 
-Do **Run A and Run C separately** (empty host vs logged-on). Mixing them hides bugs.
+Do **Run A and Run C separately** (empty/lock vs logged-on unlocked). Mixing them hides bugs.
 
 ### Capture pixels (C-RD-PIX) — why the dashboard is black
 
 - [ ] **C-RD-PIX-1** Healthy frame ≠ JPEG bytes. Solid 1024×768 black is FAIL. Need `black_frame=false` plus chrome (variance / bright_ratio / LogonUI hwnd or DXGI wallpaper).
 - [ ] **C-RD-PIX-2** `desktop=Winlogon` → LogonUI/SAS pixels ≤3s. Else `winlogon_capture_black` / `black_frame:true` and **not** Live / not fake `streaming:true`.
-- [ ] **C-RD-PIX-3** Empty host **or locked console** + `topology=follow`: interactive Winlogon helper (`CreateProcessAsUser` + `lpDesktop=winsta0\\Winlogon` + winlogon.exe token). **FAIL** if `persistent-user-helper` + `gdi+black` (lab 4.9.99).
-- [ ] **C-RD-PIX-4** Logged-on **and unlocked** console + `topology=follow`: DXGI/NVENC Default only. No Winlogon helper. No `SESSION0_HELPER_SPAWN_FAILED`. Locked-with-username is PIX-3, not PIX-4.
+- [ ] **C-RD-PIX-3** Empty host **or locked console** + `topology=follow`: interactive Winlogon helper (`CreateProcessAsUser` + `lpDesktop=winsta0\\Winlogon` + **winlogon.exe token**). **FAIL** if `persistent-user-helper` + `gdi+black` (lab 4.9.99…**4.9.103**).
+- [ ] **C-RD-PIX-4** Logged-on **and unlocked** console + `topology=follow` (or user SID Start): DXGI/NVENC `WinSta0\Default` only. No Winlogon helper. No `SESSION0_HELPER_SPAWN_FAILED`. **FAIL** if username Active but capture stays `persistent-user-helper` black (lab **4.9.103** SID 3). Locked-with-username is PIX-3, not PIX-4.
 - [ ] **C-RD-PIX-5** Honest `capture_method` (`dxgi+nvenc` / `persistent-winlogon-helper:raw` / `gdi+black`). `gdi+black` is never success.
-- [ ] **C-RD-PIX-6** WebRTC `connected` / JPEG-suppress only **after** one healthy frame. Black + nvenc = FAIL.
+- [ ] **C-RD-PIX-6** WebRTC `connected` / JPEG-suppress only **after** one healthy frame. Black + `nvenc` = FAIL.
 - [ ] **C-RD-PIX-7** Live `t:meta` ≤5 frames: desktop, method, black_frame, variance, bright_ratio, logonui_hwnd_count, session_id, username.
 
-### Topology / follow / S0 / CAD
+### Topology / follow / S0 / CAD / smoothness
 
-- [ ] **C-RD-TOPO-1** Honor `{ topology:"follow", stream_id, fps }` with **no** `prefer`/`pre_logon`/`desktop`/SID. Combine with PIX-3 or PIX-4 depending on **input desktop**, not WTS username. *(4.9.101 shipped — live lab still open)*
-- [ ] **C-RD-TOPO-2** Lock row `{ topology:"winlogon", prefer:"winlogon", pre_logon:true, desktop:"Winlogon" }`, no SID. Pixels = LogonUI, not wallpaper. *(live lab still open)*
-- [ ] **C-RD-TOPO-4 / FOLLOW-1…10** Enter/unlock: **same `stream_id`**, Default ≤2s. Lock/logoff: same stream back to Winlogon chrome. No dual-write input. *(live lab still open)*
+- [ ] **C-RD-TOPO-1** Honor `{ topology:"follow", stream_id, fps }` with **no** `prefer`/`pre_logon`/`desktop`/SID. Decide PIX-3 vs PIX-4 from **input desktop**, not WTS username. *(unit claimed 4.9.101+ — **live FAIL 4.9.103**)*
+- [ ] **C-RD-TOPO-2** Lock row `{ topology:"winlogon", prefer:"winlogon", pre_logon:true, desktop:"Winlogon" }`, no SID. Pixels = LogonUI, not wallpaper.
+- [ ] **C-RD-TOPO-4 / FOLLOW-1…10** Enter/unlock: **same `stream_id`**, Default ≤2s. Lock/logoff: same stream back to Winlogon chrome. No dual-write input. No second Start.
 - [x] **C-RD-CON-8** Every `list_sessions` includes Logon/Lock sibling `pre_logon:true` (no SID `1`).
-- [x] **C-RD-S0** Path B helper in the **interactive** session. jpeg≈0B → `SESSION0_HELPER_SPAWN_FAILED` (`streaming:false`) unless TOPO-1 **logged-on** DXGI skip. *(accepted 4.9.84 — PIX-3 must not regress to gdi+black)*
+- [x] **C-RD-S0** Path B helper in the **interactive** session. jpeg≈0B → `SESSION0_HELPER_SPAWN_FAILED` (`streaming:false`) unless TOPO-1 **logged-on** DXGI skip. *(accepted 4.9.84 — must not regress to gdi+black)*
 - [x] **CAD / input** `remote_send_sas` only. Meta `inputs_applied` / `last_input_event` live. Input desktop = capture desktop. *(accepted 4.9.86)*
-- [x] **WebRTC advertise** only if real. *(unit)* ICE fail → JPEG-WS; no zombie `connected`. *(ICE live lab still open — PIX-6)*
-- [x] **C-RD-SMOOTH-1/4** Start knobs floor 30/72/1920; coalescing does not degrade fps. *(unit 4.9.101 — live ≥24 fps lab still open)*
+- [ ] **WebRTC / PIX-6 live** Advertise only if real. ICE fail → JPEG-WS of **chrome**; no zombie `connected`. Black+nvenc = FAIL.
+- [ ] **C-RD-SMOOTH-1/3/4 live** Honor cloud Start **≥30 / ≥72 / 1920**. Do **not** stay at 8 fps / Q40 in `t:meta`. Coalescing must not lower fps. Lab **4.9.103** still showed ~8/Q40 — open until ≥24 fps on JPEG-WS or WebRTC.
 
 ### Lab commands (copy)
 
-Empty host, Default Connect:
+Empty / lock, Default Connect (Run A):
 
 ```text
 1. Log off / lock the console so LogonUI is on the physical screen.
-2. Open /dashboard/remote?token=… — wait idle (Bağlan visible).
+2. Open https://asteria.run/dashboard/remote?token=… — wait idle (Bağlan).
 3. Leave target = Logon · varsayılan. Click Bağlan.
-4. PASS: password box or lock chrome in the viewer ≤3s.
-5. FAIL: black player + “Görüntü tam değil” + capture_method=gdi+black / persistent-user-helper.
+4. PASS: password box or lock chrome in the viewer ≤3s; black_frame=false;
+   capture_method ≠ gdi+black / persistent-user-helper.
+5. FAIL: black player + “görüntü siyah” / gdi+black (seen on 4.9.99–4.9.103).
 ```
 
-Logged-on Default Connect: log on locally first, then Bağlan — must match the physical desktop (DXGI), not Winlogon.
+Logged-on unlocked Default Connect (Run C):
+
+```text
+1. Locally unlock so Default desktop is on the physical screen.
+2. Bağlan on Logon · varsayılan (or administrator · Console).
+3. PASS: DXGI/NVENC of that wallpaper/shell; black_frame=false.
+4. FAIL: persistent-user-helper + black while username is Active (4.9.103 lab).
+```
 
 ---
 
