@@ -3,7 +3,7 @@
 > Contract **≥ 1.4.71**. Cloud this file, tick `[x]`, PR note with commit/date.
 > Do **not** add new SoT markdown here — implement against `features/*`.
 >
-> Pin: client **≥ 4.9.101** recommended (smoothness) · **≥ 4.9.100** PIX/lock-follow · topology **≥ 4.9.95** · inspect **≥ 4.9.93**
+> Pin: client **≥ 4.9.103** recommended (PIX DXGI + SMOOTH) · topology **≥ 4.9.95** · inspect **≥ 4.9.93**
 > API: `https://asteria.run` · HMAC `asteria-chp-v1`
 
 **Read first:** [`../features/README.md`](../features/README.md)  
@@ -22,7 +22,7 @@ SoT: [`../features/remote-desktop.md`](../features/remote-desktop.md)
 - [x] **C-RD-TOPO-3** User shortcut: `session_id` + `username`. Never auto-pick first Active SID.
 - [x] **C-RD-TOPO-4** After Enter: **same `stream_id`**, no second Start, no “pick administrator”.
 - [x] **C-RD-TOPO-5** Warn agent &lt;4.9.26; 4.9.94 follow-skip is not acceptance.
-- [ ] **C-RD-TOPO-5 / VIEW-9 (1.4.70/71)** Recommend **≥4.9.101** (smoothness) and **≥4.9.100** (PIX). Banner copy must not say “≥4.9.45 P0” as the current floor.
+- [ ] **C-RD-TOPO-5 / VIEW-9 (1.4.70/71)** Recommend **≥4.9.103**. Banner copy must not say “≥4.9.45 P0” as the current floor.
 - [ ] **C-RD-SMOOTH-1 (1.4.71)** Every `remote_stream_start` uses `fps≥30`, `quality≥72`, `max_width:1920`. Remove `fps:12` / `quality:40` / `max_width:1280` from dashboard defaults and samples.
 - [ ] **C-RD-SMOOTH-2 (1.4.71)** WebRTC offer includes `ice_servers` with **TURNS on 443** (and STUN). Host UDP through Cloudflare is often dead; TCP 443 alone is not WebRTC media.
 - [ ] **C-RD-SMOOTH-5 (1.4.71)** Viewer paints JPEG-WS as video (≥24 fps), not a 12 Hz image. ICE fail keeps the same surface at video rate.
@@ -108,4 +108,4 @@ SoT: [`../features/threat-intel.md`](../features/threat-intel.md)
 
 1. Cloud boxes on **1.4.67** Start/honesty stay `[x]`. **1.4.70** VIEW-9 / FOLLOW-9/10 / VIEW-11 and **1.4.71** SMOOTH-1/2/5 are **open** until production dashboard matches.
 2. Pull `asteria-contract` on the cloud host and `publish_contract.sh`.
-3. **Client:** tick [`../features/CLIENT_CHECKLIST.md`](../features/CLIENT_CHECKLIST.md) only after Derin-Web (or lab) is on **≥4.9.101** and Runs A–F pass.
+3. **Client:** tick [`../features/CLIENT_CHECKLIST.md`](../features/CLIENT_CHECKLIST.md) only after Derin-Web (or lab) is on **≥4.9.103** and Runs A–F pass.

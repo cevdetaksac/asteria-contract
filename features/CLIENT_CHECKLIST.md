@@ -3,14 +3,16 @@
 > Contract **≥ 1.4.71**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.103** for RD **pixels attempt** (PIX-4 DXGI Default + no 8fps cap) ·
-> **≥ 4.9.101** smoothness knobs · **≥ 4.9.100** lock/logoff follow contract ·
-> topology names **≥ 4.9.95** · intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
-> **4.9.94 follow-skip is not acceptance.** **4.9.99 gdi+black lab is not acceptance.**
+> Pin: **≥ 4.9.103** for RD **pixels + DXGI Default + SMOOTH floors** ·
+> **≥ 4.9.100** lock/logoff follow · topology names **≥ 4.9.95** ·
+> intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
+> **4.9.94 follow-skip is not acceptance.** **4.9.99–4.9.102 gdi+black lab is not acceptance.**
 > **gdi+black / solid-black JPEG is not acceptance.**
 >
-> **2026-08-16:** agent **4.9.103** on GitHub. **Open:** C-RD-PIX + TOPO console lab.
-> 4.9.102 Derin-Web Run C still FAIL: `persistent-user-helper` `gdi+black` 1024×768 @ 8fps.
+> **2026-08-17:** agent **4.9.103** shipped (GitHub). **Implementation complete** for
+> PIX/TOPO/FOLLOW/SMOOTH client rules. **Open ticks = console lab only** (Derin-Web
+> Run A–F). Do **not** `[x]` PIX/TOPO from unit alone. Last live FAIL was **4.9.102**
+> Run C (`persistent-user-helper` `gdi+black` @ 8fps).
 
 **Read first:** [`README.md`](./README.md) · RD SoT: [`remote-desktop.md`](./remote-desktop.md)  
 **Cloud ticks:** [`../cloud/CLOUD_CHECKLIST.md`](../cloud/CLOUD_CHECKLIST.md)
