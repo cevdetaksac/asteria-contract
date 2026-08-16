@@ -3,15 +3,14 @@
 > Contract **≥ 1.4.71**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.102** for RD **pixels attempt** (C-RD-PIX-3 lock+username) ·
-> **≥ 4.9.101** smoothness · **≥ 4.9.100** lock/logoff follow contract ·
+> Pin: **≥ 4.9.103** for RD **pixels attempt** (PIX-4 DXGI Default + no 8fps cap) ·
+> **≥ 4.9.101** smoothness knobs · **≥ 4.9.100** lock/logoff follow contract ·
 > topology names **≥ 4.9.95** · intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
 > **4.9.94 follow-skip is not acceptance.** **4.9.99 gdi+black lab is not acceptance.**
 > **gdi+black / solid-black JPEG is not acceptance.**
 >
-> **2026-08-16:** agent **4.9.102** on GitHub (PIX-3 helper). **Open:** C-RD-PIX + TOPO
-> **console lab** — do not tick until Derin-Web Run A/C pass. 4.9.101 smoothness
-> unit is not PIX acceptance (`persistent-user-helper` + `gdi+black`).
+> **2026-08-16:** agent **4.9.103** on GitHub. **Open:** C-RD-PIX + TOPO console lab.
+> 4.9.102 Derin-Web Run C still FAIL: `persistent-user-helper` `gdi+black` 1024×768 @ 8fps.
 
 **Read first:** [`README.md`](./README.md) · RD SoT: [`remote-desktop.md`](./remote-desktop.md)  
 **Cloud ticks:** [`../cloud/CLOUD_CHECKLIST.md`](../cloud/CLOUD_CHECKLIST.md)
