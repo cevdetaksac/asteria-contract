@@ -4,10 +4,10 @@
 
 | | |
 |--|--|
-| **VERSION** | [`VERSION`](VERSION) (**1.4.72**) |
+| **VERSION** | [`VERSION`](VERSION) (**1.4.73**) |
 | **Features** | [`features/README.md`](features/README.md) — one MD per product |
 | **Cloud checklist** | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) — RD P0 ticked 2026-08-17 |
-| **Client checklist** | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) — PIX lab open (4.9.103 still FAIL) |
+| **Client checklist** | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) — PIX lab open (ship ≥4.9.105; tick after Runs A–F) |
 | **Index** | [`INDEX.md`](INDEX.md) |
 | **Fleet** | [`FLEET.md`](FLEET.md) — floor client ≥ **4.9.0** |
 | **API** | `https://asteria.run` · Bearer token (not `?token=` on agent API) |

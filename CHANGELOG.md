@@ -1,5 +1,25 @@
 # Changelog — asteria-contract
 
+## 1.4.73 — 2026-08-17
+
+### Client **4.9.105** PIX fix shipped — lab still gated
+
+Agent **4.9.105** addresses Derin-Web **4.9.103** FAIL (`persistent-user-helper`
++ `gdi+black` on follow and SID Start):
+
+- Secure-desktop probe on **every** Start (including administrator SID)
+- Locked/LogonUI → Winlogon helper + winlogon token; unlocked → DXGI Default
+- DXGI retry after gdi+black; honest `dxgi+…` method; no black probe as Live
+- Helper knobs floor 30/72/1920
+
+**Do not `[x]` PIX/TOPO/FOLLOW/SMOOTH** until Derin-Web Runs A–F PASS on ≥4.9.105.
+Recommend pin **≥4.9.105**. Cloud RD P0 remains closed (1.4.72).
+
+| Piece | Path |
+|-------|------|
+| Recommend ≥4.9.105 | [`features/remote-desktop.md`](features/remote-desktop.md) |
+| Client boxes stay `[ ]` until console PASS | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) |
+
 ## 1.4.72 — 2026-08-17
 
 ### RD lab: agent **4.9.103** string ≠ PIX PASS

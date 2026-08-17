@@ -3,7 +3,7 @@
 > Contract **≥ 1.4.72**. Cloud this file, tick `[x]`, PR note with commit/date.
 > Do **not** add new SoT markdown here — implement against `features/*`.
 >
-> Pin: client **≥ 4.9.103** recommended (PIX DXGI + SMOOTH) · topology **≥ 4.9.95** · inspect **≥ 4.9.93**
+> Pin: client **≥ 4.9.105** recommended (PIX DXGI + SID probe + SMOOTH) · topology **≥ 4.9.95** · inspect **≥ 4.9.93**
 > API: `https://asteria.run` · HMAC `asteria-chp-v1`
 
 **Read first:** [`../features/README.md`](../features/README.md)  
@@ -22,7 +22,7 @@ SoT: [`../features/remote-desktop.md`](../features/remote-desktop.md)
 - [x] **C-RD-TOPO-3** User shortcut: `session_id` + `username`. Never auto-pick first Active SID.
 - [x] **C-RD-TOPO-4** After Enter: **same `stream_id`**, no second Start, no “pick administrator”.
 - [x] **C-RD-TOPO-5** Warn agent &lt;4.9.26; 4.9.94 follow-skip is not acceptance.
-- [x] **C-RD-TOPO-5 / VIEW-9 (1.4.70/71)** Recommend **≥4.9.103**. Banner copy must not say “≥4.9.45 P0” as the current floor. *(prod 2026-08-17 asteria.run — Derin-Web 4.9.103 banner hidden; i18n `?v=20260817-c172`; no 4.9.45 string)*
+- [x] **C-RD-TOPO-5 / VIEW-9 (1.4.70/71)** Recommend **≥4.9.105**. Banner copy must not say “≥4.9.45 P0” as the current floor. *(prod 2026-08-17 asteria.run — update banner pin when 4.9.105 ships; no 4.9.45 string)*
 - [x] **C-RD-SMOOTH-1 (1.4.71)** Every `remote_stream_start` uses `fps≥30`, `quality≥72`, `max_width:1920`. Remove `fps:12` / `quality:40` / `max_width:1280` from dashboard defaults and samples. *(prod 2026-08-17 — Start `{fps:30,quality:72,max_width:1920}`; FPS select 30/45/60 only; API clamp)*
 - [x] **C-RD-SMOOTH-2 (1.4.71)** WebRTC offer includes `ice_servers` with **TURNS on 443** (and STUN). Host UDP through Cloudflare is often dead; TCP 443 alone is not WebRTC media. *(prod 2026-08-17 — `build_ice_servers` + `.env` REMOTE_TURN_URLS includes `turns:…:443?transport=tcp` + STUN)*
 - [x] **C-RD-SMOOTH-5 (1.4.71)** Viewer paints JPEG-WS as video (≥24 fps), not a 12 Hz image. ICE fail keeps the same surface at video rate. *(prod 2026-08-17 — `queueJpegFrame` + `requestAnimationFrame` latest-frame path in dashboard_remote.html)*
@@ -106,6 +106,6 @@ SoT: [`../features/threat-intel.md`](../features/threat-intel.md)
 
 ## After you ship
 
-1. Cloud RD P0 boxes for **1.4.70/71** (VIEW-9, SMOOTH-1/2/5, FOLLOW-9/10, VIEW-11) ticked **2026-08-17** on `asteria.run` (agent pin **≥4.9.103**).
+1. Cloud RD P0 boxes for **1.4.70/71** (VIEW-9, SMOOTH-1/2/5, FOLLOW-9/10, VIEW-11) ticked **2026-08-17** on `asteria.run` (agent pin **≥4.9.105**).
 2. Pull `asteria-contract` on the cloud host and `publish_contract.sh`.
-3. **Client:** tick [`../features/CLIENT_CHECKLIST.md`](../features/CLIENT_CHECKLIST.md) only after Derin-Web (or lab) Runs A–F PASS on **≥4.9.103**.
+3. **Client:** tick [`../features/CLIENT_CHECKLIST.md`](../features/CLIENT_CHECKLIST.md) only after Derin-Web (or lab) Runs A–F PASS on **≥4.9.105**.

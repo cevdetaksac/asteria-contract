@@ -1,10 +1,10 @@
 # Contract INDEX
 
-> [`VERSION`](VERSION) (**1.4.72**) → [`features/README.md`](features/README.md) → that product MD.  
+> [`VERSION`](VERSION) (**1.4.73**) → [`features/README.md`](features/README.md) → that product MD.  
 > Repo: https://github.com/cevdetaksac/asteria-contract · Fleet: [`FLEET.md`](FLEET.md)  
 > Production floor: **client ≥ 4.9.0** · API: `https://asteria.run`  
 > **Cloud work:** [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) (1.4.72: RD P0 ticked)  
-> **Client work:** [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) (PIX lab open on 4.9.103)
+> **Client work:** [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) (PIX lab open — test ≥4.9.105)
 
 **Product SoT is only `features/`.** Shared wire is `api/` below. Do not recreate deleted `agent/` product files, `api/04` `05` `09`, or `cloud/DEFENSE_POLICY.md`.
 
@@ -16,7 +16,7 @@
 |-------|------------|
 | [features/README.md](features/README.md) | — |
 | [features/CLIENT_CHECKLIST.md](features/CLIENT_CHECKLIST.md) | lab ticks |
-| [features/remote-desktop.md](features/remote-desktop.md) | **≥ 4.9.95** topo · **≥ 4.9.100** pixels · **≥ 4.9.101** SMOOTH · recommend **≥ 4.9.103** |
+| [features/remote-desktop.md](features/remote-desktop.md) | **≥ 4.9.95** topo · **≥ 4.9.100** pixels · **≥ 4.9.101** SMOOTH · recommend **≥ 4.9.105** |
 | [features/self-update.md](features/self-update.md) | **≥ 4.9.96** |
 | [features/process-inspect.md](features/process-inspect.md) | **≥ 4.9.93** |
 | [features/server-management.md](features/server-management.md) | **≥ 4.9.4** |

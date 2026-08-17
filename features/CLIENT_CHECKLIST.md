@@ -1,20 +1,18 @@
 # Client / agent checklist
 
-> Contract **≥ 1.4.72**. Windows agent this file. Do **not** add new SoT here —
+> Contract **≥ 1.4.73**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.103** for RD **pixels + DXGI Default + SMOOTH** · topology
-> **≥ 4.9.95** · intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
+> Pin: **≥ 4.9.105** for RD **pixels + SID secure probe + DXGI retry + SMOOTH** ·
+> topology **≥ 4.9.95** · intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
 > **4.9.94 follow-skip is not acceptance.**
 > **4.9.99–4.9.103 Derin-Web `gdi+black` / `persistent-user-helper` is not acceptance.**
 > **Version string alone is not acceptance — console lab required.**
 >
-> **2026-08-17 lab (asteria.run / Derin-Web):** agent reports **4.9.103** and is
-> online, but Default Connect **and** `administrator` SID Start still FAIL:
-> overlay “Winlogon bağlı — görüntü siyah”, `capture_method=persistent-user-helper`,
-> `black_frame=true`, ~1024×768, WebRTC failed, encode meta ~**8 fps / Q40**.
-> Cloud honesty OK (no Live). **Do not `[x]` PIX/TOPO/FOLLOW/SMOOTH live boxes
-> until Runs A–F PASS on this host (or equivalent console).**
+> **2026-08-17:** agent **4.9.105** ships PIX fixes for the **4.9.103** lab FAIL
+> (SID Start skipped secure probe; unlocked Default stayed `user-helper` black;
+> black probe pushed as frames). **Open ticks = console lab only** (Derin-Web
+> Run A–F on **≥4.9.105**). Do **not** `[x]` PIX/TOPO from unit alone.
 
 **Read first:** [`README.md`](./README.md) · RD SoT: [`remote-desktop.md`](./remote-desktop.md)  
 **Cloud ticks:** [`../cloud/CLOUD_CHECKLIST.md`](../cloud/CLOUD_CHECKLIST.md) (1.4.72: cloud RD P0 closed)
@@ -41,14 +39,14 @@ Do **Run A and Run C separately** (empty/lock vs logged-on unlocked). Mixing the
 
 ### Topology / follow / S0 / CAD / smoothness
 
-- [ ] **C-RD-TOPO-1** Honor `{ topology:"follow", stream_id, fps }` with **no** `prefer`/`pre_logon`/`desktop`/SID. Decide PIX-3 vs PIX-4 from **input desktop**, not WTS username. *(unit claimed 4.9.101+ — **live FAIL 4.9.103**)*
+- [ ] **C-RD-TOPO-1** Honor `{ topology:"follow", stream_id, fps }` with **no** `prefer`/`pre_logon`/`desktop`/SID. Decide PIX-3 vs PIX-4 from **input desktop**, not WTS username. *(4.9.105 SID+follow probe — **live lab still open**)*
 - [ ] **C-RD-TOPO-2** Lock row `{ topology:"winlogon", prefer:"winlogon", pre_logon:true, desktop:"Winlogon" }`, no SID. Pixels = LogonUI, not wallpaper.
 - [ ] **C-RD-TOPO-4 / FOLLOW-1…10** Enter/unlock: **same `stream_id`**, Default ≤2s. Lock/logoff: same stream back to Winlogon chrome. No dual-write input. No second Start.
 - [x] **C-RD-CON-8** Every `list_sessions` includes Logon/Lock sibling `pre_logon:true` (no SID `1`).
 - [x] **C-RD-S0** Path B helper in the **interactive** session. jpeg≈0B → `SESSION0_HELPER_SPAWN_FAILED` (`streaming:false`) unless TOPO-1 **logged-on** DXGI skip. *(accepted 4.9.84 — must not regress to gdi+black)*
 - [x] **CAD / input** `remote_send_sas` only. Meta `inputs_applied` / `last_input_event` live. Input desktop = capture desktop. *(accepted 4.9.86)*
 - [ ] **WebRTC / PIX-6 live** Advertise only if real. ICE fail → JPEG-WS of **chrome**; no zombie `connected`. Black+nvenc = FAIL.
-- [ ] **C-RD-SMOOTH-1/3/4 live** Honor cloud Start **≥30 / ≥72 / 1920**. Do **not** stay at 8 fps / Q40 in `t:meta`. Coalescing must not lower fps. Lab **4.9.103** still showed ~8/Q40 — open until ≥24 fps on JPEG-WS or WebRTC.
+- [ ] **C-RD-SMOOTH-1/3/4 live** Honor cloud Start **≥30 / ≥72 / 1920**. Do **not** stay at 8 fps / Q40 in `t:meta`. Coalescing must not lower fps. Lab **4.9.103** showed ~8/Q40 — retest on **≥4.9.105** (≥24 fps JPEG-WS or WebRTC).
 
 ### Lab commands (copy)
 
