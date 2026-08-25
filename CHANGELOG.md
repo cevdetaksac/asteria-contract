@@ -1,5 +1,28 @@
 # Changelog — asteria-contract
 
+## 1.4.74 — 2026-08-25
+
+### Post-logon follow + `capture_diag` — client **4.9.107**
+
+Lab: password on LogonUI showed “Windows hazırlanıyor” then **froze** with
+viewer “Yayın durdu (son kare dondu)” / “konsol takibi client'ta olmalı”.
+Root cause was client sticky Winlogon (`_desktop_name` / lock-row
+`force_secure`) never switching to Default.
+
+Agent **4.9.107**:
+
+- Unlock / post-password → same `stream_id`, `phase=switching`, Default DXGI
+  helper (lock-row Start included); do not wait forever for explorer.exe
+- `t:capture_diag` + richer `t:meta.capture_diag` for host-to-host compare
+- Recommend pin **≥4.9.107**. PIX/TOPO/FOLLOW lab boxes stay open until
+  Derin-Web / Ninety-Web Runs A–D PASS.
+
+| Piece | Path |
+|-------|------|
+| FOLLOW unlock + DIAG wire | [`features/remote-desktop.md`](features/remote-desktop.md) |
+| Cloud Capture health panel | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) |
+| Client boxes stay `[ ]` until lab PASS | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) |
+
 ## 1.4.73 — 2026-08-17
 
 ### Client **4.9.105** PIX fix shipped — lab still gated

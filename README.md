@@ -4,7 +4,7 @@
 
 | | |
 |--|--|
-| **VERSION** | [`VERSION`](VERSION) (**1.4.73**) |
+| **VERSION** | [`VERSION`](VERSION) (**1.4.74**) |
 | **Features** | [`features/README.md`](features/README.md) — one MD per product |
 | **Cloud checklist** | [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) — RD P0 ticked 2026-08-17 |
 | **Client checklist** | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) — PIX lab open (ship ≥4.9.105; tick after Runs A–F) |

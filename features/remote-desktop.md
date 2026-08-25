@@ -1,11 +1,12 @@
 # Remote Desktop — single contract
 
-> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.73** · Agent floor
+> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.74** · Agent floor
 > **≥ 4.9.95** named topology · **≥ 4.9.100** physical-console **pixels**
-> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.105**
-> (SID secure probe + DXGI retry + honest `dxgi+…`). **4.9.99–4.9.103** Derin-Web
-> `persistent-user-helper` + `gdi+black` labs are **not** acceptance. Older IDs
-> still apply; they live **in this file**.
+> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.107**
+> (post-logon Default follow + `capture_diag`; prior **≥4.9.105** PIX DXGI).
+> **4.9.99–4.9.103** Derin-Web `persistent-user-helper` + `gdi+black` labs are
+> **not** acceptance. Frozen Welcome after password without Default follow is
+> **not** acceptance (FOLLOW-4). Older IDs still apply; they live **in this file**.
 >
 > Do not add MUST IDs under stub `agent/remote-*` or `api/05` paths.
 
@@ -43,7 +44,7 @@ Winlogon helper + `SESSION0_HELPER_SPAWN_FAILED` + jpeg=0B.
 | **C-RD-TOPO-2** | Logon / Lock **row** (empty host, lock, SAS): `topology=winlogon` + `prefer=winlogon` + `pre_logon=true` + `desktop=Winlogon`. Omit SID and username. Helper is legitimate. |
 | **C-RD-TOPO-3** | User shortcut: `session_id` + `username`. Do **not** auto-select the first Active SID. |
 | **C-RD-TOPO-4** | After Enter **or** unlock: **same `stream_id`**, no second Start, no “pick administrator”. After **lock / logoff**: same `stream_id` back to Winlogon helper. Winlogon spawn while Default is actually live must not be a terminal FAIL. |
-| **C-RD-TOPO-5** | Min agent **≥4.9.95** topology names. **≥4.9.100** for C-RD-PIX + lock/logoff follow. **≥4.9.101** for C-RD-SMOOTH. Warn if &lt;4.9.26. Recommend **≥4.9.105**. 4.9.94 follow-skip and **4.9.99–4.9.103** `gdi+black` / `persistent-user-helper` lab are **not** acceptance. |
+| **C-RD-TOPO-5** | Min agent **≥4.9.95** topology names. **≥4.9.100** for C-RD-PIX + lock/logoff follow. **≥4.9.101** for C-RD-SMOOTH. Warn if &lt;4.9.26. Recommend **≥4.9.107**. 4.9.94 follow-skip and **4.9.99–4.9.103** `gdi+black` / `persistent-user-helper` lab are **not** acceptance. |
 
 **A — Default Connect**
 
@@ -79,15 +80,31 @@ Same `stream_id`. Dashboard must not ask the operator to pick the user again.
 | ID | Rule |
 |----|------|
 | **C-RD-FOLLOW-1** | After logon/unlock, capture **and** input follow console SID onto `WinSta0\Default`. |
-| **C-RD-FOLLOW-2** | Tear down Winlogon helper once LogonUI/SAS is gone and Default is live. |
+| **C-RD-FOLLOW-2** | Tear down Winlogon helper once LogonUI/SAS is gone and Default is live (or Welcome → shell). |
 | **C-RD-FOLLOW-3** | Handle console connect / logon / unlock / secure→Default **before** the next frame. |
-| **C-RD-FOLLOW-4** | Do not freeze last Logon JPEG &gt;2s. `phase=switching` then `live`. Growing `age_sec` + `agent_ws_no_frames` after logon = FAIL. |
+| **C-RD-FOLLOW-4** | Do not freeze last Logon JPEG &gt;2s. `phase=switching` then `live`. Growing `age_sec` + `agent_ws_no_frames` after logon = FAIL. Banner “Yayın durdu / konsol takibi” without Default = FAIL. |
 | **C-RD-FOLLOW-5** | After Default: DXGI / NVENC. Winlogon JPEG ~4 fps is not the post-logon path. |
 | **C-RD-FOLLOW-6** | Omit `session_id` = follow (C-RD-TOPO-1). Do not bind first Active SID. |
 | **C-RD-FOLLOW-7** | Input targets the **same** desktop as capture. Dual-write Winlogon+Default after logon is forbidden (4× keys). |
 | **C-RD-FOLLOW-8** | Live `t:meta` updates `desktop`, `session_id`, `username`, `capture_method` (not start snapshot). |
 | **C-RD-FOLLOW-9** | After **lock / logoff**: same `stream_id`, `phase=switching` then Winlogon helper (`CreateProcessAsUser` + `lpDesktop=winsta0\\Winlogon` + **winlogon.exe / LogonUI token**, not the logged-on user token). LogonUI chrome must return. |
-| **C-RD-FOLLOW-10** | Switch to Default **only** when the helper reports `desktop=Default` (input desktop actually switched). **FAIL** to treat `list_sessions` username / Active as unlock. 4.9.99 lab: username listed + `persistent-user-helper` + `gdi+black`. |
+| **C-RD-FOLLOW-10** | Switch to Default when unlock is proven: LogonUI gone + WTS unlocked (explorer optional during “Windows is getting ready”), **or** live input desktop is Default. **FAIL** to treat `list_sessions` username / Active alone as unlock while LogonUI/lock is still live. Stale `desktop=Winlogon` / lock-row `force_secure` must **not** block post-password follow. |
+| **C-RD-FOLLOW-11** | Lock-row Start (`topology=winlogon` / `force_secure`) **must** still follow Default after credentials on the **same** `stream_id` (no Durdur/Bağlan). |
+
+---
+
+## Capture diagnostics (C-RD-DIAG) — ≥4.9.107
+
+Host A (e.g. WIN-6E5…) may show LogonUI while Derin-Web / Ninety-Web stay
+`gdi+black` or freeze after password. Operators need **comparable** fields, not
+only a red banner.
+
+| ID | Rule |
+|----|------|
+| **C-RD-DIAG-1** | Agent emits `t:capture_diag` (protocol 2) on Start probe fail, `switching`, post-logon degraded/live, and includes the same object under `t:meta.capture_diag`. |
+| **C-RD-DIAG-2** | Fields (min): `desktop`, `capture_method`, `winlogon_mode`, `helper_token`, `helper_fail_phase`, `session_id`, `username`, `black_frame`, `frame_variance`, `bright_ratio`, `logonui_hwnd_count`, `chrome_detected`, `follow_console`, `force_secure`, `frames_sent`. |
+| **C-RD-DIAG-3** | Dashboard **Capture health** panel: green/red per field; copy JSON; compare last connect across hosts. Do **not** only show “görüntü siyah”. |
+| **C-RD-DIAG-4** | Viewer “konsol takibi client'ta” / frozen Welcome: if `capture_diag.phase` never reaches Default/`live`, treat as client FOLLOW FAIL (pin ≥4.9.107); if agent ≥4.9.107 and still stuck, surface `helper_fail_*` in the panel. |
 
 ---
 
@@ -121,7 +138,7 @@ Hardware cursor is usually **not** in the bitstream. Draw a local software curso
 | **C-RD-VIEW-6** | `black_frame` / `winlogon_capture_black` / `CAPTURE_NO_DESKTOP` → degraded banner |
 | **C-RD-VIEW-7** | WebRTC when advertised; ICE fail → JPEG-WS ≤2s on the **same** surface |
 | **C-RD-VIEW-8** | Show `stream_progress` (`running` → `capturing` → `ws`/`webrtc` → `switching` → `live`). Honor `switching` on unlock **and** lock/logoff. |
-| **C-RD-VIEW-9** | Warn agent &lt;4.9.26; recommend **≥4.9.105** (PIX DXGI + SID probe + SMOOTH). Do not cite “≥4.9.45 P0” as the current floor. |
+| **C-RD-VIEW-9** | Warn agent &lt;4.9.26; recommend **≥4.9.107** (post-logon follow + `capture_diag` + PIX). Do not cite “≥4.9.45 P0” / “≥4.9.93” as the current floor on frozen-frame banners. |
 | **C-RD-VIEW-10** | Do not auto-select first Active user. Frozen frames drop Live badge |
 | **C-RD-VIEW-11** | Default Connect / follow must **not** auto-open a dashboard “Kullanıcıya bağlan” password modal over the player. Operator types on the remote surface (physical console). Optional shortcut is a separate action. |
 
@@ -163,7 +180,7 @@ is still black** — see C-RD-PIX.
 
 ---
 
-## Pixels / chrome (C-RD-PIX) — P0 · ≥4.9.100 (recommend ≥4.9.105)
+## Pixels / chrome (C-RD-PIX) — P0 · ≥4.9.100 (recommend ≥4.9.107)
 
 Lab **2026-08-17 Derin-Web on 4.9.103**: Default Connect `topology=follow` and
 `administrator` SID Start; viewer “Winlogon bağlı — görüntü siyah”; meta
@@ -237,7 +254,7 @@ slideshow. If ICE stays on TCP 443 only, JPEG-WS **is** the video path.
 | **C-RD-SMOOTH-3** | Target encode **1080p30–60**, ~8–12 Mbps when the viewer reports ≥50 Mbit. Do not cap at 1 Mbps / 30 fps in the peer. |
 | **C-RD-SMOOTH-4** | JPEG-WS latest-frame coalescing is **correct** (drop stale). Do not treat coalesced count as congestion that lowers fps. |
 | **C-RD-SMOOTH-5** | Viewer: decode/paint as video (`requestAnimationFrame` / `<video>`), not a 12 Hz `<img>` refresh. Prefer WebRTC `<video>` when ICE is connected. |
-| **C-RD-SMOOTH-6** | Recommend agent **≥4.9.105** for PIX DXGI + smoothness. PIX/lock-follow floor remains **≥4.9.100**; SMOOTH wire floor **≥4.9.101**. |
+| **C-RD-SMOOTH-6** | Recommend agent **≥4.9.107** for PIX DXGI + post-logon follow + smoothness. PIX/lock-follow floor remains **≥4.9.100**; SMOOTH wire floor **≥4.9.101**. |
 
 ---
 
@@ -263,8 +280,12 @@ First text frame on agent WS:
 
 `t:meta` before binary JPEG (and ≥ every 5th frame): geometry, `session_id`,
 `desktop`, `capture_method`, `black_frame`, `frame_variance`, `bright_ratio`,
-`logonui_hwnd_count`, `inputs_applied`, adaptive fps/quality.
-After follow, meta **must** change (FOLLOW-8). **C-RD-PIX-7.**
+`logonui_hwnd_count`, `inputs_applied`, adaptive fps/quality, optional
+`capture_diag` (≥4.9.107). After follow, meta **must** change (FOLLOW-8).
+**C-RD-PIX-7.** **C-RD-DIAG-1.**
+
+`t:capture_diag` (agent → viewer WS, protocol 2): one-shot / on fail / on
+`switching` — same fields as DIAG-2. Dashboard Capture health consumes this.
 
 `t:stream_progress` (aliases `remote_progress` / `progress`): `phase` =
 `running` | `capturing` | `ws` | `webrtc` | `switching` | `live` | `degraded` | `failed`.
@@ -282,7 +303,7 @@ JPEG-WS rAF). Remaining boxes are **agent + lab host**.
 
 ### Host prep (do not skip)
 
-1. Note agent version on Derin-Web (or lab). **&lt;4.9.95** cannot close TOPO. **&lt;4.9.100** cannot close PIX / FOLLOW-9/10. **4.9.103 string without Run A–F PASS** cannot close PIX (2026-08-17 lab still `gdi+black`). Retest on **≥4.9.105**.
+1. Note agent version on Derin-Web (or lab). **&lt;4.9.95** cannot close TOPO. **&lt;4.9.100** cannot close PIX / FOLLOW-9/10. **4.9.103 string without Run A–F PASS** cannot close PIX (2026-08-17 lab still `gdi+black`). Retest on **≥4.9.107** (post-logon follow + diag).
 2. Two physical states, **two separate runs** (reboot or logoff between if needed):
    - **Empty / lock:** no one interactively logged on at console (Logon or Win+L).
    - **Logged-on:** `administrator` (or lab user) **Active** on console, Default desktop visible on the physical screen.
