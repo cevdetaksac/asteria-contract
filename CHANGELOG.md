@@ -1,5 +1,29 @@
 # Changelog — asteria-contract
 
+## 1.4.75 — 2026-08-25
+
+### Attack service classification — RDP NLA vs NETWORK flood
+
+Prod lab (2026-08-25): ~12k/day `NETWORK port=0 <failed_logon>` vs ~16
+`RDP:3389` while tunnels stopped. Root cause: client SoT for 4625 LogonType-3
+NLA → RDP was incomplete in docs, and `NETWORK` uppercasing left default port
+lookup at **0**.
+
+| MUST | Detail |
+|------|--------|
+| 4625 | LogonType 3 + Negotiate/User32 / TS 1149 → **RDP:3389**; NtLmSsp/SMB → **Network:445** (`port:0` yasak) |
+| POST `/api/attack` | Enrich `logon_type`, `auth_package`, `logon_process`, status/substatus, workstation, real port, `source` |
+| Channels | EventLog fail ≠ bait capture; bait stopped → no RDP/SSH bait rows expected |
+| Noise | Empty/anonymous Network not Attacks spam; admin RDP spray → threshold 3 |
+| Cloud | `normalize_service` = client string as-is; RDP↔NETWORK remap is **client SoT** |
+
+Client **≥ 4.9.108**.
+
+| Piece | Path |
+|-------|------|
+| Classification SoT | [`features/threat-engine.md`](features/threat-engine.md) |
+| Attacks channels + fields | [`agent/attacks-and-services.md`](agent/attacks-and-services.md) |
+
 ## 1.4.74 — 2026-08-25
 
 ### Post-logon follow + `capture_diag` — client **4.9.107**

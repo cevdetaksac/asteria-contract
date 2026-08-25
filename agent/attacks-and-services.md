@@ -21,17 +21,38 @@ Alias’lar (aynı handler ailesi): `/api/honeypot-attack`, legacy `/attacks/` (
   "username": "administrator",
   "password": "Passw0rd!",
   "service": "RDP",
-  "port": 3389
+  "port": 3389,
+  "source": "honeypot",
+  "logon_type": 3,
+  "auth_package": "Negotiate",
+  "logon_process": "User32",
+  "status": "0xC000006D",
+  "substatus": "0x0",
+  "workstation": "-"
 }
 ```
 
 | Alan | Not |
 |------|-----|
-| `service` | `RDP` / `SSH` / `FTP` / `MSSQL` / `MYSQL` / `Network` — port’tan normalize edilebilir |
+| `service` | `RDP` / `SSH` / `FTP` / `MSSQL` / `MYSQL` / `NETWORK` (`Network`) — **client SoT**; cloud remap yok |
+| `port` | Gerçek hedef; biliniyorsa **`0` yasak** (RDP→3389, SMB/Network→445) |
+| `source` | `honeypot` (bait) vs `eventlog` (gerçek 4625) — kanallar karışmaz |
+| EventLog zenginleştirme | `logon_type`, `auth_package`, `logon_process`, `status`/`substatus`, `workstation` (4625) |
 | `attacker_ip` | Yoksa `ip` / peer IP |
-| Şifre | Cloud log/audit’te maskelenebilir; attack kaydında saklanır (dashboard) |
+| Şifre | Bait: yakalanan; EventLog: `<failed_logon>`. Cloud log/audit’te maskelenebilir |
 
 **200:** `{ "status": "ok", … }` — cloud `attacks` satırı + geoenrich + notification_rules eşik sayacı.
+
+### İki kanal (MUST)
+
+| Kanal | Ne zaman | Dashboard |
+|-------|----------|-----------|
+| **Bait honeypot** | Tuzak listen `started` + protokol credential | `service` porttan (RDP/SSH/…); tuzaklar **stopped** iken RDP/SSH bait satırı **beklenmez** |
+| **EventLog real-port** | Security `4625` / TS / MSSQL fail + `protection.block_rules` | Sınıflandırma: [`features/threat-engine.md`](../features/threat-engine.md) — NLA → **RDP:3389**, SMB → **NETWORK:445** |
+
+Operatör notu: **`NETWORK` = EventLog ağ oturumu (LogonType 3, SMB/null)** — bait tuzak durumu ayrı. “Hepsi NETWORK” yanılsaması çoğunlukla RDP NLA’nın yanlış etiketi + bait’lerin kapalı olmasından.
+
+**Cloud:** `normalize_service` client string’ini olduğu gibi yazar; **RDP↔NETWORK remap client SoT**.
 
 ---
 
@@ -85,15 +106,19 @@ Cadence ~**5 dk**. Cloud `settings_json.open_ports` yazar; dashboard honeypot i�
 ## Client kuralları
 
 1. Bait protokol handshake + credential capture; başarılı gerçek login **yok**.
-2. Her yakalamada `/api/attack` (veya batch politikası varsa).
+2. Her bait yakalamada `/api/attack` (veya batch politikası varsa); `source=honeypot`.
 3. Desired tunnel state’e uy; rapor `tunnel-status` ile.
 4. `protection.block_rules` / local fail sayacı **gerçek** auth fail event’leri içindir — bait capture ayrı kanal (`agent/register-protection.md`, `features/threat-engine.md`).
+5. EventLog `/api/attack`: sınıflandırma + port + zengin alanlar (`threat-engine.md`); empty/anonymous Network spam’i Attacks’e basma.
+6. Client **≥ 4.9.108** — lab prod (2026-08-25): ~12k/gün `NETWORK port=0` vs ~16 `RDP:3389` = yanlış etiket + `port:0` bug; bait hepsi stopped.
 
 ---
 
 ## Acceptance
 
-- [ ] Bait RDP/SSH fail credential → `/api/attack` 200, dashboard Attacks’te görünür
+- [ ] Bait RDP/SSH fail credential → `/api/attack` 200, dashboard Attacks’te görünür (`source` bait)
+- [ ] NLA RDP fail (bait off) → Attacks **`RDP` / `3389` / `<failed_logon>`** — not `NETWORK`/`0`
+- [ ] Saf SMB/445 fail → **`NETWORK` / `445`**
 - [ ] Tunnel-set start → agent listen + tunnel-status `running`
 - [ ] open-ports periyodik 200
 - [x] Cloud: `tunnel-set` → `services[].desired` anında güncellenir

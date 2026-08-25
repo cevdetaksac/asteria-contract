@@ -1,16 +1,18 @@
 # Client / agent checklist
 
-> Contract **≥ 1.4.74**. Windows agent this file. Do **not** add new SoT here —
+> Contract **≥ 1.4.75**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.107** for RD **post-logon follow + capture_diag + PIX/DXGI** ·
+> Pin: **≥ 4.9.108** for Attack **RDP NLA vs NETWORK:445** · **≥ 4.9.107** for RD
+> **post-logon follow + capture_diag + PIX/DXGI** ·
 > topology **≥ 4.9.95** · intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
 > **4.9.94 follow-skip is not acceptance.**
 > **4.9.99–4.9.103 Derin-Web `gdi+black` / `persistent-user-helper` is not acceptance.**
 > **Frozen Welcome after password without Default follow is not acceptance.**
 > **Version string alone is not acceptance — console lab required.**
 >
-> **2026-08-25:** agent **4.9.107** ships FOLLOW unlock + `t:capture_diag`.
+> **2026-08-25:** agent **4.9.108** ships 4625 classification + `port:0` fix;
+> **4.9.107** ships FOLLOW unlock + `t:capture_diag`.
 > **Open ticks = console lab only** (Derin-Web / Ninety-Web Run A–D on **≥4.9.107**).
 > Do **not** `[x]` PIX/TOPO/FOLLOW from unit alone.
 
@@ -70,6 +72,18 @@ Logged-on unlocked Default Connect (Run C):
 3. PASS: DXGI/NVENC of that wallpaper/shell; black_frame=false.
 4. FAIL: persistent-user-helper + black while username is Active (4.9.103 lab).
 ```
+
+---
+
+## P0 — Attack classification (4625 / Attacks UI)
+
+SoT: [`threat-engine.md`](./threat-engine.md) · [`../agent/attacks-and-services.md`](../agent/attacks-and-services.md)
+
+- [ ] **C-ATK-1** NLA RDP fail → `/api/attack` **`RDP` / `3389` / `<failed_logon>`** (not `NETWORK` / `0`)
+- [ ] **C-ATK-2** SMB/NtLmSsp type-3 → **`NETWORK` / `445`**
+- [ ] **C-ATK-3** EventLog enrich: `logon_type`, `auth_package`, `logon_process`, status/substatus, workstation, `source=eventlog`
+- [ ] **C-ATK-4** Bait credential separate (`source=honeypot`); tunnels stopped → no bait RDP/SSH rows expected
+- [ ] **C-ATK-5** Anonymous / empty Network fails do not flood Attacks
 
 ---
 
