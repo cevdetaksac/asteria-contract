@@ -1,5 +1,20 @@
 # Changelog — asteria-contract
 
+## 1.4.77 — 2026-08-26
+
+### Remote Desktop — JPEG-WS primary video + honest capture
+
+Operator ask: Live must feel like watching video (smooth frames + instant WS
+input). Bandwidth is ample (100 Mbit / multi-Gbit). JPEG-WS over the agent
+tunnel **is** the continuous video path; WebRTC is opportunistic after ICE.
+
+| Piece | Detail |
+|-------|--------|
+| Client **≥ 4.9.110** | Unknown lock → Winlogon; no `dxgi:pending`; `prefer_raw` only when media ready; JPEG-WS ≥30 while ICE negotiates |
+| SoT | [`features/remote-desktop.md`](features/remote-desktop.md) C-RD-SMOOTH-7 + primary-path wording |
+| Cloud | Paint JPEG-WS from first frame; do not block Live on ICE; pin recommend ≥4.9.110 |
+| Cloud paste | [`cloud/REMOTE_DESKTOP_JPEG_WS_PRIMARY.md`](cloud/REMOTE_DESKTOP_JPEG_WS_PRIMARY.md) |
+
 ## 1.4.76 — 2026-08-26
 
 ### Dual-channel Attacks — real ports always + bait optional

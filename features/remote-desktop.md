@@ -1,11 +1,12 @@
 # Remote Desktop — single contract
 
-> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.74** · Agent floor
+> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.77** · Agent floor
 > **≥ 4.9.95** named topology · **≥ 4.9.100** physical-console **pixels**
-> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.107**
-> (post-logon Default follow + `capture_diag`; prior **≥4.9.105** PIX DXGI).
-> **4.9.99–4.9.103** Derin-Web `persistent-user-helper` + `gdi+black` labs are
-> **not** acceptance. Frozen Welcome after password without Default follow is
+> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.110**
+> (JPEG-WS primary video + honest capture_method + unknown-lock → Winlogon;
+> prior **≥4.9.107** post-logon follow + `capture_diag`).
+> **4.9.99–4.9.109** Derin-Web `persistent-user-helper` + `gdi+black` / `dxgi:pending`
+> labs are **not** acceptance. Frozen Welcome after password without Default follow is
 > **not** acceptance (FOLLOW-4). Older IDs still apply; they live **in this file**.
 >
 > Do not add MUST IDs under stub `agent/remote-*` or `api/05` paths.
@@ -44,7 +45,7 @@ Winlogon helper + `SESSION0_HELPER_SPAWN_FAILED` + jpeg=0B.
 | **C-RD-TOPO-2** | Logon / Lock **row** (empty host, lock, SAS): `topology=winlogon` + `prefer=winlogon` + `pre_logon=true` + `desktop=Winlogon`. Omit SID and username. Helper is legitimate. |
 | **C-RD-TOPO-3** | User shortcut: `session_id` + `username`. Do **not** auto-select the first Active SID. |
 | **C-RD-TOPO-4** | After Enter **or** unlock: **same `stream_id`**, no second Start, no “pick administrator”. After **lock / logoff**: same `stream_id` back to Winlogon helper. Winlogon spawn while Default is actually live must not be a terminal FAIL. |
-| **C-RD-TOPO-5** | Min agent **≥4.9.95** topology names. **≥4.9.100** for C-RD-PIX + lock/logoff follow. **≥4.9.101** for C-RD-SMOOTH. Warn if &lt;4.9.26. Recommend **≥4.9.107**. 4.9.94 follow-skip and **4.9.99–4.9.103** `gdi+black` / `persistent-user-helper` lab are **not** acceptance. |
+| **C-RD-TOPO-5** | Min agent **≥4.9.95** topology names. **≥4.9.100** for C-RD-PIX + lock/logoff follow. **≥4.9.101** for C-RD-SMOOTH. Warn if &lt;4.9.26. Recommend **≥4.9.110**. 4.9.94 follow-skip and **4.9.99–4.9.109** `gdi+black` / `persistent-user-helper` / `dxgi:pending` lab are **not** acceptance. |
 
 **A — Default Connect**
 
@@ -225,14 +226,24 @@ is not acceptance.
 
 ---
 
-## Transport + smoothness (C-RD-SMOOTH) — ≥4.9.101
+## Transport + smoothness (C-RD-SMOOTH) — ≥4.9.101 · primary path ≥4.9.110
 
-Priority: **WebRTC** (if advertised **and ICE connects**) → **JPEG-WS** (healthy
-default, including when UDP is blocked) → JPEG-HTTP.
-Healthy stream does **not** also POST every frame over HTTP.
+**Primary continuous video = JPEG-WS** on the agent outbound tunnel
+(`wss://…/ws/remote/agent` → viewer). High-fps JPEG frames **are** the live
+picture (like watching video), not a “degraded mode”. Hosts and operators
+commonly have **≥100 Mbit**; servers often **≥1–10 Gbit** — do not ship a
+12 fps / Q40 slideshow.
 
-Hosts and many operators have **≥100 Mbit**. Do not ship a 12 fps / Q40 / 1280
-slideshow. If ICE stays on TCP 443 only, JPEG-WS **is** the video path.
+**WebRTC** is an **opportunistic upgrade** when advertised **and** ICE/DTLS
+actually reach `connected`. Cloudflare-proxied origins often block host UDP;
+waiting forever on ICE while starving JPEG-WS is FAIL. While ICE negotiates,
+the agent encodes JPEG in-helper (`prefer_raw=false`) so the tunnel stays
+smooth; raw RGB is only for a connected WebRTC peer.
+
+Priority for paint: **WebRTC connected** → **JPEG-WS** (always running until
+then) → JPEG-HTTP. Healthy stream does **not** also POST every frame over HTTP.
+Wire field `fallback:"jpeg-ws"` is **legacy naming** — treat it as the default
+live path.
 
 - `protocol: 2` = app envelope (`hello`, `meta`, `input`, `input_ack`)
 - `protocol: 1` = WebRTC signaling (`webrtc_offer` / answer / reject / ice).
@@ -246,15 +257,16 @@ slideshow. If ICE stays on TCP 443 only, JPEG-WS **is** the video path.
 |----|------|
 | **C-RD-1** | Offer WebRTC only when advertised |
 | **C-RD-2** | While WebRTC connected, do not also paint JPEG |
-| **C-RD-4** | Move coalesce OK; key/button/wheel flush immediately |
-| **C-RD-5** | ICE reject → JPEG fallback UI at once **at video rate** (not 8–12 fps) |
+| **C-RD-4** | Move coalesce OK; key/button/wheel flush immediately on agent WS |
+| **C-RD-5** | ICE reject / stall → keep JPEG-WS UI **at video rate** (not 8–12 fps). Do **not** blank the player waiting on ICE. |
 | **C-RD-7** | Restart: drop old peer; new `stream_id` |
 | **C-RD-SMOOTH-1** | Start knobs: `fps` **≥30** (clamp 30–60), `quality` **≥72** (55–90), `max_width` **1920**. Do **not** send `fps:12` / `quality:40` / `max_width:1280`. Agent ≥4.9.101 lifts those legacy values itself; older agents will slideshow. |
 | **C-RD-SMOOTH-2** | Include `ice_servers` on the offer: **TURNS** (TLS) on **443** plus STUN. Cloudflare-proxied origins often block host UDP; TURNS:443 is the WebRTC path that can work. |
 | **C-RD-SMOOTH-3** | Target encode **1080p30–60**, ~8–12 Mbps when the viewer reports ≥50 Mbit. Do not cap at 1 Mbps / 30 fps in the peer. |
 | **C-RD-SMOOTH-4** | JPEG-WS latest-frame coalescing is **correct** (drop stale). Do not treat coalesced count as congestion that lowers fps. |
-| **C-RD-SMOOTH-5** | Viewer: decode/paint as video (`requestAnimationFrame` / `<video>`), not a 12 Hz `<img>` refresh. Prefer WebRTC `<video>` when ICE is connected. |
-| **C-RD-SMOOTH-6** | Recommend agent **≥4.9.107** for PIX DXGI + post-logon follow + smoothness. PIX/lock-follow floor remains **≥4.9.100**; SMOOTH wire floor **≥4.9.101**. |
+| **C-RD-SMOOTH-5** | Viewer: decode/paint as video (`requestAnimationFrame` / `<video>`), not a 12 Hz `<img>` refresh. Prefer WebRTC `<video>` only when ICE is connected; otherwise rAF JPEG-WS is Live. |
+| **C-RD-SMOOTH-6** | Recommend agent **≥4.9.110** for JPEG-WS primary + honest method stamp + lock probe. PIX/lock-follow floor remains **≥4.9.100**; SMOOTH wire floor **≥4.9.101**. |
+| **C-RD-SMOOTH-7** | Agent **≥4.9.110**: never stamp provisional `dxgi:pending`. Unknown lock (`session_locked is None`) must **not** unlock Default (prefer Winlogon). `prefer_raw` only after WebRTC media ready. |
 
 ---
 
@@ -303,7 +315,7 @@ JPEG-WS rAF). Remaining boxes are **agent + lab host**.
 
 ### Host prep (do not skip)
 
-1. Note agent version on Derin-Web (or lab). **&lt;4.9.95** cannot close TOPO. **&lt;4.9.100** cannot close PIX / FOLLOW-9/10. **4.9.103 string without Run A–F PASS** cannot close PIX (2026-08-17 lab still `gdi+black`). Retest on **≥4.9.107** (post-logon follow + diag).
+1. Note agent version on Derin-Web (or lab). **&lt;4.9.95** cannot close TOPO. **&lt;4.9.100** cannot close PIX / FOLLOW-9/10. **4.9.103 string without Run A–F PASS** cannot close PIX (2026-08-17 lab still `gdi+black`). Retest on **≥4.9.110** (JPEG-WS primary + lock probe + diag).
 2. Two physical states, **two separate runs** (reboot or logoff between if needed):
    - **Empty / lock:** no one interactively logged on at console (Logon or Win+L).
    - **Logged-on:** `administrator` (or lab user) **Active** on console, Default desktop visible on the physical screen.
@@ -339,11 +351,13 @@ JPEG-WS rAF). Remaining boxes are **agent + lab host**.
 
 - [ ] Force ICE fail (or wait reject): JPEG-WS chrome ≤2s, no zombie connected.
 
-### Run F — smoothness (C-RD-SMOOTH) · ≥4.9.101
+### Run F — smoothness (C-RD-SMOOTH) · ≥4.9.101 / primary ≥4.9.110
 
 - [ ] Start params include `fps≥30`, `quality≥72`, `max_width=1920` (not 12/40/1280).
-- [ ] ICE fail or TCP-only 443: JPEG-WS stays **≥24 fps** on a gigabit/100 Mbit viewer (not ~8 fps).
+- [ ] ICE fail or TCP-only 443: JPEG-WS stays **≥24 fps** on a gigabit/100 Mbit viewer (not ~8 fps). Viewer paints from first JPEG — no endless “Kanal / connecting”.
 - [ ] If TURNS:443 is in `ice_servers`, WebRTC may connect; otherwise JPEG-WS is the video path.
+- [ ] Capture health never shows stuck `dxgi:pending`; lock/unknown → `persistent-winlogon-helper` (not `persistent-user-helper` + black).
+- [ ] Keys / clicks on viewer WS apply immediately (no HTTP-poll-only feel).
 
 Historical ticks (do not regress):
 
