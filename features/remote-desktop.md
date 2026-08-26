@@ -2,9 +2,9 @@
 
 > **SoT for client + cloud + dashboard.** Contract **≥ 1.4.77** · Agent floor
 > **≥ 4.9.95** named topology · **≥ 4.9.100** physical-console **pixels**
-> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.110**
-> (JPEG-WS primary video + honest capture_method + unknown-lock → Winlogon;
-> prior **≥4.9.107** post-logon follow + `capture_diag`).
+> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.111**
+> (websocket-primary Start + JPEG never suppressed for ICE; prior **≥4.9.110**
+> lock probe / no `dxgi:pending`).
 > **4.9.99–4.9.109** Derin-Web `persistent-user-helper` + `gdi+black` / `dxgi:pending`
 > labs are **not** acceptance. Frozen Welcome after password without Default follow is
 > **not** acceptance (FOLLOW-4). Older IDs still apply; they live **in this file**.
@@ -266,7 +266,8 @@ live path.
 | **C-RD-SMOOTH-4** | JPEG-WS latest-frame coalescing is **correct** (drop stale). Do not treat coalesced count as congestion that lowers fps. |
 | **C-RD-SMOOTH-5** | Viewer: decode/paint as video (`requestAnimationFrame` / `<video>`), not a 12 Hz `<img>` refresh. Prefer WebRTC `<video>` only when ICE is connected; otherwise rAF JPEG-WS is Live. |
 | **C-RD-SMOOTH-6** | Recommend agent **≥4.9.110** for JPEG-WS primary + honest method stamp + lock probe. PIX/lock-follow floor remains **≥4.9.100**; SMOOTH wire floor **≥4.9.101**. |
-| **C-RD-SMOOTH-7** | Agent **≥4.9.110**: never stamp provisional `dxgi:pending`. Unknown lock (`session_locked is None`) must **not** unlock Default (prefer Winlogon). `prefer_raw` only after WebRTC media ready. |
+| **C-RD-SMOOTH-7** | Agent **≥4.9.110**: never stamp provisional `dxgi:pending`. Unknown lock (`session_locked is None`) must **not** unlock Default (prefer Winlogon). `prefer_raw` only after WebRTC media ready when `preferred_transport=webrtc`. |
+| **C-RD-SMOOTH-8** | Honor Start `preferred_transport: "websocket"` (cloud default). Keep JPEG-WS on agent WS while WebRTC is connecting/connected; do **not** suppress healthy JPEG for ICE. WebRTC-primary Start may suppress JPEG only after `_media_ready` (healthy + ICE/DTLS). Agent **≥4.9.111**. |
 
 ---
 

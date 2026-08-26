@@ -1,5 +1,19 @@
 # Changelog — asteria-contract
 
+## 1.4.78 — 2026-08-26
+
+### Remote Desktop — websocket-primary Start (C-RD-SMOOTH-8)
+
+Cloud Start sends `preferred_transport: "websocket"`. Agent must keep JPEG-WS
+on the tunnel while WebRTC ICE runs; suppress JPEG only for explicit
+`preferred_transport: webrtc` after media ready.
+
+| Piece | Detail |
+|-------|--------|
+| Client **≥ 4.9.111** | Honor Start preferred_transport; hello capabilities match |
+| SoT | [`features/remote-desktop.md`](features/remote-desktop.md) C-RD-SMOOTH-8 |
+| Cloud | Already ships websocket-primary + turn.asteria.run ICE |
+
 ## 1.4.77 — 2026-08-26
 
 ### Remote Desktop — JPEG-WS primary video + honest capture

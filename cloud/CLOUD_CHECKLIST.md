@@ -3,7 +3,7 @@
 > Contract **≥ 1.4.77**. Cloud this file, tick `[x]`, PR note with commit/date.
 > Do **not** add new SoT markdown here — implement against `features/*`.
 >
-> Pin: client **≥ 4.9.110** recommended (JPEG-WS primary video + honest capture + follow) ·
+> Pin: client **≥ 4.9.111** recommended (websocket-primary Start + JPEG-WS Live) ·
 > topology **≥ 4.9.95** · inspect **≥ 4.9.93**
 > API: `https://asteria.run` · HMAC `asteria-chp-v1`
 

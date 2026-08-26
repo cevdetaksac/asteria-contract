@@ -1,9 +1,10 @@
 # Client / agent checklist
 
-> Contract **≥ 1.4.77**. Windows agent this file. Do **not** add new SoT here —
+> Contract **≥ 1.4.78**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.110** RD JPEG-WS primary + honest capture · **≥ 4.9.109** dual-channel Attacks ·
+> Pin: **≥ 4.9.111** RD websocket-primary Start · **≥ 4.9.110** JPEG-WS / lock probe ·
+> **≥ 4.9.109** dual-channel Attacks ·
 > **≥ 4.9.108** RDP NLA vs NETWORK:445 ·
 > **≥ 4.9.107** RD post-logon follow + capture_diag ·
 > topology **≥ 4.9.95** · intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
@@ -12,9 +13,10 @@
 > **Frozen Welcome after password without Default follow is not acceptance.**
 > **Version string alone is not acceptance — console lab required.**
 >
-> **2026-08-26:** agent **4.9.110** ships JPEG-WS primary video + lock probe honesty;
-> **4.9.109** dual-channel Attacks; **4.9.107** FOLLOW unlock + `t:capture_diag`.
-> **Open ticks = console lab only** (Derin-Web / Ninety-Web Run A–F on **≥4.9.110**).
+> **2026-08-26:** agent **≥4.9.111** ships websocket-primary Start (SMOOTH-8);
+> **4.9.110** JPEG-WS primary + lock probe; **4.9.109** dual-channel Attacks;
+> **4.9.107** FOLLOW unlock + `t:capture_diag`.
+> **Open ticks = console lab only** (Derin-Web / Ninety-Web Run A–F on **≥4.9.111**).
 > Do **not** `[x]` PIX/TOPO/FOLLOW from unit alone.
 
 **Read first:** [`README.md`](./README.md) · RD SoT: [`remote-desktop.md`](./remote-desktop.md)  
