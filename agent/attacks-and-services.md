@@ -47,12 +47,12 @@ Alias’lar (aynı handler ailesi): `/api/honeypot-attack`, legacy `/attacks/` (
 
 | Kanal | Ne zaman | Dashboard |
 |-------|----------|-----------|
-| **Bait honeypot** | Tuzak listen `started` + protokol credential | `service` porttan (RDP/SSH/…); tuzaklar **stopped** iken RDP/SSH bait satırı **beklenmez** |
-| **EventLog real-port** | Security `4625` / TS / MSSQL fail + `protection.block_rules` | Sınıflandırma: [`features/threat-engine.md`](../features/threat-engine.md) — NLA → **RDP:3389**, SMB → **NETWORK:445** |
+| **Bait honeypot** | Tuzak listen `started` + protokol credential | `source=honeypot`; tuzaklar **stopped** iken bait satırı **beklenmez** |
+| **Real-port auth** | EventLog / OpenSSH / MySQL errlog + `block_rules` — **honeypot on/off irrelevant** | `source=eventlog`; RDP relocate → **gerçek** listen port |
 
-Operatör notu: **`NETWORK` = EventLog ağ oturumu (LogonType 3, SMB/null)** — bait tuzak durumu ayrı. “Hepsi NETWORK” yanılsaması çoğunlukla RDP NLA’nın yanlış etiketi + bait’lerin kapalı olmasından.
+Operatör: bait 3389 + gerçek RDP 43389 aynı anda vurulursa **iki satır** — sızıntı görünür. `NETWORK` = SMB/null LogonType 3; bait durumu ayrı.
 
-**Cloud:** `normalize_service` client string’ini olduğu gibi yazar; **RDP↔NETWORK remap client SoT**.
+**Cloud:** `normalize_service` client string as-is; RDP↔NETWORK remap **client SoT**.
 
 ---
 

@@ -1,10 +1,10 @@
 # Client / agent checklist
 
-> Contract **≥ 1.4.75**. Windows agent this file. Do **not** add new SoT here —
+> Contract **≥ 1.4.76**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.108** for Attack **RDP NLA vs NETWORK:445** · **≥ 4.9.107** for RD
-> **post-logon follow + capture_diag + PIX/DXGI** ·
+> Pin: **≥ 4.9.109** dual-channel real+bait Attacks · **≥ 4.9.108** RDP NLA vs NETWORK:445 ·
+> **≥ 4.9.107** RD post-logon follow + capture_diag ·
 > topology **≥ 4.9.95** · intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
 > **4.9.94 follow-skip is not acceptance.**
 > **4.9.99–4.9.103 Derin-Web `gdi+black` / `persistent-user-helper` is not acceptance.**
@@ -79,11 +79,14 @@ Logged-on unlocked Default Connect (Run C):
 
 SoT: [`threat-engine.md`](./threat-engine.md) · [`../agent/attacks-and-services.md`](../agent/attacks-and-services.md)
 
-- [ ] **C-ATK-1** NLA RDP fail → `/api/attack` **`RDP` / `3389` / `<failed_logon>`** (not `NETWORK` / `0`)
+- [ ] **C-ATK-1** NLA RDP fail → `/api/attack` **`RDP` / real port / `<failed_logon>`** (not `NETWORK` / `0`)
 - [ ] **C-ATK-2** SMB/NtLmSsp type-3 → **`NETWORK` / `445`**
 - [ ] **C-ATK-3** EventLog enrich: `logon_type`, `auth_package`, `logon_process`, status/substatus, workstation, `source=eventlog`
-- [ ] **C-ATK-4** Bait credential separate (`source=honeypot`); tunnels stopped → no bait RDP/SSH rows expected
+- [ ] **C-ATK-4** Bait credential separate (`source=honeypot`); tunnels stopped → no bait rows; **real** fails still report
 - [ ] **C-ATK-5** Anonymous / empty Network fails do not flood Attacks
+- [ ] **C-ATK-6** OpenSSH Failed/Invalid → **SSH** with honeypot stopped
+- [ ] **C-ATK-7** MySQL Access denied (error log) → **MYSQL** with honeypot stopped
+- [ ] **C-ATK-9** IIS FTP W3C status 530 → **FTP** with honeypot stopped
 
 ---
 

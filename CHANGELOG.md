@@ -1,5 +1,18 @@
 # Changelog — asteria-contract
 
+## 1.4.76 — 2026-08-26
+
+### Dual-channel Attacks — real ports always + bait optional
+
+Operator ask: honeypot off must still report brute force on real RDP/SSH/MSSQL/MYSQL;
+honeypot on must report **both** bait and real (relocated) ports.
+
+| Piece | Detail |
+|-------|--------|
+| Client **≥ 4.9.109** | OpenSSH Operational + MySQL `*.err` + IIS FTP W3C 530; relocate-aware listen ports |
+| SoT | [`features/threat-engine.md`](features/threat-engine.md) dual-channel table |
+| Cloud email digest | [`cloud/ATTACKS_NOTIFY_DUAL_CHANNEL.md`](cloud/ATTACKS_NOTIFY_DUAL_CHANNEL.md) |
+
 ## 1.4.75 — 2026-08-25
 
 ### Attack service classification — RDP NLA vs NETWORK flood
