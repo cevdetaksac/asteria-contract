@@ -1,6 +1,6 @@
 # Remote Desktop — single contract
 
-> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.77** · Agent floor
+> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.78** · Agent floor
 > **≥ 4.9.95** named topology · **≥ 4.9.100** physical-console **pixels**
 > · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.111**
 > (websocket-primary Start + JPEG never suppressed for ICE; prior **≥4.9.110**
