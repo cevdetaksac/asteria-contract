@@ -14,9 +14,9 @@ Services: pywin32 SCM; protected services refuse stop.
 | ID | Cloud |
 |----|--------|
 | **C-USER-1** | `list_local_users` always `include_disabled: true` |
-| **C-USER-2** | Active + Disabled rows together (filter optional) |
+| **C-USER-2** | Enabled + Disabled rows together (filter optional). Wire `status` = SAM `enabled`/`disabled` (agent ≥4.9.114) — not WTS `Active`. Live session only via `has_session` + `session_id` + `session_status` ∈ Active/Connected. |
 | **C-USER-3** | Enable / Disable toggle (`enable_account` / `disable_account`) |
 | **C-USER-4** | After mutate, refresh inventory |
 | **C-USER-5** | Cache keeps `enabled:false` rows |
 | **C-USER-6** | Confirm before disable/enable; `PROTECTED_ACCOUNT` is a visible error |
-| **C-USER-7** | Active / disabled counts in the header |
+| **C-USER-7** | Enabled / disabled counts in the header (`counts.enabled`; `counts.active` = legacy alias) |

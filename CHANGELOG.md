@@ -1,5 +1,14 @@
 # Changelog — asteria-contract
 
+## 1.4.81 — 2026-08-27
+
+### Remote Desktop — LogonUI chrome + sessions honesty
+
+| Piece | Detail |
+|-------|--------|
+| Client **≥ 4.9.114** | Winlogon attach + PrintWindow/HWND before GDI; hwnd+flat hard fail; helper `desktop_attached`; SAM `status=enabled`≠WTS Active |
+| SoT | [`features/remote-desktop.md`](features/remote-desktop.md) C-RD-PIX / FOLLOW · [`features/server-management.md`](features/server-management.md) |
+
 ## 1.4.80 — 2026-08-27
 
 ### Remote Desktop — persistent agent WS + JPEG-primary honesty

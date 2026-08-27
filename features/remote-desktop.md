@@ -1,9 +1,9 @@
 # Remote Desktop — single contract
 
-> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.80** · Agent floor
+> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.81** · Agent floor
 > **≥ 4.9.95** named topology · **≥ 4.9.100** physical-console **pixels**
-> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.113**
-> (persistent agent WS + JPEG-primary honesty; prior **≥4.9.112** capture_diag).
+> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.114**
+> (LogonUI PrintWindow chrome + attach honesty; prior **≥4.9.113** persistent WS).
 > **4.9.99–4.9.109** Derin-Web `persistent-user-helper` + `gdi+black` / `dxgi:pending`
 > labs are **not** acceptance. Frozen Welcome after password without Default follow is
 > **not** acceptance (FOLLOW-4). Older IDs still apply; they live **in this file**.
@@ -193,9 +193,9 @@ is not acceptance.
 
 | ID | Rule |
 |----|------|
-| **C-RD-PIX-1** | A frame is **healthy** only if it is not a black/flat fill. Tests (any one sufficient, all preferred): `black_frame=false`; `frame_variance` above lab floor; `bright_ratio` shows chrome; `logonui_hwnd_count` ≥ 1 on lock/logon; DXGI of a real Default wallpaper/shell after logon. JPEG size **alone is not** health. |
-| **C-RD-PIX-2** | `desktop=Winlogon` (or `capture_method` containing `winlogon` / `gdi`) **MUST** show LogonUI/SAS/credential chrome within **3s** of `capturing`. Else: `black_frame:true`, `phase=degraded` or `failed`, `error=winlogon_capture_black` (or `SESSION0_HELPER_SPAWN_FAILED` if jpeg≈0B). **Never** `streaming:true` + Live. |
-| **C-RD-PIX-3** | **Empty host + TOPO-1:** use the **interactive-session helper** (`CreateProcessAsUser` + `lpDesktop=winsta0\Winlogon`) that C-RD-S0 already requires on path B. Do **not** BitBlt the service desktop. Do **not** stop at `persistent-user-helper` GDI black. 4.9.94 “follow-skip” that skips helper **and** yields black = **not acceptance**. |
+| **C-RD-PIX-1** | A frame is **healthy** only if it is not a black/flat fill. Tests (any one sufficient, all preferred): `black_frame=false`; `frame_variance` above lab floor; `bright_ratio` shows chrome; `logonui_hwnd_count` ≥ 1 on lock/logon; DXGI of a real Default wallpaper/shell after logon. JPEG size **alone is not** health. Agent **≥4.9.114**: on Winlogon prefer PrintWindow / HWND BitBlt over desktop BitBlt; require `desktop_attached` (helper-mirrored OK). |
+| **C-RD-PIX-2** | `desktop=Winlogon` (or `capture_method` containing `winlogon` / `gdi`) **MUST** show LogonUI/SAS/credential chrome within **3s** of `capturing`. Else: `black_frame:true` / `flat_frame:true`, `phase=degraded` or `failed`, `error=winlogon_capture_black` / `winlogon_capture_flat` (or `SESSION0_HELPER_SPAWN_FAILED` if jpeg≈0B). **Never** `success:true` + `frames_sent:0` as Live. `gdi+flat` with LogonUI hwnd ≥1 = FAIL (not soft-degraded). |
+| **C-RD-PIX-3** | **Empty host + TOPO-1:** use the **interactive-session helper** (`CreateProcessAsUser` + `lpDesktop=winsta0\Winlogon` + winlogon token) that C-RD-S0 already requires on path B. Do **not** BitBlt the service desktop. Do **not** stop at `persistent-user-helper` GDI black. 4.9.94 “follow-skip” that skips helper **and** yields black = **not acceptance**. |
 | **C-RD-PIX-4** | **Logged-on console + TOPO-1:** DXGI/NVENC `WinSta0\Default` only. Spawning Winlogon helper while Default is interactive = FAIL (same as 4.9.93 `SESSION0_HELPER_SPAWN_FAILED` story). |
 | **C-RD-PIX-5** | `t:meta.capture_method` MUST be an honest tag, e.g. `dxgi+nvenc`, `persistent-winlogon-helper:raw`, `gdi+black`. `gdi+black` is **never** a success method. |
 | **C-RD-PIX-6** | Do **not** offer WebRTC as healthy (`connection_state=connected` / suppress JPEG) until **one** healthy frame (PIX-1) on this `stream_id`. Black + `nvenc` / ICE “connected” = FAIL (P0-ICE). JPEG-WS of chrome is acceptable while ICE runs. |

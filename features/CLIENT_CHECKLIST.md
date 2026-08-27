@@ -1,9 +1,9 @@
 # Client / agent checklist
 
-> Contract **≥ 1.4.80**. Windows agent this file. Do **not** add new SoT here —
+> Contract **≥ 1.4.81**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.113** persistent agent WS · **≥ 4.9.112** capture_diag · **≥ 4.9.111** websocket-primary ·
+> Pin: **≥ 4.9.114** LogonUI chrome / attach · **≥ 4.9.113** persistent agent WS · **≥ 4.9.112** capture_diag · **≥ 4.9.111** websocket-primary ·
 > **≥ 4.9.110** JPEG-WS / lock probe ·
 > **≥ 4.9.109** dual-channel Attacks ·
 > **≥ 4.9.108** RDP NLA vs NETWORK:445 ·
