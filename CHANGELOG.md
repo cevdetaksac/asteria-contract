@@ -1,5 +1,14 @@
 # Changelog — asteria-contract
 
+## 1.4.80 — 2026-08-27
+
+### Remote Desktop — persistent agent WS + JPEG-primary honesty
+
+| Piece | Detail |
+|-------|--------|
+| Client **≥ 4.9.113** | Keep `/ws/remote/agent` up (`websocket:true`); flat≠Live; peer fail must not kill JPEG; align `jpeg_fallback_active` with websocket-primary |
+| SoT | [`features/remote-desktop.md`](features/remote-desktop.md) C-RD-SMOOTH-9 |
+
 ## 1.4.79 — 2026-08-27
 
 ### Remote Desktop — rich capture_diag faults (C-RD-DIAG-5)
