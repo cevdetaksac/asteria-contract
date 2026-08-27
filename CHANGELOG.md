@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.82 — 2026-08-27
+
+### Remote Desktop — fail dumps + password→Default
+
+| Piece | Detail |
+|-------|--------|
+| Client **≥ 4.9.115** | Local `rd_capture_diag` dumps; password prepare→`topology=session`; SID+user unknown-lock→Default; flat settle |
+| Cloud | After `remote_session_prepare` success: Start with returned `session_id` + `username` + `topology=session` (never omit-SID follow). Surface `local_dump_path` / `recovery_steps` from `capture_diag`. |
+| SoT | [`features/remote-desktop.md`](features/remote-desktop.md) |
+
 ## 1.4.81 — 2026-08-27
 
 ### Remote Desktop — LogonUI chrome + sessions honesty
