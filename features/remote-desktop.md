@@ -194,11 +194,32 @@ is not acceptance.
 
 | ID | Rule |
 |----|------|
-| **C-RD-PIX-1** | A frame is **healthy** only if it is not a black/flat fill. Tests (any one sufficient, all preferred): `black_frame=false`; `frame_variance` above lab floor; `bright_ratio` shows chrome; `logonui_hwnd_count` ≥ 1 on lock/logon; DXGI of a real Default wallpaper/shell after logon. JPEG size **alone is not** health. Agent **≥4.9.114**: on Winlogon prefer PrintWindow / HWND BitBlt over desktop BitBlt; require `desktop_attached` (helper-mirrored OK). |
-| **C-RD-PIX-2** | `desktop=Winlogon` (or `capture_method` containing `winlogon` / `gdi`) **MUST** show LogonUI/SAS/credential chrome within **3s** of `capturing`. Else: `black_frame:true` / `flat_frame:true`, `phase=degraded` or `failed`, `error=winlogon_capture_black` / `winlogon_capture_flat` (or `SESSION0_HELPER_SPAWN_FAILED` if jpeg≈0B). **Never** `success:true` + `frames_sent:0` as Live. `gdi+flat` with LogonUI hwnd ≥1 = FAIL (not soft-degraded). |
+| **C-RD-PIX-1** | A frame is **healthy** only if it is not a black/flat fill. Tests (any one sufficient, all preferred): `black_frame=false`; `frame_variance` above lab floor; `bright_ratio` shows chrome; `logonui_hwnd_count` ≥ 1 on lock/logon; DXGI of a real Default wallpaper/shell after logon. JPEG size **alone is not** health. Agent **≥4.9.114**: on Winlogon prefer PrintWindow / HWND BitBlt over desktop BitBlt; require `desktop_attached` (helper-mirrored OK). Agent **≥4.9.116**: PrintWindow uses RedrawWindow + child HWND enum + retry; may try DXGI on Winlogon when GDI is flat. |
+| **C-RD-PIX-2** | `desktop=Winlogon` (or `capture_method` containing `winlogon` / `gdi`) **MUST** show LogonUI/SAS/credential chrome within **3s** of `capturing`. Else: `black_frame:true` / `flat_frame:true`, `phase=degraded` or `failed`, `error=winlogon_capture_black` / `winlogon_capture_flat` (or `SESSION0_HELPER_SPAWN_FAILED` if jpeg≈0B). **Never** `success:true` + `frames_sent:0` as Live. `gdi+flat` with LogonUI hwnd ≥1 = FAIL (not soft-degraded). Agent **≥4.9.116**: before terminal FAIL, attempt **C-RD-HOST-2** Active RDP Default fallback when an Active user session exists. |
 | **C-RD-PIX-3** | **Empty host + TOPO-1:** use the **interactive-session helper** (`CreateProcessAsUser` + `lpDesktop=winsta0\Winlogon` + winlogon token) that C-RD-S0 already requires on path B. Do **not** BitBlt the service desktop. Do **not** stop at `persistent-user-helper` GDI black. 4.9.94 “follow-skip” that skips helper **and** yields black = **not acceptance**. |
 | **C-RD-PIX-4** | **Logged-on console + TOPO-1:** DXGI/NVENC `WinSta0\Default` only. Spawning Winlogon helper while Default is interactive = FAIL (same as 4.9.93 `SESSION0_HELPER_SPAWN_FAILED` story). |
-| **C-RD-PIX-5** | `t:meta.capture_method` MUST be an honest tag, e.g. `dxgi+nvenc`, `persistent-winlogon-helper:raw`, `gdi+black`. `gdi+black` is **never** a success method. |
+| **C-RD-PIX-5** | `t:meta.capture_method` MUST be an honest tag, e.g. `dxgi+nvenc`, `persistent-winlogon-helper:raw`, `gdi+black`, `active-rdp-fallback:rdp`, `dxgi-winlogon`. `gdi+black` is **never** a success method. |
+
+---
+
+## Host prep / Server SKU (C-RD-HOST) — ≥4.9.116
+
+Host A (Billur / `WIN-6E5…`) may PrintWindow LogonUI while Derin-Web /
+Ninety-Web (Windows Server VMs) stay `gdi+flat` even with hwnd≥1. Classic RDP
+still works because it owns TermService pixels — Asteria must mirror console
+composition **or** fall back to an Active RDP session.
+
+| ID | Rule |
+|----|------|
+| **C-RD-HOST-1** | Installer + daemon apply idempotent host prep: Themes/DWM/TermService start, `fDenyTSConnections=0`, clear `DisallowComposition`, DWM `ForceEffectMode`, monitor power timeout 0, `%ProgramData%\Asteria\rd_capture_diag\`, Server `AutoRestartShell=1`. |
+| **C-RD-HOST-2** | When console Winlogon start is flat/black after PrintWindow settle **and** an **Active** user session exists (prefer RDP), switch helper to that session’s `Default` and stamp `capture_method` with `active-rdp-fallback:*`. Do not claim Winlogon chrome for that path. |
+
+---
+
+## Pixels / chrome (C-RD-PIX) — continued
+
+| ID | Rule |
+|----|------|
 | **C-RD-PIX-6** | Do **not** offer WebRTC as healthy (`connection_state=connected` / suppress JPEG) until **one** healthy frame (PIX-1) on this `stream_id`. Black + `nvenc` / ICE “connected” = FAIL (P0-ICE). JPEG-WS of chrome is acceptable while ICE runs. |
 | **C-RD-PIX-7** | Live `t:meta` every ≤5 frames: `desktop`, `capture_method`, `black_frame`, `frame_variance`, `bright_ratio`, `logonui_hwnd_count`, `session_id`, `username`. Start-command snapshot is not enough. |
 

@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.83 — 2026-08-27
+
+### Remote Desktop — Server host prep + Active RDP fallback
+
+| Piece | Detail |
+|-------|--------|
+| Client **≥ 4.9.116** | Hardened PrintWindow (RedrawWindow/children/retry) + DXGI-on-Winlogon try; console flat → Active RDP Default fallback (`active-rdp-fallback:*`); installer + daemon `prepare-rd-host` (Themes/DWM/RDP/powercfg) |
+| Cloud | Surface `capture_method` containing `active-rdp-fallback` / `printwindow-logonui` / `dxgi-winlogon` honestly; do not treat fallback as Live Winlogon chrome |
+| SoT | [`features/remote-desktop.md`](features/remote-desktop.md) C-RD-HOST-1/2 · C-RD-PIX |
+
 ## 1.4.82 — 2026-08-27
 
 ### Remote Desktop — fail dumps + password→Default
