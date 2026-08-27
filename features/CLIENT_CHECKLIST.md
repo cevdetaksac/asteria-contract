@@ -1,9 +1,9 @@
 # Client / agent checklist
 
-> Contract **≥ 1.4.83**. Windows agent this file. Do **not** add new SoT here —
+> Contract **≥ 1.4.85**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.116** Server PrintWindow / Active RDP fallback / host prep · **≥ 4.9.115** fail dumps / password→Default · **≥ 4.9.114** LogonUI chrome · **≥ 4.9.113** persistent agent WS ·
+> Pin: **≥ 4.9.118** Default post-logon black recovery · **≥ 4.9.117** Welcome follow · **≥ 4.9.116** Server PrintWindow / Active RDP fallback / host prep · **≥ 4.9.115** fail dumps / password→Default · **≥ 4.9.114** LogonUI chrome · **≥ 4.9.113** persistent agent WS ·
 > **≥ 4.9.110** JPEG-WS / lock probe ·
 > **≥ 4.9.109** dual-channel Attacks ·
 > **≥ 4.9.108** RDP NLA vs NETWORK:445 ·
@@ -11,13 +11,12 @@
 > topology **≥ 4.9.95** · intel+installer **≥ 4.9.96** · inspect **≥ 4.9.93**.
 > **4.9.94 follow-skip is not acceptance.**
 > **4.9.99–4.9.109 Derin-Web `gdi+black` / `persistent-user-helper` / `dxgi:pending` is not acceptance.**
-> **Frozen Welcome after password without Default follow is not acceptance.**
+> **Frozen Welcome after password without Default pixels is not acceptance.**
 > **Version string alone is not acceptance — console lab required.**
 >
-> **2026-08-26:** agent **≥4.9.111** ships websocket-primary Start (SMOOTH-8);
-> **4.9.110** JPEG-WS primary + lock probe; **4.9.109** dual-channel Attacks;
-> **4.9.107** FOLLOW unlock + `t:capture_diag`.
-> **Open ticks = console lab only** (Derin-Web / Ninety-Web Run A–F on **≥4.9.111**).
+> **2026-08-27:** agent **≥4.9.118** Default black recovery after follow;
+> **≥4.9.117** Welcome leave-Winlogon; **≥4.9.116** PrintWindow / HOST-2.
+> **Open ticks = console lab only** (Derin-Web / Ninety-Web Run A–F on **≥4.9.118**).
 > Do **not** `[x]` PIX/TOPO/FOLLOW from unit alone.
 
 **Read first:** [`README.md`](./README.md) · RD SoT: [`remote-desktop.md`](./remote-desktop.md)  

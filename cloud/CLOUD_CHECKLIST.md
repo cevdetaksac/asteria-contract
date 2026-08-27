@@ -1,9 +1,9 @@
 # Cloud / dashboard checklist
 
-> Contract **≥ 1.4.77**. Cloud this file, tick `[x]`, PR note with commit/date.
+> Contract **≥ 1.4.85**. Cloud this file, tick `[x]`, PR note with commit/date.
 > Do **not** add new SoT markdown here — implement against `features/*`.
 >
-> Pin: client **≥ 4.9.111** recommended (websocket-primary Start + JPEG-WS Live) ·
+> Pin: client **≥ 4.9.118** recommended (Default post-logon black recovery + Welcome follow) ·
 > topology **≥ 4.9.95** · inspect **≥ 4.9.93**
 > API: `https://asteria.run` · HMAC `asteria-chp-v1`
 
@@ -23,7 +23,10 @@ SoT: [`../features/remote-desktop.md`](../features/remote-desktop.md)
 - [x] **C-RD-TOPO-3** User shortcut: `session_id` + `username`. Never auto-pick first Active SID.
 - [x] **C-RD-TOPO-4** After Enter: **same `stream_id`**, no second Start, no “pick administrator”.
 - [x] **C-RD-TOPO-5** Warn agent &lt;4.9.26; 4.9.94 follow-skip is not acceptance.
-- [x] **C-RD-TOPO-5 / VIEW-9 (1.4.70/71)** Recommend **≥4.9.107** historically; **bump copy to ≥4.9.110** (JPEG-WS primary). Banner must not say “≥4.9.45 P0” as the current floor. *(prod 2026-08-25 had ≥4.9.107 — open: refresh pin to 4.9.110)*
+- [x] **C-RD-TOPO-5 / VIEW-9 (1.4.70/71)** Recommend **≥4.9.107** historically; **bump copy to ≥4.9.118** (Default post-logon recovery). Banner must not say “≥4.9.45 P0” as the current floor. *(prod 2026-08-25 had ≥4.9.107 — open: refresh pin to 4.9.118)*
+- [ ] **C-RD-FOLLOW-4 / HOST-2 (1.4.85)** After password: if meta shows `desktop=Default` + `gdi+black` / `FOLLOW_NO_DEFAULT_FRAME` / frozen Welcome JPEG with growing `age_sec` → **not Live**; show Capture health + pin **≥4.9.118**. Honor `active-rdp-fallback:*` as Default path (not Winlogon chrome).
+- [ ] **C-RD-VIEW-9 (1.4.85)** Banner / pin text: recommend **≥4.9.118** (replace lingering 4.9.110 / 4.9.107 copy).
+- [ ] **Lab acceptance (open)** Derin-Web / Ninety-Web: password → ≤2s Default shell pixels — tick only after agent **≥4.9.118** console PASS.
 - [x] **C-RD-SMOOTH-1 (1.4.71)** Every `remote_stream_start` uses `fps≥30`, `quality≥72`, `max_width:1920`. Remove `fps:12` / `quality:40` / `max_width:1280` from dashboard defaults and samples. *(prod 2026-08-17 — Start `{fps:30,quality:72,max_width:1920}`; FPS select 30/45/60 only; API clamp)*
 - [x] **C-RD-SMOOTH-2 (1.4.71)** WebRTC offer includes `ice_servers` with **TURNS on 443** (and STUN). Host UDP through Cloudflare is often dead; TCP 443 alone is not WebRTC media. *(prod 2026-08-17 — `build_ice_servers` + `.env` REMOTE_TURN_URLS includes `turns:…:443?transport=tcp` + STUN)*
 - [x] **C-RD-SMOOTH-5 (1.4.71)** Viewer paints JPEG-WS as video (≥24 fps), not a 12 Hz image. ICE fail keeps the same surface at video rate. *(prod 2026-08-17 — `queueJpegFrame` + `requestAnimationFrame` latest-frame path in dashboard_remote.html)*
@@ -42,13 +45,13 @@ SoT: [`../features/remote-desktop.md`](../features/remote-desktop.md)
 - [x] **C-RD-FOLLOW-9/10 (1.4.70)** Same `stream_id` on **lock/logoff** as on unlock. Do **not** send a second Start or auto-pick the user. Do **not** treat `list_sessions` username as “Default is live”. *(prod 2026-08-17 — armed follow keeps `console`/`wl`; second Start blocked while `currentStreamId` set; Bağlan→Durdur single start)*
 - [x] **C-RD-VIEW-11 (1.4.70)** Default Connect must **not** auto-open “Kullanıcıya bağlan” / password modal over the player. Operator types on the remote surface. *(prod 2026-08-17 — follow/winlogon `selectedNeedsPrepare=false`; modal not shown on Default Connect)*
 
-### Capture health / post-logon UX (1.4.74 · agent ≥4.9.107 · pin ≥4.9.110)
+### Capture health / post-logon UX (1.4.85 · agent ≥4.9.118 · pin ≥4.9.118)
 
 - [x] **C-RD-DIAG-3** Capture health panel: consume `t:capture_diag` + `meta.capture_diag`; green/red rows; copy JSON; host compare. *(prod 2026-08-25 — `remote_hub` + `dashboard_remote.html` `#rdHealthPanel`)*
-- [x] **C-RD-DIAG-4 / FOLLOW-4** Frozen Welcome / “Yayın durdu / konsol takibi”: if agent &lt;4.9.110 show pin upgrade; if ≥4.9.110 show `helper_fail_*` from diag (do not blame operator for Durdur/Bağlan as the only fix). *(prod 2026-08-25 — freeze watch + honesty; open: refresh pin string to 4.9.110)*
-- [ ] **C-RD-VIEW-9 (1.4.77)** Banner / pin text: recommend **≥4.9.110** (replace lingering 4.9.107 / 4.9.105 copy).
-- [x] **C-RD-FOLLOW-11** Lock-row Start keeps same `stream_id` through password→Default without a second Start while viewer armed. *(prod 2026-08-25 — code path verified; console lab retest on agent ≥4.9.110 still required for Derin/Ninety Run A)*
-- [ ] **Lab acceptance (open)** Derin-Web / Ninety-Web Run A → password → ≤2s Default shell — tick only after agent **≥4.9.110** console PASS.
+- [x] **C-RD-DIAG-4 / FOLLOW-4** Frozen Welcome / “Yayın durdu / konsol takibi”: if agent &lt;4.9.118 show pin upgrade; if ≥4.9.118 show `helper_fail_*` / `FOLLOW_NO_DEFAULT_FRAME` from diag (do not blame operator for Durdur/Bağlan as the only fix). *(prod 2026-08-25 — freeze watch + honesty; open: refresh pin string to 4.9.118)*
+- [ ] **C-RD-VIEW-9 (1.4.85)** Banner / pin text: recommend **≥4.9.118** (replace lingering 4.9.110 / 4.9.107 copy). See also TOPO-5 / FOLLOW-4 above.
+- [x] **C-RD-FOLLOW-11** Lock-row Start keeps same `stream_id` through password→Default without a second Start while viewer armed. *(prod 2026-08-25 — code path verified; console lab retest on agent ≥4.9.118 still required for Derin/Ninety Run A)*
+- [ ] **Lab acceptance (open)** Derin-Web / Ninety-Web Run A → password → ≤2s Default shell — tick only after agent **≥4.9.118** console PASS.
 
 ---
 

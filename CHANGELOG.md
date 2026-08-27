@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.85 — 2026-08-27
+
+### Remote Desktop — Default post-logon black recovery
+
+| Piece | Detail |
+|-------|--------|
+| Client **≥ 4.9.118** | After password→Default: DXGI retry without requiring explorer; Active Console/RDP helper respawn on `gdi+black` / `no_frame` (`active-rdp-fallback:*`); keep stream degraded until healthy pixels |
+| Cloud | Frozen Welcome JPEG + `desktop=Default` + `gdi+black` / `FOLLOW_NO_DEFAULT_FRAME` = **not Live**; pin recommend **≥4.9.118**; surface `active-rdp-fallback:*` honestly |
+| SoT | [`features/remote-desktop.md`](features/remote-desktop.md) C-RD-FOLLOW-4 · C-RD-HOST-2 · C-RD-PIX-4 |
+
 ## 1.4.84 — 2026-08-27
 
 ### Remote Desktop — post-logon Welcome follow
