@@ -1,10 +1,9 @@
 # Remote Desktop — single contract
 
-> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.78** · Agent floor
+> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.79** · Agent floor
 > **≥ 4.9.95** named topology · **≥ 4.9.100** physical-console **pixels**
-> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.111**
-> (websocket-primary Start + JPEG never suppressed for ICE; prior **≥4.9.110**
-> lock probe / no `dxgi:pending`).
+> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.112**
+> (rich `capture_diag` faults/blame; prior **≥4.9.111** websocket-primary).
 > **4.9.99–4.9.109** Derin-Web `persistent-user-helper` + `gdi+black` / `dxgi:pending`
 > labs are **not** acceptance. Frozen Welcome after password without Default follow is
 > **not** acceptance (FOLLOW-4). Older IDs still apply; they live **in this file**.
@@ -106,6 +105,7 @@ only a red banner.
 | **C-RD-DIAG-2** | Fields (min): `desktop`, `capture_method`, `winlogon_mode`, `helper_token`, `helper_fail_phase`, `session_id`, `username`, `black_frame`, `frame_variance`, `bright_ratio`, `logonui_hwnd_count`, `chrome_detected`, `follow_console`, `force_secure`, `frames_sent`. |
 | **C-RD-DIAG-3** | Dashboard **Capture health** panel: green/red per field; copy JSON; compare last connect across hosts. Do **not** only show “görüntü siyah”. |
 | **C-RD-DIAG-4** | Viewer “konsol takibi client'ta” / frozen Welcome: if `capture_diag.phase` never reaches Default/`live`, treat as client FOLLOW FAIL (pin ≥4.9.107); if agent ≥4.9.107 and still stuck, surface `helper_fail_*` in the panel. |
+| **C-RD-DIAG-5** | Agent **≥4.9.112**: when pixels are unhealthy, emit rich `capture_diag` (≥ every 2s + on probe/fail) with `healthy`, `layer`, `faults[]`, `root_cause`, `advice`, `blame` (`client` / `network_or_cloud` / `webrtc_optional`). Derin `LOGONUI_PRESENT_BUT_FLAT` must set `blame=client` + `layer=client_capture`. Also include the same object on `remote_stream_start` result `data.capture_diag` and `t:meta.capture_diag`. |
 
 ---
 

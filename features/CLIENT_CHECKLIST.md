@@ -1,9 +1,10 @@
 # Client / agent checklist
 
-> Contract **≥ 1.4.78**. Windows agent this file. Do **not** add new SoT here —
+> Contract **≥ 1.4.79**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.111** RD websocket-primary Start · **≥ 4.9.110** JPEG-WS / lock probe ·
+> Pin: **≥ 4.9.112** rich capture_diag faults · **≥ 4.9.111** websocket-primary ·
+> **≥ 4.9.110** JPEG-WS / lock probe ·
 > **≥ 4.9.109** dual-channel Attacks ·
 > **≥ 4.9.108** RDP NLA vs NETWORK:445 ·
 > **≥ 4.9.107** RD post-logon follow + capture_diag ·
@@ -41,7 +42,7 @@ Do **Run A and Run C separately** (empty/lock vs logged-on unlocked). Mixing the
 - [ ] **C-RD-PIX-5** Honest `capture_method` (`dxgi+nvenc` / `persistent-winlogon-helper` / `gdi+black`). Never provisional `dxgi:pending`. `gdi+black` is never success.
 - [ ] **C-RD-PIX-6** WebRTC `connected` / JPEG-suppress only **after** one healthy frame. Black + `nvenc` = FAIL.
 - [ ] **C-RD-PIX-7** Live `t:meta` ≤5 frames: desktop, method, black_frame, variance, bright_ratio, logonui_hwnd_count, session_id, username.
-- [ ] **C-RD-DIAG-1/2** Emit `t:capture_diag` + `meta.capture_diag` on fail/switching/live (helper_token, fail_phase, variance, …).
+- [ ] **C-RD-DIAG-1/2/5** Emit `t:capture_diag` + `meta.capture_diag` on fail/switching/live with `faults`/`root_cause`/`blame` (≥4.9.112). Start result includes `data.capture_diag`.
 
 ### Topology / follow / S0 / CAD / smoothness
 

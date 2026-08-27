@@ -23,7 +23,7 @@ naming — do **not** show “fallback / degraded” copy when painting JPEG-WS.
 5. **Start knobs:** `fps≥30`, `quality≥72`, `max_width:1920`.
 6. **Input:** viewer → `wss://…/ws/remote/view` `t:input` immediately.
 7. **ICE URLs:** `stun/turn/turns` on `turn.asteria.run` (grey cloud / DNS only).
-8. **Capture health:** `dxgi:pending` / `persistent-user-helper` + black = FAIL.
+8. **Capture health:** show `root_cause`, `faults[]`, `blame` from `capture_diag` (agent ≥4.9.112). `dxgi:pending` / helper+black/flat = FAIL.
 
 ## One-liner
 

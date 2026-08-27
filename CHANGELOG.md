@@ -1,5 +1,19 @@
 # Changelog — asteria-contract
 
+## 1.4.79 — 2026-08-27
+
+### Remote Desktop — rich capture_diag faults (C-RD-DIAG-5)
+
+Unhealthy Live must return a full fault taxonomy so operators can separate
+**client capture** vs cloud/viewer. Derin `gdi+flat` with LogonUI present is
+`blame=client`.
+
+| Piece | Detail |
+|-------|--------|
+| Client **≥ 4.9.112** | `faults` / `root_cause` / `advice` / `blame` on diag + Start result |
+| SoT | [`features/remote-desktop.md`](features/remote-desktop.md) C-RD-DIAG-5 |
+| Cloud | Surface `root_cause` + `faults` in Capture health (not only method badge) |
+
 ## 1.4.78 — 2026-08-26
 
 ### Remote Desktop — websocket-primary Start (C-RD-SMOOTH-8)
