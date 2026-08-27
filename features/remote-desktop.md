@@ -88,7 +88,7 @@ Same `stream_id`. Dashboard must not ask the operator to pick the user again.
 | **C-RD-FOLLOW-7** | Input targets the **same** desktop as capture. Dual-write Winlogon+Default after logon is forbidden (4× keys). |
 | **C-RD-FOLLOW-8** | Live `t:meta` updates `desktop`, `session_id`, `username`, `capture_method` (not start snapshot). |
 | **C-RD-FOLLOW-9** | After **lock / logoff**: same `stream_id`, `phase=switching` then Winlogon helper (`CreateProcessAsUser` + `lpDesktop=winsta0\\Winlogon` + **winlogon.exe / LogonUI token**, not the logged-on user token). LogonUI chrome must return. |
-| **C-RD-FOLLOW-10** | Switch to Default when unlock is proven: LogonUI gone + WTS unlocked (explorer optional during “Windows is getting ready”), **or** live input desktop is Default. **FAIL** to treat `list_sessions` username / Active alone as unlock while LogonUI/lock is still live. Stale `desktop=Winlogon` / lock-row `force_secure` must **not** block post-password follow. |
+| **C-RD-FOLLOW-10** | Switch to Default when unlock is proven: LogonUI gone + WTS unlocked (explorer optional during “Windows is getting ready”), **or** live input desktop is Default, **or** (agent ≥4.9.117) WTS unlocked + username even while LogonUI.exe briefly lingers on Welcome (`post_logon_welcome`). **FAIL** to treat `list_sessions` username / Active alone as unlock while lock UI is still interactive (`session_locked` not False). Stale `desktop=Winlogon` / lock-row `force_secure` must **not** block post-password follow. |
 | **C-RD-FOLLOW-11** | Lock-row Start (`topology=winlogon` / `force_secure`) **must** still follow Default after credentials on the **same** `stream_id` (no Durdur/Bağlan). |
 
 ---

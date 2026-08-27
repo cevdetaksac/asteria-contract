@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.84 — 2026-08-27
+
+### Remote Desktop — post-logon Welcome follow
+
+| Piece | Detail |
+|-------|--------|
+| Client **≥ 4.9.117** | Leave Winlogon on WTS unlock even if LogonUI lingers; Default helper retries + DXGI bridge; keep stream on `follow_no_frame` |
+| Cloud | Treat `phase=switching`→`live`/`degraded` after password without requiring Durdur/Bağlan; do not freeze last Winlogon JPEG as Live |
+| SoT | [`features/remote-desktop.md`](features/remote-desktop.md) C-RD-FOLLOW-4/10 |
+
 ## 1.4.83 — 2026-08-27
 
 ### Remote Desktop — Server host prep + Active RDP fallback
