@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.87 — 2026-08-29
+
+### Remote Desktop — Capture health honesty (no Live flicker)
+
+| Piece | Detail |
+|-------|--------|
+| Client **≥ 4.9.120** | Clear stale `helper_fail=no_frame` when healthy PrintWindow/DXGI on wire; JPEG-WS primary + healthy pixels omit `WEBRTC_PEER_ERROR` from faults/root; emit `capture_diag phase=live` on recovery |
+| Cloud | If `healthy=true` / `phase=live` / `blame=none` / `black_frame=false` and JPEG-WS frames arrive → **keep Live**; do **not** drop Live for `blame=webrtc_optional` or stale `helper_fail_phase=no_frame` when `frame_variance` is healthy; do **not** show “persistent-helper + black — Capture FAIL” when `black_frame=false` and method is `printwindow-logonui` |
+| SoT | [`features/remote-desktop.md`](features/remote-desktop.md) C-RD-DIAG-5/7 · C-RD-VIEW-6/10 |
+
 ## 1.4.86 — 2026-08-29
 
 ### Remote Desktop — full local capture fail dumps

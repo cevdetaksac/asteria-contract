@@ -1,10 +1,10 @@
 # Remote Desktop — single contract
 
-> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.86** · Agent floor
+> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.87** · Agent floor
 > **≥ 4.9.95** named topology · **≥ 4.9.100** physical-console **pixels**
-> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.119**
-> (full `rd_capture_diag` dumps; prior **≥4.9.118** Default black recovery /
-> **≥4.9.117** Welcome follow / **≥4.9.116** PrintWindow + HOST-2).
+> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.120**
+> (Capture health honesty / no Live flicker; prior **≥4.9.119** dumps /
+> **≥4.9.118** Default black recovery).
 > **4.9.99–4.9.109** Derin-Web `persistent-user-helper` + `gdi+black` / `dxgi:pending`
 > labs are **not** acceptance. Frozen Welcome after password without Default **pixels**
 > is **not** acceptance (FOLLOW-4). Older IDs still apply; they live **in this file**.
@@ -106,8 +106,9 @@ only a red banner.
 | **C-RD-DIAG-2** | Fields (min): `desktop`, `capture_method`, `winlogon_mode`, `helper_token`, `helper_fail_phase`, `session_id`, `username`, `black_frame`, `frame_variance`, `bright_ratio`, `logonui_hwnd_count`, `chrome_detected`, `follow_console`, `force_secure`, `frames_sent`. |
 | **C-RD-DIAG-3** | Dashboard **Capture health** panel: green/red per field; copy JSON; compare last connect across hosts. Do **not** only show “görüntü siyah”. |
 | **C-RD-DIAG-4** | Viewer “konsol takibi client'ta” / frozen Welcome: if `capture_diag.phase` never reaches Default/`live`, treat as client FOLLOW FAIL (pin ≥4.9.107); if agent ≥4.9.107 and still stuck, surface `helper_fail_*` in the panel. |
-| **C-RD-DIAG-5** | Agent **≥4.9.112**: when pixels are unhealthy, emit rich `capture_diag` (≥ every 2s + on probe/fail) with `healthy`, `layer`, `faults[]`, `root_cause`, `advice`, `blame` (`client` / `network_or_cloud` / `webrtc_optional`). Derin `LOGONUI_PRESENT_BUT_FLAT` must set `blame=client` + `layer=client_capture`. Also include the same object on `remote_stream_start` result `data.capture_diag` and `t:meta.capture_diag`. |
+| **C-RD-DIAG-5** | Agent **≥4.9.112**: when pixels are unhealthy, emit rich `capture_diag` (≥ every 2s + on probe/fail) with `healthy`, `layer`, `faults[]`, `root_cause`, `advice`, `blame` (`client` / `network_or_cloud` / `webrtc_optional`). Derin `LOGONUI_PRESENT_BUT_FLAT` must set `blame=client` + `layer=client_capture`. Also include the same object on `remote_stream_start` result `data.capture_diag` and `t:meta.capture_diag`. Agent **≥4.9.120**: when pixels recover, clear stale `helper_fail_phase=no_frame` and emit `phase=live` so cloud replaces FAIL. |
 | **C-RD-DIAG-6** | Agent **≥4.9.119**: on Start terminal fail (`SESSION0_HELPER_NO_FRAME`, `CAPTURE_NO_DESKTOP`, winlogon flat/black), sustained Default/Winlogon empty frames (`default_no_frame*`), follow `FOLLOW_NO_DEFAULT_FRAME`, and Default black recover fail — write a local dump under `%ProgramData%\Asteria\rd_capture_diag\` (JSON + optional JPEG) and include `local_dump_path`, `recovery_steps[]`, `hwnd_classes[]` on `capture_diag`. Cloud should show `local_dump_path` in Capture health JSON. (Earlier ≥4.9.115 covered winlogon flat only.) |
+| **C-RD-DIAG-7** | Agent **≥4.9.120** + cloud: if `healthy=true` / `blame=none` / `black_frame=false` and JPEG-WS frames arrive with healthy `frame_variance`, Capture health is **PASS/OK** and Live stays on. Do **not** drop Live for `blame=webrtc_optional`, media WebRTC peer errors under websocket-primary, or stale `helper_fail_phase=no_frame` / `jpeg=0B` while chrome variance is healthy. Do **not** banner “persistent-helper + black — Capture FAIL” when `black_frame=false` and method contains `printwindow-logonui`. |
 
 ---
 
