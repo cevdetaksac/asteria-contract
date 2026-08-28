@@ -1,9 +1,9 @@
 # Cloud / dashboard checklist
 
-> Contract **≥ 1.4.85**. Cloud this file, tick `[x]`, PR note with commit/date.
+> Contract **≥ 1.4.86**. Cloud this file, tick `[x]`, PR note with commit/date.
 > Do **not** add new SoT markdown here — implement against `features/*`.
 >
-> Pin: client **≥ 4.9.118** recommended (Default post-logon black recovery + Welcome follow) ·
+> Pin: client **≥ 4.9.119** recommended (full `rd_capture_diag` + Default black recovery) ·
 > topology **≥ 4.9.95** · inspect **≥ 4.9.93**
 > API: `https://asteria.run` · HMAC `asteria-chp-v1`
 

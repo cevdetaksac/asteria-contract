@@ -1,9 +1,9 @@
 # Client / agent checklist
 
-> Contract **≥ 1.4.85**. Windows agent this file. Do **not** add new SoT here —
+> Contract **≥ 1.4.86**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.118** Default post-logon black recovery · **≥ 4.9.117** Welcome follow · **≥ 4.9.116** Server PrintWindow / Active RDP fallback / host prep · **≥ 4.9.115** fail dumps / password→Default · **≥ 4.9.114** LogonUI chrome · **≥ 4.9.113** persistent agent WS ·
+> Pin: **≥ 4.9.119** full `rd_capture_diag` dumps · **≥ 4.9.118** Default post-logon black recovery · **≥ 4.9.117** Welcome follow · **≥ 4.9.116** Server PrintWindow / Active RDP fallback / host prep · **≥ 4.9.115** fail dumps / password→Default · **≥ 4.9.114** LogonUI chrome · **≥ 4.9.113** persistent agent WS ·
 > **≥ 4.9.110** JPEG-WS / lock probe ·
 > **≥ 4.9.109** dual-channel Attacks ·
 > **≥ 4.9.108** RDP NLA vs NETWORK:445 ·

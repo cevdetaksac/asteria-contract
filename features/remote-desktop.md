@@ -1,10 +1,10 @@
 # Remote Desktop — single contract
 
-> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.85** · Agent floor
+> **SoT for client + cloud + dashboard.** Contract **≥ 1.4.86** · Agent floor
 > **≥ 4.9.95** named topology · **≥ 4.9.100** physical-console **pixels**
-> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.118**
-> (Default post-logon black recovery; prior **≥4.9.117** Welcome follow /
-> **≥4.9.116** PrintWindow + HOST-2).
+> · **≥ 4.9.101** video-rate stream (C-RD-SMOOTH) · recommend **≥ 4.9.119**
+> (full `rd_capture_diag` dumps; prior **≥4.9.118** Default black recovery /
+> **≥4.9.117** Welcome follow / **≥4.9.116** PrintWindow + HOST-2).
 > **4.9.99–4.9.109** Derin-Web `persistent-user-helper` + `gdi+black` / `dxgi:pending`
 > labs are **not** acceptance. Frozen Welcome after password without Default **pixels**
 > is **not** acceptance (FOLLOW-4). Older IDs still apply; they live **in this file**.
@@ -107,7 +107,7 @@ only a red banner.
 | **C-RD-DIAG-3** | Dashboard **Capture health** panel: green/red per field; copy JSON; compare last connect across hosts. Do **not** only show “görüntü siyah”. |
 | **C-RD-DIAG-4** | Viewer “konsol takibi client'ta” / frozen Welcome: if `capture_diag.phase` never reaches Default/`live`, treat as client FOLLOW FAIL (pin ≥4.9.107); if agent ≥4.9.107 and still stuck, surface `helper_fail_*` in the panel. |
 | **C-RD-DIAG-5** | Agent **≥4.9.112**: when pixels are unhealthy, emit rich `capture_diag` (≥ every 2s + on probe/fail) with `healthy`, `layer`, `faults[]`, `root_cause`, `advice`, `blame` (`client` / `network_or_cloud` / `webrtc_optional`). Derin `LOGONUI_PRESENT_BUT_FLAT` must set `blame=client` + `layer=client_capture`. Also include the same object on `remote_stream_start` result `data.capture_diag` and `t:meta.capture_diag`. |
-| **C-RD-DIAG-6** | Agent **≥4.9.115**: on `winlogon_capture_flat` / terminal black/flat, write a local dump under `%ProgramData%\Asteria\rd_capture_diag\` (JSON + optional JPEG) and include `local_dump_path`, `recovery_steps[]`, `hwnd_classes[]` on `capture_diag`. Cloud should show `local_dump_path` in Capture health JSON. |
+| **C-RD-DIAG-6** | Agent **≥4.9.119**: on Start terminal fail (`SESSION0_HELPER_NO_FRAME`, `CAPTURE_NO_DESKTOP`, winlogon flat/black), sustained Default/Winlogon empty frames (`default_no_frame*`), follow `FOLLOW_NO_DEFAULT_FRAME`, and Default black recover fail — write a local dump under `%ProgramData%\Asteria\rd_capture_diag\` (JSON + optional JPEG) and include `local_dump_path`, `recovery_steps[]`, `hwnd_classes[]` on `capture_diag`. Cloud should show `local_dump_path` in Capture health JSON. (Earlier ≥4.9.115 covered winlogon flat only.) |
 
 ---
 

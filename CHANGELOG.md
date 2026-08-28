@@ -1,5 +1,15 @@
 # Changelog — asteria-contract
 
+## 1.4.86 — 2026-08-29
+
+### Remote Desktop — full local capture fail dumps
+
+| Piece | Detail |
+|-------|--------|
+| Client **≥ 4.9.119** | `rd_capture_diag` dumps on Start `NO_FRAME` / `CAPTURE_NO_DESKTOP`, sustained Default empty frames, follow `FOLLOW_NO_DEFAULT_FRAME`, Default black recover fail, and Winlogon black/flat terminal stops; wire `local_dump_path` |
+| Cloud | Show `local_dump_path` / `recovery_steps` when present (already C-RD-DIAG-6) |
+| SoT | [`features/remote-desktop.md`](features/remote-desktop.md) C-RD-DIAG-6 |
+
 ## 1.4.85 — 2026-08-27
 
 ### Remote Desktop — Default post-logon black recovery
