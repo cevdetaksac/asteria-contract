@@ -1,9 +1,10 @@
 # Cloud / dashboard checklist
 
-> Contract **≥ 1.4.87**. Cloud this file, tick `[x]`, PR note with commit/date.
+> Contract **≥ 1.4.88**. Cloud this file, tick `[x]`, PR note with commit/date.
 > Do **not** add new SoT markdown here — implement against `features/*`.
 >
-> Pin: client **≥ 4.9.120** recommended (Capture health honesty / no Live flicker) ·
+> Pin: client **≥ 4.9.121** recommended (Attacks NLA RDP / RdpCoreTS 131) ·
+> **≥ 4.9.120** Capture health honesty ·
 > topology **≥ 4.9.95** · inspect **≥ 4.9.93**
 > API: `https://asteria.run` · HMAC `asteria-chp-v1`
 
@@ -96,6 +97,17 @@ SoT: [`../features/threat-intel.md`](../features/threat-intel.md)
 - [x] **CL-UNLINK-MAIL** Unlink magic-link; direct unlink → `missing_confirm_code`
 - [x] C-USER users page + confirm on create / remote_logon / reboot (see [`../features/server-management.md`](../features/server-management.md))
 - [x] Tools Repair whitelist + `/dashboard/server/tools`
+
+---
+
+## P0 — Attacks / classification (1.4.88)
+
+SoT: [`../features/threat-engine.md`](../features/threat-engine.md) · [`ATTACKS_RDP_NLA_FIX.md`](./ATTACKS_RDP_NLA_FIX.md)
+
+- [ ] **C-ATK-CLOUD-1** Pin / banner recommend agent **≥4.9.121** for RDP NLA Attacks accuracy.
+- [ ] **C-ATK-CLOUD-2** `normalize_service` remains as-is (no RDP↔NETWORK remap).
+- [ ] **C-ATK-CLOUD-3** Lab: external mstsc wrong-password on Ninety → Attacks **`RDP`** + real port; SMB still **`NETWORK:445`**.
+- [ ] **C-ATK-CLOUD-4** Confirm default / fleet `block_rules` include **enabled RDP** (otherwise EventLog RDP fails silent).
 
 ---
 

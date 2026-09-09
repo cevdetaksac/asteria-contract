@@ -110,14 +110,14 @@ Cadence ~**5 dk**. Cloud `settings_json.open_ports` yazar; dashboard honeypot i�
 3. Desired tunnel state’e uy; rapor `tunnel-status` ile.
 4. `protection.block_rules` / local fail sayacı **gerçek** auth fail event’leri içindir — bait capture ayrı kanal (`agent/register-protection.md`, `features/threat-engine.md`).
 5. EventLog `/api/attack`: sınıflandırma + port + zengin alanlar (`threat-engine.md`); empty/anonymous Network spam’i Attacks’e basma.
-6. Client **≥ 4.9.108** — lab prod (2026-08-25): ~12k/gün `NETWORK port=0` vs ~16 `RDP:3389` = yanlış etiket + `port:0` bug; bait hepsi stopped.
+6. Client **≥ 4.9.121** — NLA fail: RdpCoreTS **131** + classifier (not NtLmSsp-only → NETWORK). Older **≥ 4.9.108** still had 1149-dependent gap (lab 2026-09-09).
 
 ---
 
 ## Acceptance
 
 - [ ] Bait RDP/SSH fail credential → `/api/attack` 200, dashboard Attacks’te görünür (`source` bait)
-- [ ] NLA RDP fail (bait off) → Attacks **`RDP` / `3389` / `<failed_logon>`** — not `NETWORK`/`0`
+- [ ] NLA RDP fail (bait off) → Attacks **`RDP` / real listen port / `<failed_logon>`** — not `NETWORK`/`0` (agent **≥4.9.121**)
 - [ ] Saf SMB/445 fail → **`NETWORK` / `445`**
 - [ ] Tunnel-set start → agent listen + tunnel-status `running`
 - [ ] open-ports periyodik 200

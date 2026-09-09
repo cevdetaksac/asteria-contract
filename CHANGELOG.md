@@ -1,5 +1,31 @@
 # Changelog — asteria-contract
 
+## 1.4.88 — 2026-09-09
+
+### Attacks — NLA RDP fail vs NETWORK:445 (Event 131)
+
+Lab (Ninety `194.5.236.32`, 2026-09-09): external `mstsc` wrong-password produced
+**no RDP Attacks rows** while SMB → `NETWORK:445` worked. Root cause (client SoT):
+
+| Gap | Detail |
+|-----|--------|
+| Event **1149** | Often **success-only** — wrong-password spray never seeds RDP IP hint |
+| Classifier | `NtLmSsp` type-3 → `Network` **before** NTLM+empty workstation RDP heuristic |
+| Missing channel | **RdpCoreTS Event 131** (pre-auth TCP + client IP) was not subscribed |
+
+| MUST | Detail |
+|------|--------|
+| Client **≥ 4.9.121** | Subscribe RdpCoreTS **131** → `note_rdp_source_ip`; flatten UserData; NTLM+`-` workstation → **RDP** before NtLmSsp→Network |
+| Classification | 4625 LT3 + recent **131**/Negotiate/User32/NTLM-empty-ws → **RDP** + real TermService port; pure SMB NtLmSsp+named ws → **NETWORK:445** |
+| Cloud | Still **no** RDP↔NETWORK remap (`normalize_service` as-is); pin recommend **≥4.9.121**; verify RDP `block_rules` enabled; lab C-ATK-1 |
+| Bait | FTP/MySQL `source=honeypot` only when tunnels **started**; else AuthLogWatcher real-port path |
+
+| Piece | Path |
+|-------|------|
+| Classification SoT | [`features/threat-engine.md`](features/threat-engine.md) |
+| Cloud lab / notify | [`cloud/ATTACKS_NOTIFY_DUAL_CHANNEL.md`](cloud/ATTACKS_NOTIFY_DUAL_CHANNEL.md) · [`cloud/ATTACKS_RDP_NLA_FIX.md`](cloud/ATTACKS_RDP_NLA_FIX.md) |
+| Client ticks | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) C-ATK-1 |
+
 ## 1.4.87 — 2026-08-29
 
 ### Remote Desktop — Capture health honesty (no Live flicker)

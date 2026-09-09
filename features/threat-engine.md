@@ -1,7 +1,8 @@
 # Local threat engine — single contract
 
-> **SoT** **≥ 1.4.76**. Cloud IoC bundle is [`threat-intel.md`](./threat-intel.md) (separate).
-> Client **≥ 4.9.109**: dual-channel Attacks — **real listen ports always**, bait optional;
+> **SoT** **≥ 1.4.88**. Cloud IoC bundle is [`threat-intel.md`](./threat-intel.md) (separate).
+> Client **≥ 4.9.121**: RdpCoreTS **131** IP hint + NLA NtLmSsp classification;
+> **≥ 4.9.109**: dual-channel Attacks — **real listen ports always**, bait optional;
 > OpenSSH Operational + MySQL error-log; relocate-aware ports.
 
 EventLog / score / `AR-BLOCK` auto-response. Bare RDP success is not
@@ -49,13 +50,19 @@ never hits the RDP fail-3 rule.
 **RDP/NLA marks** (any one is enough):
 
 - `AuthenticationPackage` **Negotiate** and/or `LogonProcess` **User32** (or Advapi NLA path)
-- Recent **TerminalServices Event 1149** for the same source IP (TTL ~3 min)
-- Explicit TerminalServices / process-term context on the event
+- Recent **RdpCoreTS Event 131** (TCP accepted, client IP) for the same source IP (TTL ~3 min) — **preferred for fails**
+- Recent **TerminalServices Event 1149** for the same source IP (TTL ~3 min) — often **success-only**; do not rely on 1149 for wrong-password spray
+- Type-3 + **NTLM** + empty / `-` `WorkstationName` (common mstsc NLA shape; may still show `LogonProcess=NtLmSsp`)
+- Explicit TerminalServices / RdpCoreTS / process-term context on the event
 
 **SMB / Network marks:**
 
-- `LogonProcess` **NtLmSsp** (typical 445 / null-session / SMB auth)
+- `LogonProcess` **NtLmSsp** **and** no RDP mark above (named workstation + no recent 131/1149)
 - Type-3 with NTLM + no RDP marks above → `Network`, port **445**
+
+**Must not:** treat every `NtLmSsp` type-3 as SMB. NLA CredSSP fails frequently
+emit **NTLM + NtLmSsp** without 1149; without Event **131** hints those were mis-bucketed
+as `NETWORK:445` (lab: external mstsc → Ninety, SMB rows only).
 
 Do **not** treat every LogonType 3 as an attack spam row:
 
