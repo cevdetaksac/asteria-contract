@@ -1,10 +1,10 @@
 # Contract INDEX
 
-> [`VERSION`](VERSION) (**1.4.88**) → [`features/README.md`](features/README.md) → that product MD.  
+> [`VERSION`](VERSION) (**1.4.89**) → [`features/README.md`](features/README.md) → that product MD.  
 > Repo: https://github.com/cevdetaksac/asteria-contract · Fleet: [`FLEET.md`](FLEET.md)  
 > Production floor: **client ≥ 4.9.0** · API: `https://asteria.run`  
 > **Cloud work:** [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) · RD Live paste [`cloud/REMOTE_DESKTOP_JPEG_WS_PRIMARY.md`](cloud/REMOTE_DESKTOP_JPEG_WS_PRIMARY.md) · Attacks NLA [`cloud/ATTACKS_RDP_NLA_FIX.md`](cloud/ATTACKS_RDP_NLA_FIX.md)  
-> **Client work:** [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) (PIX lab open — test ≥4.9.111; Attacks NLA ≥4.9.121)
+> **Client work:** [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) (PIX lab open — test ≥4.9.111; Attacks AuthLog ≥4.9.122 / NLA ≥4.9.121)
 
 **Product SoT is only `features/`.** Shared wire is `api/` below. Do not recreate deleted `agent/` product files, `api/04` `05` `09`, or `cloud/DEFENSE_POLICY.md`.
 
@@ -34,7 +34,7 @@
 | [features/network-adapter.md](features/network-adapter.md) | **≥ 4.9.42** |
 | [features/gui.md](features/gui.md) | **≥ 4.8.0** |
 | [features/presence.md](features/presence.md) | **≥ 4.9.8** |
-| [features/threat-engine.md](features/threat-engine.md) | **≥ 4.9.121** NLA RDP · **≥ 4.9.109** dual-channel |
+| [features/threat-engine.md](features/threat-engine.md) | **≥ 4.9.122** AuthLog FTP/MYSQL/MSSQL · **≥ 4.9.121** NLA RDP · **≥ 4.9.109** dual-channel |
 
 ---
 

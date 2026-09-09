@@ -1,9 +1,9 @@
 # Client / agent checklist
 
-> Contract **≥ 1.4.88**. Windows agent this file. Do **not** add new SoT here —
+> Contract **≥ 1.4.89**. Windows agent this file. Do **not** add new SoT here —
 > implement against the linked `features/*` file.
 >
-> Pin: **≥ 4.9.121** NLA RDP Attacks (RdpCoreTS 131) · **≥ 4.9.120** Capture health honesty · **≥ 4.9.119** full `rd_capture_diag` dumps · **≥ 4.9.118** Default post-logon black recovery · **≥ 4.9.117** Welcome follow · **≥ 4.9.116** Server PrintWindow / Active RDP fallback / host prep · **≥ 4.9.115** fail dumps / password→Default · **≥ 4.9.114** LogonUI chrome · **≥ 4.9.113** persistent agent WS ·
+> Pin: **≥ 4.9.122** AuthLog FTP/MYSQL/MSSQL ERRORLOG · **≥ 4.9.121** NLA RDP Attacks (RdpCoreTS 131) · **≥ 4.9.120** Capture health honesty · **≥ 4.9.119** full `rd_capture_diag` dumps · **≥ 4.9.118** Default post-logon black recovery · **≥ 4.9.117** Welcome follow · **≥ 4.9.116** Server PrintWindow / Active RDP fallback / host prep · **≥ 4.9.115** fail dumps / password→Default · **≥ 4.9.114** LogonUI chrome · **≥ 4.9.113** persistent agent WS ·
 > **≥ 4.9.110** JPEG-WS / lock probe ·
 > **≥ 4.9.109** dual-channel Attacks ·
 > **≥ 4.9.108** RDP NLA vs NETWORK:445 ·
@@ -14,7 +14,7 @@
 > **Frozen Welcome after password without Default pixels is not acceptance.**
 > **Version string alone is not acceptance — console lab required.**
 >
-> **2026-09-09:** agent **≥4.9.121** external NLA RDP fail → Attacks `RDP` (not `NETWORK:445`).
+> **2026-09-09:** agent **≥4.9.122** AuthLog probe/ERRORLOG → FTP/MYSQL/MSSQL Attacks; **≥4.9.121** external NLA RDP fail → Attacks `RDP` (not `NETWORK:445`).
 > **2026-08-27:** agent **≥4.9.118** Default black recovery after follow;
 > **≥4.9.117** Welcome leave-Winlogon; **≥4.9.116** PrintWindow / HOST-2.
 > **Open ticks = console lab only** (Derin-Web / Ninety-Web Run A–F on **≥4.9.118**).
@@ -84,6 +84,7 @@ Logged-on unlocked Default Connect (Run C):
 SoT: [`threat-engine.md`](./threat-engine.md) · [`../agent/attacks-and-services.md`](../agent/attacks-and-services.md)
 
 - [ ] **C-ATK-1** NLA RDP fail → `/api/attack` **`RDP` / real port / `<failed_logon>`** (not `NETWORK` / `0`) — agent **≥4.9.121** + RdpCoreTS 131; external mstsc lab on Ninety
+- [ ] **C-ATK-2** AuthLog file tails → `/api/attack` **FTP** / **MYSQL** / **MSSQL** from err/W3C/ERRORLOG (or `authlog_probe`) — agent **≥4.9.122**; `tools/sim_authlog_inject.py` on this PC or Derin
 - [ ] **C-ATK-2** SMB/NtLmSsp type-3 → **`NETWORK` / `445`**
 - [ ] **C-ATK-3** EventLog enrich: `logon_type`, `auth_package`, `logon_process`, status/substatus, workstation, `source=eventlog`
 - [ ] **C-ATK-4** Bait credential separate (`source=honeypot`); tunnels stopped → no bait rows; **real** fails still report

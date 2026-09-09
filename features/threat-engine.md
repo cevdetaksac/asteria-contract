@@ -1,9 +1,10 @@
 # Local threat engine — single contract
 
-> **SoT** **≥ 1.4.88**. Cloud IoC bundle is [`threat-intel.md`](./threat-intel.md) (separate).
-> Client **≥ 4.9.121**: RdpCoreTS **131** IP hint + NLA NtLmSsp classification;
+> **SoT** **≥ 1.4.89**. Cloud IoC bundle is [`threat-intel.md`](./threat-intel.md) (separate).
+> Client **≥ 4.9.122**: AuthLogWatcher MySQL/FTP/MSSQL ERRORLOG (+ probe dirs);
+> **≥ 4.9.121**: RdpCoreTS **131** IP hint + NLA NtLmSsp classification;
 > **≥ 4.9.109**: dual-channel Attacks — **real listen ports always**, bait optional;
-> OpenSSH Operational + MySQL error-log; relocate-aware ports.
+> OpenSSH Operational + file tails; relocate-aware ports.
 
 EventLog / score / `AR-BLOCK` auto-response. Bare RDP success is not
 score 100 / auto-block. Whitelist never blocked. Alert hygiene: VSS list is not
@@ -15,7 +16,7 @@ Honeypot **on or off** must not gate real-port brute-force reporting.
 
 | Channel | When | `source` | Port |
 |---------|------|----------|------|
-| **Real service** | Windows EventLog / OpenSSH Operational / MySQL error log | `eventlog` (or `mysql_error_log`) | **Actual listen** (e.g. RDP relocated **43389**) |
+| **Real service** | Windows EventLog / OpenSSH Operational / AuthLog (MySQL err, IIS FTP 530, MSSQL ERRORLOG) | `eventlog` (or channel id) | **Actual listen** (e.g. RDP relocated **43389**) |
 | **Bait honeypot** | Tunnel `started` + protocol credential | `honeypot` | Bait listen (often 3389/22/…) |
 
 If bait is on **and** real RDP was relocated, both rows appear: bait spray on 3389 **and** hits on the hidden real port. That is intentional — operator sees the leak.
@@ -26,10 +27,13 @@ If bait is on **and** real RDP was relocated, both rows appear: bait spray on 33
 |---------|-------------------------------|-------------------------|
 | **RDP** | Security `4625` (+ NLA marks) / TS 1149 | TermService registry / open_ports |
 | **Network/SMB** | `4625` NtLmSsp | **445** |
-| **MSSQL** | Application `18456` | 1433 or listen |
+| **MSSQL** | Application `18456` **and/or** `ERRORLOG*` `Login failed … [CLIENT: ip]` | 1433 or listen |
 | **SSH** | `OpenSSH/Operational` Event 4 Failed/Invalid | 22 or listen |
-| **MYSQL** | MySQL/MariaDB `*.err` “Access denied for user” | 3306 or listen |
-| **FTP** | IIS FTP W3C logs (`FTPSVC*`, sc-status **530**) | 21 or listen |
+| **MYSQL** | MySQL/MariaDB / XAMPP / Laragon `*.err`/`*.log` “Access denied for user” (+ `%ProgramData%\Asteria\authlog_probe\mysql`) | 3306 or listen |
+| **FTP** | IIS FTP W3C (`FTPSVC*`, sc-status **530**) (+ probe `ftp`) | 21 or listen |
+
+Skip loopback sources on AuthLog paths. Health may expose `auth_log_health`
+(path counts / emits). Env override: `ASTERIA_AUTHLOG_EXTRA` (`;`-separated globs).
 
 Enabled `protection.block_rules` count **per service** and POST `/api/attack`
 (`<failed_logon>`). Bait remains separate

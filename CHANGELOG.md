@@ -1,5 +1,25 @@
 # Changelog — asteria-contract
 
+## 1.4.89 — 2026-09-09
+
+### Attacks — AuthLogWatcher real-port FTP / MySQL / MSSQL file tails
+
+Lab (Derin / Ninety): protocol-level fails (FTP 530, MySQL Access denied) produced
+**no Attacks rows** when bait ports were occupied by real services. EventLog path
+covers RDP/SMB/SSH/MSSQL-18456; file-tail coverage was incomplete.
+
+| MUST | Detail |
+|------|--------|
+| Client **≥ 4.9.122** | Tail MySQL/MariaDB `*.err`/`*.log`, IIS FTP W3C **530**, MSSQL **ERRORLOG** `Login failed … [CLIENT: ip]`; skip loopback; `auth_log_health` in health snapshot |
+| Lab probe | `%ProgramData%\Asteria\authlog_probe\{mysql,ftp,mssql}\*` + `ASTERIA_AUTHLOG_EXTRA` globs |
+| Cloud | No remap; pin recommend **≥4.9.122**; enable FTP/MYSQL/MSSQL `block_rules`; verify `source` from AuthLog channels |
+
+| Piece | Path |
+|-------|------|
+| Classification SoT | [`features/threat-engine.md`](features/threat-engine.md) |
+| Cloud paste | [`cloud/ATTACKS_AUTHLOG_COVERAGE.md`](cloud/ATTACKS_AUTHLOG_COVERAGE.md) |
+| Client ticks | [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) C-ATK-1 |
+
 ## 1.4.88 — 2026-09-09
 
 ### Attacks — NLA RDP fail vs NETWORK:445 (Event 131)

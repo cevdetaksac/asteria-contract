@@ -48,7 +48,7 @@ Alias’lar (aynı handler ailesi): `/api/honeypot-attack`, legacy `/attacks/` (
 | Kanal | Ne zaman | Dashboard |
 |-------|----------|-----------|
 | **Bait honeypot** | Tuzak listen `started` + protokol credential | `source=honeypot`; tuzaklar **stopped** iken bait satırı **beklenmez** |
-| **Real-port auth** | EventLog / OpenSSH / MySQL errlog + `block_rules` — **honeypot on/off irrelevant** | `source=eventlog`; RDP relocate → **gerçek** listen port |
+| **Real-port auth** | EventLog / OpenSSH / AuthLog (MySQL err, IIS FTP 530, MSSQL ERRORLOG) + `block_rules` — **honeypot on/off irrelevant** | `source=eventlog`; RDP relocate → **gerçek** listen port |
 
 Operatör: bait 3389 + gerçek RDP 43389 aynı anda vurulursa **iki satır** — sızıntı görünür. `NETWORK` = SMB/null LogonType 3; bait durumu ayrı.
 
@@ -110,7 +110,7 @@ Cadence ~**5 dk**. Cloud `settings_json.open_ports` yazar; dashboard honeypot i�
 3. Desired tunnel state’e uy; rapor `tunnel-status` ile.
 4. `protection.block_rules` / local fail sayacı **gerçek** auth fail event’leri içindir — bait capture ayrı kanal (`agent/register-protection.md`, `features/threat-engine.md`).
 5. EventLog `/api/attack`: sınıflandırma + port + zengin alanlar (`threat-engine.md`); empty/anonymous Network spam’i Attacks’e basma.
-6. Client **≥ 4.9.121** — NLA fail: RdpCoreTS **131** + classifier (not NtLmSsp-only → NETWORK). Older **≥ 4.9.108** still had 1149-dependent gap (lab 2026-09-09).
+6. Client **≥ 4.9.122** — AuthLog FTP/MYSQL/MSSQL file tails (+ probe). **≥ 4.9.121** — NLA fail: RdpCoreTS **131** + classifier (not NtLmSsp-only → NETWORK).
 
 ---
 
@@ -118,6 +118,7 @@ Cadence ~**5 dk**. Cloud `settings_json.open_ports` yazar; dashboard honeypot i�
 
 - [ ] Bait RDP/SSH fail credential → `/api/attack` 200, dashboard Attacks’te görünür (`source` bait)
 - [ ] NLA RDP fail (bait off) → Attacks **`RDP` / real listen port / `<failed_logon>`** — not `NETWORK`/`0` (agent **≥4.9.121**)
+- [ ] AuthLog FTP/MYSQL/MSSQL fail → Attacks rows (agent **≥4.9.122**; probe or real logs)
 - [ ] Saf SMB/445 fail → **`NETWORK` / `445`**
 - [ ] Tunnel-set start → agent listen + tunnel-status `running`
 - [ ] open-ports periyodik 200

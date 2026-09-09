@@ -1,6 +1,6 @@
 # Cloud instruction — Attacks dual-channel + NETWORK email digest
 
-> Paste to cloud agent. Contract **≥ 1.4.88** · Client pin **≥ 4.9.121** (NLA RDP).
+> Paste to cloud agent. Contract **≥ 1.4.89** · Client pin **≥ 4.9.122** (AuthLog) / **≥ 4.9.121** (NLA RDP).
 > SoT: `features/threat-engine.md` · `agent/attacks-and-services.md` ·
 > [`ATTACKS_RDP_NLA_FIX.md`](./ATTACKS_RDP_NLA_FIX.md)
 
@@ -10,6 +10,7 @@
 - Client **4.9.108+** fixes classification + `port:0`; **4.9.109** dual-channel
   real-port (EventLog / OpenSSH / MySQL errlog / IIS FTP 530) **independent of bait**.
 - **4.9.121**: RdpCoreTS **131** + NLA NtLmSsp heuristics — external mstsc fail → **RDP**, not `NETWORK:445`.
+- **4.9.122**: AuthLogWatcher MSSQL ERRORLOG + probe dirs — FTP/MYSQL/MSSQL file-tail Attacks.
 - Email spam is **cloud** `notification_rules` / prefs — client does not send mail.
 
 ## MUST — service email policy
@@ -31,7 +32,7 @@
 1. Rows with `source=eventlog` (or mysql/ftp log) appear when honeypot tunnels are **stopped**.
 2. Rows with `source=honeypot` appear only when bait listen is **started**.
 3. Same host can show **both** (e.g. bait RDP:3389 + real RDP:43389) — intentional leak signal.
-4. Pin / floor banners: recommend agent **≥ 4.9.121** (Attacks NLA); dual-channel floor **≥ 4.9.109**.
+4. Pin / floor banners: recommend agent **≥ 4.9.122** (AuthLog) / **≥ 4.9.121** (Attacks NLA); dual-channel floor **≥ 4.9.109**.
 5. RDP `block_rules` must stay **enabled** or EventLog RDP fails never POST `/api/attack`.
 
 ## Acceptance
