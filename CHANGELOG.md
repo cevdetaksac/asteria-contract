@@ -1,5 +1,22 @@
 # Changelog — asteria-contract
 
+## 1.4.90 — 2026-09-10
+
+### Attacks — MySQL AuthLog auto-prep (`log_error_verbosity=3`)
+
+Derin lab: AuthLog found `*.err` (`mysql=2`) but **zero** Access denied lines —
+MySQL 8 default verbosity hides Notes. Client now patches `my.ini` on install/boot.
+
+| MUST | Detail |
+|------|--------|
+| Client **≥ 4.9.123** | Boot prep sets `log_error_verbosity=3` (+ `.asteria.bak`); restart MySQL only if changed; opt-out `ASTERIA_SKIP_MYSQL_AUTHLOG_PREP=1` |
+| Discovery | `my.ini` datadir/log-error + MSSQL instance registry; skip `*-slow.log`; health `mysql_access_denied_tail` / `mysql_logging_hint` |
+| Cloud | Pin recommend **≥4.9.123**; empty `mssql_count` OK when SQL Server not installed |
+
+| Piece | Path |
+|-------|------|
+| Cloud paste | [`cloud/ATTACKS_AUTHLOG_COVERAGE.md`](cloud/ATTACKS_AUTHLOG_COVERAGE.md) |
+
 ## 1.4.89 — 2026-09-09
 
 ### Attacks — AuthLogWatcher real-port FTP / MySQL / MSSQL file tails

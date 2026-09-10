@@ -1,32 +1,38 @@
-# Cloud — Attacks AuthLog coverage (1.4.89)
+# Cloud — Attacks AuthLog coverage (1.4.90)
 
-> Paste to cloud agent. Contract **≥ 1.4.89** · Client pin **≥ 4.9.122**.
+> Paste to cloud agent. Contract **≥ 1.4.90** · Client pin **≥ 4.9.123**.
 
 ## What changed (client)
 
-AuthLogWatcher now tails:
+AuthLogWatcher tails:
 
 | Service | Log | Match |
 |---------|-----|-------|
-| **MYSQL** | MySQL/MariaDB / XAMPP / Laragon `*.err` (+ probe) | `Access denied for user 'u'@'ip'` |
+| **MYSQL** | MySQL/MariaDB `*.err` via globs + **my.ini** `datadir`/`log-error` (+ probe) | `Access denied for user 'u'@'ip'` |
 | **FTP** | IIS `FTPSVC*` W3C (+ probe) | `sc-status` **530** |
-| **MSSQL** | `ERRORLOG*` (+ Application **18456** EventLog) | `Login failed … [CLIENT: ip]` |
+| **MSSQL** | `ERRORLOG*` via globs + **SQL instance registry** (+ probe) | `Login failed … [CLIENT: ip]` |
 
-Loopback / `localhost` sources are **not** reported. Health snapshot may include
-`auth_log_health` (`mysql_count` / `ftp_count` / `mssql_count`, emits).
+**MySQL 8 note:** default `log_error_verbosity=2` **does not** write Access denied
+(Notes need **3**). Client **≥4.9.123** auto-sets verbosity=3 in `my.ini` on
+install/boot (backup `.asteria.bak`, restart MySQL only if changed). Opt-out:
+`ASTERIA_SKIP_MYSQL_AUTHLOG_PREP=1`. Health may still set `mysql_logging_hint`
+when an err path exists but `mysql_access_denied_tail=0` (e.g. prep skipped /
+custom datadir).
 
-Lab inject (on agent host): `tools/sim_authlog_inject.py` →
-`%ProgramData%\Asteria\authlog_probe\`.
+Loopback / `localhost` sources are **not** reported. Snapshot: `auth_log_health`.
+
+Lab inject: `tools/sim_authlog_inject.py` → `%ProgramData%\Asteria\authlog_probe\`.
 
 ## Cloud MUST
 
-1. **Pin** recommend agent **≥ 4.9.122** for FTP/MYSQL/MSSQL file-tail Attacks.
+1. **Pin** recommend agent **≥ 4.9.123**.
 2. **No** service remap — trust client `service` + `port`.
-3. Confirm `protection.block_rules` enabled for **FTP**, **MYSQL**, **MSSQL** (and RDP/SSH as needed).
-4. Dual channel unchanged: `source=honeypot` only when bait tunnels **started**; AuthLog / EventLog → `eventlog` (or channel-specific).
-5. Lab: after inject or real spray, expect Attacks rows `FTP:21` / `MYSQL:3306` / `MSSQL:1433` (or relocated listen ports).
+3. Confirm `protection.block_rules` for **FTP**, **MYSQL**, **MSSQL**.
+4. Dual channel unchanged: bait → `honeypot`; AuthLog/EventLog → `eventlog`.
+5. Empty `mssql_count` is OK when SQL Server is not installed on the host.
 
 ## Do not
 
 - Require bait tunnels for real-service auth fails.
-- Treat empty AuthLog path counts as product failure when those services are not installed (probe/sim still valid).
+- Treat missing MSSQL install as AuthLog product failure.
+- Expect MYSQL Attacks while MySQL hides Notes (`log_error_verbosity<3`).
