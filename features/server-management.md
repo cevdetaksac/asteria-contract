@@ -20,3 +20,14 @@ Services: pywin32 SCM; protected services refuse stop.
 | **C-USER-5** | Cache keeps `enabled:false` rows |
 | **C-USER-6** | Confirm before disable/enable; `PROTECTED_ACCOUNT` is a visible error |
 | **C-USER-7** | Enabled / disabled counts in the header (`counts.enabled`; `counts.active` = legacy alias) |
+
+## Incident response (1.4.91)
+
+| Action | command_type | params | UI |
+|---|---|---|---|
+| Contain user | `contain_user` | `username`, `new_password` (>=8), `disable?`, `session_id?`, `confirm_name` | Users row action (shield) |
+| Disable all users | `disable_all_users` | `logoff:true`, `exclude[]`, `confirm_name` | Users header + IR card |
+| Emergency lockdown | `enable_lockdown` | `management_ip`, `duration_minutes` (5-1440), `confirm_name` | Users header + IR card |
+
+`confirm_name` must equal the server name (case-insensitive); cloud strips it before queueing.
+All three require `confirm=true` and are written to the command audit log.

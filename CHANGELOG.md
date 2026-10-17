@@ -1,5 +1,26 @@
 # Changelog — asteria-contract
 
+## 1.4.91 - 2026-10-18 (Phase 1 stability: incident response UI, health, version source)
+
+- **Cloud `/api/commands/send`:** `contain_user` is now a valid dashboard command and
+  destructive-gated (`confirm=true`). Validation: `username` required, `new_password`
+  >= 8 chars, optional `disable` (bool, default true on agent), optional `session_id`.
+- **Typed confirmation:** dashboard may send `params.confirm_name`; cloud compares it
+  (case-insensitive) with the server COMPUTERNAME / `server_name` and returns 400 on
+  mismatch. The field is stripped before the command is queued (agents never see it).
+  Used by Contain user, Disable all users and Emergency lockdown in the IR modal.
+- **`enable_lockdown`:** cloud now requires a valid `management_ip` (IPv4/IPv6).
+- **`/healthz`:** cheap liveness + `SELECT 1` (`{status, db, db_ms}`), 503 when DB down.
+- **Version single source:** dashboard floor/recommended come from
+  `client_versions.py` (latest GitHub release cache, env override, fallback 4.9.121).
+- **Client 4.9.124:** CONTROL-WS disconnects logged at WARNING with reason; jittered
+  exponential reconnect backoff; offline-queue health `enabled` uses the same gate as
+  `offline_queue_enabled()`.
+- **Open policy question:** Network Guard process `auto_contain` - 1.4.14 says hard-off,
+  1.3.4 / C-CANARY-2 allow operator config AND fleet gate. Client keeps current
+  behaviour (gated) until decided.
+- Server mirror: production copy must be updated to >= 1.4.90 (was 1.4.89).
+
 ## 1.4.90 — 2026-09-10
 
 ### Attacks — MySQL AuthLog auto-prep (`log_error_verbosity=3`)
