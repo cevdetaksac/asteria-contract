@@ -1,5 +1,28 @@
 # Changelog — asteria-contract
 
+## 1.4.92 - 2026-10-18 (Phase 2: IR sessions/lockdown, Network Guard hard-off)
+
+### Incident response
+- New agent commands: `logoff_session {session_id}`, `disconnect_session {session_id}`,
+  `logoff_all_sessions {exclude_session_ids?, exclude_users?, include_console?, dry_run?}`,
+  `emergency_lockdown` extended params (`logoff_all`, `block_rdp` incl. custom RDP port,
+  `disable_non_admin`, `keep_admins`, `management_ip`, `duration_minutes`, `dry_run`),
+  `emergency_lockdown_undo {lockdown_id}`.
+- Result shape: `{ok, actions:[{type,target,ok,error}], undo_id?}`. Never log off session 0
+  or the agent process session. Undo re-enables users and removes RDP block rules; 24h TTL.
+- Dashboard: sessions table Log off / Disconnect; Log off everyone (typed server name);
+  full lockdown modal; active-lockdown banner + Undo; owner email on IR queue.
+- Cloud: `/api/ir/lockdown`, `/api/conn-health`; `confirm_name` typing gate unchanged.
+
+### Network Guard (Option A)
+- Process `auto_contain` / `auto_kill` / `auto_restore` are **permanently hard-off** in code.
+  Config and fleet canary cannot re-enable them. Suspend only via explicit operator command
+  (`suspend_process`). Resolves 1.3.4/C-CANARY-2 vs 1.4.14 in favour of **1.4.14**.
+
+### Client 4.9.125
+- IR engine (WTS ctypes), supervised worker threads, CONTROL-WS conn_health in hello,
+  SELF-PROTECT stderr NoneType fix.
+
 ## 1.4.91 - 2026-10-18 (Phase 1 stability: incident response UI, health, version source)
 
 - **Cloud `/api/commands/send`:** `contain_user` is now a valid dashboard command and

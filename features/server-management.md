@@ -31,3 +31,15 @@ Services: pywin32 SCM; protected services refuse stop.
 
 `confirm_name` must equal the server name (case-insensitive); cloud strips it before queueing.
 All three require `confirm=true` and are written to the command audit log.
+
+## Incident response sessions & full lockdown (1.4.92)
+
+| Action | command_type | params | Notes |
+|---|---|---|---|
+| Log off one session | `logoff_session` | `session_id`, `dry_run?` | WTSLogoffSession; skips session 0 / agent |
+| Disconnect session | `disconnect_session` | `session_id`, `dry_run?` | WTSDisconnectSession |
+| Log off everyone | `logoff_all_sessions` | `exclude_session_ids?`, `exclude_users?`, `include_console?`, `dry_run?` | Per-session actions[] |
+| Emergency lockdown | `enable_lockdown` / `emergency_lockdown` | `management_ip`, `duration_minutes`, `logoff_all?`, `block_rdp?`, `disable_non_admin?`, `keep_admins?`, `dry_run?`, `confirm_name` | RDP ports from registry+3389; undo_id |
+| Undo lockdown | `emergency_lockdown_undo` | `lockdown_id` | Re-enable users + delete ASTERIA_IR_RDP_* rules |
+
+Result: `{ok, success, actions:[{type,target,ok,error}], undo_id?}`.
