@@ -175,3 +175,13 @@ Input is injected by the capture helper in the target session (`SendInput`; on W
 - SYSTEM `--session console` parent (session 0) loops: hop into active console; on child exit re-hop (logout/login). WebRTC+relay stay in the session child; viewer auto-joins on pc_online unless userBye.
 - DXGI ACCESS_LOST / desktop switch: follow_input_desktop, reopen DuplicateOutput with backoff, emit desktop+media, force IDR (resized recreates encoder). Never exit the media thread.
 - Page: Baglantiyi kes toggles to Baglan, clears video/ring, no auto-reconnect until Baglan.
+
+## C-RD-PROD-1 — Product remote desktop entry (/rd)
+
+- Dashboard "Uzak Masaüstü" calls `POST /api/rd/mint {token}`; requires dashboard auth for that machine (account SSO or dashboard password). Response `{url:"/rd?m=<client_id>&t=<ticket>", ttl:90}`; the page opens it with `window.open` in a new tab (opener nulled).
+- Ticket: 16 chars urlsafe, 90 s, single use, bound to (operator, machine). A ticket presented for another machine is burned.
+- `GET /rd?m&t` exchanges the ticket for cookie `rd_<client_id>` (HttpOnly, Secure, SameSite=Strict, 12 h, bound to operator+machine) and strips `t` with `history.replaceState`. Invalid/expired → 401 page in Turkish with "panelden tekrar tıklayın" (no 404 obscurity).
+- `WS /ws/rd/<client_id>/viewer` requires that cookie; `WS /ws/rd/agent` requires the agent machine credential (Authorization Bearer or `bearer, <token>` subprotocol); room = the agent's own client id, so a viewer can only reach machines its session is bound to.
+- Protocol on both sockets = C-RD-TEST-1 (join/offer/answer/leave/pc_online/pc_offline, ctrl DataChannel C-RD-IN-DC-2). Same-tab reconnect closes the old viewer with 4001 (silent); another tab/device with 4000.
+- Audit: one `remote_audit` row per viewer socket — operator (`acct:<id>` or `dash:<client_id>`), client_id, `session_kind="rd ip=<ip>"`, backend `webrtc-rd`, created_at/ended_at (duration).
+- Machines whose agent < `RD_MIN_AGENT` (default 4.9.141) get the legacy viewer URL from mint until the embedded-encoder agent ships. `/rdtest/<token>` stays until then; removal is planned after rollout.
