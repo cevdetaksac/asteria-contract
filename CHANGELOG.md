@@ -1,3 +1,8 @@
+## 1.4.99
+
+- Live remote desktop = WebRTC H.264 only (agent ≥4.9.138); JPEG = snapshot only.
+- Helper token: SYSTEM+TokenSessionId preferred over LogonUI; lock curtain stays on Default.
+
 # Changelog — asteria-contract
 
 ## 1.4.98 - 2026-10-18

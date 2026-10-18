@@ -114,3 +114,23 @@ Input is injected by the capture helper in the target session (`SendInput`; on W
 ## Rollout
 
 4.9.128: sidecar + agent supervision behind `rd_hw_enabled` (default off). 4.9.129+: default on after HW-A..F pass on DESKTOP-F5SCL3G.
+
+
+## 1.4.99 — Live video only (agent ≥4.9.138)
+
+- **C-RD-LIVE-1** Live remote desktop is **WebRTC H.264 only** via `asteria-encode` sidecar.
+  `viewer_backend` for live start is `webrtc_hw` / `auto` (resolved to HW). JPEG-WS is **not**
+  a live transport.
+- **C-RD-SNAP-1** JPEG remains for **on-demand snapshots** only (`remote_snapshot` /
+  thumbnail / "anlık görüntü"). Snapshot must not start a live JPEG stream.
+- **C-RD-ENC-1** Sidecar uses GPU MF H.264 (QSV/NVENC/AMF) with automatic fallback to the
+  built-in Media Foundation **software** H.264 MFT when no hardware MFT is present.
+  There is **no** JPEG live fallback.
+- **C-RD-ENC-2** If the encoder cannot start, the agent returns `VIDEO_ENCODER_FAILED`
+  ("Video kodlayıcı başlatılamadı") with Teknik detail — viewer shows retry, does not
+  silently fall back to JPEG-WS.
+- **C-RD-S0-4 (clarified)** Helper spawn prefers `winlogon.exe` token, then
+  **SYSTEM + TokenSessionId**, then LogonUI/LockApp last. Live `OpenInputDesktop=Default`
+  (lock curtain) keeps the parent on Default — no PIX-3 thrash to Winlogon.
+- **C-RD-FLEET-1** Cloud enables WebRTC live for agents **≥4.9.138**. Older agents receive
+  a clear upgrade-required message instead of JPEG live.
