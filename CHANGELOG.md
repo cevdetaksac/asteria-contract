@@ -1,5 +1,9 @@
 # Changelog — asteria-contract
 
+## 1.4.94 - 2026-10-18
+
+- **Phase 4 (C-RD-HW)**: new [features/remote-desktop-hw.md](features/remote-desktop-hw.md) - own Rust sidecar `asteria-encode.exe` (DXGI + Media Foundation HW H.264 + webrtc-rs), `viewer_backend=auto|webrtc_hw|jpeg` with automatic JPEG fallback, data-channel input protocol, SYSTEM console capture with no user logged on + SendSAS, live session picker (console + RDP sessions, never a new session), per-connection `notify_user` (default silent), mandatory `remote_audit` for every connection. Permissive licenses only; no RDP/IronRDP/AGPL/GPL.
+
 ## 1.4.93 - 2026-10-18 (Phase 3: Remote Desktop quick wins)
 
 ### Viewer / cloud
