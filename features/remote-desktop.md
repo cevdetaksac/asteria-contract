@@ -237,6 +237,14 @@ composition **or** fall back to an Active RDP session.
 
 ---
 
+## Mobile touch (C-RD-TOUCH)
+
+| ID | Rule |
+|----|------|
+| **C-RD-TOUCH-1** | Viewer default **trackpad**: one-finger drag → `trackpad_move`/`drag_move` relative `dx,dy` (accelerated); tap/`double_tap` with `mode=trackpad` click **at current cursor** (agent syncs GetCursorPos after relative moves); tap-hold then drag → `drag_start`/`drag_move`/`drag_end`; two-finger tap → right click; two-finger drag → `two_finger_scroll`; pinch → local view zoom/pan only. |
+| **C-RD-TOUCH-2** | Viewer **direct**: finger maps through letterbox/zoom to remote `[0,1]`; tap = click; drag = button-held drag. |
+| **C-RD-TOUCH-3** | Viewer: `touch-action:none` + `touchmove`/`touchstart` `preventDefault` (`passive:false`) so Safari does not scroll/zoom the page. Coalesce moves ≈60Hz. Input on view WS (`t:input`) for JPEG-WS and HW (HW media datachannel optional; WS remains primary). |
+
 ## CAD + Winlogon input
 
 | ID | Rule |
