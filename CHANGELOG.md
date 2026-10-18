@@ -19,9 +19,10 @@
   Config and fleet canary cannot re-enable them. Suspend only via explicit operator command
   (`suspend_process`). Resolves 1.3.4/C-CANARY-2 vs 1.4.14 in favour of **1.4.14**.
 
-### Client 4.9.125
+### Client 4.9.125 / **4.9.126** (required hotfix)
 - IR engine (WTS ctypes), supervised worker threads, CONTROL-WS conn_health in hello,
   SELF-PROTECT stderr NoneType fix.
+- **4.9.126:** package `client_supervisor` + `client_ir` (4.9.125 crash loop).
 
 ## 1.4.91 - 2026-10-18 (Phase 1 stability: incident response UI, health, version source)
 
@@ -39,9 +40,7 @@
 - **Client 4.9.124:** CONTROL-WS disconnects logged at WARNING with reason; jittered
   exponential reconnect backoff; offline-queue health `enabled` uses the same gate as
   `offline_queue_enabled()`.
-- **Open policy question:** Network Guard process `auto_contain` - 1.4.14 says hard-off,
-  1.3.4 / C-CANARY-2 allow operator config AND fleet gate. Client keeps current
-  behaviour (gated) until decided.
+- **Resolved in 1.4.92 (Option A):** process auto_contain permanently hard-off; suspend only via explicit operator command. (Was open under 1.4.91.)
 - Server mirror: production copy must be updated to >= 1.4.90 (was 1.4.89).
 
 ## 1.4.90 — 2026-09-10
