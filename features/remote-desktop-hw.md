@@ -33,6 +33,8 @@
 | **C-RD-NEG-2** | Agent `hello` advertises `caps.rd_backends:["jpeg","webrtc_hw"]`, `caps.encoders:["nvenc"|"qsv"|"amf"|"mf_sw"|"openh264"]`. Cloud never asks `webrtc_hw` from an agent without the cap. |
 | **C-RD-NEG-3** | Signaling stays on existing `/ws/remote/agent` + `/ws/remote/view` messages `rtc_offer`/`rtc_answer`/`rtc_ice` with `backend:"webrtc_hw"`. Offer comes from the sidecar (via agent stdio pipe). No new HTTP endpoint. |
 | **C-RD-NEG-4** | Feature flag `rd_hw_enabled` (cloud per-tenant, default **off** in 4.9.128, on after lab pass). Off ⇒ `auto` behaves as `jpeg`. |
+| **C-RD-NEG-SID** | Agent MUST use cloud-provided `stream_id` from start params (do not mint a new UUID). Viewer rejects HW offers whose stream_id does not match the session. |
+| **C-RD-NEG-ICE** | On `remote_stream_start`, cloud includes `ice_servers` (TURN 3478/5349 + TURNS 443 + STUN) in command params so the HW sidecar can gather relay candidates (phone 4G/CGNAT). Viewer still receives `webrtc_ice_config`. |
 
 ## 3. Console / no-user (C-RD-HW-CON) — HARD
 
