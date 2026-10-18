@@ -168,3 +168,6 @@ Input is injected by the capture helper in the target session (`SendInput`; on W
 ## C-RD-CODEC-1 (1.4.102)
 - Sidecar offers H.264 only; after the answer it sends on the H.264 PT with packetization-mode=1, preferring profile-level-id 42e01f (constrained baseline, encoder profile), logs {t:codec,pt,pm,plid}, drops pre-connect frames and forces an IDR. PLI/FIR -> IDR. Never write on the first negotiated video PT blindly.
 - Harness logs: viewer POSTs every step to /rdtest/<token>/log (/data/rdtest_logs/YYYYMMDD.log); exe writes rdtest.log next to the exe (epoch-ms lines).
+
+## C-RD-IN-DC-2 (1.4.103)
+- DC ctrl input coords are captured-monitor PIXELS (video size), never 0..1: mm{x,y}, mb{x,y,b:0/1/2,d}, wh{dx,dy}, k{sc,e,d} (set-1 scancode from KeyboardEvent.code), txt{s} (unicode), sas, rel (release all; sent on pagehide/hidden, sidecar also on DC close). PC->viewer cp{x,y,v} pixels + cur{w,h,hx,hy,rgba}. Sidecar logs each input {t:in,m,sent(SendInput),err,cursor(GetCursorPos)}, mm rate-limited 500 ms. Relay close 4000 = replaced viewer, no auto-reconnect.
