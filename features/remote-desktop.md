@@ -135,6 +135,8 @@ Hardware cursor is usually **not** in the bitstream. Draw a local software curso
 | ID | Rule |
 |----|------|
 | **C-RD-VIEW-1** | Software cursor over `<video>` / JPEG `<img>` |
+| **C-RD-VIEW-3** | Cursor position: frame meta / `remote_meta` carry `cursor_nx, cursor_ny` (0..1 of capture) + `cursor_visible`, sourced **in the target session** (helper), never from Session 0. Agent also sends `{t:"cursor", nx, ny, visible}` on change (≤15 Hz) so the HW path (no cursor in bitstream) gets an overlay. Viewer draws a software cursor; in trackpad mode it moves locally between updates. |
+| **C-RD-VIEW-4** | Viewer surface is a stable aspect box (`aspect-ratio` from remote size, set once per size change; `object-fit: contain`); banners/status overlay the view — no reflow per frame. |
 | **C-RD-VIEW-2** | Pointer `x,y ∈ [0,1]` vs `meta.native_width/height` + `origin_x/y` (negative origins OK) |
 | **C-RD-VIEW-3** | Coalesce only `move`; flush button/wheel/key immediately |
 | **C-RD-VIEW-4** | CAD = `remote_send_sas` / `POST /api/remote/cad` only |
@@ -255,6 +257,9 @@ composition **or** fall back to an Active RDP session.
 | **C-RD-CAD-4** | Unchanged SAS UI → `SAS_NO_EFFECT` |
 | **C-RD-IN-WL-1** | Winlogon input → same helper session as capture |
 | **C-RD-IN-WL-3** | Meta: `inputs_applied` / `last_input_event` (live, not start snapshot) |
+| **C-RD-IN-WL-4** | Win10/11 lock curtain (`LockApp.exe`) lives on **Default** even while `LogonUI.exe` runs; only SAS/credential UI switches input to `Winlogon`. A helper spawned with the winlogon token MUST follow `OpenInputDesktop` for capture **and** input (never strict-bind `Winlogon`), re-checking the input thread desktop on every inject and the capture thread every N frames, switching both ways (≥4.9.137). |
+| **C-RD-IN-WL-5** | Helper logs `[remote-input] helper-inject ok/FAILED event= desk=` (non-move only) to `rd-helper-YYYY-MM-DD.log`; parent logs every non-move failure. |
+| **C-RD-IN-ACK-1** | Agent `input_ack {id, success, error?, desktop?}` is relayed to viewers; viewer shows `input sent N / acked M / failed K` in Teknik ayrıntı. |
 
 ---
 

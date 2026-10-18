@@ -1,5 +1,11 @@
 # Changelog — asteria-contract
 
+## 1.4.98 - 2026-10-18
+
+- **C-RD-IN-WL-4/5**: lock curtain is on Default; winlogon-token helper follows OpenInputDesktop for capture+input (root cause of "touch does nothing" on locked PCs). Helper inject logging.
+- **C-RD-IN-ACK-1**: viewer input sent/acked/failed counter from agent `input_ack`.
+- **C-RD-VIEW-3/4**: in-session cursor position (`cursor_nx/ny`, `t:cursor`) + software cursor overlay; stable aspect-box viewer.
+
 ## 1.4.94 - 2026-10-18
 
 - **Phase 4 (C-RD-HW)**: new [features/remote-desktop-hw.md](features/remote-desktop-hw.md) - own Rust sidecar `asteria-encode.exe` (DXGI + Media Foundation HW H.264 + webrtc-rs), `viewer_backend=auto|webrtc_hw|jpeg` with automatic JPEG fallback, data-channel input protocol, SYSTEM console capture with no user logged on + SendSAS, live session picker (console + RDP sessions, never a new session), per-connection `notify_user` (default silent), mandatory `remote_audit` for every connection. Permissive licenses only; no RDP/IronRDP/AGPL/GPL.
