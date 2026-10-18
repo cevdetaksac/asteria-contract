@@ -1,5 +1,23 @@
 # Changelog — asteria-contract
 
+## 1.4.93 - 2026-10-18 (Phase 3: Remote Desktop quick wins)
+
+### Viewer / cloud
+- **Newest-frame-only backpressure** in `remote_hub.publish_frame` (per-viewer outbox; slow viewers coalesce).
+- Viewer paints via **`createImageBitmap` → canvas** (keeps `<img>` fallback).
+- Mouse moves **coalesced per animation frame**.
+- **Fit / 1:1** scale modes; fullscreen retained.
+- Stats: measured **fps · kbps · RTT** (rd_ping/rd_pong).
+- Special keys: CAD (SendSAS), Alt+Tab, **Win**, Win+D; soft cursor + host `cursor_x/y` overlay.
+
+### Agent (client ≥ 4.9.127)
+- **Dirty-tile JPEG** (`ASTT` packet) with periodic full keyframe; legacy full JPEG still accepted.
+- **Trickle ICE** advertised and accepted (`action=ice` / `addIceCandidate`).
+- Build **smoke gate**: source import of lazy modules + built exe `--healthcheck` before release.
+
+### Client 4.9.127
+- Required for tiles + trickle ICE. Do not use 4.9.125 (crash-loop prerelease).
+
 ## 1.4.92 - 2026-10-18 (Phase 2: IR sessions/lockdown, Network Guard hard-off)
 
 ### Incident response
