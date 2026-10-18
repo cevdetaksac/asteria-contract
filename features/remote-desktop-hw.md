@@ -156,3 +156,11 @@ Input is injected by the capture helper in the target session (`SendInput`; on W
   Default encode fps = 30; 60 when requested. Adaptive bitrate via TWCC/BWE.
 - **C-RD-FLEET-2** Cloud enables this path for agents **≥4.9.140**.
 
+
+## C-RD-TEST-1 Standalone harness (no Python agent) - 1.4.101
+
+- `asteria-encode --relay wss://asteria.run/ws/rdtest/<token>/pc [--fps N]` bridges the cloud relay to a child `--agent` of the same binary (same token/session as the parent; SYSTEM mode = launch the parent as SYSTEM in the target session).
+- Cloud: `GET /rdtest/<token>` viewer page, `WS /ws/rdtest/<token>/{pc|viewer}` verbatim JSON relay; token = `/data/rdtest_token` (>=16 chars), else 404. Viewer gets `ice_config` (STUN+TURN) from the relay.
+- Messages: viewer->pc `join{fps}`, `answer{sdp}` (non-trickle, full candidates); pc->viewer the `--agent` stdout lines (`offer`, `ice{state}`, `stats`, `error`, ...).
+- Sidecar ICE (C-RD-ICE-2): offer carries host + srflx (STUN on the media socket); received datagrams are tagged with the matching HOST candidate address (never 0.0.0.0) so str0m accepts STUN checks.
+- Viewer video: `<video muted playsinline autoplay>`, srcObject set once, play() once; NotAllowedError -> single "Goruntuyu baslat" tap overlay; play() rejection never closes the PC. First-frame watchdog starts at `connectionState=connected` (10 s) and only reports.
