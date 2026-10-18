@@ -164,3 +164,7 @@ Input is injected by the capture helper in the target session (`SendInput`; on W
 - Messages: viewer->pc `join{fps}`, `answer{sdp}` (non-trickle, full candidates); pc->viewer the `--agent` stdout lines (`offer`, `ice{state}`, `stats`, `error`, ...).
 - Sidecar ICE (C-RD-ICE-2): offer carries host + srflx (STUN on the media socket); received datagrams are tagged with the matching HOST candidate address (never 0.0.0.0) so str0m accepts STUN checks.
 - Viewer video: `<video muted playsinline autoplay>`, srcObject set once, play() once; NotAllowedError -> single "Goruntuyu baslat" tap overlay; play() rejection never closes the PC. First-frame watchdog starts at `connectionState=connected` (10 s) and only reports.
+
+## C-RD-CODEC-1 (1.4.102)
+- Sidecar offers H.264 only; after the answer it sends on the H.264 PT with packetization-mode=1, preferring profile-level-id 42e01f (constrained baseline, encoder profile), logs {t:codec,pt,pm,plid}, drops pre-connect frames and forces an IDR. PLI/FIR -> IDR. Never write on the first negotiated video PT blindly.
+- Harness logs: viewer POSTs every step to /rdtest/<token>/log (/data/rdtest_logs/YYYYMMDD.log); exe writes rdtest.log next to the exe (epoch-ms lines).
