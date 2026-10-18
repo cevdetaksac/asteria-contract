@@ -171,3 +171,7 @@ Input is injected by the capture helper in the target session (`SendInput`; on W
 
 ## C-RD-IN-DC-2 (1.4.103)
 - DC ctrl input coords are captured-monitor PIXELS (video size), never 0..1: mm{x,y}, mb{x,y,b:0/1/2,d}, wh{dx,dy}, k{sc,e,d} (set-1 scancode from KeyboardEvent.code), txt{s} (unicode), sas, rel (release all; sent on pagehide/hidden, sidecar also on DC close). PC->viewer cp{x,y,v} pixels + cur{w,h,hx,hy,rgba}. Sidecar logs each input {t:in,m,sent(SendInput),err,cursor(GetCursorPos)}, mm rate-limited 500 ms. Relay close 4000 = replaced viewer, no auto-reconnect.
+## C-RD-SESS-1 (1.4.104)
+- SYSTEM `--session console` parent (session 0) loops: hop into active console; on child exit re-hop (logout/login). WebRTC+relay stay in the session child; viewer auto-joins on pc_online unless userBye.
+- DXGI ACCESS_LOST / desktop switch: follow_input_desktop, reopen DuplicateOutput with backoff, emit desktop+media, force IDR (resized recreates encoder). Never exit the media thread.
+- Page: Baglantiyi kes toggles to Baglan, clears video/ring, no auto-reconnect until Baglan.
