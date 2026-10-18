@@ -134,3 +134,25 @@ Input is injected by the capture helper in the target session (`SendInput`; on W
   (lock curtain) keeps the parent on Default — no PIX-3 thrash to Winlogon.
 - **C-RD-FLEET-1** Cloud enables WebRTC live for agents **≥4.9.138**. Older agents receive
   a clear upgrade-required message instead of JPEG live.
+
+## 1.4.100 — Single path (agent ≥4.9.140)
+
+**Az kod çok iş.** One live path only:
+
+- **C-RD-ONE-1** Live view = one WebRTC `PeerConnection`: H.264 video track + **one**
+  DataChannel `ctrl` (reliable) for input and cursor. Signaling uses the existing
+  cloud agent/viewer WebSocket only (offer / answer / ICE). No second live transport.
+- **C-RD-ONE-2** No JPEG-WS live, no dirty tiles, no helper-frame streaming, no HTTP
+  frame fallback, no WS input path for live sessions. JPEG remains **only** for
+  on-demand `remote_snapshot`.
+- **C-RD-ONE-3** On encoder / ICE / DTLS failure: stop the stream, emit
+  `VIDEO_ENCODER_FAILED` ("Video kodlayıcı başlatılamadı") with Teknik detail, show
+  retry. Never silently switch to another path.
+- **C-RD-ONE-4** Input on `ctrl`: moves `{t:"mm",x,y}`, buttons `{t:"mb",b,d,x,y}`,
+  keys `{t:"k",...}`, text, SAS, release, clipboard, monitor, keyframe. Host→viewer:
+  `{t:"cp",x,y,v}` cursor position, `{t:"cur",...}` shape. Remote cursor is source of
+  truth; local overlay predicts between updates then snaps.
+- **C-RD-ONE-5** Capture/input processes are DPI-aware (`PER_MONITOR_AWARE_V2`).
+  Default encode fps = 30; 60 when requested. Adaptive bitrate via TWCC/BWE.
+- **C-RD-FLEET-2** Cloud enables this path for agents **≥4.9.140**.
+

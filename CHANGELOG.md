@@ -1,3 +1,8 @@
+## 1.4.100
+
+- Single live path: WebRTC H.264 + one DataChannel `ctrl` (input+cursor). No JPEG live / helper-frame / WS-input fallback.
+- Failure → VIDEO_ENCODER_FAILED + retry only. DPI-aware; default 30 fps.
+
 ## 1.4.99
 
 - Live remote desktop = WebRTC H.264 only (agent ≥4.9.138); JPEG = snapshot only.
