@@ -1,3 +1,9 @@
+## 1.4.107 — 2026-10-22
+
+### Brute-force SQL + Ağ & Portlar
+- See `features/brute-force-sql.md` and `features/network-ports.md`.
+- Client floor **≥ 4.9.146**. WSS respects system/env proxy; HTTPS long-poll when WSS is down.
+
 ## 1.4.100
 
 ## 1.4.106 — 2026-10-22

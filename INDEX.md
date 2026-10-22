@@ -1,14 +1,11 @@
 # Contract INDEX
 
-> [`VERSION`](VERSION) (**1.4.90**) → [`features/README.md`](features/README.md) → that product MD.  
-> Repo: https://github.com/cevdetaksac/asteria-contract · Fleet: [`FLEET.md`](FLEET.md)  
-> Production floor: **client ≥ 4.9.0** · API: `https://asteria.run`  
-> **Cloud work:** [`cloud/CLOUD_CHECKLIST.md`](cloud/CLOUD_CHECKLIST.md) · RD Live paste [`cloud/REMOTE_DESKTOP_JPEG_WS_PRIMARY.md`](cloud/REMOTE_DESKTOP_JPEG_WS_PRIMARY.md) · Attacks NLA [`cloud/ATTACKS_RDP_NLA_FIX.md`](cloud/ATTACKS_RDP_NLA_FIX.md)  
-> **Client work:** [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md) (PIX lab open — test ≥4.9.111; Attacks AuthLog ≥4.9.123 / NLA ≥4.9.121)
+> [`VERSION`](VERSION) (**1.4.107**) → [`features/README.md`](features/README.md) → that product MD.  
+> Shared wire under `api/`. Product SoT is only `features/`.
 
-**Product SoT is only `features/`.** Shared wire is `api/` below. Do not recreate deleted `agent/` product files, `api/04` `05` `09`, or `cloud/DEFENSE_POLICY.md`.
+> **Client work:** [`features/CLIENT_CHECKLIST.md`](features/CLIENT_CHECKLIST.md)
 
----
+**Product SoT is only `features/`.** Shared wire is `api/` below.
 
 ## features/
 
@@ -16,12 +13,13 @@
 |-------|------------|
 | [features/README.md](features/README.md) | — |
 | [features/CLIENT_CHECKLIST.md](features/CLIENT_CHECKLIST.md) | lab ticks |
-| [features/remote-desktop.md](features/remote-desktop.md) | **≥ 4.9.95** topo · **≥ 4.9.100** pixels · **≥ 4.9.101** SMOOTH · recommend **≥ 4.9.111** |
+| [features/remote-desktop.md](features/remote-desktop.md) | **≥ 4.9.95** |
 | [features/self-update.md](features/self-update.md) | **≥ 4.9.96** |
 | [features/process-inspect.md](features/process-inspect.md) | **≥ 4.9.93** |
-| [features/server-management.md
-- [containment.md](features/containment.md) — process/host contain + playbooks (1.4.106)](features/server-management.md
-- [containment.md](features/containment.md) — process/host contain + playbooks (1.4.106)) | **≥ 4.9.4** |
+| [features/server-management.md](features/server-management.md) | **≥ 4.9.4** |
+| [features/containment.md](features/containment.md) | **≥ 4.9.145** |
+| [features/brute-force-sql.md](features/brute-force-sql.md) | **≥ 4.9.146** |
+| [features/network-ports.md](features/network-ports.md) | **≥ 4.9.146** |
 | [features/threat-intel.md](features/threat-intel.md) | **≥ 4.9.96** |
 | [features/firewall.md](features/firewall.md) | **≥ 4.9.41** |
 | [features/defense-policy.md](features/defense-policy.md) | **≥ 4.9.17** |
@@ -33,52 +31,6 @@
 | [features/disaster-recovery.md](features/disaster-recovery.md) | **≥ 4.6.0** |
 | [features/system-recovery.md](features/system-recovery.md) | **≥ 4.9.12** |
 | [features/tools-repair.md](features/tools-repair.md) | **≥ 4.9.79** |
-| [features/network-adapter.md](features/network-adapter.md) | **≥ 4.9.42** |
-| [features/gui.md](features/gui.md) | **≥ 4.8.0** |
-| [features/presence.md](features/presence.md) | **≥ 4.9.8** |
-| [features/threat-engine.md](features/threat-engine.md) | **≥ 4.9.123** AuthLog + MySQL verbosity prep · **≥ 4.9.121** NLA RDP · **≥ 4.9.109** dual-channel |
+| [features/gui.md](features/gui.md) | — |
+| [features/network-adapter.md](features/network-adapter.md) | — |
 
----
-
-## Shared wire (`api/`)
-
-| Dosya | Konu |
-|-------|------|
-| [api/01-auth.md](api/01-auth.md) | Bearer, register, heartbeat, rotate-token |
-| [api/02-account.md](api/02-account.md) | Link / unlink |
-| [api/03-control-websocket.md](api/03-control-websocket.md) | Control WS + command catalog + HMAC |
-| [api/06-firewall-blocks.md](api/06-firewall-blocks.md) | AR-BLOCK sync |
-| [api/07-lifecycle-sessions.md](api/07-lifecycle-sessions.md) | Lifecycle / sessions |
-| [api/08-architecture.md](api/08-architecture.md) | Daemon vs GUI IPC |
-| [api/10-offline-urgent-queue.md](api/10-offline-urgent-queue.md) | OOB-501 (client flag off) |
-| [api/11-presence-realtime.md](api/11-presence-realtime.md) | Sleep / goodbye |
-| [api/12-command-envelope-v2.md](api/12-command-envelope-v2.md) | Observe-only; no emit |
-
----
-
-## Cloud ops
-
-| Dosya | Konu |
-|-------|------|
-| [cloud/CLOUD_CHECKLIST.md](cloud/CLOUD_CHECKLIST.md) | **Tick list for dashboard/API** |
-| [cloud/REMOTE_DESKTOP_JPEG_WS_PRIMARY.md](cloud/REMOTE_DESKTOP_JPEG_WS_PRIMARY.md) | Live: JPEG-WS primary · pin ≥4.9.110 |
-| [cloud/ATTACKS_NOTIFY_DUAL_CHANNEL.md](cloud/ATTACKS_NOTIFY_DUAL_CHANNEL.md) | Attacks email: NETWORK digest |
-| [cloud/CLOUD_SURFACE.md](cloud/CLOUD_SURFACE.md) | HTTP/WS inventory |
-| [cloud/dashboard-deep-links.md](cloud/dashboard-deep-links.md) | `?token=` Settings URLs |
-| [cloud/FLEET_CANARY.md](cloud/FLEET_CANARY.md) | Canary gates |
-| [cloud/PROMOTION_GATES.md](cloud/PROMOTION_GATES.md) | Observe→enforce |
-| [cloud/PRODUCT_BRANDING.md](cloud/PRODUCT_BRANDING.md) | Sunset 2026-10-01 |
-| [cloud/threat-intel-ingest.md](cloud/threat-intel-ingest.md) | External feeds (cloud-only) |
-| [cloud/overview.md](cloud/overview.md) | Architecture sketch |
-
----
-
-## Agent leftovers (not product SoT)
-
-[`agent/CLIENT.md`](agent/CLIENT.md) · [`agent/rebrand-asteria.md`](agent/rebrand-asteria.md) · [`agent/register-protection.md`](agent/register-protection.md) · [`agent/polling.md`](agent/polling.md) · [`agent/log-retention.md`](agent/log-retention.md) · [`agent/attacks-and-services.md`](agent/attacks-and-services.md) · [`agent/gui-webview-bridge.md`](agent/gui-webview-bridge.md) (draft)
-
----
-
-## Plans (not product SoT)
-
-[ROADMAP_TIERED_DEFENSE.md](ROADMAP_TIERED_DEFENSE.md) · [SECURITY_RESILIENCE_VNEXT.md](SECURITY_RESILIENCE_VNEXT.md) · [FLEET.md](FLEET.md)
