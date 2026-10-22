@@ -1,5 +1,15 @@
 ## 1.4.100
 
+## 1.4.106 — 2026-10-22
+
+### Containment P0–P2
+- New feature doc `features/containment.md`: `contain_process` / `release_process`,
+  `unblock_process`, real `isolate_host`/`lift_isolation` (allowlist + dead-man),
+  `disable_service` + `delete_user` in cloud VALID, playbooks
+  (`rdp_attack`, `compromised_admin`, `malicious_process`).
+- Client floor **≥ 4.9.145**. Admin result shape for suspend/resume/block/accounts.
+
+
 - Single live path: WebRTC H.264 + one DataChannel `ctrl` (input+cursor). No JPEG live / helper-frame / WS-input fallback.
 - Failure → VIDEO_ENCODER_FAILED + retry only. DPI-aware; default 30 fps.
 

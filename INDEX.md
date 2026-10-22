@@ -19,7 +19,9 @@
 | [features/remote-desktop.md](features/remote-desktop.md) | **≥ 4.9.95** topo · **≥ 4.9.100** pixels · **≥ 4.9.101** SMOOTH · recommend **≥ 4.9.111** |
 | [features/self-update.md](features/self-update.md) | **≥ 4.9.96** |
 | [features/process-inspect.md](features/process-inspect.md) | **≥ 4.9.93** |
-| [features/server-management.md](features/server-management.md) | **≥ 4.9.4** |
+| [features/server-management.md
+- [containment.md](features/containment.md) — process/host contain + playbooks (1.4.106)](features/server-management.md
+- [containment.md](features/containment.md) — process/host contain + playbooks (1.4.106)) | **≥ 4.9.4** |
 | [features/threat-intel.md](features/threat-intel.md) | **≥ 4.9.96** |
 | [features/firewall.md](features/firewall.md) | **≥ 4.9.41** |
 | [features/defense-policy.md](features/defense-policy.md) | **≥ 4.9.17** |

@@ -43,3 +43,7 @@ All three require `confirm=true` and are written to the command audit log.
 | Undo lockdown | `emergency_lockdown_undo` | `lockdown_id` | Re-enable users + delete ASTERIA_IR_RDP_* rules |
 
 Result: `{ok, success, actions:[{type,target,ok,error}], undo_id?}`.
+
+## Containment
+
+See [`containment.md`](./containment.md) (1.4.106+) for contain/isolate/playbooks.
